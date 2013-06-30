@@ -1,0 +1,19 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
+		<provider>org.batoo.jpa.core.BatooPersistenceProvider</provider>
+		<non-jta-data-source>java:comp/env/jdbc/mysql</non-jta-data-source>
+
+		<class>com.upreader.model.User</class>
+
+		<properties>
+			<!-- DDL operations, DROP | CREATE (*) | UPDATE | VERIFY | NONE -->
+			<property name="org.batoo.jpa.ddl" value="NONE" />
+			<property name="org.batoo.jpa.sql_logging" value="STDOUT" />
+		</properties>
+	</persistence-unit>
+
+</persistence>

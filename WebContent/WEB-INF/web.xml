@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:resin="urn:java:com.caucho.resin">
+
+	<display-name>upreader</display-name>
+
+	<!-- These lines will force assets to be served be resin -->
+	<servlet-mapping url-pattern="/css/*" servlet-name="resin-file" />
+	<servlet-mapping url-pattern="/js/*" servlet-name="resin-file" />
+	<servlet-mapping url-pattern="/images/*" servlet-name="resin-file" />
+	<servlet-mapping url-pattern="/html/*" servlet-name="resin-file" />
+	<servlet-mapping url-pattern="favicon.ico" 	servlet-name="resin-file" />
+
+	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jsp" servlet-name="resin-jsp" />
+  	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jspf" servlet-name="resin-jsp" />
+  	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jspx" servlet-name="resin-jspx" />
+
+	<!-- Disallow URL rewriting for sessions. -->
+	<session-config enable-url-rewriting="false" />
+
+	<!-- Use UTF-8 for everything. -->
+	<character-encoding>UTF-8</character-encoding>
+	
+	<resin:FormLogin form-login-page="/needsLogin" form-error-page="/loginError" form-uri-priority="true"/>
+
+	<resin:Allow url-pattern="/foo/*">
+		<resin:IfUserInRole role="upreader"/>
+  	</resin:Allow>
+  	
+  	<resin:DatabaseAuthenticator>
+  		<resin:password-digest>MD5-plain</resin:password-digest>
+    	<resin:data-source>jdbc/mysql</resin:data-source>   
+    	<resin:password-query>
+      		SELECT password FROM users WHERE username=?
+    	</resin:password-query>
+    	<resin:cookie-auth-query>
+      		SELECT username FROM users WHERE cookie=?
+    	</resin:cookie-auth-query>     
+    	<resin:cookie-auth-update>
+      		UPDATE users SET cookie=? WHERE username=?
+    	</resin:cookie-auth-update>
+    	<resin:role-query>
+      		SELECT role FROM users WHERE username=?
+    	</resin:role-query>
+  	</resin:DatabaseAuthenticator>
+</web-app>
