@@ -22,7 +22,7 @@
 	
 	<resin:FormLogin form-login-page="/needsLogin" form-error-page="/loginError" form-uri-priority="true"/>
 
-	<resin:Allow url-pattern="/foo/*">
+	<resin:Allow url-pattern="/secure/*">
 		<resin:IfUserInRole role="upreader"/>
   	</resin:Allow>
   	

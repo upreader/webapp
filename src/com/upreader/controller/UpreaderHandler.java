@@ -15,6 +15,12 @@ import com.upreader.dispatcher.PathDefault;
 import com.upreader.dispatcher.PathSegment;
 import com.upreader.helper.CollectionHelper;
 
+/**
+ * Test file
+ * 
+ * @author Flavius
+ *
+ */
 public class UpreaderHandler extends MethodPathHandler {
 	Logger log = Logger.getLogger(UpreaderHandler.class);
 		
@@ -24,7 +30,7 @@ public class UpreaderHandler extends MethodPathHandler {
 	
 	@PathDefault
 	public boolean homepage() {
-		return template("homepage").render();
+		return context().render("home.jsp");
 	}
 	
 	@PathSegment("needsLogin")
@@ -96,5 +102,10 @@ public class UpreaderHandler extends MethodPathHandler {
 	@PathSegment("jsp")
 	public boolean includeJsp() {
 		return context().render("testinclude.jsp");
+	}
+	
+	@PathSegment("secure/message")
+	public boolean secureMessage() {
+		return message("this is secure");
 	}
 }
