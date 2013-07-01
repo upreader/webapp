@@ -1,13 +1,12 @@
 <resin xmlns="http://caucho.com/ns/resin" xmlns:resin="urn:java:com.caucho.resin">
-	<log-handler name="" level="all" path="stdout:"
-		timestamp="[%y-%m-%d %H:%M:%S.%s] {%{thread}} " />
+	<log-handler name="" level="all" path="stdout:" timestamp="[%y-%m-%d %H:%M:%S.%s] {%{thread}} " />
 	<logger name="com.caucho" level="info" />
 	<logger name="com.caucho.java" level="config" />
 	<logger name="com.caucho.loader" level="config" />
 	<logger name="com.caucho.server.cache" level="info" />
 	<logger name="com.caucho.security" level="info" />
 	<logger name="com.caucho.server.security" level="info" />
-
+	
 	<character-encoding>utf-8</character-encoding>
 
 	<class-loader>
