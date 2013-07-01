@@ -1,5 +1,41 @@
-@CHARSET "UTF8";
-
 body {
-	background-color: rgb(245, 245, 245);
+	background: none repeat scroll 0% 0% #FFFFFF;
+	font: 16px/1.5 Helvetica, Arial, FreeSans, sans-serif;
+	color: rgb(18, 26, 13);
+	margin: 0px;
+	padding: 0px;
+	border: 0px none;
+}
+
+a:link,a:visited {
+	text-decoration: none;
+}
+
+a:hover,a:active {
+	text-decoration: underline;
+}
+
+div.loginBar {
+	width: 100%;
+	height: 40px;
+	background-color: #F3E2A9;
+}
+
+div.loginLink {
+	float: right;
+	position: relative;
+	right: 30px;
+	top: 5px;
+}
+
+div.loginLink a {
+	font-weight: bold;
+}
+
+div.logo {
+	float: left;
+	position: relative;
+	left: 30px;
+	top: 5px;
+	font-weight: bold;
 }

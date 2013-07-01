@@ -20,10 +20,15 @@
 	<!-- Use UTF-8 for everything. -->
 	<character-encoding>UTF-8</character-encoding>
 	
-	<resin:FormLogin form-login-page="/needsLogin" form-error-page="/loginError" form-uri-priority="true"/>
-
-	<resin:Allow url-pattern="/secure/*">
-		<resin:IfUserInRole role="upreader"/>
+	<resin:FormLogin form-login-page="/login" form-error-page="/loginError" form-uri-priority="true" internal-forward="true"/>
+	
+	<!-- trigger authentication for /auth url -->
+	<resin:Allow url-pattern="/auth">
+		<resin:IfUserInRole role="*"/>
+  	</resin:Allow>
+  	<!-- /admin is only allowed for admin role -->
+	<resin:Allow url-pattern="/admin">
+		<resin:IfUserInRole role="admin"/>
   	</resin:Allow>
   	
   	<resin:DatabaseAuthenticator>

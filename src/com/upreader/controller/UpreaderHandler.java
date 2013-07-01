@@ -14,6 +14,7 @@ import com.upreader.dispatcher.MethodPathHandler;
 import com.upreader.dispatcher.PathDefault;
 import com.upreader.dispatcher.PathSegment;
 import com.upreader.helper.CollectionHelper;
+import com.upreader.model.User;
 
 /**
  * Test file
@@ -33,9 +34,9 @@ public class UpreaderHandler extends MethodPathHandler {
 		return context().render("home.jsp");
 	}
 	
-	@PathSegment("needsLogin")
-	public boolean needsLogin() {
-		return message("Please login to continue");
+	@PathSegment("login")
+	public boolean loginForm() {
+		return context().render("login.jsp");
 	}
 	
 	@PathSegment("loginError")
@@ -47,17 +48,32 @@ public class UpreaderHandler extends MethodPathHandler {
 	public boolean loginSuccessful() {
 		String username = username();
 		if(username != null) {
-			boolean isUpreader = isUserInRole("upreader");
+			User user = userController().findbyUsername(username);
+			session().putObject("user", user);
+			if(user.getRole().contains("admin"))
+				session().put("isAdmin", true);
+			if(user.getRole().contains("upreader"))
+				session().put("isUpreader", true);
+			if(user.getRole().contains("author"))
+				session().put("isAuthor", true);
+			if(user.getRole().contains("buyer"))
+				session().put("isBuyer", true);
 		}
-		return message("Login successful");
+		return homepage();
 	}
 	
 	@PathSegment("logout")
 	public boolean logout() {
 		context().getSession(false).invalidate();
-		return true;
+		return homepage();
 	}
 	
+	@PathSegment("admin")
+	public boolean gotoAdminPage() {
+		return context().render("admin.jsp");
+	}
+	
+	// TEST FEATURES ONLY BELOW HERE//
 	@PathSegment("message")
 	public boolean messageDemo() {
 		return message("this is a message");
@@ -97,11 +113,6 @@ public class UpreaderHandler extends MethodPathHandler {
 	@PathSegment("download/attachment")
 	public boolean attachment() {
 		return context().includeFile(new File("c:\\doc.pdf"), "doc.pdf", true, MimeTypes.PDF);
-	}
-	
-	@PathSegment("jsp")
-	public boolean includeJsp() {
-		return context().render("testinclude.jsp");
 	}
 	
 	@PathSegment("secure/message")

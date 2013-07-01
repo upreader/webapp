@@ -5,6 +5,8 @@ import java.io.Writer;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +17,7 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 
+import com.caucho.server.webapp.ForwardRequest;
 import com.upreader.context.Context;
 import com.upreader.helper.CollectionHelper;
 
@@ -61,7 +64,7 @@ public class UpreaderServlet extends HttpServlet {
 
 	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		if (this.application.isRunning()) {
-			UpreaderRequest httpRequest = new UpreaderRequest(request, response, getServletContext(), this.application);
+			UpreaderRequest httpRequest = new UpreaderRequest(request, response, request.getServletContext(), this.application);
 			for (int i = 0; i < this.listeners.length; i++) {
 				try {
 					this.listeners[i].requestStarting(httpRequest);

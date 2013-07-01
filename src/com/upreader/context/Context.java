@@ -18,6 +18,7 @@ import com.upreader.Infrastructure;
 import com.upreader.UpreaderApplication;
 import com.upreader.UpreaderRequest;
 import com.upreader.UpreaderSession;
+import com.upreader.controller.UserController;
 import com.upreader.dispatcher.Dispatcher;
 import com.upreader.security.TokenProvider;
 
@@ -48,6 +49,8 @@ public class Context {
 	private Attachments files;
 	private Headers headers;
 	private UpreaderSession session;
+	private UserController userController;
+	
 	private long requestNumber = 0L;
 	
 	private EntityManager entityManager;
@@ -79,6 +82,7 @@ public class Context {
 		setDefaultCharacterSets();
 		
 		this.entityManager = this.application.getStore().createEm();
+		this.userController = new UserController(application, this.entityManager);
 	}
 
 	public static void complete() {
@@ -204,6 +208,10 @@ public class Context {
 	
 	public EntityManager em() {
 		return this.entityManager;
+	}
+	
+	public UserController userController() {
+		return this.userController;
 	}
 	
 	public long getStartTime() {

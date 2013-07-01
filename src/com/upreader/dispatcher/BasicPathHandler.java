@@ -15,6 +15,7 @@ import com.upreader.context.Headers;
 import com.upreader.context.Messages;
 import com.upreader.context.Query;
 import com.upreader.context.SessionNamedValues;
+import com.upreader.controller.UserController;
 import com.upreader.helper.StringHelper;
 import com.upreader.helper.WebHelper;
 import com.upreader.js.JavaScriptWriter;
@@ -201,6 +202,10 @@ public abstract class BasicPathHandler {
 	
 	public String username() {
 		return context().getUserName();
+	}
+	
+	public UserController userController() {
+		return context().userController();
 	}
 	
 	public boolean isUserInRole(String roleName) {
