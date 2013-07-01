@@ -3,7 +3,7 @@ webapp
 
 Upreader Web Application on Resin 4 application server that uses a custom framework developed by Flavius (somehow similar to Sprin MVC but much simpler).
 
-Technologies user so far:
+Technologies used so far:
 + Servlet 3, JSP EL
 + [batooJpa 2.0.1.2](https://github.com/BatooOrg/BatooJPA) as a JPA 2.0 implementation
 + jQuery 1.10.1
