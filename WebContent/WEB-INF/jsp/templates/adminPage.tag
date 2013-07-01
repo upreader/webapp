@@ -6,10 +6,9 @@
 <head>
 <title>Upreader Administration</title>
 <link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/upreader.css" media="screen" />
+<link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/admin-datatable.css" media="screen" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
-
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
 	<%@ include file="../inc/topbar.jspf"%>

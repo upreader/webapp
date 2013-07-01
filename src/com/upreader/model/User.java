@@ -18,7 +18,8 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(name = "UK_USER_USERNAME", columnNames = { "username" }) })
 @NamedQueries({
 		@NamedQuery(name = User.NQ_FIND_BY_USERNAME, query = "SELECT u from User u where u.username = :username"),
-		@NamedQuery(name = User.NQ_FIND_BY_EMAIL, query = "SELECT u from User u where u.email = :email") })
+		@NamedQuery(name = User.NQ_FIND_BY_EMAIL, query = "SELECT u from User u where u.email = :email"),
+		@NamedQuery(name = User.NQ_FIND_ALL, query = "SELECT u from User u") })
 public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -81,4 +82,5 @@ public class User implements Serializable {
 	
 	public static final String NQ_FIND_BY_USERNAME = "User_findByUsername";
 	public static final String NQ_FIND_BY_EMAIL = "User_findByEmail";
+	public static final String NQ_FIND_ALL = "User_findAll";
 }

@@ -1,6 +1,7 @@
 package com.upreader.controller;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,6 +82,29 @@ public class UpreaderHandler extends MethodPathHandler {
 	@PathSegment("admin/status")
 	public boolean gotoAdminStatusPage() {
 		return context().render("admin/status.jsp");
+	}
+	
+	@PathSegment("admin/service/userList")
+	public boolean userList() {
+		List<User> users = userController().list();
+		Map<String, Object> result = new HashMap<>();
+		result.put("sEcho", query().get("sEcho"));
+		result.put("iTotalRecords", users.size());
+		result.put("iTotalDisplayRecords", users.size());
+//		Object[][] array = new Object[users.size()][5];
+//		for(int i=0; i<users.size(); i++) {
+//			User u = users.get(i);
+//			array[i] = new Object[] { u.getId(), u.getUsername(), u.getEmail(), u.getRole() };
+//		}
+		result.put("aaData", users);
+		result.put("aoColumns", Arrays.asList(new DataTableColumn[] {
+				new DataTableColumn("id"),
+				new DataTableColumn("username"),
+				new DataTableColumn("password"),
+				new DataTableColumn("email"),
+				new DataTableColumn("role")
+		}));
+		return json(result);
 	}
 	
 	// TEST FEATURES ONLY BELOW HERE//

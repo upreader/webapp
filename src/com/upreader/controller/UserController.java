@@ -1,5 +1,7 @@
 package com.upreader.controller;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -18,5 +20,9 @@ public class UserController {
 	public User findbyUsername(String username) {
 		TypedQuery<User> query = em.createNamedQuery(User.NQ_FIND_BY_USERNAME, User.class);
 		return query.setParameter("username", username).getSingleResult();
+	}
+	
+	public List<User> list() {
+		return em.createNamedQuery(User.NQ_FIND_ALL, User.class).getResultList();
 	}
 }
