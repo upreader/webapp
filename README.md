@@ -1,9 +1,16 @@
 webapp
 ======
 
-Upreader Web Application on Resin 4 application server.
+Upreader Web Application on Resin 4 application server that uses a custom framework developed by Flavius (somehow similar to Sprin MVC but much simpler).
 
-Uses a custom framework developed by Flavius that is somehow similar to Sprin MVC but much faster.
+Technologies user so far:
++ Servlet 3, JSP EL
++ [batooJpa 2.0.1.2](https://github.com/BatooOrg/BatooJPA) as a JPA 2.0 implementation
++ jQuery 1.10.1
++ jQuery Datatables wrapper for Java: [Dandelion Datatables 0.8.14](http://dandelion.github.io/datatables/)
++ [Jackson JSON](http://jackson.codehaus.org/) 2.2.0 for POJO <> JSON conversions
++ [Mustache](http://mustache.github.io/) as a generic templating engine
++ Log4j 1.2.16
 
 Building and running the project on Windows
 ---------------------------------------------
