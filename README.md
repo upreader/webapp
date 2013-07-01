@@ -25,6 +25,7 @@ Building and running the project on Windows
 7. Add the application to the created server instance
 7. Configure the workspace jdk to the downloaded JDK 7 folder
 8. Replace resin.xml and health.xml in the default "Servers/Resin 4.0 at localhost-config" with the ones from the project (resin folder)
+9. Copy the mysql driver from the resin/lib project folder to Resin/lib
 9. Edit the Eclipse server launch configuration and add "-server app-0" to the startup arguments
 11. Start the server instance from eclipse
 12. Goto phpMyAdmin and create insert a user in table "users" with values (admin, admin@upreader.local, f218d707844d5011b1e5c2b57dee4d0b, basic). The id ise set on auto_increment so it will be added automatically on commit. 
