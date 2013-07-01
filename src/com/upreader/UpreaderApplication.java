@@ -12,7 +12,7 @@ import com.upreader.context.Context;
 import com.upreader.controller.UpreaderHandler;
 import com.upreader.data.EntityStore;
 import com.upreader.dispatcher.Dispatcher;
-import com.upreader.js.JavaScriptWriter;
+import com.upreader.helper.JsonWriter;
 import com.upreader.locale.LocaleManager;
 import com.upreader.mustache.MustacheManager;
 import com.upreader.thread.DeferredAsyncResource;
@@ -37,7 +37,7 @@ public class UpreaderApplication {
 	private final Dispatcher dispatcher;
 	private final LocaleManager localeManager;
 	private final Infrastructure infrastructure;
-	private final JavaScriptWriter standardJsw;
+	private final JsonWriter standardJsw;
 	private final MustacheManager mustacheManager;
 	private final EntityStore entityStore;
 
@@ -68,7 +68,7 @@ public class UpreaderApplication {
 		this.mustacheManager = new MustacheManager(this);
 		this.dispatcher = new Dispatcher(this, new UpreaderHandler(this), new BasicExceptionHandler(this));
 		this.sessionManager = new UpreaderSessionManager(this);
-		this.standardJsw = JavaScriptWriter.standard();
+		this.standardJsw = new JsonWriter();
 		
 		this.asyncResources.add(entityStore);
 	}
@@ -245,7 +245,7 @@ public class UpreaderApplication {
 		return mustacheManager;
 	}
 
-	public JavaScriptWriter getJavaScriptWriter() {
+	public JsonWriter getJavaScriptWriter() {
 		return standardJsw;
 	}
 

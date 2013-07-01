@@ -1,10 +1,11 @@
 package com.upreader.helper;
 
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.upreader.context.Context;
-import com.upreader.js.JavaScriptWriter;
 
 public class WebHelper {
 	public static boolean isJsonRequest(Context context) {
@@ -23,7 +24,7 @@ public class WebHelper {
 		return sendJson(context, null, object, null);
 	}
 
-	public static boolean sendJson(Context context, Object object, JavaScriptWriter jsw) {
+	public static boolean sendJson(Context context, Object object, JsonWriter jsw) {
 		return sendJson(context, null, object, jsw);
 	}
 
@@ -31,8 +32,8 @@ public class WebHelper {
 		return sendJson(context, objectName, object, null);
 	}
 
-	public static boolean sendJson(Context context, String objectName, Object object, JavaScriptWriter jsw) {
-		JavaScriptWriter writer = jsw != null ? jsw : context.getApplication().getJavaScriptWriter();
+	public static boolean sendJson(Context context, String objectName, Object object, JsonWriter jsw) {
+		JsonWriter writer = jsw != null ? jsw : context.getApplication().getJavaScriptWriter();
 
 		context.setContentType("application/json");
 

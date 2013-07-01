@@ -16,9 +16,9 @@ import com.upreader.context.Messages;
 import com.upreader.context.Query;
 import com.upreader.context.SessionNamedValues;
 import com.upreader.controller.UserController;
+import com.upreader.helper.JsonWriter;
 import com.upreader.helper.StringHelper;
 import com.upreader.helper.WebHelper;
-import com.upreader.js.JavaScriptWriter;
 import com.upreader.mustache.MustacheManager;
 
 public abstract class BasicPathHandler {
@@ -26,11 +26,11 @@ public abstract class BasicPathHandler {
 	private final UpreaderApplication application;
 	private final ThreadLocal<References> references;
 	private final MustacheManager mustacheManager;
-	private final JavaScriptWriter javaScriptWriter;
+	private final JsonWriter javaScriptWriter;
 
 	private String baseUri;
 
-	public BasicPathHandler(UpreaderApplication application, JavaScriptWriter jsw) {
+	public BasicPathHandler(UpreaderApplication application, JsonWriter jsw) {
 		this.application = application;
 		this.references = new ThreadLocal<>();
 		this.mustacheManager = application.getMustacheManager();

@@ -9,9 +9,9 @@ import org.apache.log4j.Logger;
 
 import com.upreader.UpreaderApplication;
 import com.upreader.context.Context;
+import com.upreader.helper.JsonWriter;
 import com.upreader.helper.ReflectionHelper;
 import com.upreader.helper.StringHelper;
-import com.upreader.js.JavaScriptWriter;
 import com.upreader.util.MethodAccess;
 
 public class MethodPathHandler extends BasicPathHandler {
@@ -26,7 +26,7 @@ public class MethodPathHandler extends BasicPathHandler {
 		this(app, null);
 	}
 	
-	public MethodPathHandler(UpreaderApplication app, JavaScriptWriter jsw) {
+	public MethodPathHandler(UpreaderApplication app, JsonWriter jsw) {
 		super(app, jsw);
 
 		this.annotatedHandleMethods = new HashMap<String, MethodPathHandler.PathSegmentMethod>();
