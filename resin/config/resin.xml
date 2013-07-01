@@ -38,7 +38,7 @@
 	<cluster id="app">
 		<resin:import path="classpath:META-INF/caucho/app-default.xml" />
 
-		<server id="app-0" address="D02DI1143246" port="6800" allow-non-reserved-ip="true" />
+		<server id="app-0" address="localhost" port="6800" allow-non-reserved-ip="true" />
 		<!--server id="app-2" address="resin2.upreader.local" port="6800" allow-non-reserved-ip="true" / -->
 
 		<development-mode-error-page />
@@ -73,9 +73,9 @@
 		<database>
 			<jndi-name>jdbc/mysql</jndi-name>
 			<driver type="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
-				<url>jdbc:mysql://db.upreader.local:3306/upreader</url>
-				<user>upreader</user>
-				<password>asdqwe123</password>
+				<url>jdbc:mysql://localhost:3306/upreader</url>
+				<user>root</user>
+				<password></password>
 			</driver>
 			<prepared-statement-cache-size>8</prepared-statement-cache-size>
 			<max-connections>20</max-connections>
