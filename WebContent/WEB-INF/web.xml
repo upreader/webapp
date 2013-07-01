@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:resin="urn:java:com.caucho.resin">
-
+<web-app version="3.0" xmlns:resin="urn:java:com.caucho.resin">
 	<display-name>upreader</display-name>
 
 	<!-- These lines will force assets to be served be resin -->
-	<servlet-mapping url-pattern="/css/*" servlet-name="resin-file" />
-	<servlet-mapping url-pattern="/js/*" servlet-name="resin-file" />
-	<servlet-mapping url-pattern="/images/*" servlet-name="resin-file" />
-	<servlet-mapping url-pattern="/html/*" servlet-name="resin-file" />
-	<servlet-mapping url-pattern="favicon.ico" 	servlet-name="resin-file" />
+	<servlet-mapping url-pattern="/css/*" servlet-name="resin-file"/>
+	<servlet-mapping url-pattern="/js/*" servlet-name="resin-file"/>
+	<servlet-mapping url-pattern="/images/*" servlet-name="resin-file"/>
+	<servlet-mapping url-pattern="/html/*" servlet-name="resin-file"/>
+	<servlet-mapping url-pattern="favicon.ico" 	servlet-name="resin-file"/>
 
-	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jsp" servlet-name="resin-jsp" />
-  	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jspf" servlet-name="resin-jsp" />
-  	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jspx" servlet-name="resin-jspx" />
+	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jsp" servlet-name="resin-jsp"/>
+  	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jspf" servlet-name="resin-jsp"/>
+  	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jspx" servlet-name="resin-jspx"/>
 
 	<!-- Disallow URL rewriting for sessions. -->
 	<session-config enable-url-rewriting="false" />

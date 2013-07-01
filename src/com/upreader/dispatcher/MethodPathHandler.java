@@ -79,17 +79,11 @@ public class MethodPathHandler extends BasicPathHandler {
 	}
 
 	protected PathSegmentMethod getAnnotatedMethod(PathSegments segments) {
-		StringBuilder uri = new StringBuilder();
-		PathSegmentMethod method = null;
-		for(int i=0; i<segments.getCount(); i++) {
-			uri.append(segments.get(i));
-			method = this.annotatedHandleMethods.get(uri.toString());
-			if(method != null)
-				break;
-			
-			uri.append('/');
-		}
-		
+		// first try the full path
+		String uri = segments.getUriAboveOffset().toString();
+		if(uri.endsWith("/"))
+			uri = uri.substring(0, uri.length()-1);
+		PathSegmentMethod method = this.annotatedHandleMethods.get(uri);	
 		return method != null ? method : this.defaultMethod;
 	}
 

@@ -70,7 +70,17 @@ public class UpreaderHandler extends MethodPathHandler {
 	
 	@PathSegment("admin")
 	public boolean gotoAdminPage() {
-		return context().render("admin.jsp");
+		return context().render("admin/status.jsp");
+	}
+	
+	@PathSegment("admin/users")
+	public boolean gotoAdminUsersPage() {
+		return context().render("admin/users.jsp");
+	}
+	
+	@PathSegment("admin/status")
+	public boolean gotoAdminStatusPage() {
+		return context().render("admin/status.jsp");
 	}
 	
 	// TEST FEATURES ONLY BELOW HERE//
