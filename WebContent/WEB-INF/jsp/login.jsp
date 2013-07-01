@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -25,8 +26,11 @@
 				<td colspan="2" align="center"><INPUT type="submit" value="Login" /></td>
 			</tr>
 		</table>
-		<input type="hidden" name="j_uri" value="loginSuccessful" />
+		<input type="hidden" name="j_uri" value="/i/loginSuccessful" />
 	</FORM>
 </div>
+<c:if test="${not empty param.error}">
+<p>Error logging in</p>
+</c:if>
 </body>
 </html>

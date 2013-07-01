@@ -1,13 +1,15 @@
 package com.upreader.controller;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.github.dandelion.datatables.core.ajax.DataSet;
+import com.github.dandelion.datatables.core.ajax.DatatablesCriterias;
+import com.github.dandelion.datatables.core.ajax.DatatablesResponse;
 import com.upreader.MimeTypes;
 import com.upreader.RequestFile;
 import com.upreader.UpreaderApplication;
@@ -15,7 +17,9 @@ import com.upreader.dispatcher.MethodPathHandler;
 import com.upreader.dispatcher.PathDefault;
 import com.upreader.dispatcher.PathSegment;
 import com.upreader.helper.CollectionHelper;
+import com.upreader.helper.StringHelper;
 import com.upreader.model.User;
+import com.upreader.util.PasswordUtil;
 
 /**
  * Test file
@@ -35,31 +39,8 @@ public class UpreaderHandler extends MethodPathHandler {
 		return context().render("home.jsp");
 	}
 	
-	@PathSegment("login")
-	public boolean loginForm() {
-		return context().render("login.jsp");
-	}
-	
-	@PathSegment("loginError")
-	public boolean loginError() {
-		return message("Error logging in");
-	}
-	
 	@PathSegment("loginSuccessful")
 	public boolean loginSuccessful() {
-		String username = username();
-		if(username != null) {
-			User user = userController().findbyUsername(username);
-			session().putObject("user", user);
-			if(user.getRole().contains("admin"))
-				session().put("isAdmin", true);
-			if(user.getRole().contains("upreader"))
-				session().put("isUpreader", true);
-			if(user.getRole().contains("author"))
-				session().put("isAuthor", true);
-			if(user.getRole().contains("buyer"))
-				session().put("isBuyer", true);
-		}
 		return homepage();
 	}
 	
@@ -69,42 +50,67 @@ public class UpreaderHandler extends MethodPathHandler {
 		return homepage();
 	}
 	
-	@PathSegment("admin")
-	public boolean gotoAdminPage() {
-		return context().render("admin/status.jsp");
+	
+	@PathSegment("service/userList")
+	public boolean userList() {
+		DatatablesCriterias criterias = DatatablesCriterias.getFromRequest(context().getRequest().getRawRequest());
+		DataSet<User> dataSet = userController().findWithDatatablesCriterias(criterias);
+		DatatablesResponse<User> response = DatatablesResponse.build(dataSet, criterias);
+		return json(response);
 	}
 	
-	@PathSegment("admin/users")
-	public boolean gotoAdminUsersPage() {
+	@PathSegment("service/addUser")
+	public boolean addUser() {
+		String username = query().get("username");
+		String password = query().get("password");
+		String email = query().get("email");
+		String role = query().get("role");
+		
+		User user = new User();
+		user.setUsername(username);
+		user.setEmail(email);
+		user.setPassword(PasswordUtil.encryptPassword(username, password));
+		user.setRole(role);
+		
+		userController().insert(user);
 		return context().render("admin/users.jsp");
 	}
 	
-	@PathSegment("admin/status")
-	public boolean gotoAdminStatusPage() {
-		return context().render("admin/status.jsp");
+	@PathSegment("service/deleteUser")
+	public boolean deleteUser() {
+		int id = query().getInt("objid");
+		userController().delete(id);
+		return message("OK");
 	}
 	
-	@PathSegment("admin/service/userList")
-	public boolean userList() {
-		List<User> users = userController().list();
-		Map<String, Object> result = new HashMap<>();
-		result.put("sEcho", query().get("sEcho"));
-		result.put("iTotalRecords", users.size());
-		result.put("iTotalDisplayRecords", users.size());
-//		Object[][] array = new Object[users.size()][5];
-//		for(int i=0; i<users.size(); i++) {
-//			User u = users.get(i);
-//			array[i] = new Object[] { u.getId(), u.getUsername(), u.getEmail(), u.getRole() };
-//		}
-		result.put("aaData", users);
-		result.put("aoColumns", Arrays.asList(new DataTableColumn[] {
-				new DataTableColumn("id"),
-				new DataTableColumn("username"),
-				new DataTableColumn("password"),
-				new DataTableColumn("email"),
-				new DataTableColumn("role")
-		}));
-		return json(result);
+	@PathSegment("service/updateUser")
+	public boolean updateUser() {
+		int id = query().getInt("objid");
+		String username = query().get("username");
+		String password = query().get("password");
+		String email = query().get("email");
+		String role = query().get("role");
+		
+		User user = userController().get(id);
+		if(user != null) {
+			user.setUsername(username);
+			user.setEmail(email);
+			user.setRole(role);
+			if(StringHelper.isNonEmpty(password))
+				user.setPassword(PasswordUtil.encryptPassword(username, password));
+			
+			userController().update(user);
+			return context().render("admin/users.jsp");
+		}
+		
+		return message("NOK");
+	}
+	
+	@PathSegment("service/getUser")
+	public boolean getUser() {
+		int id = query().getInt("objid");
+		User user = userController().get(id);
+		return json(user);
 	}
 	
 	// TEST FEATURES ONLY BELOW HERE//

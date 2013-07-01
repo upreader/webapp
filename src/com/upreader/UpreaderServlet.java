@@ -28,7 +28,7 @@ import com.upreader.helper.CollectionHelper;
  * @author Flavius
  */
 @SuppressWarnings("serial")
-@WebServlet(name = "upreader", urlPatterns = "/*", initParams = { @WebInitParam(name = "ConfigurationFile", value = "upreader.conf") })
+@WebServlet(name = "upreader", urlPatterns = "/i/*", initParams = { @WebInitParam(name = "ConfigurationFile", value = "upreader.conf") })
 public class UpreaderServlet extends HttpServlet {
 	private Logger log = Logger.getLogger(UpreaderServlet.class);
 	

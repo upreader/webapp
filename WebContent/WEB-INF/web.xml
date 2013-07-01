@@ -3,47 +3,67 @@
 	<display-name>upreader</display-name>
 
 	<!-- These lines will force assets to be served be resin -->
-	<servlet-mapping url-pattern="/css/*" servlet-name="resin-file"/>
-	<servlet-mapping url-pattern="/js/*" servlet-name="resin-file"/>
-	<servlet-mapping url-pattern="/images/*" servlet-name="resin-file"/>
-	<servlet-mapping url-pattern="/html/*" servlet-name="resin-file"/>
-	<servlet-mapping url-pattern="favicon.ico" 	servlet-name="resin-file"/>
+	<servlet-mapping url-pattern="/css/*" servlet-name="resin-file" />
+	<servlet-mapping url-pattern="/js/*" servlet-name="resin-file" />
+	<servlet-mapping url-pattern="/images/*" servlet-name="resin-file" />
+	<servlet-mapping url-pattern="/html/*" servlet-name="resin-file" />
+	<servlet-mapping url-pattern="favicon.ico" 	servlet-name="resin-file" />
 
-	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jsp" servlet-name="resin-jsp"/>
-  	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jspf" servlet-name="resin-jsp"/>
-  	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jspx" servlet-name="resin-jspx"/>
+	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jsp" servlet-name="resin-jsp" />
+	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jspf" servlet-name="resin-jsp" />
+	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jspx" servlet-name="resin-jspx" />
 
 	<!-- Disallow URL rewriting for sessions. -->
 	<session-config enable-url-rewriting="false" />
 
 	<!-- Use UTF-8 for everything. -->
 	<character-encoding>UTF-8</character-encoding>
-	
-	<resin:FormLogin form-login-page="/login" form-error-page="/loginError" form-uri-priority="true" internal-forward="true"/>
-	
+
+	<resin:FormLogin form-login-page="/p/login" form-error-page="/p/login?error=1" form-uri-priority="true" internal-forward="true" />
+
 	<!-- trigger authentication for /auth url -->
 	<resin:Allow url-pattern="/auth">
-		<resin:IfUserInRole role="*"/>
-  	</resin:Allow>
-  	<!-- /admin is only allowed for admin role -->
-	<resin:Allow url-pattern="/admin">
-		<resin:IfUserInRole role="admin"/>
-  	</resin:Allow>
-  	
-  	<resin:DatabaseAuthenticator>
-  		<resin:password-digest>MD5-plain</resin:password-digest>
-    	<resin:data-source>jdbc/mysql</resin:data-source>   
-    	<resin:password-query>
-      		SELECT password FROM users WHERE username=?
-    	</resin:password-query>
-    	<resin:cookie-auth-query>
-      		SELECT username FROM users WHERE cookie=?
-    	</resin:cookie-auth-query>     
-    	<resin:cookie-auth-update>
-      		UPDATE users SET cookie=? WHERE username=?
-    	</resin:cookie-auth-update>
-    	<resin:role-query>
-      		SELECT role FROM users WHERE username=?
-    	</resin:role-query>
-  	</resin:DatabaseAuthenticator>
+		<resin:IfUserInRole role="*" />
+	</resin:Allow>
+	
+	<!-- /admin is only allowed for admin role -->
+	<resin:Allow url-pattern="/p/admin/*">
+		<resin:IfUserInRole role="admin" />
+	</resin:Allow>
+
+	<resin:DatabaseAuthenticator>
+		<resin:password-digest>MD5-plain</resin:password-digest>
+		<resin:data-source>jdbc/mysql</resin:data-source>
+		<resin:password-query>
+			SELECT password FROM users WHERE username=?
+		</resin:password-query>
+		<resin:cookie-auth-query>
+			SELECT username FROM users WHERE cookie=?
+		</resin:cookie-auth-query>
+		<resin:cookie-auth-update>
+			UPDATE users SET cookie=? WHERE username=?
+		</resin:cookie-auth-update>
+		<resin:role-query>
+			SELECT role FROM users WHERE username=?
+		</resin:role-query>
+	</resin:DatabaseAuthenticator>
+
+	<error-page error-code="404" location="/p/404" />
+	<error-page error-code="500" location="/p/500" />
+
+	<welcome-file-list>
+		<welcome-file>p/home</welcome-file>
+	</welcome-file-list>
+
+	<!-- Dandelion-Datatables servlet definition -->
+	<servlet>
+		<servlet-name>datatablesController</servlet-name>
+		<servlet-class>com.github.dandelion.datatables.extras.servlet2.servlet.DatatablesServlet</servlet-class>
+	</servlet>
+
+	<!-- Dandelion-Datatables servlet mapping -->
+	<servlet-mapping>
+		<servlet-name>datatablesController</servlet-name>
+		<url-pattern>/datatablesController/*</url-pattern>
+	</servlet-mapping>
 </web-app>

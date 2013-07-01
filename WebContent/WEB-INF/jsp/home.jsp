@@ -11,7 +11,7 @@
 <body>
 <%@ include file="inc/topbar.jspf" %>
 
-<div style="position:absolute; width:250px; height:100px; z-index:15; top:50%; left:50%; margin:-150px 0 0 -150px;">
+<div style="position:absolute; width:500px; height:100px; z-index:15; top:50%; left:50%; margin:-150px 0 0 -250px; text-align: center;">
 <h1>Public homepage</h1>
 </div>
 
