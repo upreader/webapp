@@ -205,7 +205,6 @@ public class JavaScriptWriter {
 			case '<':
 			case '=':
 			case '>':
-			case ' ':
 				out.append(String.format("\\u%04x", new Object[] { Integer.valueOf(c) }));
 				break;
 			default:
