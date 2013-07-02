@@ -8,7 +8,7 @@
 
 <h2>Edit user</h2>
 
-<form id="edform" action="${pageContext.request.contextPath}/i/service/updateUser" method="post">
+<form id="edform" action="${pageContext.request.contextPath}/i/s/u" method="post">
 <table width="80%">
 	<tr><td width="20%" align="right">Username:</td><td align="left"><input id="username" type="text" name="username"/></td></tr>
 	<tr><td align="right">Email:</td><td align="left"><input type="text" id="email" name="email"/></td></tr>
@@ -27,6 +27,7 @@
 	<tr><td align="right"><input id="btnSubmit" type="button" value="Update"/></td><td>&nbsp;</td></tr>
 </table>
 <input type="hidden" name="objid" value="${param.objid}"/>
+<input type="hidden" name="do" value="upd" />
 </form>
 
 <script type="text/javascript">
@@ -41,7 +42,7 @@ $(document).ready(function() {
 			$("#edform").submit();
 	});
 	
-	$.post('${pageContext.request.contextPath}/i/service/getUser', { objid: "${param.objid}" }, function(data) {
+	$.post('${pageContext.request.contextPath}/i/s/u', { 'objid' : "${param.objid}", 'do':'get' }, function(data) {
 		$('#username').val(data.username);
 		$('#email').val(data.email);
 		$('#role option').each(function() {

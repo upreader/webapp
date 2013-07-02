@@ -18,7 +18,7 @@
 <br/>
 
 <div id="entityList">
-	<datatables:table id="userList" url="${pageContext.request.contextPath}/i/service/userList" serverSide="true" processing="true" cdn="true">
+	<datatables:table id="userList" url="${pageContext.request.contextPath}/i/s/u?do=lst" serverSide="true" processing="true" cdn="true">
 	   <datatables:column title="Id" property="id" />
 	   <datatables:column title="Username" property="username" />
 	   <datatables:column title="Email" property="email" />
@@ -65,9 +65,12 @@ function deleteSelected() {
 	if(selection.length > 0) {
 		var row = selection[0];
 		var objid = $(row).attr('objid');
-		$.post('${pageContext.request.contextPath}/i/service/deleteUser', { objid: objid }, function(data) {
-			if(data.message == "OK")
-				location.reload();
+		$.post('${pageContext.request.contextPath}/i/s/u', { 'objid': objid, 'do' : 'del' }, function(data) {
+			if(data.message == "OK") {
+				location.href='${pageContext.request.contextPath}/p/admin/users';
+			}
+			else
+				alert('Error deleting user: '+data.message);
 		}, "json");
 	}
 }

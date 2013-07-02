@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0" xmlns:resin="urn:java:com.caucho.resin">
+<web-app version="3.0" xmlns:resin="urn:java:com.caucho.resin" xmlns:upreader="urn:java:com.upreader.security">
 	<display-name>upreader</display-name>
 
 	<!-- These lines will force assets to be served be resin -->
-	<servlet-mapping url-pattern="/css/*" servlet-name="resin-file" />
-	<servlet-mapping url-pattern="/js/*" servlet-name="resin-file" />
-	<servlet-mapping url-pattern="/images/*" servlet-name="resin-file" />
-	<servlet-mapping url-pattern="/html/*" servlet-name="resin-file" />
-	<servlet-mapping url-pattern="favicon.ico" 	servlet-name="resin-file" />
+	<servlet-mapping url-pattern="/css/*" servlet-name="resin-file"/>
+	<servlet-mapping url-pattern="/js/*" servlet-name="resin-file"/>
+	<servlet-mapping url-pattern="/images/*" servlet-name="resin-file"/>
+	<servlet-mapping url-pattern="/html/*" servlet-name="resin-file"/>
+	<servlet-mapping url-pattern="favicon.ico" 	servlet-name="resin-file"/>
 
-	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jsp" servlet-name="resin-jsp" />
-	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jspf" servlet-name="resin-jsp" />
-	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jspx" servlet-name="resin-jspx" />
+	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jsp" servlet-name="resin-jsp"/>
+	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jspf" servlet-name="resin-jsp"/>
+	<servlet-mapping url-pattern="/WEB-INF/jsp/*.jspx" servlet-name="resin-jspx"/>
 
 	<!-- Disallow URL rewriting for sessions. -->
 	<session-config enable-url-rewriting="false" />
@@ -31,22 +31,16 @@
 		<resin:IfUserInRole role="admin" />
 	</resin:Allow>
 
-	<resin:DatabaseAuthenticator>
+	<upreader:Authenticator>
 		<resin:password-digest>MD5-plain</resin:password-digest>
 		<resin:data-source>jdbc/mysql</resin:data-source>
 		<resin:password-query>
 			SELECT password FROM users WHERE username=?
 		</resin:password-query>
-		<resin:cookie-auth-query>
-			SELECT username FROM users WHERE cookie=?
-		</resin:cookie-auth-query>
-		<resin:cookie-auth-update>
-			UPDATE users SET cookie=? WHERE username=?
-		</resin:cookie-auth-update>
 		<resin:role-query>
-			SELECT role FROM users WHERE username=?
+			SELECT roles FROM users WHERE username=?
 		</resin:role-query>
-	</resin:DatabaseAuthenticator>
+	</upreader:Authenticator>
 
 	<error-page error-code="404" location="/p/404" />
 	<error-page error-code="500" location="/p/500" />

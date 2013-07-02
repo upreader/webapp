@@ -8,7 +8,7 @@
 
 <h2>Create a new user</h2>
 
-<form id="addform" action="${pageContext.request.contextPath}/i/service/addUser" method="post">
+<form id="addform" action="${pageContext.request.contextPath}/i/s/u" method="post">
 <table width="80%">
 	<tr><td width="20%" align="right">Username:</td><td align="left"><input type="text" name="username"/></td></tr>
 	<tr><td align="right">Email:</td><td align="left"><input type="text" name="email"/></td></tr>
@@ -26,6 +26,7 @@
 	<tr><td align="right">&nbsp;</td><td>&nbsp;</td></tr>
 	<tr><td align="right"><input id="btnSubmit" type="button" value="Create"/></td><td>&nbsp;</td></tr>
 </table>
+<input type="hidden" name="do" value="add" />
 </form>
 
 <script type="text/javascript">

@@ -51,66 +51,61 @@ public class UpreaderHandler extends MethodPathHandler {
 	}
 	
 	
-	@PathSegment("service/userList")
-	public boolean userList() {
-		DatatablesCriterias criterias = DatatablesCriterias.getFromRequest(context().getRequest().getRawRequest());
-		DataSet<User> dataSet = userController().findWithDatatablesCriterias(criterias);
-		DatatablesResponse<User> response = DatatablesResponse.build(dataSet, criterias);
-		return json(response);
-	}
-	
-	@PathSegment("service/addUser")
-	public boolean addUser() {
-		String username = query().get("username");
-		String password = query().get("password");
-		String email = query().get("email");
-		String role = query().get("role");
-		
-		User user = new User();
-		user.setUsername(username);
-		user.setEmail(email);
-		user.setPassword(PasswordUtil.encryptPassword(username, password));
-		user.setRole(role);
-		
-		userController().insert(user);
-		return context().render("admin/users.jsp");
-	}
-	
-	@PathSegment("service/deleteUser")
-	public boolean deleteUser() {
-		int id = query().getInt("objid");
-		userController().delete(id);
-		return message("OK");
-	}
-	
-	@PathSegment("service/updateUser")
-	public boolean updateUser() {
-		int id = query().getInt("objid");
-		String username = query().get("username");
-		String password = query().get("password");
-		String email = query().get("email");
-		String role = query().get("role");
-		
-		User user = userController().get(id);
-		if(user != null) {
+	@PathSegment("s/u")
+	public boolean userService() {
+		String cmd = query().get("do");
+		switch (cmd) {
+		case "get":
+			int id = query().getInt("objid");
+			User user = userController().get(id);
+			return json(user);
+		case "lst":
+			DatatablesCriterias criterias = DatatablesCriterias.getFromRequest(context().getRequest().getRawRequest());
+			DataSet<User> dataSet = userController().findWithDatatablesCriterias(criterias);
+			DatatablesResponse<User> response = DatatablesResponse.build(dataSet, criterias);
+			return json(response);
+		case "add":
+			String username = query().get("username");
+			String password = query().get("password");
+			String email = query().get("email");
+			String role = query().get("role");
+			
+			user = new User();
 			user.setUsername(username);
 			user.setEmail(email);
+			user.setPassword(PasswordUtil.encryptPassword(username, password));
 			user.setRole(role);
-			if(StringHelper.isNonEmpty(password))
-				user.setPassword(PasswordUtil.encryptPassword(username, password));
 			
-			userController().update(user);
+			userController().insert(user);
 			return context().render("admin/users.jsp");
+		case "upd":
+			id = query().getInt("objid");
+			username = query().get("username");
+			password = query().get("password");
+			email = query().get("email");
+			role = query().get("role");
+			user = userController().get(id);
+			if(user != null) {
+				user.setUsername(username);
+				user.setEmail(email);
+				user.setRole(role);
+				if(StringHelper.isNonEmpty(password))
+					user.setPassword(PasswordUtil.encryptPassword(username, password));
+				
+				userController().update(user);
+				return context().render("admin/users.jsp");
+			}
+			else 
+				return message("NOK");
+		case "del":
+			id = query().getInt("objid");
+			userController().delete(id);
+			return message("OK");
+		default:
+			break;
 		}
 		
-		return message("NOK");
-	}
-	
-	@PathSegment("service/getUser")
-	public boolean getUser() {
-		int id = query().getInt("objid");
-		User user = userController().get(id);
-		return json(user);
+		return false;
 	}
 	
 	// TEST FEATURES ONLY BELOW HERE//

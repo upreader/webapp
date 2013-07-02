@@ -34,8 +34,8 @@ public class User implements Serializable {
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "role")
-	private String role;
+	@Column(name = "roles")
+	private String roles;
 
 	public User() {
 	}
@@ -72,12 +72,12 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public String getRole() {
-		return role;
+	public String getRoles() {
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRole(String roles) {
+		this.roles = roles;
 	}
 	
 	public static final String NQ_FIND_BY_USERNAME = "User_findByUsername";
