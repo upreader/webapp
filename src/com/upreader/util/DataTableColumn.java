@@ -1,4 +1,4 @@
-package com.upreader.controller;
+package com.upreader.util;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

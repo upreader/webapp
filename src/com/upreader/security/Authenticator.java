@@ -17,7 +17,7 @@ public class Authenticator extends DatabaseAuthenticator {
 	private static final Logger log = Logger.getLogger(Authenticator.class.getName());
 	
 	/**
-	 * Hack to use a table column for the list of roles (separated by ':')
+	 * Hack to use a table column for the list of roles (separated by ',')
 	 */
 	@Override
 	public boolean isUserInRole(Principal principal, String role) {
@@ -48,7 +48,7 @@ public class Authenticator extends DatabaseAuthenticator {
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				String dbRoles = rs.getString(1);
-				StringTokenizer tok = new StringTokenizer(dbRoles, ":");
+				StringTokenizer tok = new StringTokenizer(dbRoles, ",");
 				while(tok.hasMoreElements()) {
 					String _role = tok.nextToken();
 					if (cachingPrincipal != null) {

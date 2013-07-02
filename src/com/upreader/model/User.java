@@ -76,7 +76,7 @@ public class User implements Serializable {
 		return roles;
 	}
 
-	public void setRole(String roles) {
+	public void setRoles(String roles) {
 		this.roles = roles;
 	}
 	

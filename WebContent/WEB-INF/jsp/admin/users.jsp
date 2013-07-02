@@ -22,7 +22,7 @@
 	   <datatables:column title="Id" property="id" />
 	   <datatables:column title="Username" property="username" />
 	   <datatables:column title="Email" property="email" />
-	   <datatables:column title="Role" property="role" />
+	   <datatables:column title="Roles" property="roles" />
 	   <datatables:callback type="createdrow" function="fnAddRowSelection" />
 	</datatables:table>
 </div>

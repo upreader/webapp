@@ -13,6 +13,7 @@ import com.github.dandelion.datatables.core.ajax.DataSet;
 import com.github.dandelion.datatables.core.ajax.DatatablesCriterias;
 import com.upreader.UpreaderApplication;
 import com.upreader.model.User;
+import com.upreader.util.DatatablesHelper;
 
 public class UserController {
 	private EntityManager em;

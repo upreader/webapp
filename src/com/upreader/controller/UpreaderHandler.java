@@ -68,13 +68,12 @@ public class UpreaderHandler extends MethodPathHandler {
 			String username = query().get("username");
 			String password = query().get("password");
 			String email = query().get("email");
-			String role = query().get("role");
-			
+			String[] roles = query().getStrings("roles");
 			user = new User();
 			user.setUsername(username);
 			user.setEmail(email);
 			user.setPassword(PasswordUtil.encryptPassword(username, password));
-			user.setRole(role);
+			user.setRoles(StringHelper.join(",", roles));
 			
 			userController().insert(user);
 			return context().render("admin/users.jsp");
@@ -83,12 +82,12 @@ public class UpreaderHandler extends MethodPathHandler {
 			username = query().get("username");
 			password = query().get("password");
 			email = query().get("email");
-			role = query().get("role");
+			roles = query().getStrings("roles");
 			user = userController().get(id);
 			if(user != null) {
 				user.setUsername(username);
 				user.setEmail(email);
-				user.setRole(role);
+				user.setRoles(StringHelper.join(",", roles));
 				if(StringHelper.isNonEmpty(password))
 					user.setPassword(PasswordUtil.encryptPassword(username, password));
 				
