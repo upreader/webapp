@@ -10,7 +10,7 @@ import com.upreader.collection.ImmutableNamedValues;
 import com.upreader.context.Attachments;
 import com.upreader.context.Context;
 import com.upreader.context.Cookies;
-import com.upreader.context.Delivery;
+import com.upreader.context.TemplateContext;
 import com.upreader.context.Headers;
 import com.upreader.context.Messages;
 import com.upreader.context.Query;
@@ -117,7 +117,7 @@ public abstract class BasicPathHandler {
 	}
 
 	public boolean render() {
-		return render(context().delivery().getMap());
+		return render(context().templateContext().getMap());
 	}
 
 	public boolean json(Object object) {
@@ -129,7 +129,7 @@ public abstract class BasicPathHandler {
 	}
 
 	public boolean mustache(String template) {
-		return mustache(template, context().delivery().getMap());
+		return mustache(template, context().templateContext().getMap());
 	}
 
 	public void setBaseUri(String uri) {
@@ -176,8 +176,8 @@ public abstract class BasicPathHandler {
 		return context().session();
 	}
 
-	public Delivery delivery() {
-		return context().delivery();
+	public TemplateContext delivery() {
+		return context().templateContext();
 	}
 
 	public Cookies cookies() {

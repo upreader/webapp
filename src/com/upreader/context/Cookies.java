@@ -17,31 +17,67 @@ public class Cookies {
 		this.context = context;
 	}
 
+	/**
+	 * Get an UpreaderCookie with the specified name from the request
+	 * @param name
+	 * @return
+	 */
 	public UpreaderCookie get(String name) {
 		return this.context.getRequest().getCookie(name);
 	}
-
+	
+	/**
+	 * Gets the value of a request cookie
+	 * 
+	 * @param name
+	 * @return
+	 */
 	public String getValue(String name) {
 		UpreaderCookie returnedCookie = get(name);
 		return returnedCookie != null ? returnedCookie.getValue() : null;
 	}
-
+	
+	/**
+	 * Check that the cookie contains the specified value
+	 *  
+	 * @param name cookie name
+	 * @param value
+	 * @return
+	 */
 	public boolean test(String name, String value) {
 		return StringHelper.equals(value, getValue(name));
 	}
 
+	/**
+	 * Removes a cookie from context using application path
+	 * 
+	 * @param name cookie name
+	 * @return
+	 */
 	public Cookies remove(String name) {
 		remove(name, this.context.getInfrastructure().getUrl());
-
 		return this;
 	}
 
+	/**
+	 * Removes a cookie from context
+	 * 
+	 * @param name cookie name
+	 * @param path cookie path
+	 * @return
+	 */
 	public Cookies remove(String name, String path) {
 		this.context.getRequest().deleteCookie(name, path);
-
 		return this;
 	}
-
+	
+	
+	/**
+	 * Add a cookie to the response
+	 * 
+	 * @param responseCookie the cookie to add
+	 * @return this
+	 */
 	public Cookies put(ResponseCookie responseCookie) {
 		this.context.getRequest().setCookie(responseCookie.getName(), responseCookie.getValue(), responseCookie.getPath(),
 				responseCookie.getAge(), responseCookie.isSecure());

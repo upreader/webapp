@@ -83,8 +83,8 @@ public class BasicExceptionHandler implements ExceptionHandler, Configurable {
 	protected void includeErrorPage(Context context, Throwable exception, String description) {
 		if (this.useErrorCode500) {
 			context.sendError(500);
-		} else if (StringHelper.isNonEmpty(this.errorPage) && !context.delivery().has("BasicExceptionHandler.handled")) {
-			context.delivery().put("BasicExceptionHandler.handled", true);
+		} else if (StringHelper.isNonEmpty(this.errorPage) && !context.templateContext().has("BasicExceptionHandler.handled")) {
+			context.templateContext().put("BasicExceptionHandler.handled", true);
 			Map<String, Object> map = new HashMap<>(4);
 			map.put("exception", exception.toString());
 			map.put("stackTrace", convertStackTraceToString(exception));

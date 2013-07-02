@@ -49,7 +49,7 @@ public class Context {
 	private final EntityManagerFactory entityManagerFactory;
 	private final DataSource dataSource;
 	
-	private Delivery delivery;
+	private TemplateContext templateContext;
 	private Cookies cookies;
 	private Attachments files;
 	private Headers headers;
@@ -179,11 +179,11 @@ public class Context {
 		return this.files;
 	}
 
-	public Delivery delivery() {
-		if (this.delivery == null) {
-			this.delivery = new Delivery();
+	public TemplateContext templateContext() {
+		if (this.templateContext == null) {
+			this.templateContext = new TemplateContext();
 		}
-		return this.delivery;
+		return this.templateContext;
 	}
 
 	public Cookies cookies() {
@@ -444,6 +444,10 @@ public class Context {
 	
 	public boolean isUserInRole(String roleName) {
 		return SecurityContext.isUserInRole(roleName);
+	}
+	
+	public DataSource getDataSource() {
+		return dataSource;
 	}
 	
 	protected void processRenderException(Exception exc, String pageName) {
