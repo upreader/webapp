@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 
 import com.upreader.context.Context;
 import com.upreader.controller.UpreaderHandler;
-import com.upreader.data.EntityStore;
 import com.upreader.dispatcher.Dispatcher;
 import com.upreader.helper.JsonWriter;
 import com.upreader.locale.LocaleManager;
@@ -39,7 +41,6 @@ public class UpreaderApplication {
 	private final Infrastructure infrastructure;
 	private final JsonWriter standardJsw;
 	private final MustacheManager mustacheManager;
-	private final EntityStore entityStore;
 
 	private List<InitializationTask> initializationTasks = null;
 	private UpreaderServlet servlet;
@@ -64,13 +65,10 @@ public class UpreaderApplication {
 		this.localeManager = new LocaleManager(this);
 		this.configurator = new Configurator(this);
 		this.infrastructure = new Infrastructure(this);
-		this.entityStore = new EntityStore(this);
 		this.mustacheManager = new MustacheManager(this);
 		this.dispatcher = new Dispatcher(this, new UpreaderHandler(this), new BasicExceptionHandler(this));
 		this.sessionManager = new UpreaderSessionManager(this);
-		this.standardJsw = new JsonWriter();
-		
-		this.asyncResources.add(entityStore);
+		this.standardJsw = new JsonWriter();		
 	}
 
 	/**
@@ -237,10 +235,6 @@ public class UpreaderApplication {
 		return this.sessionManager;
 	}
 
-	public EntityStore getStore() {
-		return this.entityStore;
-	}
-
 	public MustacheManager getMustacheManager() {
 		return mustacheManager;
 	}
@@ -261,8 +255,8 @@ public class UpreaderApplication {
 		return dispatcher;
 	}
 
-	public Context getContext(UpreaderRequest request) {
-		return new Context(request, this);
+	public Context getContext(UpreaderRequest request, EntityManagerFactory entityManagerFactory, DataSource dataSource) {
+		return new Context(request, this, entityManagerFactory, dataSource);
 	}
 
 	protected void setServlet(UpreaderServlet servlet) {
@@ -283,10 +277,6 @@ public class UpreaderApplication {
 
 	public ServletInitConfig getServletConfig() {
 		return this.servletConfig;
-	}
-
-	public EntityStore getEntityStore() {
-		return entityStore;
 	}
 
 	/**

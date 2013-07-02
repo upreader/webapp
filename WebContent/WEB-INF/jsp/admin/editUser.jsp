@@ -1,7 +1,8 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" isELIgnored="false"%>
+<%@page import="com.upreader.UpreaderConstants" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/jsp/templates"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="datatables" 	uri="http://github.com/dandelion/datatables"%>
+<%@taglib prefix="datatables" 	uri="http://github.com/dandelion/datatables"%>
 
 <t:adminPage>
 <jsp:body>
@@ -14,11 +15,12 @@
 	<tr><td align="right">Email:</td><td align="left"><input type="text" id="email" name="email"/></td></tr>
 	<tr><td align="right">Password:</td><td align="left"><input id="password" type="password" name="password"/></td></tr>
 	<tr><td align="right">Confirm password:</td><td align="left"><input id="password2" type="password"/></td></tr>
+	<tr><td align="right">Rating:</td><td align="left"><div id="stars"></div><input type="hidden" id="rating" name="rating"/></td></tr>
 	<tr><td align="right">Role:</td><td align="left">
-		<input type="checkbox" name="roles" value="basic"/>Basic<br />
-		<input type="checkbox" name="roles" value="buyer"/>Buyer<br />
-		<input type="checkbox" name="roles" value="author"/>Author<br />
+		<input type="checkbox" name="roles" value="prospector"/>Prospector<br />
+		<input type="checkbox" name="roles" value="reader"/>Reader<br />
 		<input type="checkbox" name="roles" value="upreader"/>Upreader<br />
+		<input type="checkbox" name="roles" value="author"/>Author<br />
 		<input type="checkbox" name="roles" value="editor"/>Editor<br />
 		<input type="checkbox" name="roles" value="admin"/>Admin<br />
 	</td></tr>
@@ -44,12 +46,21 @@ $(document).ready(function() {
 	$.post('${pageContext.request.contextPath}/i/s/u', { 'objid' : "${param.objid}", 'do':'get' }, function(data) {
 		$('#username').val(data.username);
 		$('#email').val(data.email);
+		$('#rating').val(data.rating);
 		$('input[name=roles]').each(function() {
 			var roles = data.roles.split(',');
 			for(var i=0; i<roles.length; i++) {
 				if($(this).val() == roles[i])
 					$(this).attr('checked', 'checked');
 			}
+		});
+		$('#stars').raty({
+			score: data.rating,
+			number: 6,
+			target : '#rating',
+			targetType: 'number',
+			targetKeep: true,
+			path: '${pageContext.request.contextPath}/images'
 		});
 	}, "json");
 });

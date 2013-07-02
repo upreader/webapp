@@ -5,8 +5,8 @@ import java.io.Writer;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +17,6 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 
-import com.caucho.server.webapp.ForwardRequest;
 import com.upreader.context.Context;
 import com.upreader.helper.CollectionHelper;
 
@@ -34,6 +33,9 @@ public class UpreaderServlet extends HttpServlet {
 	
 	@Inject @Named("jdbc/mysql")
 	private DataSource dataSource;
+	
+	@PersistenceUnit(unitName="default")
+	private EntityManagerFactory entityManagerFactory;
 	
 	private final UpreaderApplication application = getApplication();
 	private final UpreaderVersion version = this.application.getVersion();
@@ -72,8 +74,7 @@ public class UpreaderServlet extends HttpServlet {
 				}
 			}
 
-			Context context = this.application.getContext(httpRequest);
-
+			Context context = this.application.getContext(httpRequest, entityManagerFactory, dataSource);
 			for (int i = 0; i < this.listeners.length; i++) {
 				try {
 					this.listeners[i].contextCreated(context);
@@ -148,9 +149,5 @@ public class UpreaderServlet extends HttpServlet {
 
 	public UpreaderApplication getApplication() {
 		return UpreaderApplication.getInstance();
-	}
-	
-	public DataSource getDataSource() {
-		return dataSource;
 	}
 }

@@ -9,6 +9,8 @@ import java.security.Principal;
 import java.util.Locale;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 
@@ -43,7 +45,9 @@ public class Context {
 	private final Query query;
 	private final Messages messages;
 	private final Infrastructure infrastructure;
-
+	private final EntityManagerFactory entityManagerFactory;
+	private final DataSource dataSource;
+	
 	private Delivery delivery;
 	private Cookies cookies;
 	private Attachments files;
@@ -55,7 +59,7 @@ public class Context {
 	
 	private EntityManager entityManager;
 	
-	public Context(UpreaderRequest request, UpreaderApplication application) {
+	public Context(UpreaderRequest request, UpreaderApplication application, EntityManagerFactory entityManagerFactory, DataSource dataSource) {
 		this.processingStart = System.currentTimeMillis();
 		this.application = application;
 		this.request = request;
@@ -63,7 +67,9 @@ public class Context {
 		this.infrastructure = application.getInfrastructure();
 		this.sessionNamedValues = new SessionNamedValues(this);
 		this.messages = new Messages(this);
-
+		this.entityManagerFactory = entityManagerFactory;
+		this.dataSource = dataSource;
+		
 		CONTEXTS_BY_THREAD.set(this);
 
 		this.request.setAttribute("Context", this);
@@ -81,13 +87,13 @@ public class Context {
 
 		setDefaultCharacterSets();
 		
-		this.entityManager = this.application.getStore().createEm();
+		this.entityManager = this.entityManagerFactory.createEntityManager();
 		this.userController = new UserController(application, this.entityManager);
 	}
 
 	public static void complete() {
 		Context current = CONTEXTS_BY_THREAD.get();
-		current.getApplication().getEntityStore().closeEm(current.entityManager);
+		current.entityManager.close();
 		CONTEXTS_BY_THREAD.set(null);
 	}
 

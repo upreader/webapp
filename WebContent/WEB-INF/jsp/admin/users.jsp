@@ -19,9 +19,10 @@
 
 <div id="entityList">
 	<datatables:table id="userList" url="${pageContext.request.contextPath}/i/s/u?do=lst" serverSide="true" processing="true" cdn="true">
-	   <datatables:column title="Id" property="id" />
+	   <datatables:column title="Id" property="id"/>
 	   <datatables:column title="Username" property="username" />
 	   <datatables:column title="Email" property="email" />
+	   <datatables:column title="Rating" property="rating" />
 	   <datatables:column title="Roles" property="roles" />
 	   <datatables:callback type="createdrow" function="fnAddRowSelection" />
 	</datatables:table>
