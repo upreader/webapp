@@ -7,19 +7,13 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.github.dandelion.datatables.core.ajax.DataSet;
-import com.github.dandelion.datatables.core.ajax.DatatablesCriterias;
-import com.github.dandelion.datatables.core.ajax.DatatablesResponse;
 import com.upreader.MimeTypes;
 import com.upreader.RequestFile;
 import com.upreader.UpreaderApplication;
-import com.upreader.dispatcher.MethodPathHandler;
+import com.upreader.dispatcher.BasicPathHandler;
 import com.upreader.dispatcher.PathDefault;
 import com.upreader.dispatcher.PathSegment;
 import com.upreader.helper.CollectionHelper;
-import com.upreader.helper.StringHelper;
-import com.upreader.model.User;
-import com.upreader.util.PasswordUtil;
 
 /**
  * Test file
@@ -27,7 +21,7 @@ import com.upreader.util.PasswordUtil;
  * @author Flavius
  *
  */
-public class UpreaderHandler extends MethodPathHandler {
+public class UpreaderHandler extends BasicPathHandler {
 	Logger log = Logger.getLogger(UpreaderHandler.class);
 		
 	public UpreaderHandler(UpreaderApplication application) {
@@ -62,6 +56,11 @@ public class UpreaderHandler extends MethodPathHandler {
 	}
 	
 	// TEST FEATURES ONLY BELOW HERE//
+	@PathSegment("error")
+	public boolean error() throws Exception {
+		throw new Exception("ERRRRRORRR");
+	}
+	
 	@PathSegment("message")
 	public boolean messageDemo() {
 		return message("this is a message");

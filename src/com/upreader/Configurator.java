@@ -12,7 +12,6 @@ import org.apache.log4j.Logger;
 
 import com.upreader.configuration.ConfigurationProvider;
 import com.upreader.configuration.FileConfigurationProvider;
-import com.upreader.helper.StringHelper;
 import com.upreader.util.Configurable;
 import com.upreader.util.ConfigurationProperties;
 

@@ -380,7 +380,12 @@ public class Context {
 	public String toString() {
 		return "Context [" + getClientID() + "]";
 	}
-
+	
+	/**
+	 * Returns an encrypted token for this application instance
+	 * 
+	 * @return
+	 */
 	public String getToken() {
 		return TOKEN_ENCODING.encode(getTokenProvider().next());
 	}
@@ -393,7 +398,13 @@ public class Context {
 		}
 		return provider;
 	}
-
+	
+	/**
+	 * Checks that an issued token is valid for this application instance
+	 * 
+	 * @param name
+	 * @return
+	 */
 	public boolean validateToken(String name) {
 		String token = query().get(name);
 		return (token != null) && (getTokenProvider().validate(TOKEN_ENCODING.decode(token)));
