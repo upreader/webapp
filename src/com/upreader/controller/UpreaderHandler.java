@@ -53,62 +53,12 @@ public class UpreaderHandler extends MethodPathHandler {
 	
 	@PathSegment("s/u")
 	public boolean userService() {
-		String cmd = query().get("do");
-		switch (cmd) {
-		case "get":
-			int id = query().getInt("objid");
-			User user = userController().get(id);
-			return json(user);
-		case "lst":
-			DatatablesCriterias criterias = DatatablesCriterias.getFromRequest(context().getRequest().getRawRequest());
-			DataSet<User> dataSet = userController().findWithDatatablesCriterias(criterias);
-			DatatablesResponse<User> response = DatatablesResponse.build(dataSet, criterias);
-			return json(response);
-		case "add":
-			String username = query().get("username");
-			String password = query().get("password");
-			String email = query().get("email");
-			int rating = query().getInt("rating");
-			String[] roles = query().getStrings("roles");
-			user = new User();
-			user.setUsername(username);
-			user.setEmail(email);
-			user.setRating(rating);
-			user.setPassword(PasswordUtil.encryptPassword(username, password));
-			user.setRoles(StringHelper.join(",", roles));
-			
-			userController().insert(user);
-			return context().render("admin/users.jsp");
-		case "upd":
-			id = query().getInt("objid");
-			username = query().get("username");
-			password = query().get("password");
-			email = query().get("email");
-			rating = query().getInt("rating");
-			roles = query().getStrings("roles");
-			user = userController().get(id);
-			if(user != null) {
-				user.setUsername(username);
-				user.setEmail(email);
-				user.setRating(rating);
-				user.setRoles(StringHelper.join(",", roles));
-				if(StringHelper.isNonEmpty(password))
-					user.setPassword(PasswordUtil.encryptPassword(username, password));
-				
-				userController().update(user);
-				return context().render("admin/users.jsp");
-			}
-			else 
-				return message("NOK");
-		case "del":
-			id = query().getInt("objid");
-			userController().delete(id);
-			return message("OK");
-		default:
-			break;
-		}
-		
-		return false;
+		return userController().doCmd(context());
+	}
+	
+	@PathSegment("s/p")
+	public boolean projectService() {
+		return projectController().doCmd(context());
 	}
 	
 	// TEST FEATURES ONLY BELOW HERE//

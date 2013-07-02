@@ -1,99 +1,77 @@
 package com.upreader.controller;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-
-import com.github.dandelion.datatables.core.ajax.ColumnDef;
 import com.github.dandelion.datatables.core.ajax.DataSet;
 import com.github.dandelion.datatables.core.ajax.DatatablesCriterias;
-import com.upreader.UpreaderApplication;
+import com.github.dandelion.datatables.core.ajax.DatatablesResponse;
+import com.upreader.context.Context;
+import com.upreader.dispatcher.BasicPathHandler;
+import com.upreader.helper.StringHelper;
 import com.upreader.model.User;
-import com.upreader.util.DatatablesHelper;
+import com.upreader.util.PasswordUtil;
 
 public class UserController {
-	private EntityManager em;
-	private UpreaderApplication application;
-
-	public UserController(UpreaderApplication application, EntityManager em) {
-		this.application = application;
-		this.em = em;
+	private final BasicPathHandler handler;
+	
+	public UserController(BasicPathHandler handler) {
+		this.handler = handler;
 	}
-
-	public User findbyUsername(String username) {
-		TypedQuery<User> query = em.createNamedQuery(User.NQ_FIND_BY_USERNAME, User.class);
-		return query.setParameter("username", username).getSingleResult();
-	}
-
-	public List<User> list() {
-		return em.createNamedQuery(User.NQ_FIND_ALL, User.class).getResultList();
-	}
-
-	public DataSet<User> findWithDatatablesCriterias(DatatablesCriterias criterias) {
-		StringBuilder queryBuilder = new StringBuilder("SELECT o FROM User o");
-		queryBuilder.append(DatatablesHelper.getFilterQuery(criterias));
-		if (criterias.hasOneSortedColumn()) {
-			List<String> orderParams = new ArrayList<>();
-			queryBuilder.append(" ORDER BY ");
-			for (ColumnDef columnDef : criterias.getSortingColumnDefs()) {
-				orderParams.add("o." + columnDef.getName() + " " + columnDef.getSortDirection());
+	
+	public boolean doCmd(Context context) {
+		String cmd = context.query().get("do");
+		switch (cmd) {
+		case "get":
+			int id = context.query().getInt("objid");
+			User user = context.userDAO().get(id);
+			return handler.json(user);
+		case "lst":
+			DatatablesCriterias criterias = DatatablesCriterias.getFromRequest(context.getRequest().getRawRequest());
+			DataSet<User> dataSet = context.userDAO().findWithDatatablesCriterias(criterias);
+			DatatablesResponse<User> response = DatatablesResponse.build(dataSet, criterias);
+			return handler.json(response);
+		case "add":
+			String username = context.query().get("username");
+			String password = context.query().get("password");
+			String email = context.query().get("email");
+			int rating = context.query().getInt("rating");
+			String[] roles = context.query().getStrings("roles");
+			user = new User();
+			user.setUsername(username);
+			user.setEmail(email);
+			user.setRating(rating);
+			user.setPassword(PasswordUtil.encryptPassword(username, password));
+			user.setRoles(StringHelper.join(",", roles));
+			
+			context.userDAO().insert(user);
+			return context.render("admin/users.jsp");
+		case "upd":
+			id = context.query().getInt("objid");
+			username = context.query().get("username");
+			password = context.query().get("password");
+			email = context.query().get("email");
+			rating = context.query().getInt("rating");
+			roles = context.query().getStrings("roles");
+			user = context.userDAO().get(id);
+			if(user != null) {
+				user.setUsername(username);
+				user.setEmail(email);
+				user.setRating(rating);
+				user.setRoles(StringHelper.join(",", roles));
+				if(StringHelper.isNonEmpty(password))
+					user.setPassword(PasswordUtil.encryptPassword(username, password));
+				
+				context.userDAO().update(user);
+				return context.render("admin/users.jsp");
 			}
-
-			Iterator<String> itr2 = orderParams.iterator();
-			while (itr2.hasNext()) {
-				queryBuilder.append(itr2.next());
-				if (itr2.hasNext()) {
-					queryBuilder.append(" , ");
-				}
-			}
+			else 
+				return handler.message("NOK");
+		case "del":
+			id = context.query().getInt("objid");
+			context.userDAO().delete(id);
+			return handler.message("OK");
+		default:
+			break;
 		}
-		TypedQuery<User> query = em.createQuery(queryBuilder.toString(), User.class);
-		query.setFirstResult(criterias.getDisplayStart());
-		query.setMaxResults(criterias.getDisplaySize());
-		List<User> users = query.getResultList();
-		Long count = getTotalCount();
-		Long countFiltered = getFilteredCount(criterias);
-		return new DataSet<User>(users, count, countFiltered);
-	}
-
-	public Long getTotalCount() {
-		Query query = em.createQuery("SELECT COUNT(o) FROM User o");
-		return (Long) query.getSingleResult();
-	}
-
-	public Long getFilteredCount(DatatablesCriterias criterias) {
-		StringBuilder queryBuilder = new StringBuilder("SELECT o FROM User o");
-		queryBuilder.append(DatatablesHelper.getFilterQuery(criterias));
-		Query query = em.createQuery(queryBuilder.toString());
-		return Long.parseLong(String.valueOf(query.getResultList().size()));
-	}
-
-	public void insert(User user) {
-		em.getTransaction().begin();
-		em.persist(user);
-		em.getTransaction().commit();
-	}
-
-	public void delete(int id) {
-		em.getTransaction().begin();
-		User user = em.find(User.class, id);
-		if(user != null)
-			em.remove(user);
-		em.getTransaction().commit();
-	}
-
-	public User get(int id) {
-		return em.find(User.class, id);
-	}
-
-	public void update(User user) {
-		em.getTransaction().begin();
-		user = em.merge(user);
-		em.persist(user);
-		em.getTransaction().commit();
+		
+		return false;
 	}
 }

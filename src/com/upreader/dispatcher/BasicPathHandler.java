@@ -15,6 +15,7 @@ import com.upreader.context.Headers;
 import com.upreader.context.Messages;
 import com.upreader.context.Query;
 import com.upreader.context.SessionNamedValues;
+import com.upreader.controller.ProjectController;
 import com.upreader.controller.UserController;
 import com.upreader.helper.JsonWriter;
 import com.upreader.helper.StringHelper;
@@ -27,7 +28,9 @@ public abstract class BasicPathHandler {
 	private final ThreadLocal<References> references;
 	private final MustacheManager mustacheManager;
 	private final JsonWriter javaScriptWriter;
-
+	private final UserController userController;
+	private final ProjectController projectController;
+	
 	private String baseUri;
 
 	public BasicPathHandler(UpreaderApplication application, JsonWriter jsw) {
@@ -35,6 +38,8 @@ public abstract class BasicPathHandler {
 		this.references = new ThreadLocal<>();
 		this.mustacheManager = application.getMustacheManager();
 		this.javaScriptWriter = (jsw != null ? jsw : application.getJavaScriptWriter());
+		this.userController = new UserController(this);
+		this.projectController = new ProjectController(this);
 	}
 
 	public boolean prehandle(PathSegments segments, Context context) {
@@ -205,7 +210,11 @@ public abstract class BasicPathHandler {
 	}
 	
 	public UserController userController() {
-		return context().userController();
+		return this.userController;
+	}
+	
+	public UserController projectController() {
+		return this.userController;
 	}
 	
 	public boolean isUserInRole(String roleName) {
