@@ -222,7 +222,7 @@ public abstract class BasicPathHandler {
 	}
 	
 	public String username() {
-		return context().getUserName();
+		return context().username();
 	}
 	
 	public UserController userController() {

@@ -448,7 +448,7 @@ public class Context {
 		return true;
 	}
 	
-	public String getUserName() {
+	public String username() {
 		Principal principal = SecurityContext.getUserPrincipal();
 		return principal == null ? null : principal.getName();
 	}
