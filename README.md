@@ -15,6 +15,7 @@ Technologies used so far:
 + Commons FileUpload 1.3
 + Amazon AWS SDK 1.4.7
 + jets3t 0.9.0
++ Crocodoc Java API
 
 Building and running the project on Windows
 ---------------------------------------------
