@@ -12,6 +12,10 @@ Technologies used so far:
 + [Mustache](http://mustache.github.io/) as a generic templating engine
 + Log4j 1.2.16
 + [jQuery raty](http://wbotelhos.com/raty/) for star ratings
++ Commons FileUpload 1.3
++ Amazon AWS SDK 1.4.7
++ jets3t 0.9.0
++ Crocodoc Java API
 
 Building and running the project on Windows
 ---------------------------------------------
