@@ -32,7 +32,13 @@ public class Project implements Serializable {
 	 */
 	@Column(name = "book")
 	private String book;
-
+	
+	/**
+	 * Location of file for sample book content
+	 */
+	@Column(name = "sample")
+	private String sample;
+	
 	@Column(name = "genre")
 	private String genre;
 
@@ -56,12 +62,6 @@ public class Project implements Serializable {
 
 	@Column(name = "synopsis")
 	private String synopsis;
-
-	/**
-	 * Location of file for sample book content
-	 */
-	@Column(name = "sample")
-	private String sample;
 
 	@Column(name = "references")
 	private String references;
@@ -118,7 +118,13 @@ public class Project implements Serializable {
 	 */
 	@Column(name = "deadline")
 	private Date deadline;
-
+	
+	/**
+	 * if a serial story
+	 */
+	@Column(name = "approved")
+	private Boolean approved;
+	
 	/**
 	 * if a serial story
 	 */
@@ -158,7 +164,7 @@ public class Project implements Serializable {
 	protected List<PromoItem> promoItems;
 
 	// author is mandatory and cannot be updated
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "project")
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
 	@JoinColumn(name = "ownerid", nullable = false, updatable = false)
 	private ProjectOwnership author;
 
@@ -402,5 +408,13 @@ public class Project implements Serializable {
 	
 	public void setSubscribers(List<ProjectSubscription> subscribers) {
 		this.subscribers = subscribers;
+	}
+
+	public Boolean getApproved() {
+		return approved;
+	}
+
+	public void setApproved(Boolean approved) {
+		this.approved = approved;
 	}
 }

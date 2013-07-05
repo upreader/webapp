@@ -1,5 +1,12 @@
 package com.upreader.context;
 
+import java.io.File;
+import java.util.List;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 import com.upreader.UpreaderRequest;
 import com.upreader.collection.ImmutableNamedValues;
 import com.upreader.helper.StringHelper;
@@ -75,5 +82,13 @@ public class Query implements ImmutableNamedValues {
 	@Override
 	public long getLong(String name, long defaultValue) {
 		return NumberHelper.parseLong(get(name), defaultValue);
+	}
+
+	public float getFloat(String name) {
+		return getFloat(name, 0);
+	}
+
+	public float getFloat(String name, float defaultValue) {
+		return NumberHelper.parseFloat(get(name), defaultValue);
 	}
 }

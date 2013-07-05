@@ -9,13 +9,11 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -23,8 +21,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.log4j.Logger;
 
+import com.upreader.helper.CollectionHelper;
 import com.upreader.helper.StringHelper;
 
 /**
@@ -39,11 +42,11 @@ public class UpreaderRequest {
 	private final HttpServletResponse response;
 	private final ServletContext servletContext;
 	private final String method;
-	private boolean rewritten = false;
-	private Map<String, List<String>> rewrittenParameters = null;
 	private boolean jspHasBeenIncluded = false;
 	private final Infrastructure infrastructure;
-
+	private final ServletFileUpload fileUpload;
+	private List<FileItem> parts;
+	
 	public UpreaderRequest(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext,
 			UpreaderApplication application) {
 		this.application = application;
@@ -53,6 +56,17 @@ public class UpreaderRequest {
 		this.method = request.getMethod();
 		this.infrastructure = application.getInfrastructure();
 
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		factory.setSizeThreshold(1024 * 1024 * 5); // 3MB
+		factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+		fileUpload = new ServletFileUpload(factory);
+		if(isMultiPart())
+			try {
+				this.parts = fileUpload.parseRequest(request);
+			} catch (FileUploadException e) {
+				e.printStackTrace();
+			}
+		
 		response.setContentType("text/html;charset=utf-8");
 	}
 
@@ -86,55 +100,48 @@ public class UpreaderRequest {
 	}
 
 	public Enumeration<String> getParameterNames() {
-		if (this.rewritten) {
-			Set allParams = new HashSet();
-			allParams.addAll(this.rewrittenParameters.keySet());
-			for (Enumeration name = this.request.getParameterNames(); name.hasMoreElements();) {
-				allParams.add((String) name.nextElement());
+		if (!isMultiPart()) {
+			return this.request.getParameterNames();
+		} else {
+			Vector<String> formParams = new Vector<>();
+			for(FileItem item : parts) {
+				if(item.isFormField()) {
+					formParams.add(item.getFieldName());
+				}
 			}
-			return Collections.enumeration(allParams);
+			
+			return formParams.elements();
 		}
 
-		return this.request.getParameterNames();
 	}
 
 	public String getParameter(String name) {
-		if (this.rewritten) {
-			List values = (List) this.rewrittenParameters.get(name);
-			if ((values == null) || (values.isEmpty())) {
-				return this.request.getParameter(name);
+		if (!isMultiPart()) {
+			return this.request.getParameter(name);
+		} else {
+			for(FileItem item : parts) {
+				if(item.isFormField() && name.equals(item.getFieldName())) {
+					return item.getString();
+				}
 			}
-			return (String) values.get(0);
-		}
-
-		return this.request.getParameter(name);
-	}
-
-	public void putParameter(String name, String value) {
-		if (this.rewrittenParameters == null) {
-			this.rewrittenParameters = new HashMap();
-		}
-		if (this.rewrittenParameters.get(name) == null) {
-			this.rewrittenParameters.put(name, new ArrayList());
-		}
-		((List) this.rewrittenParameters.get(name)).add(value);
-	}
-
-	public void removeParameter(String name) {
-		if (this.rewrittenParameters != null) {
-			this.rewrittenParameters.remove(name);
+			
+			return null;
 		}
 	}
 
 	public String[] getParameterValues(String name) {
-		if (this.rewritten) {
-			List values = (List) this.rewrittenParameters.get(name);
-			if (values == null) {
-				return this.request.getParameterValues(name);
+		if (!isMultiPart()) {
+			return this.request.getParameterValues(name);
+		} else {
+			List<String> values = new ArrayList<>();
+			for(FileItem item : parts) {
+				if(item.isFormField() && name.equals(item.getFieldName())) {
+					values.add(item.getString());
+				}
 			}
-			return (String[]) values.toArray(new String[values.size()]);
+			
+			return CollectionHelper.toStringArray(values);
 		}
-		return this.request.getParameterValues(name);
 	}
 
 	public Map<String, String> getAllRequestParameters() {
@@ -145,12 +152,6 @@ public class UpreaderRequest {
 			map.put(name, this.request.getParameter(name));
 		}
 		return map;
-	}
-
-	public void removeAllRequestValues() {
-		if (this.rewrittenParameters != null) {
-			this.rewrittenParameters.clear();
-		}
 	}
 
 	public String encodeURL(String url) {
@@ -357,13 +358,6 @@ public class UpreaderRequest {
 		return StringHelper.equalsIgnoreCase(this.method, "PATCH");
 	}
 
-	public void setRewritten(boolean rewritten) {
-		this.rewritten = rewritten;
-		if ((rewritten) && (this.rewrittenParameters == null)) {
-			this.rewrittenParameters = new HashMap();
-		}
-	}
-
 	public boolean hasJspBeenIncluded() {
 		return this.jspHasBeenIncluded;
 	}
@@ -463,5 +457,22 @@ public class UpreaderRequest {
 
 	public Principal getPrincipal() {
 		return request.getUserPrincipal();
+	}
+
+	public boolean isMultiPart() {
+		return ServletFileUpload.isMultipartContent(request);
+	}
+
+	public FileItem getPart(String parameterName) {
+		for(FileItem item : this.parts) {
+			if(parameterName.equals(item.getFieldName()))
+				return item;
+		}
+		
+		return null;
+	}
+	
+	public List<FileItem> getParts() {
+		return parts;
 	}
 }

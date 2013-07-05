@@ -60,4 +60,10 @@
 		<servlet-name>datatablesController</servlet-name>
 		<url-pattern>/datatablesController/*</url-pattern>
 	</servlet-mapping>
+
+	<listener>
+		<listener-class>
+			org.apache.commons.fileupload.servlet.FileCleanerCleanup
+		</listener-class>
+  </listener>
 </web-app>

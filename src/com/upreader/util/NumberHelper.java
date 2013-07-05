@@ -156,4 +156,15 @@ public class NumberHelper {
 		return defaultValue;
 	}
 
+	public static float parseFloat(String numStr, float defaultValue) {
+		if (numStr != null) {
+			try {
+				return Float.parseFloat(numStr);
+			} catch (NumberFormatException localNumberFormatException) {
+			}
+		}
+
+		return defaultValue;
+	}
+
 }

@@ -10,10 +10,10 @@ import com.upreader.model.User;
 import com.upreader.util.PasswordUtil;
 
 public class UserController {
-	private final BasicPathHandler handler;
+	private final UpreaderHandler handler;
 	
 	public UserController(BasicPathHandler handler) {
-		this.handler = handler;
+		this.handler = (UpreaderHandler) handler;
 	}
 	
 	public boolean doCmd(Context context) {

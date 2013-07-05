@@ -223,7 +223,7 @@ public class Context {
 		return this.userDAO;
 	}
 	
-	public ProjectDAO getProjectDAO() {
+	public ProjectDAO projectDAO() {
 		return projectDAO;
 	}
 	

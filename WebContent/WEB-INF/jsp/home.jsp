@@ -11,9 +11,13 @@
 <body>
 <%@ include file="inc/topbar.jspf" %>
 
-<div style="position:absolute; width:500px; height:100px; z-index:15; top:50%; left:50%; margin:-150px 0 0 -250px; text-align: center;">
-<h1>Public homepage</h1>
-</div>
+<table width="50%" align="center">
+	<tr>
+		<td><a href="<c:url value='/p/newproject1'/>">Create Project</a></td>
+		<td><a href="<c:url value='/p/myprojects'/>">My Projects</a></td>
+		<td><a href="<c:url value='/p/allprojects'/>">All Projects</a></td>
+	</tr>
+</table>
 
 </body>
 </html>

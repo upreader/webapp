@@ -27,8 +27,7 @@ public class AmazonService implements Configurable {
 
 	private final String DISTRIBUTION_DOMAIN = "content.upreader.com";
 	private final long EXPIRE_TIME = 1000 * 5 * 60; 	// expire in 5 mins
-
-			
+	
 	private final UpreaderApplication application;
 	private AWSCredentials credentials;
 	private String bucketName;

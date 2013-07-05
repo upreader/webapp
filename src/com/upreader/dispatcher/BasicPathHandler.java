@@ -229,8 +229,8 @@ public abstract class BasicPathHandler {
 		return this.userController;
 	}
 	
-	public UserController projectController() {
-		return this.userController;
+	public ProjectController projectController() {
+		return this.projectController;
 	}
 	
 	public boolean isUserInRole(String roleName) {

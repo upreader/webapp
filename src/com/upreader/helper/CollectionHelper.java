@@ -77,4 +77,8 @@ public class CollectionHelper {
 			list.add(new Integer(obj));
 		return list;
 	}
+
+	public static String[] toStringArray(List<String> values) {
+		return values.toArray(new String[] {});
+	}
 }

@@ -14,6 +14,7 @@ import com.upreader.dispatcher.BasicPathHandler;
 import com.upreader.dispatcher.PathDefault;
 import com.upreader.dispatcher.PathSegment;
 import com.upreader.helper.CollectionHelper;
+import com.upreader.model.User;
 
 /**
  * Test file
@@ -35,6 +36,8 @@ public class UpreaderHandler extends BasicPathHandler {
 	
 	@PathSegment("loginSuccessful")
 	public boolean loginSuccessful() {
+		User user = context().userDAO().findbyUsername(context().username());
+		context().session().putObject("_user_", user);
 		return homepage();
 	}
 	
