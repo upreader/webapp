@@ -310,7 +310,7 @@ public class UpreaderRequest {
 	}
 
 	public UpreaderSession getSession(boolean create) {
-		return this.application.getSessionManager().getSession(this.request, create);
+		return UpreaderSession.createSession(request.getSession(create));
 	}
 
 	public void setAttribute(String name, Object o) {

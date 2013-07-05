@@ -34,7 +34,6 @@ public class UpreaderApplication {
 	private final UpreaderVersion version;
 	private final List<AsyncResource> asyncResources;
 	private final List<DeferredAsyncResource> deferredAsyncResources;
-	private final UpreaderSessionManager sessionManager;
 	private final Configurator configurator;
 	private final Dispatcher dispatcher;
 	private final LocaleManager localeManager;
@@ -67,7 +66,6 @@ public class UpreaderApplication {
 		this.infrastructure = new Infrastructure(this);
 		this.mustacheManager = new MustacheManager(this);
 		this.dispatcher = new Dispatcher(this, new UpreaderHandler(this), new BasicExceptionHandler(this));
-		this.sessionManager = new UpreaderSessionManager(this);
 		this.standardJsw = new JsonWriter();		
 	}
 
@@ -229,10 +227,6 @@ public class UpreaderApplication {
 	 */
 	public Configurator getConfigurator() {
 		return configurator;
-	}
-
-	public UpreaderSessionManager getSessionManager() {
-		return this.sessionManager;
 	}
 
 	public MustacheManager getMustacheManager() {

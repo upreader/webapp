@@ -6,9 +6,14 @@
 	<persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
 		<provider>org.batoo.jpa.core.BatooPersistenceProvider</provider>
 		<non-jta-data-source>java:comp/env/jdbc/mysql</non-jta-data-source>
-
+	
 		<class>com.upreader.model.User</class>
-
+		<class>com.upreader.model.Project</class>
+		<class>com.upreader.model.ProjectMembership</class>
+		<class>com.upreader.model.ProjectOwnership</class>
+		<class>com.upreader.model.ProjectSubscription</class>
+		<class>com.upreader.model.ProjectMembership</class>
+		
 		<properties>
 			<!-- DDL operations, DROP | CREATE (*) | UPDATE | VERIFY | NONE -->
 			<property name="org.batoo.jpa.ddl" value="UPDATE" />

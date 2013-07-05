@@ -45,7 +45,7 @@ public class BasicExceptionHandler implements ExceptionHandler, Configurable {
 
 	@Override
 	public void handleException(Context context, Throwable exception) {
-		handleException(context, exception, null);
+		handleException(context, exception, exception.getMessage());
 	}
 
 	@Override
@@ -83,16 +83,15 @@ public class BasicExceptionHandler implements ExceptionHandler, Configurable {
 	protected void includeErrorPage(Context context, Throwable exception, String description) {
 		if (this.useErrorCode500) {
 			context.sendError(500);
-		} else if (StringHelper.isNonEmpty(this.errorPage) && !context.delivery().has("BasicExceptionHandler.handled")) {
-			context.delivery().put("BasicExceptionHandler.handled", true);
-			Map<String, Object> map = new HashMap<>(4);
-			map.put("exception", exception.toString());
-			map.put("stackTrace", convertStackTraceToString(exception));
-			map.put("description", description != null ? description : "No detail available.");
-			map.put("reveal", Boolean.valueOf(this.revealStackTrace));
+		} else if (StringHelper.isNonEmpty(this.errorPage) && context.getRequest().getAttribute("upreader.handled") == null) {
+			context.getRequest().setAttribute("upreader.handled", true);
+			context.getRequest().setAttribute("upreader.exception", true);
+			context.getRequest().setAttribute("upreader.stackTrace", convertStackTraceToString(exception));
+			context.getRequest().setAttribute("upreader.description", description != null ? description : "No detail available.");
+			context.getRequest().setAttribute("upreader.reveal", Boolean.valueOf(this.revealStackTrace));
+			
 			try {
-				// TODO: add Mustache
-				//this.application.getMustacheManager().render(this.errorPage, context, map);
+				context.render(errorPage);
 			} catch (Exception exc) {
 				outputDefaultErrorPage(context, exception, description);
 			}

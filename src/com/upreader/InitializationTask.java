@@ -1,7 +1,8 @@
 package com.upreader;
 
 /**
- * Tasks that will run when 
+ * Tasks that will run when application is initialized
+ * 
  * @author Flavius
  *
  */

@@ -11,6 +11,7 @@ Technologies used so far:
 + [Jackson JSON](http://jackson.codehaus.org/) 2.2.0 for POJO <> JSON conversions
 + [Mustache](http://mustache.github.io/) as a generic templating engine
 + Log4j 1.2.16
++ [jQuery raty](http://wbotelhos.com/raty/) for star ratings
 
 Building and running the project on Windows
 ---------------------------------------------

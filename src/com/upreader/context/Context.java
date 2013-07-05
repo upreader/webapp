@@ -20,7 +20,8 @@ import com.upreader.Infrastructure;
 import com.upreader.UpreaderApplication;
 import com.upreader.UpreaderRequest;
 import com.upreader.UpreaderSession;
-import com.upreader.controller.UserController;
+import com.upreader.controller.ProjectDAO;
+import com.upreader.controller.UserDAO;
 import com.upreader.dispatcher.Dispatcher;
 import com.upreader.security.TokenProvider;
 
@@ -48,12 +49,13 @@ public class Context {
 	private final EntityManagerFactory entityManagerFactory;
 	private final DataSource dataSource;
 	
-	private Delivery delivery;
+	private TemplateContext templateContext;
 	private Cookies cookies;
 	private Attachments files;
 	private Headers headers;
 	private UpreaderSession session;
-	private UserController userController;
+	private UserDAO userDAO;
+	private ProjectDAO projectDAO;
 	
 	private long requestNumber = 0L;
 	
@@ -88,7 +90,8 @@ public class Context {
 		setDefaultCharacterSets();
 		
 		this.entityManager = this.entityManagerFactory.createEntityManager();
-		this.userController = new UserController(application, this.entityManager);
+		this.userDAO = new UserDAO(application, this.entityManager);
+		this.projectDAO = new ProjectDAO(application, this.entityManager);
 	}
 
 	public static void complete() {
@@ -176,11 +179,11 @@ public class Context {
 		return this.files;
 	}
 
-	public Delivery delivery() {
-		if (this.delivery == null) {
-			this.delivery = new Delivery();
+	public TemplateContext templateContext() {
+		if (this.templateContext == null) {
+			this.templateContext = new TemplateContext();
 		}
-		return this.delivery;
+		return this.templateContext;
 	}
 
 	public Cookies cookies() {
@@ -216,8 +219,12 @@ public class Context {
 		return this.entityManager;
 	}
 	
-	public UserController userController() {
-		return this.userController;
+	public UserDAO userDAO() {
+		return this.userDAO;
+	}
+	
+	public ProjectDAO getProjectDAO() {
+		return projectDAO;
 	}
 	
 	public long getStartTime() {
@@ -373,7 +380,12 @@ public class Context {
 	public String toString() {
 		return "Context [" + getClientID() + "]";
 	}
-
+	
+	/**
+	 * Returns an encrypted token for this application instance
+	 * 
+	 * @return
+	 */
 	public String getToken() {
 		return TOKEN_ENCODING.encode(getTokenProvider().next());
 	}
@@ -386,7 +398,13 @@ public class Context {
 		}
 		return provider;
 	}
-
+	
+	/**
+	 * Checks that an issued token is valid for this application instance
+	 * 
+	 * @param name
+	 * @return
+	 */
 	public boolean validateToken(String name) {
 		String token = query().get(name);
 		return (token != null) && (getTokenProvider().validate(TOKEN_ENCODING.decode(token)));
@@ -430,13 +448,17 @@ public class Context {
 		return true;
 	}
 	
-	public String getUserName() {
+	public String username() {
 		Principal principal = SecurityContext.getUserPrincipal();
 		return principal == null ? null : principal.getName();
 	}
 	
 	public boolean isUserInRole(String roleName) {
 		return SecurityContext.isUserInRole(roleName);
+	}
+	
+	public DataSource getDataSource() {
+		return dataSource;
 	}
 	
 	protected void processRenderException(Exception exc, String pageName) {

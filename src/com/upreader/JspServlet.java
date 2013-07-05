@@ -8,6 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Hides JSP file extension
+ * 
+ * @author Flavius
+ *
+ */
 @WebServlet(name = "ujsp", urlPatterns = "/p/*")
 public class JspServlet extends HttpServlet {
 	@Override
