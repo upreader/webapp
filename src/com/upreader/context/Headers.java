@@ -12,7 +12,7 @@ public class Headers {
 	private final UpreaderRequest request;
 
 	public Headers(Context context) {
-		this.request = context.getRequest();
+		this.request = context.request();
 	}
 
 	public Headers put(String headerName, String value) {

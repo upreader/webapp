@@ -36,6 +36,7 @@ public class AmazonService implements Configurable {
 	
 	public AmazonService(UpreaderApplication application) {
 		this.application = application;
+		this.application.getConfigurator().addConfigurable(this);
 	}
 
 	@Override
@@ -43,12 +44,12 @@ public class AmazonService implements Configurable {
 		this.bucketName = props.getProperty("S3ContentBucketName");
 		String accessKey = props.getProperty("AWSAccessKeyId");
 		String secretKey = props.getProperty("AWSSecretKey");
-		String cfAccessKey = props.getProperty("CFAccessKey");
+		this.cfAccessKey = props.getProperty("CFAccessKey");
 		if (accessKey != null && secretKey != null)
 			this.credentials = new BasicAWSCredentials(accessKey, secretKey);
 		
 		try {
-			InputStream is = AmazonService.class.getClass().getClassLoader().getResourceAsStream("cf.der");
+			InputStream is = getClass().getClassLoader().getResourceAsStream("cf.der");
 			derPrivateKey = ServiceUtils.readInputStreamToBytes(is);
 		} catch (IOException e) {
 			e.printStackTrace();

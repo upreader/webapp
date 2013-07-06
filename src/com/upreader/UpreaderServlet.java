@@ -88,7 +88,7 @@ public class UpreaderServlet extends HttpServlet {
 			} finally {
 				for (int i = 0; i < this.listeners.length; i++) {
 					try {
-						this.listeners[i].requestCompleting(context.getRequest(), context);
+						this.listeners[i].requestCompleting(context.request(), context);
 					} catch (Exception ex) {
 					}
 				}

@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 
+import com.upreader.aws.AmazonService;
 import com.upreader.context.Context;
 import com.upreader.controller.UpreaderHandler;
 import com.upreader.dispatcher.Dispatcher;
@@ -40,7 +41,8 @@ public class UpreaderApplication {
 	private final Infrastructure infrastructure;
 	private final JsonWriter standardJsw;
 	private final MustacheManager mustacheManager;
-
+	private final AmazonService amazonService;
+	
 	private List<InitializationTask> initializationTasks = null;
 	private UpreaderServlet servlet;
 	private OperationalState state = OperationalState.NEW;
@@ -66,7 +68,8 @@ public class UpreaderApplication {
 		this.infrastructure = new Infrastructure(this);
 		this.mustacheManager = new MustacheManager(this);
 		this.dispatcher = new Dispatcher(this, new UpreaderHandler(this), new BasicExceptionHandler(this));
-		this.standardJsw = new JsonWriter();		
+		this.standardJsw = new JsonWriter();
+		this.amazonService = new AmazonService(this);
 	}
 
 	/**
@@ -271,6 +274,10 @@ public class UpreaderApplication {
 
 	public ServletInitConfig getServletConfig() {
 		return this.servletConfig;
+	}
+	
+	public AmazonService getAmazonService() {
+		return amazonService;
 	}
 
 	/**

@@ -93,7 +93,7 @@ public class Dispatcher {
 				}
 			}
 		} catch (Throwable exc) {
-			dispatchException(plainContext, exc, null);
+			dispatchException(plainContext, exc);
 		}
 
 		return success;
@@ -108,15 +108,10 @@ public class Dispatcher {
 	public void renderComplete(Context context) {
 	}
 
-	public void dispatchException(Context context, Throwable exception, String description) {
+	public void dispatchException(Context context, Throwable exception) {
 		try {
 			for (ExceptionHandler handler : this.exceptionHandlers) {
-				if (description != null) {
-					handler.handleException(context, exception, description);
-				} else {
-					handler.handleException(context, exception);
-				}
-
+				handler.handleException(context, exception);
 			}
 
 		} catch (Exception exc) {

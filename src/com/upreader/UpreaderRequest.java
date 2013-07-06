@@ -85,7 +85,11 @@ public class UpreaderRequest {
 	public HttpServletResponse getRawResponse() {
 		return this.response;
 	}
-
+	
+	public void addAttribute(String name, Object value) {
+		this.request.setAttribute(name, value);
+	}
+	
 	public void setCharacterEncoding(String encoding) throws UnsupportedEncodingException {
 		this.response.setCharacterEncoding(encoding);
 		this.request.setCharacterEncoding(encoding);

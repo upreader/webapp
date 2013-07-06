@@ -1,6 +1,5 @@
 package com.upreader;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,6 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * File attached (uploaded) to a Http request
@@ -24,7 +24,6 @@ import org.apache.commons.fileupload.FileItem;
  * 
  */
 public class RequestFile {
-	private static final int BYTE_BUFFER_SIZE = 4096;
 	private static final int CHAR_BUFFER_SIZE = 2048;
 	private final FileItem part;
 	
@@ -38,6 +37,17 @@ public class RequestFile {
 
 	public String getFilename() {
 		return this.part.getName();
+	}
+	
+	public String getExtension() {
+		checkNotNull(this.part, "part");
+		checkNotNull(getFilename(), "fileName");
+		
+		int dot = getFilename().lastIndexOf('.');
+		if(dot > 0 && dot < getFilename().length())
+			return getFilename().substring(dot+1);
+		else
+			return null;
 	}
 
 	public String getContentType() {
@@ -73,7 +83,7 @@ public class RequestFile {
 		checkNotNull(destination, "destination");
 		Files.copy(getContentAsStream(), destination, new CopyOption[] { StandardCopyOption.REPLACE_EXISTING });
 	}
-
+	
 	public String toString() {
 		return String.format("RequestFile{parameterName=%s, fileName=%s, type=%s, size=%s}", new Object[] { getParameterName(),
 				getFilename(), getContentType(), Long.valueOf(getSize()) });

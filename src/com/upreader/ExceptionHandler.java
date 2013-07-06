@@ -10,6 +10,4 @@ import com.upreader.context.Context;
  */
 public interface ExceptionHandler {
 	public void handleException(Context context, Throwable exception);
-
-	public void handleException(Context context, Throwable exception, String description);
 }

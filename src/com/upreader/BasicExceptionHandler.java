@@ -2,8 +2,6 @@ package com.upreader;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 
@@ -45,34 +43,25 @@ public class BasicExceptionHandler implements ExceptionHandler, Configurable {
 
 	@Override
 	public void handleException(Context context, Throwable exception) {
-		handleException(context, exception, exception.getMessage());
-	}
-
-	@Override
-	public void handleException(Context context, Throwable exception, String description) {
 		if (exception != null) {
 			if ((exception instanceof ServletException)) {
 				ServletException servletException = (ServletException) exception;
-				logException(context, servletException.getRootCause(), description);
+				logException(context, servletException.getRootCause());
 			} else {
-				logException(context, exception, description);
+				logException(context, exception);
 			}
 
 			if (context != null) {
-				includeErrorPage(context, exception, description);
+				includeErrorPage(context, exception);
 			}
 		} else {
 			log.warn("Null exception passed to BasicExceptionHandler.  This should not happen.");
 		}
 	}
 
-	protected void logException(Context context, Throwable exception, String description) {
+	protected void logException(Context context, Throwable exception) {
 		if (this.displayExceptionsInLog) {
-			if (StringHelper.isNonEmpty(description)) {
-				log.error("Exception (" + description + "):\n" + exception);
-			} else {
-				log.error("Exception:\n" + exception);
-			}
+			log.error("Exception:\n" + exception);
 		}
 
 		if (this.displayStackTracesInLog) {
@@ -80,27 +69,26 @@ public class BasicExceptionHandler implements ExceptionHandler, Configurable {
 		}
 	}
 
-	protected void includeErrorPage(Context context, Throwable exception, String description) {
+	protected void includeErrorPage(Context context, Throwable exception) {
 		if (this.useErrorCode500) {
 			context.sendError(500);
-		} else if (StringHelper.isNonEmpty(this.errorPage) && context.getRequest().getAttribute("upreader.handled") == null) {
-			context.getRequest().setAttribute("upreader.handled", true);
-			context.getRequest().setAttribute("upreader.exception", true);
-			context.getRequest().setAttribute("upreader.stackTrace", convertStackTraceToString(exception));
-			context.getRequest().setAttribute("upreader.description", description != null ? description : "No detail available.");
-			context.getRequest().setAttribute("upreader.reveal", Boolean.valueOf(this.revealStackTrace));
+		} else if (StringHelper.isNonEmpty(this.errorPage) && context.request().getAttribute("upreader.handled") == null) {
+			context.request().setAttribute("upreader.handled", true);
+			context.request().setAttribute("upreader.exception", true);
+			context.request().setAttribute("upreader.stackTrace", convertStackTraceToString(exception));
+			context.request().setAttribute("upreader.reveal", Boolean.valueOf(this.revealStackTrace));
 			
 			try {
 				context.render(errorPage);
 			} catch (Exception exc) {
-				outputDefaultErrorPage(context, exception, description);
+				outputDefaultErrorPage(context, exception);
 			}
 		} else {
-			outputDefaultErrorPage(context, exception, description);
+			outputDefaultErrorPage(context, exception);
 		}
 	}
 
-	protected void outputDefaultErrorPage(Context context, Throwable exception, String description) {
+	protected void outputDefaultErrorPage(Context context, Throwable exception) {
 		if (this.revealStackTrace) {
 			context.print("<html>");
 			context.print("<head><title>Internal error</title>");
@@ -115,9 +103,6 @@ public class BasicExceptionHandler implements ExceptionHandler, Configurable {
 			context.print("<!-- BasicExceptionHandler -->");
 			context.print("<h2>Internal error</h2>");
 			context.print("<p>An exception was caught by the application infrastructure:</p>");
-			if (StringHelper.isNonEmpty(description)) {
-				context.print("<p>" + description + "</p>");
-			}
 			context.print("<p><pre>");
 			context.print(convertStackTraceToString(exception));
 			context.print("");
@@ -153,9 +138,6 @@ public class BasicExceptionHandler implements ExceptionHandler, Configurable {
 			context.print("<div class=\"text\">We're sorry, our web site is not able to process your request correctly at this time.  Please try again at a later time.  If this situation persists, please get in touch with our customer service or technical support staff.</div>");
 			context.print("</div>");
 			context.print("<!--");
-			if (StringHelper.isNonEmpty(description)) {
-				context.print("\r\n" + description + "\r\n");
-			}
 			context.print(convertStackTraceToString(exception));
 			if ((exception instanceof ServletException)) {
 				ServletException servletException = (ServletException) exception;

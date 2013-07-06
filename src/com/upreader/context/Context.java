@@ -33,14 +33,12 @@ import com.upreader.security.TokenProvider;
 public class Context {
 	private Logger log = Logger.getLogger(Context.class);
 	private static final String SO_TOKEN_PROVIDER = "_token_provider";
-	public static final String SO_CONSUMABLE_REQUEST = "_consumable_prior_request";
 	private static final ThreadLocal<Context> CONTEXTS_BY_THREAD = new ThreadLocal<>();
 	private static final BaseEncoding TOKEN_ENCODING = BaseEncoding.base32().omitPadding();
 
 	private final UpreaderApplication application;
 	private final long processingStart;
 	private final UpreaderRequest request;
-	private final UpreaderRequest priorRequest;
 	private final Dispatcher dispatcher;
 	private final SessionNamedValues sessionNamedValues;
 	private final Query query;
@@ -78,15 +76,8 @@ public class Context {
 
 		getSession(false);
 
-		if (session().has(SO_CONSUMABLE_REQUEST)) {
-			this.priorRequest = ((UpreaderRequest) session().getObject(SO_CONSUMABLE_REQUEST));
-			this.query = new Query(this.priorRequest);
-			session().remove(SO_CONSUMABLE_REQUEST);
-		} else {
-			this.priorRequest = null;
-			this.query = new Query(request);
-		}
-
+		this.query = new Query(request);
+		
 		setDefaultCharacterSets();
 		
 		this.entityManager = this.entityManagerFactory.createEntityManager();
@@ -135,7 +126,7 @@ public class Context {
 	public Locale getLocale() {
 		return this.application.getLocaleManager().getLocale(this);
 	}
-
+	
 	public OutputStream getOutputStream() throws IOException {
 		return this.request.getOutputStream();
 	}
@@ -148,10 +139,11 @@ public class Context {
 		return this.request.getRealPath(path);
 	}
 
-	public UpreaderRequest getRequest() {
+	public UpreaderRequest request() {
 		return this.request;
 	}
-
+	
+	
 	public String getRequestMethod() {
 		return this.request.getRequestMethod();
 	}
@@ -245,79 +237,39 @@ public class Context {
 	}
 
 	public boolean isHead() {
-		if (isPriorRequestBound()) {
-			return this.priorRequest.isHead();
-		}
-
 		return this.request.isHead();
 	}
 
 	public boolean isGet() {
-		if (isPriorRequestBound()) {
-			return this.priorRequest.isGet();
-		}
-
 		return this.request.isGet();
 	}
 
 	public boolean isPost() {
-		if (isPriorRequestBound()) {
-			return this.priorRequest.isPost();
-		}
-
 		return this.request.isPost();
 	}
 
 	public boolean isPut() {
-		if (isPriorRequestBound()) {
-			return this.priorRequest.isPut();
-		}
-
 		return this.request.isPut();
 	}
 
 	public boolean isDelete() {
-		if (isPriorRequestBound()) {
-			return this.priorRequest.isDelete();
-		}
-
 		return this.request.isDelete();
 	}
 
 	public boolean isTrace() {
-		if (isPriorRequestBound()) {
-			return this.priorRequest.isTrace();
-		}
-
 		return this.request.isTrace();
 	}
 
 	public boolean isOptions() {
-		if (isPriorRequestBound()) {
-			return this.priorRequest.isOptions();
-		}
-
 		return this.request.isOptions();
 	}
 
 	public boolean isConnect() {
-		if (isPriorRequestBound()) {
-			return this.priorRequest.isConnect();
-		}
-
 		return this.request.isConnect();
 	}
 
 	public boolean isPatch() {
-		if (isPriorRequestBound()) {
-			return this.priorRequest.isPatch();
-		}
-
 		return this.request.isPatch();
-	}
-
-	public boolean isPriorRequestBound() {
-		return this.priorRequest != null;
 	}
 
 	public boolean isSecure() {
@@ -419,7 +371,7 @@ public class Context {
 	}
 
 	public boolean includeFile(File file, String fileName, boolean asAttachment, String contentType) {
-		return getRequest().includeFile(file, fileName, asAttachment, contentType);
+		return request().includeFile(file, fileName, asAttachment, contentType);
 	}
 
 	public boolean render(String pageName) {
@@ -438,7 +390,7 @@ public class Context {
 				setContentType(contentType);
 			}
 
-			getRequest().render(pageName, fullyQualified);
+			request().render(pageName, fullyQualified);
 		} catch (Exception exc) {
 			processRenderException(exc, pageName);
 		} finally {
@@ -460,14 +412,9 @@ public class Context {
 	public DataSource getDataSource() {
 		return dataSource;
 	}
-	
+
 	protected void processRenderException(Exception exc, String pageName) {
-		processRenderException(exc, pageName, "Including " + pageName);
-	}
-
-	protected void processRenderException(Exception exc, String pageName, String description) {
 		this.log.debug("Exception while including " + pageName + ": " + exc);
-
-		this.dispatcher.dispatchException(this, exc, description);
+		this.dispatcher.dispatchException(this, exc);
 	}
 }

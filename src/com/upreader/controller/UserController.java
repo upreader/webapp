@@ -24,7 +24,7 @@ public class UserController {
 			User user = context.userDAO().get(id);
 			return handler.json(user);
 		case "lst":
-			DatatablesCriterias criterias = DatatablesCriterias.getFromRequest(context.getRequest().getRawRequest());
+			DatatablesCriterias criterias = DatatablesCriterias.getFromRequest(context.request().getRawRequest());
 			DataSet<User> dataSet = context.userDAO().findWithDatatablesCriterias(criterias);
 			DatatablesResponse<User> response = DatatablesResponse.build(dataSet, criterias);
 			return handler.json(response);

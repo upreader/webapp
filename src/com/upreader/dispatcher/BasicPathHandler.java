@@ -25,9 +25,11 @@ import com.upreader.helper.ReflectionHelper;
 import com.upreader.helper.StringHelper;
 import com.upreader.helper.WebHelper;
 import com.upreader.mustache.MustacheManager;
+import com.upreader.util.Configurable;
+import com.upreader.util.ConfigurationProperties;
 import com.upreader.util.MethodAccess;
 
-public abstract class BasicPathHandler {
+public abstract class BasicPathHandler implements Configurable {
 	private Logger log = Logger.getLogger(BasicPathHandler.class);
 	private final UpreaderApplication application;
 	private final ThreadLocal<References> references;
@@ -41,6 +43,8 @@ public abstract class BasicPathHandler {
 	private final Map<String, PathSegmentMethod> annotatedHandleMethods;
 	private final MethodAccess methodAccess;
 	private final PathSegmentMethod defaultMethod;
+	
+	private String uploadFolder;
 	
 	private String baseUri;
 	
@@ -58,8 +62,15 @@ public abstract class BasicPathHandler {
 		this.annotatedHandleMethods = new HashMap<String, PathSegmentMethod>();
 		this.methodAccess = MethodAccess.get(getClass());
 		this.defaultMethod = discoverAnnotatedMethods();
+		
+		this.application.getConfigurator().addConfigurable(this);
 	}
-
+	
+	@Override
+	public void configure(ConfigurationProperties props) {
+		this.uploadFolder = props.getProperty("UploadFolder");
+	}
+	
 	public boolean prehandle(PathSegments segments, Context context) {
 		this.references.set(new References(context, segments));
 		return true;
@@ -170,6 +181,10 @@ public abstract class BasicPathHandler {
 
 	public Context context() {
 		return this.references.get().context;
+	}
+	
+	public String uploadFolder() {
+		return uploadFolder;
 	}
 
 	public PathSegments segments() {

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.upreader.BusinessException;
 import com.upreader.MimeTypes;
 import com.upreader.RequestFile;
 import com.upreader.UpreaderApplication;
@@ -66,6 +67,8 @@ public class UpreaderHandler extends BasicPathHandler {
 	
 	@PathSegment("message")
 	public boolean messageDemo() {
+		String signedURL = getApplication().getAmazonService().getSignedURL("c2e1b504-ef24-4d32-9ff3-a7d44913035b.pfx");
+		
 		return message("this is a message");
 	}
 	

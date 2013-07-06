@@ -6,7 +6,7 @@ import com.upreader.RequestFile;
 import com.upreader.UpreaderRequest;
 
 /**
- * Http Request upload handler
+ * HTTP Request upload handler
  * 
  * @author Flavius
  * 
@@ -15,7 +15,7 @@ public class Attachments {
 	private final UpreaderRequest request;
 
 	public Attachments(Context context) {
-		this.request = context.getRequest();
+		this.request = context.request();
 	}
 
 	public RequestFile get(String name) {

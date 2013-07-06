@@ -23,7 +23,7 @@ public class Cookies {
 	 * @return
 	 */
 	public UpreaderCookie get(String name) {
-		return this.context.getRequest().getCookie(name);
+		return this.context.request().getCookie(name);
 	}
 	
 	/**
@@ -67,7 +67,7 @@ public class Cookies {
 	 * @return
 	 */
 	public Cookies remove(String name, String path) {
-		this.context.getRequest().deleteCookie(name, path);
+		this.context.request().deleteCookie(name, path);
 		return this;
 	}
 	
@@ -79,7 +79,7 @@ public class Cookies {
 	 * @return this
 	 */
 	public Cookies put(ResponseCookie responseCookie) {
-		this.context.getRequest().setCookie(responseCookie.getName(), responseCookie.getValue(), responseCookie.getPath(),
+		this.context.request().setCookie(responseCookie.getName(), responseCookie.getValue(), responseCookie.getPath(),
 				responseCookie.getAge(), responseCookie.isSecure());
 
 		return this;
