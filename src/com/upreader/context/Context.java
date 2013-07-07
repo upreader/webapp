@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import com.caucho.security.SecurityContextException;
 import org.apache.log4j.Logger;
 
 import com.caucho.security.SecurityContext;
@@ -400,7 +401,7 @@ public class Context {
 		return true;
 	}
 	
-	public String username() {
+	public String username() throws SecurityContextException {
 		Principal principal = SecurityContext.getUserPrincipal();
 		return principal == null ? null : principal.getName();
 	}

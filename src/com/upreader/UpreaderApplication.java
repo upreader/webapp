@@ -311,7 +311,7 @@ public class UpreaderApplication {
 	 * Register a resource to start after the application started (in the same
 	 * thread)
 	 * 
-	 * @param asynch
+	 * @param asyncResource
 	 */
 	public void addAsyncResource(AsyncResource asyncResource) {
 		if (!this.asyncResources.contains(asyncResource)) {
@@ -323,7 +323,7 @@ public class UpreaderApplication {
 	 * Register a resource to start after the application started (in another
 	 * thread)
 	 * 
-	 * @param asynch
+	 * @param asyncResource
 	 */
 	public void addAsyncResource(DeferredAsyncResource asyncResource) {
 		if (!this.deferredAsyncResources.contains(asyncResource)) {
