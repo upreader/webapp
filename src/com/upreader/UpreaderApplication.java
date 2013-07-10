@@ -9,6 +9,8 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import com.upreader.security.AuthenticationProvider;
+import com.upreader.security.FacebookAuthenticationProvider;
 import org.apache.log4j.Logger;
 
 import com.upreader.aws.AmazonService;
@@ -42,7 +44,8 @@ public class UpreaderApplication {
 	private final JsonWriter standardJsw;
 	private final MustacheManager mustacheManager;
 	private final AmazonService amazonService;
-	
+    private final FacebookAuthenticationProvider fbauthProvider;
+
 	private List<InitializationTask> initializationTasks = null;
 	private UpreaderServlet servlet;
 	private OperationalState state = OperationalState.NEW;
@@ -70,6 +73,7 @@ public class UpreaderApplication {
 		this.dispatcher = new Dispatcher(this, new UpreaderHandler(this), new BasicExceptionHandler(this));
 		this.standardJsw = new JsonWriter();
 		this.amazonService = new AmazonService(this);
+        this.fbauthProvider = new FacebookAuthenticationProvider();
 	}
 
 	/**
@@ -146,6 +150,7 @@ public class UpreaderApplication {
 		this.endTime = System.currentTimeMillis();
 
 		stopAsynchronousResources();
+        log.debug("Upreader asynchronous resources stopped.");
 	}
 
 	/**
@@ -264,7 +269,11 @@ public class UpreaderApplication {
 		return servlet;
 	}
 
-	public boolean isRunning() {
+    public FacebookAuthenticationProvider getFbauthProvider() {
+        return fbauthProvider;
+    }
+
+    public boolean isRunning() {
 		return this.state == OperationalState.RUNNING;
 	}
 

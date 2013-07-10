@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.upreader.security.FacebookAuthenticationProvider;
 import org.apache.log4j.Logger;
 
 import com.upreader.BusinessException;
@@ -34,14 +35,33 @@ public class UpreaderHandler extends BasicPathHandler {
 	public boolean homepage() {
 		return context().render("home.jsp");
 	}
-	
+
+    @PathSegment("loginWithFacebook")
+    public boolean loginWithFacebook() {
+        String token = context().request().getParameter(FacebookAuthenticationProvider.OAUTH_TOKEN);
+        String code = context().request().getParameter(FacebookAuthenticationProvider.OAUTH_CODE);
+
+//        if(token != null && token.length() > 0){
+//            //user previously authenticated
+//            return homepage();
+//        }
+        if(code != null && code.length() > 0){
+            //exchange code for token
+            String result = getApplication().getFbauthProvider().performLogin(context().request(), code);
+            log.debug("facebook login result " + result);
+            return context().redirect("http://dev.upreader.com:8080/upreader");
+        }else{
+            return context().redirect(getApplication().getFbauthProvider().getAuthorizationURL());
+        }
+    }
+
 	@PathSegment("loginSuccessful")
 	public boolean loginSuccessful() {
 		User user = context().userDAO().findbyUsername(context().username());
 		context().session().putObject("_user_", user);
 		return homepage();
 	}
-	
+
 	@PathSegment("logout")
 	public boolean logout() {
 		context().getSession(false).invalidate();
