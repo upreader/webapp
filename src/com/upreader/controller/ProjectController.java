@@ -4,12 +4,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.UUID;
 
 import com.amazonaws.services.s3.model.ProgressEvent;
 import com.amazonaws.services.s3.model.ProgressListener;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.amazonaws.services.s3.transfer.model.UploadResult;
+import com.github.dandelion.datatables.core.ajax.DataSet;
+import com.github.dandelion.datatables.core.ajax.DatatablesCriterias;
+import com.github.dandelion.datatables.core.ajax.DatatablesResponse;
 import com.upreader.BusinessException;
 import com.upreader.RequestFile;
 import com.upreader.UpreaderConstants;
@@ -19,6 +23,8 @@ import com.upreader.dispatcher.BasicPathHandler;
 import com.upreader.model.Project;
 import com.upreader.model.ProjectOwnership;
 import com.upreader.model.User;
+
+import javax.servlet.jsp.PageContext;
 
 public class ProjectController {
 	private final UpreaderHandler handler;
@@ -34,6 +40,9 @@ public class ProjectController {
 			return addProjectStep1(context);
 		case "s2":
 			return addProjectStep2(context);
+        case "listPrjs":
+            return handler.json(loadProjectsTableJson(Integer.valueOf(context.query().get("startPos")).intValue(),
+                                                      Integer.valueOf(context.query().get("endPos")).intValue() ));
 		default:
 			return handler.homepage();
 		}
@@ -153,4 +162,8 @@ public class ProjectController {
 
 		return true;
 	}
+
+    public List<Project> loadProjectsTableJson(int startPos, int endPos){
+        return handler.context().projectDAO().findAllProjectsInRange(startPos, endPos);
+    }
 }

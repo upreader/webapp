@@ -11,8 +11,11 @@ pageContext.setAttribute("isAdmin", request.isUserInRole(com.upreader.UpreaderCo
 	<div class="loginLink">
 		<c:choose>
 			<c:when test="${empty pageContext.request.userPrincipal}">
-				<a href="<c:url value='/auth'/>">Login</a> --
-                <a href="<c:url value='/i/loginWithFacebook'/>">Login With Facebook</a>
+				<ul>
+                    <li><a href="<c:url value='/auth'/>">Login</a></li>
+                    <li><a href="<c:url value='/i/loginWithFacebook'/>">Login With Facebook</a></li>
+                    <li><a href="<c:url value='/i/loginWithTwitter'/>">Login With Twitter</a></li>
+                </ul>
 			</c:when>
 			<c:otherwise>
 				<span>Welcome <strong><c:out value="${pageContext.request.remoteUser}"/></strong></span>

@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 import com.upreader.security.AuthenticationProvider;
 import com.upreader.security.FacebookAuthenticationProvider;
+import com.upreader.security.TwitterAuthenticationProvider;
 import org.apache.log4j.Logger;
 
 import com.upreader.aws.AmazonService;
@@ -45,6 +46,7 @@ public class UpreaderApplication {
 	private final MustacheManager mustacheManager;
 	private final AmazonService amazonService;
     private final FacebookAuthenticationProvider fbauthProvider;
+    private final TwitterAuthenticationProvider twtauthProvider;
 
 	private List<InitializationTask> initializationTasks = null;
 	private UpreaderServlet servlet;
@@ -74,6 +76,7 @@ public class UpreaderApplication {
 		this.standardJsw = new JsonWriter();
 		this.amazonService = new AmazonService(this);
         this.fbauthProvider = new FacebookAuthenticationProvider();
+        this.twtauthProvider = new TwitterAuthenticationProvider();
 	}
 
 	/**
@@ -271,6 +274,10 @@ public class UpreaderApplication {
 
     public FacebookAuthenticationProvider getFbauthProvider() {
         return fbauthProvider;
+    }
+
+    public TwitterAuthenticationProvider getTwtauthProvider() {
+        return twtauthProvider;
     }
 
     public boolean isRunning() {

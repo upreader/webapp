@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.upreader.security.FacebookAuthenticationProvider;
+import com.upreader.security.TwitterAuthenticationProvider;
 import org.apache.log4j.Logger;
 
 import com.upreader.BusinessException;
@@ -55,6 +56,21 @@ public class UpreaderHandler extends BasicPathHandler {
         }
     }
 
+    @PathSegment("loginWithTwitter")
+    public boolean loginWithTwitter() {
+        String token        = context().request().getParameter(TwitterAuthenticationProvider.OAUTH_TOKEN);
+        String verifierCode = context().request().getParameter(TwitterAuthenticationProvider.OAUTH_CODE);
+
+        if(token != null && token.length() > 0 && verifierCode != null && verifierCode.length() > 0){
+            String result =  getApplication().getTwtauthProvider().performLogin(token, verifierCode);
+            log.debug("twitter login result " + result);
+            return context().redirect("http://dev.upreader.com:8080/upreader");
+        }
+        else{
+            return context().redirect(getApplication().getTwtauthProvider().goToTwitterAuthorization());
+        }
+    }
+
 	@PathSegment("loginSuccessful")
 	public boolean loginSuccessful() {
 		User user = context().userDAO().findbyUsername(context().username());
@@ -78,7 +94,7 @@ public class UpreaderHandler extends BasicPathHandler {
 	public boolean projectService() {
 		return projectController().doCmd(context());
 	}
-	
+
 	// TEST FEATURES ONLY BELOW HERE//
 	@PathSegment("error")
 	public boolean error() throws Exception {
