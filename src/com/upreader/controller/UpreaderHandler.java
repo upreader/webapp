@@ -32,7 +32,7 @@ public class UpreaderHandler extends BasicPathHandler {
 	
 	@PathDefault
 	public boolean homepage() {
-		return context().render("home.jsp");
+		return context().redirect("home.jsp");
 	}
 	
 	@PathSegment("loginSuccessful")
@@ -40,6 +40,13 @@ public class UpreaderHandler extends BasicPathHandler {
 		User user = context().userDAO().findbyUsername(context().username());
 		context().session().putObject("_user_", user);
 		return homepage();
+	}
+	
+	@PathSegment("gigi")
+	public boolean gigi() {
+		
+		
+		return message("tata");
 	}
 	
 	@PathSegment("logout")
@@ -68,7 +75,6 @@ public class UpreaderHandler extends BasicPathHandler {
 	@PathSegment("message")
 	public boolean messageDemo() {
 		String signedURL = getApplication().getAmazonService().getSignedURL("c2e1b504-ef24-4d32-9ff3-a7d44913035b.pfx");
-		
 		return message("this is a message");
 	}
 	

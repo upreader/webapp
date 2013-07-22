@@ -48,9 +48,6 @@ public class UpreaderApplication {
 	private OperationalState state = OperationalState.NEW;
 	private ServletInitConfig servletConfig;
 	private InitializationWaitThread iwt;
-	private String testQuery = "SELECT 1 AS Result";
-	private String testColumn = "Result";
-	private String testValue = "1";
 	private Charset defaultRequestCharset = null;
 	private long startTime = 0L;
 	private long endTime = 0L;

@@ -10,6 +10,8 @@ import com.amazonaws.services.s3.model.ProgressEvent;
 import com.amazonaws.services.s3.model.ProgressListener;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.amazonaws.services.s3.transfer.model.UploadResult;
+import com.crocodoc.Crocodoc;
+import com.crocodoc.CrocodocDocument;
 import com.upreader.BusinessException;
 import com.upreader.RequestFile;
 import com.upreader.UpreaderConstants;
@@ -89,7 +91,7 @@ public class ProjectController {
 //					}
 //				});
 //				upload.waitForCompletion();
-//				System.out.println(upload.getState());				
+//				System.out.println(upload.getState());
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
