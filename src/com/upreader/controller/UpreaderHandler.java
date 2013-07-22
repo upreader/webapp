@@ -1,14 +1,16 @@
 package com.upreader.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.upreader.security.FacebookAuthenticationProvider;
 import org.apache.log4j.Logger;
 
-import com.upreader.BusinessException;
+import com.caucho.server.security.CachingPrincipal;
+import com.caucho.util.Base64;
 import com.upreader.MimeTypes;
 import com.upreader.RequestFile;
 import com.upreader.UpreaderApplication;
@@ -17,6 +19,8 @@ import com.upreader.dispatcher.PathDefault;
 import com.upreader.dispatcher.PathSegment;
 import com.upreader.helper.CollectionHelper;
 import com.upreader.model.User;
+import com.upreader.security.FacebookAuthenticationProvider;
+import com.upreader.util.EncryptHelper;
 
 /**
  * Test file
@@ -57,11 +61,32 @@ public class UpreaderHandler extends BasicPathHandler {
 
 	@PathSegment("loginSuccessful")
 	public boolean loginSuccessful() {
-		User user = context().userDAO().findbyUsername(context().username());
-		context().session().putObject("_user_", user);
+		return json(new HashMap<String, String>() {{
+			put("result", "success");
+			put("id", query().get("id"));
+		}});
+	}
+	
+	@PathSegment("loggedin")
+	public boolean loggedin() {
+		if(query().get("id") != null && !query().get("id").isEmpty()) {
+			String username = EncryptHelper.decrypt(query().get("id"));
+			context().session().putObject("caucho.user", new CachingPrincipal(username));
+			User user = context().userDAO().findbyUsername(context().username());
+			context().session().putObject("_user_", user);
+		}
+		
 		return homepage();
 	}
-
+	
+	@PathSegment("loginFailed")
+	public boolean loginFailed() {
+		return json(new HashMap<String, String>() {{
+			put("result", "error");
+			put("id", "");
+		}});
+	}
+	
 	@PathSegment("logout")
 	public boolean logout() {
 		context().getSession(false).invalidate();

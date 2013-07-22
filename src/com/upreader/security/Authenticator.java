@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 
 import com.caucho.security.DatabaseAuthenticator;
 import com.caucho.server.security.CachingPrincipal;
-import com.upreader.helper.StringHelper;
 
 public class Authenticator extends DatabaseAuthenticator {
 	private static final Logger log = Logger.getLogger(Authenticator.class.getName());

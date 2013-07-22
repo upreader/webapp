@@ -1,0 +1,5 @@
+<%@page language="java" contentType="text/html" pageEncoding="UTF-8" isELIgnored="false"%>
+
+<footer>
+<p>Copyright Upreader 2013</p>
+</footer>
