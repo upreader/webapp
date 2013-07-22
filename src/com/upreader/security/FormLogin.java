@@ -41,7 +41,7 @@ public class FormLogin extends AbstractLogin {
 	public String getAuthType() {
 		return "Form";
 	}
-
+ 
 	public boolean isLoginUsedForRequest(HttpServletRequest request) {
 		return request.getServletPath().indexOf("u_login") >= 0;
 	}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0" xmlns:resin="urn:java:com.caucho.resin" xmlns:upreader="urn:java:com.upreader.security">
+<web-app version="3.0" xmlns:resin="urn:java:com.caucho.resin" xmlns:upreader="urn:java:com.upreader.security" metadata-complete="false">
 	<display-name>upreader</display-name>
 
 	<!-- These lines will force assets to be served be resin -->
@@ -54,13 +54,13 @@
 		<servlet-name>datatablesController</servlet-name>
 		<servlet-class>com.github.dandelion.datatables.extras.servlet2.servlet.DatatablesServlet</servlet-class>
 	</servlet>
-
+	
 	<!-- Dandelion-Datatables servlet mapping -->
 	<servlet-mapping>
 		<servlet-name>datatablesController</servlet-name>
 		<url-pattern>/datatablesController/*</url-pattern>
 	</servlet-mapping>
-
+	
 	<listener>
 		<listener-class>
 			org.apache.commons.fileupload.servlet.FileCleanerCleanup

@@ -1,0 +1,53 @@
+#wrapper {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-top: 5px solid #EAEAEA;
+	min-height: 500px;
+}
+
+#admin-banner-welcome {
+	margin: 0 auto;
+	text-align: center;
+}
+
+/* column container */
+.colmask {
+	position: relative; /* This fixes the IE7 overflow hidden bug */
+	clear: both;
+	float: left;
+	width: 100%; /* width of whole page */
+	overflow: hidden; /* This chops off any overhanging divs */
+}
+
+.colleft {
+	float: left;
+	width: 100%;
+	position: relative;
+}
+
+.col1,.col2 {
+	float: left;
+	position: relative;
+	padding: 0 0 1em 0;
+	overflow: hidden;
+}
+
+/* 2 Column (left menu) settings */
+.leftmenu {
+	
+}
+
+.leftmenu .colleft {
+	right: 75%; /* left column width */
+}
+
+.leftmenu .col1 {
+	width: 71%; /* right column content width */
+	left: 102%; /* 100% plus left column left padding */
+}
+
+.leftmenu .col2 {
+	width: 15%;
+	/* left column content width (column width minus left and right padding) */
+	left: 6%;
+	/* (right column left and right padding) plus (left column left padding) */
+}
