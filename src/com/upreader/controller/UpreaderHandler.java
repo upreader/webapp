@@ -1,13 +1,16 @@
 package com.upreader.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.upreader.BusinessException;
+import com.caucho.server.security.CachingPrincipal;
+import com.caucho.util.Base64;
 import com.upreader.MimeTypes;
 import com.upreader.RequestFile;
 import com.upreader.UpreaderApplication;
@@ -16,6 +19,8 @@ import com.upreader.dispatcher.PathDefault;
 import com.upreader.dispatcher.PathSegment;
 import com.upreader.helper.CollectionHelper;
 import com.upreader.model.User;
+import com.upreader.security.FacebookAuthenticationProvider;
+import com.upreader.util.EncryptHelper;
 
 /**
  * Test file
@@ -32,21 +37,54 @@ public class UpreaderHandler extends BasicPathHandler {
 	
 	@PathDefault
 	public boolean homepage() {
-		return context().redirect("home.jsp");
+		return context().render("home.jsp");
 	}
-	
+
+    @PathSegment("loginWithFacebook")
+    public boolean loginWithFacebook() {
+        String token = context().request().getParameter(FacebookAuthenticationProvider.OAUTH_TOKEN);
+        String code = context().request().getParameter(FacebookAuthenticationProvider.OAUTH_CODE);
+
+//        if(token != null && token.length() > 0){
+//            //user previously authenticated
+//            return homepage();
+//        }
+        if(code != null && code.length() > 0){
+            //exchange code for token
+            String result = getApplication().getFbauthProvider().performLogin(context().request(), code);
+            log.debug("facebook login result " + result);
+            return context().redirect("http://dev.upreader.com:8080/upreader");
+        }else{
+            return context().redirect(getApplication().getFbauthProvider().getAuthorizationURL());
+        }
+    }
+
 	@PathSegment("loginSuccessful")
 	public boolean loginSuccessful() {
-		User user = context().userDAO().findbyUsername(context().username());
-		context().session().putObject("_user_", user);
+		return json(new HashMap<String, String>() {{
+			put("result", "success");
+			put("id", query().get("id"));
+		}});
+	}
+	
+	@PathSegment("loggedin")
+	public boolean loggedin() {
+		if(query().get("id") != null && !query().get("id").isEmpty()) {
+			String username = EncryptHelper.decrypt(query().get("id"));
+			context().session().putObject("caucho.user", new CachingPrincipal(username));
+			User user = context().userDAO().findbyUsername(context().username());
+			context().session().putObject("_user_", user);
+		}
+		
 		return homepage();
 	}
 	
-	@PathSegment("gigi")
-	public boolean gigi() {
-		
-		
-		return message("tata");
+	@PathSegment("loginFailed")
+	public boolean loginFailed() {
+		return json(new HashMap<String, String>() {{
+			put("result", "error");
+			put("id", "");
+		}});
 	}
 	
 	@PathSegment("logout")
@@ -75,6 +113,7 @@ public class UpreaderHandler extends BasicPathHandler {
 	@PathSegment("message")
 	public boolean messageDemo() {
 		String signedURL = getApplication().getAmazonService().getSignedURL("c2e1b504-ef24-4d32-9ff3-a7d44913035b.pfx");
+		
 		return message("this is a message");
 	}
 	
