@@ -14,7 +14,10 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 
+import com.caucho.network.listen.ProtocolConnection;
+import com.caucho.network.listen.TcpSocketLink;
 import com.caucho.security.SecurityContext;
+import com.caucho.security.SecurityContextException;
 import com.google.common.io.BaseEncoding;
 import com.upreader.Infrastructure;
 import com.upreader.UpreaderApplication;
@@ -400,7 +403,7 @@ public class Context {
 		return true;
 	}
 	
-	public String username() {
+	public String username() throws SecurityContextException {
 		Principal principal = SecurityContext.getUserPrincipal();
 		return principal == null ? null : principal.getName();
 	}

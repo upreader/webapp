@@ -1,0 +1,209 @@
+/* Start general styling */
+article,aside,audio,canvas,command,datalist,details,embed,figcaption,figure,footer,header,hgroup,keygen,meter,nav,output,progress,section,source,video { display: block;}
+mark,rp,rt,ruby,summary,time { display: inline; }
+a, abbr, acronym, address, applet, article, aside, audio, b, blockquote, big, body, center, canvas, caption, cite, code, command, datalist, dd, del, details, dfn, dl, div, dt, 
+em, embed, fieldset, figcaption, figure, font, footer, form,  h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, keygen, label, legend, li, meter, nav,
+object, ol, output, p, pre, progress,q, s, samp, section, small, span, source, strike, strong, sub, sup,table, tbody, tfoot, thead, th, tr, tdvideo, tt,u, ul, var
+{
+    background: transparent;
+    border: 0 none;
+    font-size: 100%;
+    margin: 0; 
+	padding: 0;
+	border: 0;
+	outline: 0;
+    vertical-align: top; 
+}
+audio, canvas, video {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+audio:not([controls]) { display: none; }
+[hidden] { display: none; }
+figure { margin: 0; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+table, table td { 
+	padding:0;
+	border:none;
+	border-collapse:collapse;
+}
+img { vertical-align:top; }
+embed { vertical-align:top; }
+
+
+html,body { height: 100%; margin: 0; 	padding: 0;}
+
+body {
+	background: none repeat scroll 0 0 #000305;
+	font: 16px/1.5 Helvetica, Arial, FreeSans, sans-serif;
+	color: rgb(18, 26, 13);
+	margin: 0px;
+	padding: 0px;
+	border: 0px none;
+	text-align: left;
+	width: 100%; 
+	overflow-x: hidden; 
+}
+::-moz-selection {
+	background: #34ade8;
+	color: #ffffff;
+	text-shadow: none;
+}
+
+::selection {
+	background: #34ade8;
+	color: #ffffff;
+	text-shadow: none;
+}
+
+img {
+	-ms-interpolation-mode: bicubic;
+	vertical-align: middle;
+	border: 0;
+	outline: 0;
+}
+
+/* Correct overflow not hidden in IE9 */
+svg:not(:root)  { overflow: hidden; }
+a:link,a:visited { text-decoration: none; }
+a:hover,a:active { text-decoration: none; }
+/* End general styling */
+
+/* Start top bar styling */
+header {
+	height: 60px;
+}
+header a { color: #fff; }
+
+#topbar {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+#topbarleft {
+	display: inline-block;
+	margin: 20px 0 0 160px;
+}
+
+#topbarright {
+	float: right;
+	display: inline-block; 
+	margin-top: 20px;
+}
+#topbarright  ul li { float: left; color: #fff }
+#topbar nav ul { display: inline-block; }
+#topbar nav ul li, #topbar nav ul li a { float: left; color: #fff }
+
+#title {
+	margin: 5px 0 5px 0;
+	position: absolute;
+	font-size: 30px;
+}
+
+#navgroup2 { margin-right: 20px;}
+#navgroup1 a, #navgroup2 a { padding: 0 10px; }
+
+#navsearch {
+	display: inline-block;
+	margin-right: 50px;
+	text-align: center;
+}
+#navgroup3 {
+	display: block;
+	padding: 0;
+	margin: 0;
+}
+#navgroup3 li { float: left; }
+#navgroup3 a { padding: 0 10px; }
+#searchfield { width: 180px; }
+
+footer {
+	color: #fff;
+	border-top: 5px solid #EEEEEE;
+}
+/* End top bar styling */
+
+/* Top bar styles */
+div.loginBar {
+	width: 100%;
+	height: 40px;
+	background-color: #F3E2A9;
+}
+
+div.loginLink {
+	float: right;
+	position: relative;
+	right: 30px;
+	top: 5px;
+}
+
+div.loginLink a {
+	font-weight: bold;
+}
+
+div.logo {
+	float: left;
+	position: relative;
+	left: 30px;
+	top: 5px;
+	font-weight: bold;
+}
+
+/* column container */
+.colmask {
+	position: relative; /* This fixes the IE7 overflow hidden bug */
+	clear: both;
+	float: left;
+	width: 100%; /* width of whole page */
+	overflow: hidden; /* This chops off any overhanging divs */
+}
+
+.colleft {
+	float: left;
+	width: 100%;
+	position: relative;
+}
+
+.col1,.col2 {
+	float: left;
+	position: relative;
+	padding: 0 0 1em 0;
+	overflow: hidden;
+}
+
+/* 2 Column (left menu) settings */
+.leftmenu {
+	
+}
+
+.leftmenu .colleft {
+	right: 75%; /* left column width */
+}
+
+.leftmenu .col1 {
+	width: 71%; /* right column content width */
+	left: 102%; /* 100% plus left column left padding */
+}
+
+.leftmenu .col2 {
+	width: 15%;
+	/* left column content width (column width minus left and right padding) */
+	left: 6%;
+	/* (right column left and right padding) plus (left column left padding) */
+}
+
+/* Footer styles */
+#footer {
+	clear: both;
+	float: left;
+	width: 100%;
+	border-top: 1px solid #000;
+	bottom: 0x;
+}
+
+#footer p {
+	padding: 10px;
+	margin: 0;
+}

@@ -19,6 +19,7 @@ import javax.persistence.UniqueConstraint;
 
 import com.upreader.UpreaderConstants;
 import com.upreader.helper.StringHelper;
+import com.upreader.model.user.Postal;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {
@@ -47,6 +48,10 @@ public class User implements Serializable {
 
 	@Column(name = "rating")
 	private int rating;
+
+    // addresses that a user have
+    @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    protected List<Postal> postals;
 
 	// no cascading for projects
 	// if user is delete, project is allowed to stay as orphan for historical
@@ -121,7 +126,15 @@ public class User implements Serializable {
 		this.ownedProjects = ownedProjects;
 	}
 
-	public List<ProjectMembership> getMemberProjects() {
+    public List<Postal> getPostals() {
+        return postals;
+    }
+
+    public void setPostals(List<Postal> postals) {
+        this.postals = postals;
+    }
+
+    public List<ProjectMembership> getMemberProjects() {
 		return memberProjects;
 	}
 
