@@ -2,8 +2,12 @@ package com.upreader.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
+/**
+ * User notifications
+ */
 @Entity
 @Table(name = "inbox")
 public class Inbox implements Serializable {
@@ -22,6 +26,9 @@ public class Inbox implements Serializable {
 
     @Column(name = "read", nullable = false)
     private Boolean read;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private User user;
 
     public Inbox() {
     }
@@ -64,5 +71,13 @@ public class Inbox implements Serializable {
 
     public void setRead(Boolean read) {
         this.read = read;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

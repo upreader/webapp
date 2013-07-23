@@ -15,6 +15,9 @@
 		<class>com.upreader.model.ProjectMembership</class>
         <class>com.upreader.model.UserAddress</class>
         <class>com.upreader.model.Inbox</class>
+        <class>com.upreader.model.StoryChapter</class>
+        <class>com.upreader.model.PinnedProject</class>
+
 		<properties>
 			<!-- DDL operations, DROP | CREATE (*) | UPDATE | VERIFY | NONE -->
 			<property name="org.batoo.jpa.ddl" value="UPDATE" />

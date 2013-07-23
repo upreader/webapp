@@ -1,20 +1,10 @@
 package com.upreader.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 import com.upreader.UpreaderConstants;
 import com.upreader.helper.StringHelper;
@@ -61,9 +51,17 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	protected List<ProjectMembership> memberProjects;
 
-	// projects the user subscribed to
+	// serial stories the user subscribed to
 	@OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	protected List<ProjectSubscription> subscribedProjects;
+
+    // serial stories the user subscribed to
+    @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    protected List<PinnedProject> pinnedProjects;
+
+    // notifications received
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
+    private List<Inbox> messages;
 
 	public User() {
 	}
@@ -179,7 +177,23 @@ public class User implements Serializable {
 				UpreaderConstants.ROLE_ADMIN);
 	}
 
-	public static final String NQ_FIND_BY_USERNAME = "User_findByUsername";
+    public List<Inbox> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Inbox> messages) {
+        this.messages = messages;
+    }
+
+    public List<PinnedProject> getPinnedProjects() {
+        return pinnedProjects;
+    }
+
+    public void setPinnedProjects(List<PinnedProject> pinnedProjects) {
+        this.pinnedProjects = pinnedProjects;
+    }
+
+    public static final String NQ_FIND_BY_USERNAME = "User_findByUsername";
 	public static final String NQ_FIND_BY_EMAIL = "User_findByEmail";
 	public static final String NQ_FIND_ALL = "User_findAll";
 }

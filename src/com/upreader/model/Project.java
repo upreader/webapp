@@ -28,22 +28,34 @@ public class Project implements Serializable {
 	private String title;
 
 	/**
-	 * Location of actual book file
+	 * Location of actual book file for type=story
 	 */
 	@Column(name = "book")
 	private String book;
 	
 	/**
-	 * Location of file for sample book content
+	 * Location of file for pilot story/serial story content
 	 */
-	@Column(name = "sample")
-	private String sample;
-	
+	@Column(name = "pilot")
+	private String pilot;
+
+    @Column(name = "format")
+    private String format;
+
+    @Column(name = "category")
+    private String category;
+
 	@Column(name = "genre")
 	private String genre;
 
 	@Column(name = "subgenres")
 	private String subgenres;
+
+    /**
+     * Custom tags set by the author that will be used in searches
+     */
+    @Column(name = "tags")
+    private String tags;
 
 	/**
 	 * Location of file for book cover
@@ -51,17 +63,17 @@ public class Project implements Serializable {
 	@Column(name = "cover")
 	private String cover;
 
+    /**
+     * Bold description near cover
+     */
 	@Column(name = "pitch")
 	private String pitch;
 
+    /**
+     * Description near cover under pitch (non-bold)
+     */
 	@Column(name = "synopsis")
 	private String synopsis;
-
-	@Column(name = "references")
-	private String references;
-
-	@Column(name = "backstory")
-	private String backstory;
 
 	/**
 	 * ebook price (not updateable, from ProjectOwnership)
@@ -75,6 +87,12 @@ public class Project implements Serializable {
 	 */
 	@Column(name = "publishyears")
 	private int publishYears;
+
+    /**
+     * Comma-separated list of derivatives: audiobook, tv, movie etc.
+     */
+    @Column(name = "derivatives")
+    private String derivatives;
 
 	/**
 	 * How many shares are for sale (%) (not updateable, from ProjectOwnership)
@@ -114,23 +132,41 @@ public class Project implements Serializable {
 	private Date deadline;
 	
 	/**
-	 * if a serial story
+	 * approved by an editor. Only approved projects will be shown to the public
 	 */
 	@Column(name = "approved")
 	private Boolean approved;
-	
+
+    /**
+     * How many times the project was viewed
+     */
+    @Column(name = "noviews")
+    private int noViews;
+
 	/**
-	 * if a serial story
+	 * type of story: story,serial
 	 */
-	@Column(name = "serial")
-	private Boolean serial;
+	@Column(name = "type")
+	private String type;
+
+    /**
+     * status of story:
+     *      waiting - story/serial story is selling royalties and for serial stories subscription costs
+     *      shelved - finished selling royalties, book/subscription is for sale. if serial story is finished
+     *                then it will become like a normal story, without subscriptions for sale but only the completed
+     *                book
+     *      free - initial free serial story, will become waiting after 1000 subscribers
+     *
+     */
+    @Column(name = "status")
+    private String status;
 
 	/**
 	 * (Serial Story) How many chapters it will have. (not updateable, from
 	 * ProjectOwnership)
 	 */
 	@Column(name = "chapters")
-	private int noChapters;
+	private int serialStoryNoChapters;
 
 	/**
 	 * (Serial Story) The author has to estimate an average chapter word count
@@ -138,36 +174,51 @@ public class Project implements Serializable {
 	 * ProjectOwnership)
 	 */
 	@Column(name = "avgwordsch")
-	private int avgWordsPerChapter;
-
-	/**
-	 * (Serial Story) First chapter. It is mandatory for the author to upload a
-	 * first chapter/pilot.
-	 */
-	@Column(name = "pilot")
-	private Boolean pilot;
+	private int serialStoryAvgWordsPerChapter;
 
 	/**
 	 * (Serial Story) A fixed amount of time between updates must be set up by
 	 * the author. The maximum update delay allowed by Upreader will be 4 weeks
 	 */
 	@Column(name = "updatefreq")
-	private int updateFreq;
+	private int serialStoryUpdateFreq;
 
+    /**
+     * project advertisements that are shown similar to blog posts on the project page
+     */
 	@OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	protected List<PromoItem> promoItems;
 
-	// author is mandatory and cannot be updated
+    /**
+     * project author. This is mandatory and cannot be updated
+     */
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
 	@JoinColumn(name = "ownerid", nullable = false, updatable = false)
 	private ProjectOwnership author;
 
+    /**
+     * users that own shares in this project
+     */
 	@OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	protected List<ProjectMembership> shareholders;
-	
+
+    /***
+     * serial story subscribers
+     */
 	@OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	protected List<ProjectSubscription> subscribers;
-	
+
+    /**
+     * Users that pinned this project to their workspace
+     */
+    @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    protected List<PinnedProject> interestedUsers;
+
+    /**
+     * Users that pinned this project to their workspace
+     */
+    @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    protected List<StoryChapter> serialStoryChapters;
 
 	public Project() {
 	}
@@ -196,7 +247,23 @@ public class Project implements Serializable {
 		this.book = book;
 	}
 
-	public String getGenre() {
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getGenre() {
 		return genre;
 	}
 
@@ -212,7 +279,15 @@ public class Project implements Serializable {
 		this.subgenres = subgenres;
 	}
 
-	public String getCover() {
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public String getCover() {
 		return cover;
 	}
 
@@ -236,29 +311,13 @@ public class Project implements Serializable {
 		this.synopsis = synopsis;
 	}
 
-	public String getSample() {
-		return sample;
-	}
+    public String getPilot() {
+        return pilot;
+    }
 
-	public void setSample(String sample) {
-		this.sample = sample;
-	}
-
-	public String getReferences() {
-		return references;
-	}
-
-	public void setReferences(String references) {
-		this.references = references;
-	}
-
-	public String getBackstory() {
-		return backstory;
-	}
-
-	public void setBackstory(String backstory) {
-		this.backstory = backstory;
-	}
+    public void setPilot(String pilot) {
+        this.pilot = pilot;
+    }
 
 	public float getBookPrice() {
 		return bookPrice;
@@ -324,47 +383,47 @@ public class Project implements Serializable {
 		this.deadline = deadline;
 	}
 
-	public Boolean getSerial() {
-		return serial;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void setSerial(Boolean serial) {
-		this.serial = serial;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public int getNoChapters() {
-		return noChapters;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setNoChapters(int noChapters) {
-		this.noChapters = noChapters;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public int getAvgWordsPerChapter() {
-		return avgWordsPerChapter;
-	}
+    public int getSerialStoryNoChapters() {
+        return serialStoryNoChapters;
+    }
 
-	public void setAvgWordsPerChapter(int avgWordsPerChapter) {
-		this.avgWordsPerChapter = avgWordsPerChapter;
-	}
+    public void setSerialStoryNoChapters(int serialStoryNoChapters) {
+        this.serialStoryNoChapters = serialStoryNoChapters;
+    }
 
-	public Boolean getPilot() {
-		return pilot;
-	}
+    public int getSerialStoryAvgWordsPerChapter() {
+        return serialStoryAvgWordsPerChapter;
+    }
 
-	public void setPilot(Boolean pilot) {
-		this.pilot = pilot;
-	}
+    public void setSerialStoryAvgWordsPerChapter(int serialStoryAvgWordsPerChapter) {
+        this.serialStoryAvgWordsPerChapter = serialStoryAvgWordsPerChapter;
+    }
 
-	public int getUpdateFreq() {
-		return updateFreq;
-	}
+    public int getSerialStoryUpdateFreq() {
+        return serialStoryUpdateFreq;
+    }
 
-	public void setUpdateFreq(int updateFreq) {
-		this.updateFreq = updateFreq;
-	}
+    public void setSerialStoryUpdateFreq(int serialStoryUpdateFreq) {
+        this.serialStoryUpdateFreq = serialStoryUpdateFreq;
+    }
 
-	public List<PromoItem> getPromoItems() {
+    public List<PromoItem> getPromoItems() {
 		return promoItems;
 	}
 
@@ -403,4 +462,36 @@ public class Project implements Serializable {
 	public void setApproved(Boolean approved) {
 		this.approved = approved;
 	}
+
+    public String getDerivatives() {
+        return derivatives;
+    }
+
+    public void setDerivatives(String derivatives) {
+        this.derivatives = derivatives;
+    }
+
+    public int getNoViews() {
+        return noViews;
+    }
+
+    public void setNoViews(int noViews) {
+        this.noViews = noViews;
+    }
+
+    public List<PinnedProject> getInterestedUsers() {
+        return interestedUsers;
+    }
+
+    public void setInterestedUsers(List<PinnedProject> interestedUsers) {
+        this.interestedUsers = interestedUsers;
+    }
+
+    public List<StoryChapter> getSerialStoryChapters() {
+        return serialStoryChapters;
+    }
+
+    public void setSerialStoryChapters(List<StoryChapter> serialStoryChapters) {
+        this.serialStoryChapters = serialStoryChapters;
+    }
 }
