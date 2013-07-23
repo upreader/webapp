@@ -25,37 +25,6 @@ public class ProjectOwnership implements Serializable {
 	private Integer id;
 
 	/**
-	 * ebook price
-	 */
-	@Column(name = "bookPrice")
-	private float bookPrice;
-
-	/**
-	 * How many years can the platform publish the ebook
-	 */
-	@Column(name = "publishyears")
-	private int publishYears;
-
-	/**
-	 * How many shares are for sale (%)
-	 */
-	@Column(name = "percentToSale")
-	private int percentToSale;
-
-	/**
-	 * (Serial Story) How many chapters it will have
-	 */
-	@Column(name = "chapters")
-	private int noChapters;
-
-	/**
-	 * (Serial Story) The author has to estimate an average chapter word count
-	 * between 100-500w up to 1000-2000w, 4000-5000w,
-	 */
-	@Column(name = "avgwordsch")
-	private int avgWordsPerChapter;
-
-	/**
 	 * Contract agreed with the platform
 	 */
 	@Column(name = "contract")
@@ -84,46 +53,6 @@ public class ProjectOwnership implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public float getBookPrice() {
-		return bookPrice;
-	}
-
-	public void setBookPrice(float bookPrice) {
-		this.bookPrice = bookPrice;
-	}
-
-	public int getPublishYears() {
-		return publishYears;
-	}
-
-	public void setPublishYears(int publishYears) {
-		this.publishYears = publishYears;
-	}
-
-	public int getPercentToSale() {
-		return percentToSale;
-	}
-
-	public void setPercentToSale(int percentToSale) {
-		this.percentToSale = percentToSale;
-	}
-
-	public int getNoChapters() {
-		return noChapters;
-	}
-
-	public void setNoChapters(int noChapters) {
-		this.noChapters = noChapters;
-	}
-
-	public int getAvgWordsPerChapter() {
-		return avgWordsPerChapter;
-	}
-
-	public void setAvgWordsPerChapter(int avgWordsPerChapter) {
-		this.avgWordsPerChapter = avgWordsPerChapter;
 	}
 
 	public String getContract() {
@@ -157,5 +86,4 @@ public class ProjectOwnership implements Serializable {
 	public void setProject(Project project) {
 		this.project = project;
 	}
-
 }

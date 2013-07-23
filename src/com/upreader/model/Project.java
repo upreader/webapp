@@ -51,12 +51,6 @@ public class Project implements Serializable {
 	@Column(name = "cover")
 	private String cover;
 
-	/**
-	 * Location of file for book back cover (optional)
-	 */
-	@Column(name = "backcover")
-	private String backCover;
-
 	@Column(name = "pitch")
 	private String pitch;
 
@@ -224,14 +218,6 @@ public class Project implements Serializable {
 
 	public void setCover(String cover) {
 		this.cover = cover;
-	}
-
-	public String getBackCover() {
-		return backCover;
-	}
-
-	public void setBackCover(String backCover) {
-		this.backCover = backCover;
 	}
 
 	public String getPitch() {

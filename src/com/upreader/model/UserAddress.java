@@ -1,4 +1,4 @@
-package com.upreader.model.user;
+package com.upreader.model;
 
 import com.upreader.model.User;
 

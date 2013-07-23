@@ -18,7 +18,6 @@ import javax.persistence.UniqueConstraint;
 
 import com.upreader.UpreaderConstants;
 import com.upreader.helper.StringHelper;
-import com.upreader.model.user.UserAddress;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {

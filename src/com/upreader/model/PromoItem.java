@@ -12,6 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * Promotional articles added to a project.
+ * They will appear on the UI like blog entries.
+ */
 @Entity
 @Table(name = "promoitems")
 public class PromoItem implements Serializable {
@@ -19,15 +23,21 @@ public class PromoItem implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+    /**
+     * Title for the article
+     */
 	@Column(name = "name")
-	private String name;
+	private String title;
 
+    /**
+     * HTML content
+     */
 	@Column(name = "description")
-	private String description;
+	private String content;
 
-	@Column(name = "url")
-	private String url;
-
+    /**
+     * Owner project
+     */
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "projectid", nullable = false, updatable = false)
 	private Project project;
@@ -43,28 +53,20 @@ public class PromoItem implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String name) {
+		this.title = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getContent() {
+		return content;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
+	public void setContent(String description) {
+		this.content = description;
 	}
 
 	public Project getProject() {
