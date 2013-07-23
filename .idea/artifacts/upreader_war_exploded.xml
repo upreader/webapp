@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="upreader:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/upreader</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="upreader" />
+          <element id="jpa-descriptors" facet="upreader/jpa/JPA" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Upreader" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="upreader/web/Web" />
+    </root>
+  </artifact>
+</component>
