@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -19,7 +18,7 @@ import javax.persistence.UniqueConstraint;
 
 import com.upreader.UpreaderConstants;
 import com.upreader.helper.StringHelper;
-import com.upreader.model.user.Postal;
+import com.upreader.model.user.UserAddress;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {
@@ -51,7 +50,7 @@ public class User implements Serializable {
 
     // addresses that a user have
     @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    protected List<Postal> postals;
+    protected List<UserAddress> userAddresses;
 
 	// no cascading for projects
 	// if user is delete, project is allowed to stay as orphan for historical
@@ -126,12 +125,12 @@ public class User implements Serializable {
 		this.ownedProjects = ownedProjects;
 	}
 
-    public List<Postal> getPostals() {
-        return postals;
+    public List<UserAddress> getUserAddresses() {
+        return userAddresses;
     }
 
-    public void setPostals(List<Postal> postals) {
-        this.postals = postals;
+    public void setUserAddresses(List<UserAddress> userAddresses) {
+        this.userAddresses = userAddresses;
     }
 
     public List<ProjectMembership> getMemberProjects() {

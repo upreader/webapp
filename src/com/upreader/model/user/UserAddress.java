@@ -8,15 +8,21 @@ import java.io.Serializable;
 /**
  * User: Razvan.Ionescu
  * Date: 7/9/13
- **/
+ */
 @Entity
-@Table(name = "postal", uniqueConstraints = {
-        @UniqueConstraint(name = "UK_USER_ID", columnNames = { "userId", "type" })
-      })
-public class Postal implements Serializable {
+@Table(name = "user_addresses", uniqueConstraints = {
+        @UniqueConstraint(name = "UK_USER_ID", columnNames = {"userId", "type"})
+})
+public class UserAddress implements Serializable {
+    public static final String TYPE_HOME = "home";
+    public static final String TYPE_BUSINESS = "business";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "type")
+    private String type;
 
     @Column(name = "street")
     private String street;
@@ -36,10 +42,6 @@ public class Postal implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userid", nullable = false, updatable = false)
     private User user;
-
-    @OneToOne(orphanRemoval = false, optional = false)
-    @JoinColumn(name = "postalTypeId", referencedColumnName = "id", nullable = false, updatable = false)
-    private PostalType type;
 
     public Integer getId() {
         return id;
@@ -97,11 +99,11 @@ public class Postal implements Serializable {
         this.user = user;
     }
 
-    public PostalType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(PostalType type) {
+    public void setType(String type) {
         this.type = type;
     }
 }
