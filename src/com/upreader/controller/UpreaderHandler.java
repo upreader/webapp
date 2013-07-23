@@ -77,6 +77,22 @@ public class UpreaderHandler extends BasicPathHandler {
 
 	@PathSegment("loginSuccessful")
 	public boolean loginSuccessful() {
+        String prevPath = session().get("com.upreader.previous.path");
+        String prevQuery = session().get("com.upreader.previous.query");
+        if(prevPath != null && !prevPath.isEmpty()) {
+            if(prevQuery != null && !prevQuery.isEmpty())
+                prevPath += "?"+prevQuery;
+
+            session().remove("com.upreader.previous.path");
+            session().remove("com.upreader.previous.query");
+            if(!prevPath.startsWith("/"))
+                prevPath = "/" + prevPath;
+
+            if(prevPath.startsWith(context().getContextPath()))
+                return context().redirect(prevPath);
+            else
+                return context().redirect(context().getContextPath()+prevPath);
+        }
         return context().redirect("http://www.upreader.com:8080/upreader");
 	}
 	

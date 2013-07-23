@@ -21,6 +21,11 @@
 
     <resin:FormLogin form-login-page="/p/login" form-error-page="/p/login?failed=1" form-uri-priority="true"/>
 
+    <!-- new project page only for authenticated users -->
+    <resin:Allow url-pattern="/p/newproject1">
+        <resin:IfUserInRole role="*"/>
+    </resin:Allow>
+
     <!-- /admin is only allowed for admin role -->
     <resin:Allow url-pattern="/p/admin/*">
         <resin:IfUserInRole role="admin"/>

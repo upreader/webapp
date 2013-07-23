@@ -15,7 +15,7 @@
 
 <div style="background-color:white; min-height: 500px;">
     <div id="loginmodal">
-        <FORM id="loginform" action="${pageContext.request.contextPath}/j_security_check" method="post" autocomplete="on">
+        <FORM id="loginform" action="https://www.upreader.com:8443/upreader/j_security_check" method="post" autocomplete="on">
             <label for="username">Username:</label>
             <input type="text" name="j_username" id="username" class="txtfield" tabindex="1" autocomplete="on">
             <label for="password">Password:</label>
@@ -35,9 +35,9 @@
 </div>
 
 <script type="text/javascript">
-<c:if test="${not empty param.failed}">
-    var loginError = true;
-</c:if>
+var loginError = false;
+
+<c:if test="${not empty param.failed}">loginError = true;</c:if>
 
 $(function () {
     $('#loginbtn').click(function() {

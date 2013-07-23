@@ -10,7 +10,7 @@ pageContext.setAttribute("isAdmin", request.isUserInRole(com.upreader.UpreaderCo
 			<nav>
 				<ul id="navgroup1">
 					<li><a href="#">How it works</a></li>
-					<li><a href="#">Start a project</a></li>
+					<li><a href="<c:url value='/p/newproject1'/>">Start a project</a></li>
 				</ul>
 			</nav>
 		</div>
