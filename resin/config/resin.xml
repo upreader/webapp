@@ -88,6 +88,8 @@
 		</web-app-default>
 
 		<host id="" root-directory=".">
+            <secure-host-name>www.upreader.com:8443</secure-host-name>
+
 			<access-log path="log/access.log"
 				format='%h %l %u %t "%r" %s %b "%{Referer}i" "%{User-Agent}i"'
 				rollover-period="1W" />

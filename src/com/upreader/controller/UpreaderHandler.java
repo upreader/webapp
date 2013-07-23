@@ -77,31 +77,7 @@ public class UpreaderHandler extends BasicPathHandler {
 
 	@PathSegment("loginSuccessful")
 	public boolean loginSuccessful() {
-        String callback = query().get("callback");
-		return json(new HashMap<String, String>() {{
-			put("result", "success");
-			put("id", query().get("id"));
-		}});
-	}
-	
-	@PathSegment("loggedin")
-	public boolean loggedin() {
-		if(query().get("id") != null && !query().get("id").isEmpty()) {
-			String username = EncryptHelper.decrypt(query().get("id"));
-			context().session().putObject("caucho.user", new CachingPrincipal(username));
-			User user = context().userDAO().findbyUsername(context().username());
-			context().session().putObject("_user_", user);
-		}
-		
-		return homepage();
-	}
-	
-	@PathSegment("loginFailed")
-	public boolean loginFailed() {
-		return json(new HashMap<String, String>() {{
-			put("result", "error");
-			put("id", "");
-		}});
+        return context().redirect("http://www.upreader.com:8080/upreader");
 	}
 	
 	@PathSegment("logout")

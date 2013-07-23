@@ -20,7 +20,7 @@
 	<c:when test="${empty pageContext.request.userPrincipal}">
 	<div id="loginbar">
 		<a class="button magenta flat" href="#">Create account</a>
-		<a id="login" class="button orange flat" href="#loginmodal">Login</a>
+		<a id="login" class="button orange flat" href="${pageContext.request.contextPath}/p/login">Login</a>
 	</div>
 	</c:when>
 	<c:otherwise>
@@ -38,62 +38,6 @@
 		<td><a href="<c:url value='/p/allprojects'/>">All Projects</a></td>
 	</tr>
 </table>
-
-<div id="loginmodal" style="display:none;">
-    <label for="username">Username:</label>
-    <input type="text" id="username" class="txtfield" tabindex="1">
-     
-    <label for="password">Password:</label>
-    <input type="password" id="password" class="txtfield" tabindex="2">
-     
-    <div class="center">
-		<a id="loginbtn" class="button orange flat" tabindex="3" href="#">Login</a>
-		<a class="button blue flat" href="<c:url value='/i/loginWithFacebook'/>">Facebook</a>
-        <a class="button blue flat" href="<c:url value='/i/loginWithTwitter'/>">Twitter</a>
-	</div>
-</div>
-
-<script type="text/javascript">
-$(function(){
-  $('#loginbtn').click(function() {
-	$.ajax({
-		type: "POST",
-		url: "${pageContext.request.contextPath}/u_login",
-		async: false,
-		crossDomain: true,
-		data: {
-			j_username: $('#username').val(),
-            j_password: $('#password').val(),
-			j_uri : '${pageContext.request.contextPath}/i/loginSuccessful'
-        },
-		success: function(data, textStatus, xhr) {
-			if(data.result == 'success') {
-				location.href = '${pageContext.request.contextPath}/i/loggedin?id='+data.id;
-			}
-			else if(data.result == 'error') {
-				$('#username').css('border-color','red').focus();
-				$('#password').css('border-color','red');
-			}
-		},
-		error: function(jqXHR, textStatus, errorThrown) {
-			alert('Server error');
-		}
-	});
-  });
-  
-  $('#login').leanModal({ top: 240, overlay: 0.45, closeButton: ".hidemodal" });
-  $('#username').keypress(function(event) {
-	 if(event.keyCode == 13) { 
-		$('#loginbtn').trigger('click');
-	 }
-  });
-  $('#password').keypress(function(event) {
-	 if(event.keyCode == 13) { 
-		$('#loginbtn').trigger('click');
-	 }
-  });
-});
-</script> 
 
 <jsp:include page="inc/footer.jspf" />
 </body>
