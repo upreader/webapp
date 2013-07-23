@@ -15,11 +15,11 @@
 
 <div style="background-color:white; min-height: 500px;">
     <div id="loginmodal">
-        <FORM id="loginform" action="${pageContext.request.contextPath}/j_security_check" method="post">
-            <label for="j_username">Username:</label>
-            <input type="text" name="j_username" id="j_username" class="txtfield" tabindex="1">
-            <label for="j_password">Password:</label>
-            <input type="password" name="j_password" id="j_password" class="txtfield" tabindex="2">
+        <FORM id="loginform" action="${pageContext.request.contextPath}/j_security_check" method="post" autocomplete="on">
+            <label for="username">Username:</label>
+            <input type="text" name="j_username" id="username" class="txtfield" tabindex="1" autocomplete="on">
+            <label for="password">Password:</label>
+            <input type="password" name="j_password" id="password" class="txtfield" tabindex="2">
             <input type="checkbox"/>Remember me
             <div>&nbsp;</div>
             <div class="center">
@@ -29,6 +29,7 @@
             </div>
             <a href="#">Forgot my password</a>
             <input type="hidden" name="j_uri" value="i/loginSuccessful"/>
+            <input type="submit" value="Login" style="visibility: hidden"/>
         </FORM>
     </div>
 </div>
@@ -44,16 +45,16 @@ $(function () {
     });
 
     if(loginError) {
-        $('#j_username').css('border-color','red').focus();
-        $('#j_password').css('border-color','red');
+        $('#username').css('border-color','red').focus();
+        $('#password').css('border-color','red');
     }
 
-    $('#j_username').keypress(function(event) {
+    $('#username').keypress(function(event) {
         if(event.keyCode == 13) {
             $('#loginbtn').trigger('click');
         }
     });
-    $('#j_password').keypress(function(event) {
+    $('#password').keypress(function(event) {
         if(event.keyCode == 13) {
             $('#loginbtn').trigger('click');
         }
