@@ -143,9 +143,6 @@ public class ProjectController {
 		Integer percentToSale = context.query().getInt("percentsale");
 
 		ProjectOwnership projectOwnership = new ProjectOwnership();
-		projectOwnership.setBookPrice(bookPrice);
-		projectOwnership.setPublishYears(publishYears);
-		projectOwnership.setPercentToSale(percentToSale);
 		projectOwnership.setProject(project);
 		projectOwnership.setUser((User) context.session().getObject("_user_"));
 

@@ -55,7 +55,7 @@
 			<jvm-mode>-server</jvm-mode>
 			<http address="*" port="8080" />
 			<http address="*" port="8443">
-				<jsse-ssl self-signed-certificate-name="resin@localhost" />
+				<jsse-ssl self-signed-certificate-name="www.upreader.com" />
 			</http>
 			<user-name>upreader</user-name>
 			<group-name>upreader</group-name>

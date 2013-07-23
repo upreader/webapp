@@ -50,7 +50,7 @@ public class UpreaderHandler extends BasicPathHandler {
 //            //user previously authenticated
 //            return homepage();
 //        }
-        if(code != null && code.length() > 0){
+        if(code != null && code.length() > 0) {
             //exchange code for token
             String result = getApplication().getFbauthProvider().performLogin(context().request(), code);
             log.debug("facebook login result " + result);
@@ -77,6 +77,7 @@ public class UpreaderHandler extends BasicPathHandler {
 
 	@PathSegment("loginSuccessful")
 	public boolean loginSuccessful() {
+        String callback = query().get("callback");
 		return json(new HashMap<String, String>() {{
 			put("result", "success");
 			put("id", query().get("id"));
