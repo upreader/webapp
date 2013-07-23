@@ -10,7 +10,7 @@
     <schema-pattern>upreader.*</schema-pattern>
     <libraries>
       <library>
-        <url>file://E:/programs/resin-pro-4.0.36/lib/mysql-connector-java-5.1.25-bin.jar</url>
+        <url>file://$PROJECT_DIR$/resin/lib/mysql-connector-java-5.1.25-bin.jar</url>
       </library>
     </libraries>
     <schema name="" catalog="upreader"/>
