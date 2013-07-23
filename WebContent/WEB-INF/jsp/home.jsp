@@ -58,22 +58,21 @@ $(function(){
   $('#loginbtn').click(function() {
 	$.ajax({
 		type: "POST",
-		url: "https://www.upreader.com:8443/upreader/u_login",
+		url: "${pageContext.request.contextPath}/u_login",
 		async: false,
 		crossDomain: true,
 		data: {
 			j_username: $('#username').val(),
             j_password: $('#password').val(),
-			j_uri : 'http://www.upreader.com:8080/upreader/i/loginSuccessful'
+			j_uri : '${pageContext.request.contextPath}/i/loginSuccessful'
         },
 		success: function(data, textStatus, xhr) {
 			if(data.result == 'success') {
-				location.href = 'http://www.upreader.com:8080/upreader/i/loggedin?id='+data.id;
+				location.href = '${pageContext.request.contextPath}/i/loggedin?id='+data.id;
 			}
 			else if(data.result == 'error') {
-				$('#username').css('border-color','red');
+				$('#username').css('border-color','red').focus();
 				$('#password').css('border-color','red');
-				$('#username').focus();
 			}
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
