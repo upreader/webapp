@@ -12,14 +12,6 @@
 <body>
 <jsp:include page="inc/header.jspf" />
 
-<table width="50%" align="center">
-	<tr>
-        <td><a href="<c:url value='/p/projects'/>">Projects Page</a></td>
-		<td><a href="<c:url value='/p/newproject1'/>">Create Project</a></td>
-		<td><a href="<c:url value='/p/myprojects'/>">My Projects</a></td>
-		<td><a href="<c:url value='/p/allprojects'/>">All Projects</a></td>
-	</tr>
-</table>
 <div id="banner">
 	<div id="banner-welcome">
 		<h1 style="margin-top:200px; font-size:30px;">Welcome to Upreader</h1>
@@ -38,6 +30,14 @@
 	</c:otherwise>
 	</c:choose>
 </div>
+<table width="50%" align="center">
+	<tr>
+        <td><a href="<c:url value='/p/projects'/>">Projects Page</a></td>
+		<td><a href="<c:url value='/p/newproject1'/>">Create Project</a></td>
+		<td><a href="<c:url value='/p/myprojects'/>">My Projects</a></td>
+		<td><a href="<c:url value='/p/allprojects'/>">All Projects</a></td>
+	</tr>
+</table>
 
 <div id="loginmodal" style="display:none;">
     <label for="j_username">Username:</label>
