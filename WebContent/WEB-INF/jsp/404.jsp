@@ -1,19 +1,25 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page language="java" contentType="text/html" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Upreader</title>
-<link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/upreader.css" media="screen" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
+<jsp:include page="inc/head.jspf" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css"  media="screen"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css"  media="screen"/>
+<link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datatable.css" media="screen" />
+<link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/admin.css" media="screen" />
+<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/js/jquery.leanModal.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
+
 </head>
 <body>
-<%@ include file="inc/topbar.jspf" %>
+<jsp:include page="inc/header.jspf" />
 
-<div style="position:absolute; width:250px; height:100px; z-index:15; top:50%; left:50%; margin:-150px 0 0 -150px; text-align: center;">
-<h1>Page not found</h1>
+<div style="height:500px; margin:0 auto; text-align:center; background: none repeat scroll 0 0 #FFFFFF;">
+<h1 style="padding-top:200px">Page not found</h1>
 Click to go to Upreader <a href="<c:url value='/p/home'/>">Home</a>
 </div>
+<jsp:include page="inc/footer.jspf" />
 </body>
 </html>

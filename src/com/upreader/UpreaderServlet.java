@@ -66,6 +66,7 @@ public class UpreaderServlet extends HttpServlet {
 
 	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		if (this.application.isRunning()) {
+			response.setHeader("Access-Control-Allow-Origin", "*");
 			UpreaderRequest httpRequest = new UpreaderRequest(request, response, request.getServletContext(), this.application);
 			for (int i = 0; i < this.listeners.length; i++) {
 				try {

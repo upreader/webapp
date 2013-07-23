@@ -42,9 +42,9 @@
 
 		<development-mode-error-page />
 
-		<cache path="cache" disk-size="512m" memory-size="128m">
+		<!-- cache path="cache" disk-size="512m" memory-size="128m">
 			<rewrite-vary-as-private />
-		</cache>
+		</cache-->
 
 		<resin:RemoteAdminService />
 		<resin:AdminServices />
@@ -97,12 +97,6 @@
 				<prologue>
 					<allow-servlet-el />
 				</prologue>
-				<cache-mapping url-pattern="/" max-age="5s" />
-				<cache-mapping url-pattern="*.gif" max-age="60s" />
-				<cache-mapping url-pattern="*.jpg" max-age="60s" />
-				<cache-mapping url-pattern="*.png" max-age="60s" />
-				<cache-mapping url-pattern="*.css" max-age="60s" />
-				<cache-mapping url-pattern="*.js" max-age="60s" />
 				<session-config>
 					<use-persistent-store>true</use-persistent-store>
 					<enable-url-rewriting>false</enable-url-rewriting>
