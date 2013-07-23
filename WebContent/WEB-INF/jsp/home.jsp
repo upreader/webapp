@@ -40,15 +40,16 @@
 </table>
 
 <div id="loginmodal" style="display:none;">
-    <label for="j_username">Username:</label>
+    <label for="username">Username:</label>
     <input type="text" id="username" class="txtfield" tabindex="1">
      
-    <label for="j_password">Password:</label>
+    <label for="password">Password:</label>
     <input type="password" id="password" class="txtfield" tabindex="2">
      
     <div class="center">
 		<a id="loginbtn" class="button orange flat" tabindex="3" href="#">Login</a>
 		<a class="button blue flat" href="<c:url value='/i/loginWithFacebook'/>">Facebook</a>
+        <a class="button blue flat" href="<c:url value='/i/loginWithTwitter'/>">Twitter</a>
 	</div>
 </div>
 
