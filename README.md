@@ -29,7 +29,7 @@ Building and running the project on Windows
 6. Add Resin libraries to project
 7. Create a new Resin run configuration using the resin.xml from the resin/config project folder
 8. Run Upreader
-12. Goto phpMyAdmin and create insert a user in table "users" with values (admin, admin@upreader.local, f218d707844d5011b1e5c2b57dee4d0b, basic). The id is set on auto_increment so it will be added automatically on commit.
+12. Goto phpMyAdmin and create insert a user in table "users" with email=admin@upreader.com, password=af2d834011da62769576f1430bf5b6e roles=admin). The id is set on auto_increment so it will be added automatically on commit.
 11. Goto http://localhost:8080/upreader and login with admin/asdqwe123
 
 Automatic building and packaging using Maven will be added later on.
