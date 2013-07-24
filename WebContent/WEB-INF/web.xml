@@ -14,7 +14,9 @@
     <servlet-mapping url-pattern="/WEB-INF/jsp/*.jspx" servlet-name="resin-jspx"/>
 
     <!-- Disallow URL rewriting for sessions. -->
-    <session-config enable-url-rewriting="false" use-persistent-store="true"/>
+    <session-config enable-url-rewriting="false">
+        <cookie-domain>upreader.com</cookie-domain>
+    </session-config>
 
     <!-- Use UTF-8 for everything. -->
     <character-encoding>UTF-8</character-encoding>

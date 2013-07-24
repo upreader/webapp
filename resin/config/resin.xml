@@ -1,5 +1,7 @@
 <resin xmlns="http://caucho.com/ns/resin" xmlns:resin="urn:java:com.caucho.resin">
-	<log-handler name="" level="all" path="stdout:" timestamp="[%y-%m-%d %H:%M:%S.%s] {%{thread}} " />
+	<log-handler name="" level="all" path="stdout:" timestamp="%y-%m-%d %H:%M:%S.%s"
+                 format="[${thread}] ${log.level} ${log.name}(${log.sourceMethodName}) - ${log.message}"/>
+
 	<logger name="com.caucho" level="info" />
 	<logger name="com.caucho.java" level="config" />
 	<logger name="com.caucho.loader" level="config" />
