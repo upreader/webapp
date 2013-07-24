@@ -29,35 +29,31 @@ public class UserController {
 			DatatablesResponse<User> response = DatatablesResponse.build(dataSet, criterias);
 			return handler.json(response);
 		case "add":
-			String username = context.query().get("username");
+            String email = context.query().get("email");
 			String password = context.query().get("password");
-			String email = context.query().get("email");
 			int rating = context.query().getInt("rating");
 			String[] roles = context.query().getStrings("roles");
 			user = new User();
-			user.setUsername(username);
 			user.setEmail(email);
 			user.setRating(rating);
-			user.setPassword(PasswordUtil.encryptPassword(username, password));
+			user.setPassword(PasswordUtil.encryptPassword(email, password));
 			user.setRoles(StringHelper.join(",", roles));
 			
 			context.userDAO().insert(user);
 			return context.render("admin/users.jsp");
 		case "upd":
 			id = context.query().getInt("objid");
-			username = context.query().get("username");
 			password = context.query().get("password");
 			email = context.query().get("email");
 			rating = context.query().getInt("rating");
 			roles = context.query().getStrings("roles");
 			user = context.userDAO().get(id);
 			if(user != null) {
-				user.setUsername(username);
 				user.setEmail(email);
 				user.setRating(rating);
 				user.setRoles(StringHelper.join(",", roles));
 				if(StringHelper.isNonEmpty(password))
-					user.setPassword(PasswordUtil.encryptPassword(username, password));
+					user.setPassword(PasswordUtil.encryptPassword(email, password));
 				
 				context.userDAO().update(user);
 				return context.render("admin/users.jsp");

@@ -24,9 +24,9 @@ public class UserDAO {
 		this.em = em;
 	}
 
-	public User findbyUsername(String username) {
-		TypedQuery<User> query = em.createNamedQuery(User.NQ_FIND_BY_USERNAME, User.class);
-		return query.setParameter("username", username).getSingleResult();
+	public User findbyEmail(String email) {
+		TypedQuery<User> query = em.createNamedQuery(User.NQ_FIND_BY_EMAIL, User.class);
+		return query.setParameter("email", email).getSingleResult();
 	}
 
 	public List<User> list() {

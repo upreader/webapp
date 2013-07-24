@@ -109,10 +109,8 @@ public class ProjectController {
 			project.setSubgenres(subgenres);
 			project.setPitch(pitch);
 			project.setSynopsis(synopsis);
-			project.setReferences(references);
-			project.setBackstory(backstory);
 			project.setBook(bookUploadFile);
-			project.setSample(sampleUploadFile);
+			project.setPilot(sampleUploadFile);
 			project.setCover(coverUploadFile);
 			context.session().putObject(UpreaderConstants.SESSION_NEWPROJECT, project);
 

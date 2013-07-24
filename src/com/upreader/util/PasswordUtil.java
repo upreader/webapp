@@ -19,6 +19,6 @@ public class PasswordUtil {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(PasswordUtil.encryptPassword("admin","asdqwe123"));
+		System.out.println(PasswordUtil.encryptPassword("admin@upreader.com","asdqwe123"));
 	}
 }

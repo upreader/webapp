@@ -69,18 +69,6 @@
 			<keepalive-select-enable>true</keepalive-select-enable>
 		</server-default>
 
-		<database>
-			<jndi-name>jdbc/mysql</jndi-name>
-			<driver type="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
-				<url>jdbc:mysql://localhost:3306/upreader</url>
-				<user>root</user>
-				<password></password>
-			</driver>
-			<prepared-statement-cache-size>8</prepared-statement-cache-size>
-			<max-connections>20</max-connections>
-			<max-idle-time>30s</max-idle-time>
-		</database>
-
 		<web-app-default>
 			<class-loader>
 				<library-loader path="${resin.root}/webapp-jars" />

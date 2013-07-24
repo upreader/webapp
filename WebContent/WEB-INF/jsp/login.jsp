@@ -16,8 +16,8 @@
 <div style="background-color:white; min-height: 500px;">
     <div id="loginmodal">
         <FORM id="loginform" action="https://www.upreader.com:8443/upreader/j_security_check" method="post" autocomplete="on">
-            <label for="username">Username:</label>
-            <input type="text" name="j_username" id="username" class="txtfield" tabindex="1" autocomplete="on">
+            <label for="email">Email:</label>
+            <input type="text" name="j_username" id="email" class="txtfield" tabindex="1" autocomplete="on">
             <label for="password">Password:</label>
             <input type="password" name="j_password" id="password" class="txtfield" tabindex="2">
             <input type="checkbox"/>Remember me
@@ -45,11 +45,11 @@ $(function () {
     });
 
     if(loginError) {
-        $('#username').css('border-color','red').focus();
+        $('#email').css('border-color','red').focus();
         $('#password').css('border-color','red');
     }
 
-    $('#username').keypress(function(event) {
+    $('#email').keypress(function(event) {
         if(event.keyCode == 13) {
             $('#loginbtn').trigger('click');
         }

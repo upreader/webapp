@@ -14,7 +14,7 @@
     <servlet-mapping url-pattern="/WEB-INF/jsp/*.jspx" servlet-name="resin-jspx"/>
 
     <!-- Disallow URL rewriting for sessions. -->
-    <session-config enable-url-rewriting="false"/>
+    <session-config enable-url-rewriting="false" use-persistent-store="true"/>
 
     <!-- Use UTF-8 for everything. -->
     <character-encoding>UTF-8</character-encoding>
@@ -35,10 +35,10 @@
         <resin:password-digest>MD5-plain</resin:password-digest>
         <resin:data-source>jdbc/mysql</resin:data-source>
         <resin:password-query>
-            SELECT password FROM users WHERE username=?
+            SELECT password FROM users WHERE email=?
         </resin:password-query>
         <resin:role-query>
-            SELECT roles FROM users WHERE username=?
+            SELECT roles FROM users WHERE email=?
         </resin:role-query>
     </upreader:Authenticator>
 

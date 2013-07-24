@@ -29,17 +29,16 @@
 
 			<form id="addform" action="${pageContext.request.contextPath}/i/s/u" method="post">
 			<table width="80%">
-				<tr><td width="20%" align="right">Username:</td><td align="left"><input type="text" name="username"/></td></tr>
-				<tr><td align="right">Email:</td><td align="left"><input type="text" name="email"/></td></tr>
+				<tr><td width="20%" align="right">Email:</td><td align="left"><input type="text" name="email"/></td></tr>
 				<tr><td align="right">Password:</td><td align="left"><input id="password" type="password" name="password"/></td></tr>
 				<tr><td align="right">Confirm password:</td><td align="left"><input id="password2" type="password"/></td></tr>
 				<tr><td align="right">Rating:</td><td align="left"><div id="stars"></div><input type="hidden" id="rating" name="rating" value="1" /></td></tr>
 				<tr><td align="right">Roles:</td><td align="left">
 					<input type="checkbox" name="roles" value="prospector"/>Prospector<br />
-					<input type="checkbox" name="roles" value="reader"/>Reader<br />
 					<input type="checkbox" name="roles" value="upreader"/>Upreader<br />
 					<input type="checkbox" name="roles" value="author"/>Author<br />
 					<input type="checkbox" name="roles" value="editor"/>Editor<br />
+                    <input type="checkbox" name="roles" value="publisher"/>Publisher<br />
 					<input type="checkbox" name="roles" value="admin"/>Admin<br />
 				</td></tr>
 				<tr><td align="right">&nbsp;</td><td>&nbsp;</td></tr>
