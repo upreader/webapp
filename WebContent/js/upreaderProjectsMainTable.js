@@ -34,7 +34,8 @@ upreaderPrjsAppModule.doPostAsForm = function(http, url, params, retryLimit, cal
 upreaderPrjsAppModule.controller('projectsTableController', ['$scope','$rootScope', '$http', function($scope,$rootScope, $http){
     $scope.predicate = 'title';
 
-    $formData = $.param({do: 'listPrjs', startPos: '1', endPos: $rootScope.projectsTableCommons.range});
+    //results array index is 0 based
+    $formData = $.param({do: 'listPrjs', startPos: '0', endPos: $rootScope.projectsTableCommons.range});
     upreaderPrjsAppModule.doPostAsForm($http,$rootScope.projectsTableCommons.projectsUrl, $formData, 5, function(data) {
          $scope.projects = data;
     });

@@ -106,16 +106,16 @@
                    <td ng-bind="project.title"></td>
                    <td ng-bind="project.cover"></td>
                    <td ng-bind="project.genre"></td>
-                   <td>Author</td>
-                   <td>Rating</td>
-                   <td>bookPrice</td>
-                   <td>1</td>
+                   <td ng-bind="project.author.user.email"></td>
+                   <td ng-bind="project.author.user.rating"></td>
+                   <td ng-bind="project.bookPrice"></td>
+                   <td ng-bind="project.subscribers.length"></td>
                    <td ng-bind="project.irs"></td>
                    <td ng-bind="project.sharesToSale"></td>
                    <td ng-bind="project.sharePrice"></td>
                    <td>Irs Status</td>
-                   <td ng-bind="project.deadline"></td>
-                   <td>Opened</td>
+                   <td ng-bind="project.deadline | date:<%=upreaderResources.getString("projectsTable.dateFormat")%>"></td>
+                   <td ng-bind="project.noViews"></td>
                    <td>Publishers</td>
                    <td><input type="checkbox"/></td>
                </tr>
