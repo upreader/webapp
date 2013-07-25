@@ -1,5 +1,7 @@
 package com.upreader.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.upreader.model.User;
 
 import javax.persistence.*;
@@ -13,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "user_addresses", uniqueConstraints = {
         @UniqueConstraint(name = "UK_USER_ID", columnNames = {"userId", "type"})
 })
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class UserAddress implements Serializable {
     public static final String TYPE_HOME = "home";
     public static final String TYPE_BUSINESS = "business";

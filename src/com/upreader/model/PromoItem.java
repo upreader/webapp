@@ -1,5 +1,8 @@
 package com.upreader.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -18,6 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "promoitems")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class PromoItem implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
