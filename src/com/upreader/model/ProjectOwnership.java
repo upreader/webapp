@@ -37,15 +37,15 @@ public class ProjectOwnership implements Serializable {
 	/**
 	 * Contract agreement date
 	 */
-	@Column(name = "signdate")
+	@Column(name = "sign_date")
 	private Date signDate;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "userid", nullable = false, updatable = false)
+	@JoinColumn(name = "user_id", nullable = false, updatable = false)
 	private User user;
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "projectid", nullable = false, updatable = false)
+	@JoinColumn(name = "project_id", nullable = false, updatable = false)
 	private Project project;
 
 	public ProjectOwnership() {

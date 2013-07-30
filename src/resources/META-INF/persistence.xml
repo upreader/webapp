@@ -6,17 +6,22 @@
 	<persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
 		<provider>org.batoo.jpa.core.BatooPersistenceProvider</provider>
 		<non-jta-data-source>java:comp/env/jdbc/mysql</non-jta-data-source>
-	
-		<class>com.upreader.model.User</class>
-		<class>com.upreader.model.Project</class>
-		<class>com.upreader.model.ProjectMembership</class>
-		<class>com.upreader.model.ProjectOwnership</class>
-		<class>com.upreader.model.ProjectSubscription</class>
-		<class>com.upreader.model.ProjectMembership</class>
-        <class>com.upreader.model.UserAddress</class>
-        <class>com.upreader.model.Inbox</class>
-        <class>com.upreader.model.StoryChapter</class>
+
+        <!-- Keep these in alphabetical order -->
         <class>com.upreader.model.PinnedProject</class>
+        <class>com.upreader.model.Project</class>
+        <class>com.upreader.model.ProjectMembership</class>
+        <class>com.upreader.model.ProjectOwnership</class>
+        <class>com.upreader.model.ProjectPromoPack</class>
+        <class>com.upreader.model.ProjectSubscription</class>
+        <class>com.upreader.model.PromoItem</class>
+        <class>com.upreader.model.PromoPack</class>
+        <class>com.upreader.model.ProofOfSales</class>
+        <class>com.upreader.model.StoryChapter</class>
+        <class>com.upreader.model.User</class>
+        <class>com.upreader.model.UserLogin</class>
+        <class>com.upreader.model.UserMessage</class>
+        <class>com.upreader.model.UserPaymentMethod</class>
 
 		<properties>
 			<!-- DDL operations, DROP | CREATE (*) | UPDATE | VERIFY | NONE -->

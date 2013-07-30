@@ -9,6 +9,8 @@ import java.util.Date;
 
 /***
  * Chapters uploaded by users for a serial story
+ *
+ * ### This is work in progress ####
  */
 @Entity
 @Table(name = "story_chapters")
@@ -22,7 +24,7 @@ public class StoryChapter implements Serializable {
     private String title;
 
     /**
-     * Location of actual chapter file content
+     * Location of actual chapter file content (Amazon S3)
      */
     @Column(name = "content")
     private String content;
