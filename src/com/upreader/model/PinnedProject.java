@@ -4,6 +4,9 @@ package com.upreader.model;
  * Interest of an user in a project
  */
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -12,6 +15,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "project_interests")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class PinnedProject implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

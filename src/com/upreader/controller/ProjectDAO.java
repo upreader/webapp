@@ -1,6 +1,7 @@
 package com.upreader.controller;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -41,12 +42,9 @@ public class ProjectDAO {
 	}
 
     public List<Project> findAllProjectsInRange(int startPosition, int endPosition){
-        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-        log.info("StartPosition " + startPosition + " endPosition " + endPosition);
-        CriteriaQuery<Project> criteriaQuery = criteriaBuilder.createQuery(Project.class);
-        Root<Project> projectRoot = criteriaQuery.from(Project.class);
-
-        TypedQuery q = em.createQuery(criteriaQuery);
-        return q.getResultList();
+        Query query = em.createQuery("select p from Project p order by p.title asc", Project.class);
+        query.setFirstResult(startPosition);
+        query.setMaxResults(endPosition - startPosition);
+        return query.getResultList();
     }
 }

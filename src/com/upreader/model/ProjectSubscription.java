@@ -1,5 +1,8 @@
 package com.upreader.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -18,6 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "project_subscriptions")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class ProjectSubscription implements Serializable {
 	public static final int WEEKLY = 1;
 	public static final int BIWEEKLY = 1;

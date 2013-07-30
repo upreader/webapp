@@ -1,5 +1,8 @@
 package com.upreader.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -21,6 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "project_memberships")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class ProjectMembership implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

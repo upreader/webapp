@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.upreader.UpreaderConstants;
 import com.upreader.helper.StringHelper;
 
@@ -15,6 +17,7 @@ import com.upreader.helper.StringHelper;
 @NamedQueries({
         @NamedQuery(name = User.NQ_FIND_BY_EMAIL, query = "SELECT u from User u where u.email = :email"),
         @NamedQuery(name = User.NQ_FIND_ALL, query = "SELECT u from User u")})
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class User implements Serializable {
     public static final String NQ_FIND_BY_EMAIL = "User_findByEmail";
     public static final String NQ_FIND_ALL = "User_findAll";
