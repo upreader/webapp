@@ -52,15 +52,15 @@ public class ProjectSubscription implements Serializable {
 	/**
 	 * Date when user became subscriber
 	 */
-	@Column(name = "signdate")
+	@Column(name = "sign_date")
 	private Date signDate;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "userid", nullable = false, updatable = false)
+	@JoinColumn(name = "user_id", nullable = false, updatable = false)
 	private User user;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "projectid", nullable = false, updatable = false)
+	@JoinColumn(name = "project_id", nullable = false, updatable = false)
 	private Project project;
 
 	public ProjectSubscription() {

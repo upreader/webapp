@@ -49,7 +49,7 @@ public class StoryChapter implements Serializable {
      * Serial story for which this chapter is
      */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "projectid", nullable = false, updatable = false)
+    @JoinColumn(name = "project_id", nullable = false, updatable = false)
     private Project project;
 
     public StoryChapter() {
