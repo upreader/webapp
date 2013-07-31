@@ -19,8 +19,11 @@ public class ProofOfSales implements Serializable {
     @JoinColumn(name = "project_id", nullable = false, updatable = false)
     private Project project;
 
+    /**
+     * Location of proof file (Amazon S3)
+     */
     @Column(name = "proof")
-    private Blob proof;
+    private String proof;
 
     public ProofOfSales() {
     }
@@ -41,11 +44,11 @@ public class ProofOfSales implements Serializable {
         this.project = project;
     }
 
-    public Blob getProof() {
+    public String getProof() {
         return proof;
     }
 
-    public void setProof(Blob proof) {
+    public void setProof(String proof) {
         this.proof = proof;
     }
 }

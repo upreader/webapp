@@ -3,29 +3,45 @@
 <%
 pageContext.setAttribute("isAdmin", request.isUserInRole(com.upreader.UpreaderConstants.ROLE_ADMIN));
 %>
-<header>
-	<div id="topbar">
-		<h1 id="title"><a href="/upreader">Upreader</a></h1>
-		<div id="topbarleft">
-			<nav>
-				<ul id="navgroup1">
-					<li><a href="#">How it works</a></li>
-					<li><a href="<c:url value='/p/newproject1'/>">Start a project</a></li>
-				</ul>
-			</nav>
-		</div>
-		<div id="topbarright">
-			<c:choose>
-			<c:when test="${not empty pageContext.request.userPrincipal}">
-			<ul id="navgroup2">
-				<li><strong><c:out value="${pageContext.request.remoteUser}"/></strong></li>
-				<c:if test="${isAdmin}">
-				<li><a href="<c:url value='/p/admin/status'/>">Administration</a></li>
-				</c:if>
-				<li><a href="<c:url value='/i/logout'/>">Logout</a></li>
-			</ul>
-			</c:when>
-			</c:choose>
-		</div>
+<header class="topbar-header">
+	<div class="topbar-content">
+        <div class="topbar-logo">
+            <span class="topbar-logo-text"><a href="/upreader">Upreader</a></span>
+        </div>
+
+        <div class="topbar-info">
+            <nav class="topbar-nav">
+                <ul>
+                    <c:choose>
+                        <c:when test="${not empty pageContext.request.userPrincipal}">
+                            <li><a href="#"><c:out value="${pageContext.request.remoteUser}"/></a></li>
+                            <c:if test="${isAdmin}">
+                                <li><a href="<c:url value='/p/admin/status'/>">A</a></li>
+                            </c:if>
+                            <li><a href="<c:url value='/i/logout'/>">Logout</a></li>
+                            <li><a href="#">Help</a></li
+                        </c:when>
+                        <c:otherwise>
+                            <li><a href="<c:url value='/p/login'/>">register / login</a></li>
+                            <li><a href="#">Help</a></li>
+                        </c:otherwise>
+                    </c:choose>
+                </ul>
+            </nav>
+            <form action="#" method="post">
+                <input type="text" id="search-bar" class="search-bar" name="search" placeholder="search..." autocomplete="off"/>
+            </form>
+        </div>
+
+        <div class="topbar-links">
+            <nav class="topbar-nav">
+                <ul>
+                    <li><a href="#">How it works</a></li>
+                    <li><a href="<c:url value='/p/newproject1'/>">Start a project</a></li>
+                    <li><a href="#">Buy in a project</a></li>
+                    <li><a href="#">Library</a></li>
+                </ul>
+            </nav>
+        </div>
 	</div>
 </header>

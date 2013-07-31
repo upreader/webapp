@@ -110,7 +110,7 @@ public class Project implements Serializable {
     /**
      * Crocodoc document UUID
      */
-    @Column(name = "sample")
+    @Column(name = "sample_uuid")
     private String sampleViewUUID;
 
     /**

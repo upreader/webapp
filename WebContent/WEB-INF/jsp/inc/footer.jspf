@@ -1,7 +1,13 @@
-<%@page language="java" contentType="text/html" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@page language="java" contentType="text/html" pageEncoding="UTF-8" isELIgnored="false" %>
 
-<div id="footer">
-<footer>
-<p>Copyright Upreader 2013</p>
+<footer class="bottom-footer">
+    <div class="bottom-footer-content">
+        <ul>
+            <li>link1</li>
+            <li>link2</li>
+            <li>link3</li>
+            <li>link4</li>
+            <li>link5</li>
+        </ul>
+    </div>
 </footer>
-</div>
