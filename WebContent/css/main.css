@@ -33,14 +33,11 @@ img { vertical-align:top; }
 embed { vertical-align:top; }
 
 
-html,body { height: 100%; margin: 0; 	padding: 0;}
+html,body { height: 100%; margin: 0; padding: 0; }
 
 body {
-	background: none repeat scroll 0 0 #000305;
-	font: 16px/1.5 Helvetica, Arial, FreeSans, sans-serif;
-	color: rgb(18, 26, 13);
-	margin: 0px;
-	padding: 0px;
+	background: none repeat scroll 0 0 #eee;
+	font: 16px/1.5 Tahoma, Arial, FreeSans, sans-serif;
 	border: 0px none;
 	text-align: left;
 	width: 100%; 
@@ -82,84 +79,85 @@ a:hover,a:active { text-decoration: none; }
 
 /* End general styling */
 
+.page {
+    background: none repeat scroll 0 0 #ffffff;
+}
+
 /* Start top bar styling */
-header {
+.topbar-header {
+    width: 100%;
 	height: 60px;
-}
-header a { color: #fff; }
-
-#topbar {
-	width: 1000px;
-	margin: 0 auto;
+    background-color: #222;
+    color: #fff;
 }
 
-#topbarleft {
-	display: inline-block;
-	margin: 20px 0 0 160px;
+.topbar-header a {
+    color: white
 }
 
-#topbarright {
-	float: right;
-	display: inline-block; 
-	margin-top: 20px;
-}
-#topbarright  ul li { float: left; color: #fff }
-#topbar nav ul { display: inline-block; }
-#topbar nav ul li, #topbar nav ul li a { float: left; color: #fff }
-
-#title {
-	margin: 5px 0 5px 0;
-	position: absolute;
-	font-size: 30px;
+.topbar-content {
+    width: 980px;
+    margin: 0 auto;
 }
 
-#navgroup2 { margin-right: 20px;}
-#navgroup1 a, #navgroup2 a { padding: 0 10px; }
-
-#navsearch {
-	display: inline-block;
-	margin-right: 50px;
-	text-align: center;
-}
-#navgroup3 {
-	display: block;
-	padding: 0;
-	margin: 0;
-}
-#navgroup3 li { float: left; }
-#navgroup3 a { padding: 0 10px; }
-#searchfield { width: 180px; }
-
-footer {
-	color: #fff;
-	border-top: 5px solid #EEEEEE;
-}
-/* End top bar styling */
-
-/* Top bar styles */
-div.loginBar {
-	width: 100%;
-	height: 40px;
-	background-color: #F3E2A9;
+.topbar-logo {
+    width: 170px;
+    float: left;
 }
 
-div.loginLink {
-	float: right;
-	position: relative;
-	right: 30px;
-	top: 5px;
+.topbar-logo-text {
+    font-size: 2em;
+    font-weight: bold;
 }
 
-div.loginLink a {
-	font-weight: bold;
+.topbar-links {
+    margin-left: 180px;
+    margin-right: 300px;
+
+    top: 25px;
+    position: relative;
 }
 
-div.logo {
-	float: left;
-	position: relative;
-	left: 30px;
-	top: 5px;
-	font-weight: bold;
+.topbar-info {
+    float: right;
+    text-align: center;
+    margin-top: 3px;
+}
+
+.topbar-nav {
+    margin-bottom: 5px;
+    font-size: 12.5px;
+    font-weight: bold;
+}
+
+.topbar-nav ul { display: inline-block; }
+.topbar-nav ul li, .topbar-nav ul li a { float: left; color: #fff; margin-right: 7px; }
+
+.search-bar {
+    border: 1px solid #4fbccc;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+
+    font-family: sans-serif;
+    font-size: 15px;
+
+    vertical-align: baseline;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    -webkit-writing-mode: horizontal-tb;
+    margin: 0;
+    padding: 2px 6px;
+
+    width: 100%;
 }
 
 #uprdrHeader{
@@ -184,29 +182,23 @@ div.logo {
 	overflow: hidden; /* This chops off any overhanging divs */
 }
 
-.colleft {
-	float: left;
-	width: 100%;
-	position: relative;
+
+/* End top bar styling */
+
+.bottom-footer {
+    position: relative;
+    height: 150px;
+    clear: both;
+    width: 100%;
+    color: #222;
 }
 
-.col1,.col2 {
-	float: left;
-	position: relative;
-	padding: 0 0 1em 0;
-	overflow: hidden;
-}
+.bottom-footer-content {
+    width: 980px;
+    margin: 0 auto;
 
-/* 2 Column (left menu) settings */
-.leftmenu {
-	
-}
-
-.leftmenu .colleft {
-	right: 75%; /* left column width */
-}
-
-.leftmenu .col1 {
+    font-size: 15px;
+}.leftmenu .col1 {
 	width: 71%; /* right column content width */
 	left: 102%; /* 100% plus left column left padding */
 }

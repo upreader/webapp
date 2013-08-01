@@ -1,30 +1,19 @@
 package com.upreader.controller;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.UUID;
 
-import com.amazonaws.services.s3.model.ProgressEvent;
-import com.amazonaws.services.s3.model.ProgressListener;
-import com.amazonaws.services.s3.transfer.Upload;
-import com.amazonaws.services.s3.transfer.model.UploadResult;
-import com.github.dandelion.datatables.core.ajax.DataSet;
-import com.github.dandelion.datatables.core.ajax.DatatablesCriterias;
-import com.github.dandelion.datatables.core.ajax.DatatablesResponse;
 import com.upreader.BusinessException;
 import com.upreader.RequestFile;
 import com.upreader.UpreaderConstants;
-import com.upreader.aws.AmazonService;
 import com.upreader.context.Context;
 import com.upreader.dispatcher.BasicPathHandler;
 import com.upreader.model.Project;
 import com.upreader.model.ProjectOwnership;
 import com.upreader.model.User;
-
-import javax.servlet.jsp.PageContext;
 
 public class ProjectController {
 	private final UpreaderHandler handler;
@@ -106,11 +95,9 @@ public class ProjectController {
 			Project project = new Project();
 			project.setTitle(title);
 			project.setGenre(genre);
-			project.setSubgenres(subgenres);
-			project.setPitch(pitch);
+			project.setSubgenre(subgenres);
 			project.setSynopsis(synopsis);
 			project.setBook(bookUploadFile);
-			project.setPilot(sampleUploadFile);
 			project.setCover(coverUploadFile);
 			context.session().putObject(UpreaderConstants.SESSION_NEWPROJECT, project);
 
@@ -137,16 +124,12 @@ public class ProjectController {
 			throw new RuntimeException("No project on session. Aborting...");
 
 		Float bookPrice = context.query().getFloat("bookprice");
-		Integer publishYears = context.query().getInt("pubyears");
-		Integer percentToSale = context.query().getInt("percentsale");
 
 		ProjectOwnership projectOwnership = new ProjectOwnership();
 		projectOwnership.setProject(project);
 		projectOwnership.setUser((User) context.session().getObject("_user_"));
 
 		project.setBookPrice(bookPrice);
-		project.setPublishYears(publishYears);
-		project.setPercentToSale(percentToSale);
 		project.setAuthor(projectOwnership);
 		project.setApproved(false);
 

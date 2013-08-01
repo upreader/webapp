@@ -12,15 +12,22 @@ import java.util.Date;
  * User notifications
  */
 @Entity
-@Table(name = "inbox")
+@Table(name = "user_messages")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
-public class Inbox implements Serializable {
+public class UserMessage implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "subject", nullable = false)
     private String subject;
+
+    /**
+     * type of message (projects, platform, subscriptions, etc.)
+     * messages can be grouped in the UI by this category
+     */
+    @Column(name = "category", nullable = false)
+    private String category;
 
     @Column(name = "body")
     private String body;
@@ -34,7 +41,7 @@ public class Inbox implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private User user;
 
-    public Inbox() {
+    public UserMessage() {
     }
 
     public Integer getId() {

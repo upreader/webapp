@@ -15,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -28,20 +27,17 @@ public class Project implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    /**
+     * Location of file for book cover (Amazon S3)
+     */
+    @Column(name = "cover")
+    private String cover;
+
+    /**
+     * title of project
+     */
     @Column(name = "title", nullable = false, unique = true)
     private String title;
-
-    /**
-     * Location of actual book file for type=story
-     */
-    @Column(name = "book")
-    private String book;
-
-    /**
-     * Location of file for pilot story/serial story content
-     */
-    @Column(name = "pilot")
-    private String pilot;
 
     /**
      * Can be one of: story, serial story
@@ -50,10 +46,10 @@ public class Project implements Serializable {
     private String format;
 
     /**
-     * Novel,Novella,Short Story,Graphic Novel,Poetry
+     * type of story: story,serial
      */
-    @Column(name = "category")
-    private String category;
+    @Column(name = "type")
+    private String type;
 
     /**
      * Project genre: Drama, Comedy, Romance etc.
@@ -62,30 +58,30 @@ public class Project implements Serializable {
     private String genre;
 
     /**
+     * Novel,Novella,Short Story,Graphic Novel,Poetry
+     */
+    @Column(name = "category")
+    private String category;
+
+    /**
      * Subgenre for the selected project genre
      * e.g. if Genre=Fantasy then this can be one of
      * Superheroes, Vampires, Zombies, Magic
      */
-    @Column(name = "subgenres")
-    private String subgenres;
+    @Column(name = "subgenre")
+    private String subgenre;
 
     /**
-     * Custom tags set by the author that will be used in searches
+     * Sigle selling proposition
+     */
+    @Column(name = "selling_proposition")
+    private String sellingProposition;
+
+    /**
+     * Comma separated list of custom tags
      */
     @Column(name = "tags")
     private String tags;
-
-    /**
-     * Location of file for book cover
-     */
-    @Column(name = "cover")
-    private String cover;
-
-    /**
-     * Bold description near cover
-     */
-    @Column(name = "pitch")
-    private String pitch;
 
     /**
      * Description near cover under pitch (non-bold)
@@ -94,17 +90,68 @@ public class Project implements Serializable {
     private String synopsis;
 
     /**
-     * ebook price (not updateable, from ProjectOwnership)
+     * Location of ebook file (Amazon S3)
      */
-    @Column(name = "bookPrice")
-    private float bookPrice;
+    @Column(name = "book")
+    private String book;
 
     /**
-     * How many years can the platform publish the ebook (not updateable, from
-     * ProjectOwnership)
+     * Crocodoc document UUID
      */
-    @Column(name = "publishyears")
-    private int publishYears;
+    @Column(name = "book_uuid")
+    private String bookViewUUID;
+
+    /**
+     * Location of file for sample (Amazon S3)
+     */
+    @Column(name = "sample")
+    private String sample;
+
+    /**
+     * Crocodoc document UUID
+     */
+    @Column(name = "sample_uuid")
+    private String sampleViewUUID;
+
+    /**
+     * Selling rights to platform
+     * How many years can the platform publish the book
+     */
+    @Column(name = "selling_rights")
+    private Integer sellingRights;
+
+    /**
+     * Estimated sales
+     */
+    @Column(name = "est_unit_sales")
+    private Integer estimatedUnitSales;
+
+    /**
+    * Holds the documents uploaded by the author during project creation (step 3)
+    * proving the number of claimed book sales per year
+    */
+    @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    protected List<ProofOfSales> proofsOfSales;
+
+    /**
+     * ebook price
+     */
+    @Column(name = "book_price")
+    private Float bookPrice;
+
+    /**
+     * Percent royalties to platform
+     * How many shares are for sale (%)
+     */
+    @Column(name = "percent_to_platform")
+    private Integer percentToPlatform;
+
+    /**
+     * Percent royalties to platform
+     * How many shares are for sale (%)
+     */
+    @Column(name = "sales_projection")
+    private Integer salesProjection;
 
     /**
      * Comma-separated list of derivatives: audiobook, tv, movie etc.
@@ -113,44 +160,51 @@ public class Project implements Serializable {
     private String derivatives;
 
     /**
-     * How many shares are for sale (%) (not updateable, from ProjectOwnership)
-     */
-    @Column(name = "percentToSale")
-    private int percentToSale;
-
-    /**
      * IRS value (Calculated value)
      */
     @Column(name = "irs")
-    private float IRS;
+    private Integer IRS;
 
     /**
-     * Total shares (Calculated value)
+     * Number of shares
+     * Minimum number of shares an upreader has to buy in this project
      */
-    @Column(name = "totshares")
-    private int totalShares;
+    @Column(name = "min_shares_buy")
+    private Integer minSharesToBuy;
+
+    /**
+     * Share value
+     * Price of a single share
+     */
+    @Column(name = "share_value")
+    private Float shareValue;
+
+    /**
+     * Total shares (Calculated value = IRS / shareValue)
+     */
+    @Column(name = "total_shares")
+    private Integer totalShares;
 
     /**
      * Total shares still available for sale. This value will decrease once
      * users will start buying (Calculated value)
      */
     @Column(name = "sharesToSale")
-    private int sharesToSale;
-
-    /**
-     * Share price (Calculated value)
-     */
-    @Column(name = "sharePrice")
-    private float sharePrice;
+    private Integer sharesToSale;
 
     /**
      * IRS sell deadline (Calculated value)
+     * Formula:
+     *    0 < IRS < 10000, deadline = 30 days
+     *    10000 <= IRS < 20000, deadline = 45 days
+     *    20000 <= IRS , deadline = 60 days
      */
     @Column(name = "deadline")
     private Date deadline;
 
     /**
-     * approved by an editor. Only approved projects will be shown to the public
+     * If project is approved by an editor.
+     * Only approved projects will be shown to the public
      */
     @Column(name = "approved")
     private Boolean approved;
@@ -158,47 +212,55 @@ public class Project implements Serializable {
     /**
      * How many times the project was viewed
      */
-    @Column(name = "noviews")
-    private int noViews;
-
-    /**
-     * type of story: story,serial
-     */
-    @Column(name = "type")
-    private String type;
+    @Column(name = "no_views")
+    private Integer noViews;
 
     /**
      * status of story:
-     * waiting - story/serial story is selling royalties and for serial stories subscription costs
-     * shelved - finished selling royalties, book/subscription is for sale. if serial story is finished
-     * then it will become like a normal story, without subscriptions for sale but only the completed
-     * book
-     * free - initial free serial story, will become waiting after 1000 subscribers
+     *
+     * free (only for serial story)
+     *      if type=serial story then subscription is free, shares cannot be sold. Ebook does not exist
+     *         Subscription is free until the number of subscribers reaches 1000. After that, it will become a
+     *         waiting serial story
+     * waiting
+     *      if type=story then shares are being sold to raise the IRS. Ebook cannot be sold
+     *      if type=serial story then shares are being sold to raise the IRS. Subscription is still free. Ebook does not exist yet.
+     *
+     * shelved - finished selling royalties. In this case if type=s book/subscription is for sale. if serial story is finished
+     *      if type=story then all initial shares are sold, IRS is completed and ebook is for sale.
+     *         Shares can be put for sale by shareholders and can be bought by upreaders
+     *      if type=serial story then subscription is not free anymore. IRS is completed and now the author has to
+     *         submit the remaining chapters to finish the book. Shares can be put for sale by shareholders and can be bought by upreaders.
+     *         When the author submits all remaining chapters it will become a normal shelved story with an ebook for sale.
      */
     @Column(name = "status")
     private String status;
 
     /**
-     * (Serial Story) How many chapters it will have. (not updateable, from
-     * ProjectOwnership)
+     * Users that pinned this project to their workspace
      */
-    @Column(name = "chapters")
-    private int serialStoryNoChapters;
+    @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    protected List<ProjectPromoPack> promoPacks;
+
+    /**
+     * (Serial Story) How many chapters it will have.
+     */
+    @Column(name = "no_chapters")
+    private Integer serialStoryNoChapters;
 
     /**
      * (Serial Story) The author has to estimate an average chapter word count
-     * between 100-500w up to 1000-2000w, 4000-5000w. (not updateable, from
-     * ProjectOwnership)
+     * between 100-500w up to 1000-2000w, 4000-5000w.
      */
     @Column(name = "avgwordsch")
-    private int serialStoryAvgWordsPerChapter;
+    private Integer serialStoryAvgWordsPerChapter;
 
     /**
      * (Serial Story) A fixed amount of time between updates must be set up by
      * the author. The maximum update delay allowed by Upreader will be 4 weeks
      */
-    @Column(name = "updatefreq")
-    private int serialStoryUpdateFreq;
+    @Column(name = "update_delay")
+    private Integer serialStoryUpdateDelay;
 
     /**
      * project advertisements that are shown similar to blog posts on the project page
@@ -210,7 +272,7 @@ public class Project implements Serializable {
      * project author. This is mandatory and cannot be updated
      */
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
-    @JoinColumn(name = "ownerid", nullable = false, updatable = false)
+    @JoinColumn(name = "author_id", nullable = false, updatable = false)
     private ProjectOwnership author;
 
     /**
@@ -288,12 +350,12 @@ public class Project implements Serializable {
         this.genre = genre;
     }
 
-    public String getSubgenres() {
-        return subgenres;
+    public String getSubgenre() {
+        return subgenre;
     }
 
-    public void setSubgenres(String subgenres) {
-        this.subgenres = subgenres;
+    public void setSubgenre(String subgenres) {
+        this.subgenre = subgenres;
     }
 
     public String getTags() {
@@ -312,14 +374,6 @@ public class Project implements Serializable {
         this.cover = cover;
     }
 
-    public String getPitch() {
-        return pitch;
-    }
-
-    public void setPitch(String pitch) {
-        this.pitch = pitch;
-    }
-
     public String getSynopsis() {
         return synopsis;
     }
@@ -328,43 +382,19 @@ public class Project implements Serializable {
         this.synopsis = synopsis;
     }
 
-    public String getPilot() {
-        return pilot;
-    }
-
-    public void setPilot(String pilot) {
-        this.pilot = pilot;
-    }
-
-    public float getBookPrice() {
+    public Float getBookPrice() {
         return bookPrice;
     }
 
-    public void setBookPrice(float bookPrice) {
+    public void setBookPrice(Float bookPrice) {
         this.bookPrice = bookPrice;
     }
 
-    public int getPublishYears() {
-        return publishYears;
-    }
-
-    public void setPublishYears(int publishYears) {
-        this.publishYears = publishYears;
-    }
-
-    public int getPercentToSale() {
-        return percentToSale;
-    }
-
-    public void setPercentToSale(int percentToSale) {
-        this.percentToSale = percentToSale;
-    }
-
-    public float getIRS() {
+    public Integer getIRS() {
         return IRS;
     }
 
-    public void setIRS(float iRS) {
+    public void setIRS(Integer iRS) {
         IRS = iRS;
     }
 
@@ -372,24 +402,16 @@ public class Project implements Serializable {
         return totalShares;
     }
 
-    public void setTotalShares(int totalShares) {
+    public void setTotalShares(Integer totalShares) {
         this.totalShares = totalShares;
     }
 
-    public int getSharesToSale() {
+    public Integer getSharesToSale() {
         return sharesToSale;
     }
 
-    public void setSharesToSale(int sharesToSale) {
+    public void setSharesToSale(Integer sharesToSale) {
         this.sharesToSale = sharesToSale;
-    }
-
-    public float getSharePrice() {
-        return sharePrice;
-    }
-
-    public void setSharePrice(float sharePrice) {
-        this.sharePrice = sharePrice;
     }
 
     public Date getDeadline() {
@@ -416,28 +438,28 @@ public class Project implements Serializable {
         this.status = status;
     }
 
-    public int getSerialStoryNoChapters() {
+    public Integer getSerialStoryNoChapters() {
         return serialStoryNoChapters;
     }
 
-    public void setSerialStoryNoChapters(int serialStoryNoChapters) {
+    public void setSerialStoryNoChapters(Integer serialStoryNoChapters) {
         this.serialStoryNoChapters = serialStoryNoChapters;
     }
 
-    public int getSerialStoryAvgWordsPerChapter() {
+    public Integer getSerialStoryAvgWordsPerChapter() {
         return serialStoryAvgWordsPerChapter;
     }
 
-    public void setSerialStoryAvgWordsPerChapter(int serialStoryAvgWordsPerChapter) {
+    public void setSerialStoryAvgWordsPerChapter(Integer serialStoryAvgWordsPerChapter) {
         this.serialStoryAvgWordsPerChapter = serialStoryAvgWordsPerChapter;
     }
 
-    public int getSerialStoryUpdateFreq() {
-        return serialStoryUpdateFreq;
+    public Integer getSerialStoryUpdateDelay() {
+        return serialStoryUpdateDelay;
     }
 
-    public void setSerialStoryUpdateFreq(int serialStoryUpdateFreq) {
-        this.serialStoryUpdateFreq = serialStoryUpdateFreq;
+    public void setSerialStoryUpdateDelay(Integer serialStoryUpdateFreq) {
+        this.serialStoryUpdateDelay = serialStoryUpdateFreq;
     }
 
     public List<PromoItem> getPromoItems() {
@@ -510,5 +532,105 @@ public class Project implements Serializable {
 
     public void setSerialStoryChapters(List<StoryChapter> serialStoryChapters) {
         this.serialStoryChapters = serialStoryChapters;
+    }
+
+    public String getSellingProposition() {
+        return sellingProposition;
+    }
+
+    public void setSellingProposition(String sellingProposition) {
+        this.sellingProposition = sellingProposition;
+    }
+
+    public String getSample() {
+        return sample;
+    }
+
+    public void setSample(String sample) {
+        this.sample = sample;
+    }
+
+    public Integer getSellingRights() {
+        return sellingRights;
+    }
+
+    public void setSellingRights(Integer sellingRights) {
+        this.sellingRights = sellingRights;
+    }
+
+    public Integer getEstimatedUnitSales() {
+        return estimatedUnitSales;
+    }
+
+    public void setEstimatedUnitSales(Integer estimatedUnitSales) {
+        this.estimatedUnitSales = estimatedUnitSales;
+    }
+
+    public List<ProofOfSales> getProofsOfSales() {
+        return proofsOfSales;
+    }
+
+    public void setProofsOfSales(List<ProofOfSales> proofsOfSales) {
+        this.proofsOfSales = proofsOfSales;
+    }
+
+    public Integer getPercentToPlatform() {
+        return percentToPlatform;
+    }
+
+    public void setPercentToPlatform(Integer percentToPlatform) {
+        this.percentToPlatform = percentToPlatform;
+    }
+
+    public Integer getSalesProjection() {
+        return salesProjection;
+    }
+
+    public void setSalesProjection(Integer salesProjection) {
+        this.salesProjection = salesProjection;
+    }
+
+    public Integer getMinSharesToBuy() {
+        return minSharesToBuy;
+    }
+
+    public void setMinSharesToBuy(Integer minSharesToBuy) {
+        this.minSharesToBuy = minSharesToBuy;
+    }
+
+    public Float getShareValue() {
+        return shareValue;
+    }
+
+    public void setShareValue(Float shareValue) {
+        this.shareValue = shareValue;
+    }
+
+    public void setNoViews(Integer noViews) {
+        this.noViews = noViews;
+    }
+
+    public String getBookViewUUID() {
+        return bookViewUUID;
+    }
+
+    public void setBookViewUUID(String bookViewUUID) {
+        this.bookViewUUID = bookViewUUID;
+    }
+
+    public String getSampleViewUUID() {
+        return sampleViewUUID;
+    }
+
+    public void setSampleViewUUID(String sampleViewUUID) {
+        this.sampleViewUUID = sampleViewUUID;
+    }
+
+    public List<ProjectPromoPack> getPromoPacks() {
+        return promoPacks;
+    }
+
+    public void setPromoPacks(List<ProjectPromoPack> promoPacks) {
+        this.promoPacks = promoPacks;
     }
 }

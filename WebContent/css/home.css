@@ -8,6 +8,12 @@
 	text-align: center;
 }
 
+.home-content {
+    width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 400px;
+}
 #loginbar {
 	text-align: center;
 	margin: 0 auto;

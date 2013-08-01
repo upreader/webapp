@@ -1,8 +1,6 @@
 package com.upreader.model;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -12,6 +10,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.upreader.UpreaderConstants;
 import com.upreader.helper.StringHelper;
 
+/**
+ * An user of the UpReader platform
+ */
 @Entity
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(name = "UK_USER_EMAIL", columnNames = {"email"})})
@@ -30,14 +31,36 @@ public class User implements Serializable {
     @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "password")
+    /**
+     * see com.upreader.util.PasswordUtil.encryptPassword()
+     */
+    @Column(name = "password", nullable = false)
     private String password;
 
     /**
-     * comma-separated list of roles
+     * comma-separated list of roles:
+     *
+     * UpreaderConstants.ROLE_PROSPECTOR
+     * UpreaderConstants.ROLE_UPREADER
+     * UpreaderConstants.ROLE_AUTHOR
+     * UpreaderConstants.ROLE_PUBLISHER
+     * UpreaderConstants.ROLE_EDITOR
+     * UpreaderConstants.ROLE_ADMIN
      */
-    @Column(name = "roles")
+    @Column(name = "roles", nullable = false)
     private String roles;
+
+    /**
+     * if the account is locked
+     */
+    @Column(name = "locked")
+    private Boolean locked;
+
+    /**
+     * why the account was locked
+     */
+    @Column(name = "locked_reason")
+    private String lockedReason;
 
     /**
      * rating can be from 1 to 6
@@ -103,6 +126,13 @@ public class User implements Serializable {
     private String bio;
 
     /**
+     * How the user pays/receives money
+     */
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_method_id", nullable = false, updatable = false)
+    private UserPaymentMethod paymentMethod;
+
+    /**
      * no cascading for projects
      * if user is delete, project is allowed to stay as orphan for historical
      *  reasons
@@ -138,7 +168,7 @@ public class User implements Serializable {
      * notifications received
      */
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
-    private List<Inbox> messages;
+    private List<UserMessage> messages;
 
     public User() {
     }
@@ -233,11 +263,11 @@ public class User implements Serializable {
                 UpreaderConstants.ROLE_ADMIN);
     }
 
-    public List<Inbox> getMessages() {
+    public List<UserMessage> getMessages() {
         return messages;
     }
 
-    public void setMessages(List<Inbox> messages) {
+    public void setMessages(List<UserMessage> messages) {
         this.messages = messages;
     }
 
@@ -361,5 +391,27 @@ public class User implements Serializable {
         this.logins = logins;
     }
 
+    public Boolean getLocked() {
+        return locked;
+    }
 
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
+    public String getLockedReason() {
+        return lockedReason;
+    }
+
+    public void setLockedReason(String lockedReason) {
+        this.lockedReason = lockedReason;
+    }
+
+    public UserPaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(UserPaymentMethod userPaymentMethod) {
+        this.paymentMethod = userPaymentMethod;
+    }
 }
