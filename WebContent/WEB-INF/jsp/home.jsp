@@ -13,7 +13,7 @@
 
 <jsp:include page="inc/header.jspf" />
 
-<div class="page">
+<div class="page page-home">
     <div class="home-container">
         <div class="home-content">
             <div class="banner-welcome">

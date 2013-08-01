@@ -14,7 +14,7 @@
 
 <jsp:include page="inc/header.jspf"/>
 
-<div class="page">
+<div class="page page-login">
     <section class="login-register-section">
         <header class="status-header">
             <div class="status-outer">
