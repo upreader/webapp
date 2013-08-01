@@ -16,6 +16,7 @@
     <!-- Styles-->
     <!-- Main Upreader styles -->
     <link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css" media="screen"/>
+    <link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/addprojectwizard.css" media="screen"/>
 
     <!--Scripts-->
     <!-- JQuery -->
@@ -25,17 +26,19 @@
 </head>
 
 <body>
-<div id="wrapper">
+
     <%@ include file="inc/header.jspf" %>
 
     <div class="page page-addproject-wizard-step1">
-        <main id="content" role="main">
-            <%@ include file="inc/addPrjWiz/step1.jspf" %>
-        </main>
+        <div id="wrapper">
+            <main id="content" role="main">
+                <%@ include file="inc/addPrjWiz/step1.jspf" %>
+            </main>
+        </div>
     </div>
 
     <%@ include file="inc/footer.jspf" %>
-</div>
+
 </body>
 
 </html>
