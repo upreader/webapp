@@ -13,7 +13,6 @@
 		<class>com.upreader.model.ProjectOwnership</class>
 		<class>com.upreader.model.ProjectSubscription</class>
 		<class>com.upreader.model.ProjectMembership</class>
-        <class>com.upreader.model.UserAddress</class>
         <class>com.upreader.model.Inbox</class>
         <class>com.upreader.model.StoryChapter</class>
         <class>com.upreader.model.PinnedProject</class>

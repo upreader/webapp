@@ -1,7 +1,5 @@
-<%@page language="java" contentType="text/html" pageEncoding="UTF-8" isELIgnored="false"%>
-
-<div id="footer">
 <footer>
-<p>Copyright Upreader 2013</p>
+    <div id="footer">
+        <p>Copyright Upreader 2013</p>
+    </div>
 </footer>
-</div>

@@ -33,7 +33,7 @@
 <table width="50%" align="center">
 	<tr>
         <td><a href="<c:url value='/p/projects'/>">Projects Page</a></td>
-		<td><a href="<c:url value='/p/newproject1'/>">Create Project</a></td>
+		<td><a href="<c:url value='/p/addproject'/>">Create Project</a></td>
 		<td><a href="<c:url value='/p/myprojects'/>">My Projects</a></td>
 		<td><a href="<c:url value='/p/allprojects'/>">All Projects</a></td>
 	</tr>

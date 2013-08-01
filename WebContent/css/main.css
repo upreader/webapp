@@ -69,6 +69,17 @@ img {
 svg:not(:root)  { overflow: hidden; }
 a:link,a:visited { text-decoration: none; }
 a:hover,a:active { text-decoration: none; }
+
+#wrapper{
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    position: relative;
+    width:1024px;
+    height:1587px;
+}
+
 /* End general styling */
 
 /* Start top bar styling */
@@ -151,6 +162,19 @@ div.logo {
 	font-weight: bold;
 }
 
+#uprdrHeader{
+    background-color:#666666;
+    font-size:13px;
+    height:60px;
+    left:0px;
+    width:1024px;
+    z-index:22;
+    border: 2px solid;
+    border-color: #000;
+    position: absolute;
+    font-family:Comic Sans MS,Verdana,Helvetica;}
+}
+
 /* column container */
 .colmask {
 	position: relative; /* This fixes the IE7 overflow hidden bug */
@@ -194,16 +218,177 @@ div.logo {
 	/* (right column left and right padding) plus (left column left padding) */
 }
 
+/*Add Project Wizard Pages Styles */
+
+#content{
+    position: relative;
+    background-color:#ffffff;
+}
+
+#userDetailsBox
+{
+    background-color:#ffffff;
+    position: relative;
+    font-size:13px;
+    height:130px;
+    margin-left:52px;
+    margin-top:20px;
+    width:200px;
+    z-index:4;
+    border: 2px solid;
+    border-color: #000;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#userDetailsBox .image
+{
+    position:absolute;
+    width:100px;
+}
+
+#userDetailsBox .name
+{
+    color:#000000;
+    position:absolute;
+    font-size:13px;
+    height:21px;
+    left:105px;
+    top:20px;
+    width:90px;
+}
+
+#userDetailsBox .rating
+{
+    color:#000000;
+    position:absolute;
+    font-size:13px;
+    height:21px;
+    left:105px;
+    top:50px;
+    width:90px;
+}
+
+#userDetailsBox .profile
+{
+    color:#000000;
+    position:absolute;
+    font-size:13px;
+    height:21px;
+    left:105px;
+    top:70px;
+    width:90px;
+}
+
+#userDetailsTextBox
+{
+    background-color:#ffffff;
+    position: relative;
+    font-size:13px;
+    height:130px;
+    width: auto;
+    margin-left:10px;
+    margin-top:20px;
+    margin-right: 10px;
+    z-index:4;
+    border: 2px solid;
+    border-color: #000;
+    word-break: break-word;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#termsAndConditionsBox textarea{
+    width: 950px;
+    margin-left: 35px;
+}
+
+#termsAndConditionsBox h1{
+    margin-left: 35px;
+    font-size: 30px;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#breadcrumbsBox{
+    margin-top:  20px;
+    margin-left: 35px;
+    margin-bottom: 20px;
+}
+
+#breadcrumbsBox img.step1{
+    width:930px;
+    height:50px;
+    background:url(../images/content/addprjsteps.png) 0 0 no-repeat;
+}
+
+#breadcrumbsBox img.step2{
+    width:930px;
+    height:50px;
+    background:url(../images/content/addprjsteps.png) 0 -55 no-repeat;
+}
+
+#breadcrumbsBox img.step3{
+    width:930px;
+    height:50px;
+    background:url(../images/content/addprjsteps.png) 0 -110 no-repeat;
+}
+
+#breadcrumbsBox img.step4{
+    width:930px;
+    height:50px;
+    background:url(../images/content/addprjsteps.png) 0 -165 no-repeat;
+}
+
+#breadcrumbsBox img.step5{
+    width:930px;
+    height:50px;
+    background:url(../images/content/addprjsteps.png) 0 -220 no-repeat;
+}
+
+#breadcrumbsBox img.step6{
+    width:930px;
+    height:50px;
+    background:url(../images/content/addprjsteps.png) 0 -275 no-repeat;
+}
+
+#acceptCheckBox{
+    width: 100%;
+    text-align: center;
+}
+
+#nextStepButton{
+    margin-left: 89%;
+    cursor: pointer;
+    width: 79px;
+    height: 31px;
+    margin-right: 50px;
+    background:url(../images/content/en/nextStep.png) 0 0 no-repeat;
+}
+
+#addPrjFooter{
+    margin-left: 35px;
+}
+#addPrjFooter td.col1{
+    width:500px;
+}
+#addPrjFooter td.col2{
+    width:200px;
+}
+#addPrjFooter td.col3{
+    width:200px;
+}
+/*END Add Project Wizard Pages Styles */
+
 /* Footer styles */
 #footer {
 	clear: both;
 	float: left;
 	width: 100%;
-	border-top: 1px solid #000;
-	bottom: 0x;
+	border-top: 1px solid #ffffff;
+	bottom: 0px;
 }
 
 #footer p {
 	padding: 10px;
 	margin: 0;
 }
+
+
