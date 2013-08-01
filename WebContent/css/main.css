@@ -170,8 +170,9 @@ a:hover,a:active { text-decoration: none; }
     border: 2px solid;
     border-color: #000;
     position: absolute;
-    font-family:Comic Sans MS,Verdana,Helvetica;}
+    font-family:Comic Sans MS,Verdana,Helvetica;
 }
+
 
 /* column container */
 .colmask {

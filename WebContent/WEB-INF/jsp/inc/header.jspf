@@ -38,6 +38,7 @@ pageContext.setAttribute("isAdmin", request.isUserInRole(com.upreader.UpreaderCo
                 <ul>
                     <li><a href="#">How it works</a></li>
                     <li><a href="<c:url value='/p/newproject1'/>">Start a project</a></li>
+                    <li><a href="<c:url value='/p/addproject'/>">Start a project wiz</a></li>
                     <li><a href="#">Buy in a project</a></li>
                     <li><a href="#">Library</a></li>
                 </ul>
