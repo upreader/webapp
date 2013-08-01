@@ -1,11 +1,9 @@
-#banner {
-	background: none repeat scroll 0 0 #FFFFFF;
-	border-top: 5px solid #EAEAEA;
+.page-home {
+    min-height: 600px;
 }
 
-#banner-welcome {
-	margin: 0 auto;
-	text-align: center;
+.home-container {
+    left: 0;
 }
 
 .home-content {
@@ -14,9 +12,17 @@
     margin-right: auto;
     height: 400px;
 }
-#loginbar {
-	text-align: center;
-	margin: 0 auto;
-	padding-top: 5em;
-	padding-bottom: 15em;
+
+.banner-welcome {
+    position: relative;
+    text-align: center;
+    top: 50%;
+    font-size: 35px;
+}
+
+.home-buttons {
+    margin-top: 20px;
+    position: relative;
+    text-align: center;
+    top: 50%;
 }

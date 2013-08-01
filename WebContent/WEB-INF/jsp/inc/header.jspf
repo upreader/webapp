@@ -1,10 +1,10 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-pageContext.setAttribute("isAdmin", request.isUserInRole(com.upreader.UpreaderConstants.ROLE_ADMIN));
+    pageContext.setAttribute("isAdmin", request.isUserInRole(com.upreader.UpreaderConstants.ROLE_ADMIN));
 %>
 <header class="topbar-header">
-	<div class="topbar-content">
+    <div class="topbar-content">
         <div class="topbar-logo">
             <span class="topbar-logo-text"><a href="/upreader">Upreader</a></span>
         </div>
@@ -43,5 +43,5 @@ pageContext.setAttribute("isAdmin", request.isUserInRole(com.upreader.UpreaderCo
                 </ul>
             </nav>
         </div>
-	</div>
+    </div>
 </header>

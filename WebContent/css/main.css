@@ -158,19 +158,9 @@ a:hover,a:active { text-decoration: none; }
 
     width: 100%;
 }
+/* End Top Bar styling */
 
-/* column container */
-.colmask {
-	position: relative; /* This fixes the IE7 overflow hidden bug */
-	clear: both;
-	float: left;
-	width: 100%; /* width of whole page */
-	overflow: hidden; /* This chops off any overhanging divs */
-}
-
-
-/* End top bar styling */
-
+/* Start Footer styles */
 .bottom-footer {
     position: relative;
     height: 150px;
@@ -184,30 +174,7 @@ a:hover,a:active { text-decoration: none; }
     margin: 0 auto;
 
     font-size: 15px;
-}.leftmenu .col1 {
-	width: 71%; /* right column content width */
-	left: 102%; /* 100% plus left column left padding */
 }
-
-.leftmenu .col2 {
-	width: 15%;
-	/* left column content width (column width minus left and right padding) */
-	left: 6%;
-	/* (right column left and right padding) plus (left column left padding) */
-}
-
-/* Footer styles */
-#footer {
-	clear: both;
-	float: left;
-	width: 100%;
-	border-top: 1px solid #ffffff;
-	bottom: 0px;
-}
-
-#footer p {
-	padding: 10px;
-	margin: 0;
-}
+/* End Footer styles */
 
 
