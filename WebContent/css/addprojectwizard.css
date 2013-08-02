@@ -102,31 +102,31 @@
 #breadcrumbsBox img.step2{
     width:930px;
     height:50px;
-    background:url(../images/content/addprjsteps.png) 0 -55 no-repeat;
+    background:url(../images/content/addprjsteps.png) 0 -55px no-repeat;
 }
 
 #breadcrumbsBox img.step3{
     width:930px;
     height:50px;
-    background:url(../images/content/addprjsteps.png) 0 -110 no-repeat;
+    background:url(../images/content/addprjsteps.png) 0 -110px no-repeat;
 }
 
 #breadcrumbsBox img.step4{
     width:930px;
     height:50px;
-    background:url(../images/content/addprjsteps.png) 0 -165 no-repeat;
+    background:url(../images/content/addprjsteps.png) 0 -165px no-repeat;
 }
 
 #breadcrumbsBox img.step5{
     width:930px;
     height:50px;
-    background:url(../images/content/addprjsteps.png) 0 -220 no-repeat;
+    background:url(../images/content/addprjsteps.png) 0 -220px no-repeat;
 }
 
 #breadcrumbsBox img.step6{
     width:930px;
     height:50px;
-    background:url(../images/content/addprjsteps.png) 0 -275 no-repeat;
+    background:url(../images/content/addprjsteps.png) 0 -275px no-repeat;
 }
 
 #acceptCheckBox{
@@ -154,5 +154,311 @@
 }
 #addPrjFooter td.col3{
     width:200px;
+}
+
+
+/* Page 2 specific */
+#storyBox{
+    position: relative;
+    height:400px;
+}
+
+#storyBox h1{
+    margin-left: 35px;
+    font-size: 30px;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#storyImage
+{
+    font-size:32px;
+    height:320px;
+    margin-left:35px;
+    width:260px;
+    z-index:25;
+    position: absolute;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#storyFormCol1
+{
+    font-size:13px;
+    height:320px;
+    margin-left:334px;
+    width:150px;
+    z-index:34;
+    position: absolute;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#storyFormCol1 input{
+    margin-bottom: 20px;
+}
+
+#storyFormCol1 select{
+    margin-bottom: 20px;
+}
+
+#storyFormCol2
+{
+    font-size:13px;
+    height:85px;
+    margin-left:525px;
+    width:449px;
+    z-index:40;
+    position: absolute;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#storyFormCol2 textarea
+{
+    width: 450px;
+    resize: none;
+}
+
+#storyFormCol2 .storyTags
+{
+    color:#000000;
+    font-size:20px;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#storySynopsys textarea{
+    width: 100%;
+    height: 200px;
+    resize: vertical;
+    font-size: 13px;
+    font-family: Comic Sans MS,Verdana,Helvetica;
+}
+
+#serialStorySetup{
+    width: 100%;
+}
+
+#serialStorySetup h2{
+    margin-left: 35px;
+    font-size: 22px;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#storyCountsValues{
+    position: relative;
+    margin-top: 20px;
+    height: 100px;
+}
+
+#storyCountsValues #chapterCount {
+    color: #000000;
+    font-size: 16px;
+    height: 21px;
+    margin-left: 35px;
+    width: 54px;
+    z-index: 69;
+    position: absolute;
+    font-family: Comic Sans MS,Verdana,Helvetica;
+}
+
+#storyCountsValues #chapterCount p {
+    margin-bottom: 10px;
+    margin-left: 50%;
+    text-align: center;
+}
+
+#storyCountsValues #chapter-wordcount {
+    color: #000000;
+    font-size: 16px;
+    height: 21px;
+    margin-left: 370px;
+    width: 148px;
+    z-index: 71;
+    position: absolute;
+    font-family: Comic Sans MS,Verdana,Helvetica;
+}
+
+#storyCountsValues #chapter-wordcount p{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#storyCountsValues #chapter-delay {
+    color: #000000;
+    font-size: 16px;
+    height: 21px;
+    margin-left: 720px;
+    width: 188px;
+    z-index: 73;
+    position: absolute;
+    font-family: Comic Sans MS,Verdana,Helvetica;
+}
+
+#storyCountsValues #chapter-delay p{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#storyUploadBox {
+    background-color: #ffffff;
+    font-size: 13px;
+    height: 55px;
+    margin-left: 58px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 922px;
+    z-index: 23;
+    border: 2px solid;
+    border-color: #000;
+    position: relative;
+    font-family: Comic Sans MS,Verdana,Helvetica;
+}
+
+#uploadSampleContainer{
+    font-size: 18px;
+    height: 36px;
+    margin-left: 130px;
+    margin-top:14px;
+    width: 277px;
+    z-index: 24;
+    position: absolute;
+    font-family: Comic Sans MS,Verdana,Helvetica;
+}
+
+.uploadSampleButton{
+    cursor:pointer;display:inline-block;background-color:#ffffff;
+    background-repeat:no-repeat;
+    background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff),
+    color-stop(0.25, #ffffff), to(#ffffff));
+    background-image:-webkit-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
+    background-image:-moz-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
+    background-image:-ms-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
+    background-image:-o-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
+    background-image:linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
+    padding:4px 14px;text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);color:#333;
+    font-size:18px;
+    line-height:16px;
+    border:1px solid #ccc;border-bottom-color:#bbb;
+    -webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;
+    -webkit-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
+    -webkit-transition:0.1s linear all;
+    -moz-transition:0.1s linear all;
+    transition:0.1s linear all;
+    width:277px;}
+.uploadSampleButton:hover{
+    background-position:0 -15px;color:#333;text-decoration:none;
+}
+
+#uploadStoryContainer{
+    font-size: 18px;
+    height: 36px;
+    margin-left: 530px;
+    margin-top:14px;
+    width: 277px;
+    z-index: 48;
+    position: absolute;
+    font-family: Comic Sans MS,Verdana,Helvetica;
+}
+
+.uploadStoryButton{
+    cursor:pointer;display:inline-block;background-color:#ffffff;
+    background-repeat:no-repeat;
+    background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff),
+    color-stop(0.25, #ffffff), to(#ffffff));
+    background-image:-webkit-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
+    background-image:-moz-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
+    background-image:-ms-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
+    background-image:-o-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
+    background-image:linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
+    padding:4px 14px;text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);color:#333;
+    font-size:18px;
+    line-height:16px;
+    border:1px solid #ccc;border-bottom-color:#bbb;
+    -webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;
+    -webkit-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
+    -webkit-transition:0.1s linear all;
+    -moz-transition:0.1s linear all;
+    transition:0.1s linear all;
+    width:277px;}
+.uploadStoryButton:hover{
+    background-position:0 -15px;color:#333;text-decoration:none;
+}
+
+#skipBackStoryAndNextButton{
+    margin-left: 89%;
+    cursor: pointer;
+    width: 79px;
+    height: 31px;
+    margin-right: 50px;
+    background:url(../images/content/en/nextStep.png) 0 0 no-repeat;
+}
+
+#backStoryItems{
+    width: 100%;
+    position: relative;
+}
+
+#backStoryItems .backStoryItemsHeader{
+    width: 100%;
+    height: 40px;
+}
+
+#backStoryItems .backStoryItemsHeader .backStoryItemsMainTitle{
+    float:left;
+    width: 50%;
+}
+
+#backStoryItems .backStoryItemsHeader .backStoryItemsMainToolbar{
+    float:right;
+    width: 50%;
+}
+
+#backStoryItems .backStoryItemsHeader .backStoryItemsMainTitle h2{
+    margin-left: 35px;
+    font-size: 22px;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#backStoryItems .item{
+    margin-top: 20px;
+}
+
+#backStoryItems .item .title{
+    margin-left: 35px;
+    font-size: 20px;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#backStoryItems .item .content{
+    margin-left: 35px;
+    font-size: 17px;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#backStoryItems .content.video{
+    margin-left: 169px;
+    width: 677px;
+    z-index: 26
+}
+
+#backStoryItems content.large{
+    width: 100%;
+}
+
+#backStoryItems .content.twoColsContainer{
+    width: 100%;
+    height: auto;
+    overflow: auto;
+}
+
+#backStoryItems .content.twoColsContainer .col1{
+    float:left;
+    width: 50%;
+}
+
+#backStoryItems .content.twoColsContainer .col2{
+    float:left;
+    width: 50%;
 }
 /*END Add Project Wizard Pages Styles */
