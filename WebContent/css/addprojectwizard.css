@@ -750,4 +750,101 @@
     font-size: 15px;
     font-family:Comic Sans MS,Verdana,Helvetica;
 }
+
+/* Step 5 specific */
+#paymentMethodsBox{
+    position: relative;
+}
+
+#paymentMethodsBox h1{
+    margin-left: 35px;
+    font-size: 30px;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#paymentMethodsBox p{
+    margin-left: 35px;
+}
+
+#paymentMethodsBar{
+    width: 100%;
+    height: 100px;
+    position: relative;
+}
+
+#paymentMethodsBar #paymentMethodsList{
+    float: left;
+    width: 70%;
+}
+
+#paymentMethodsBar #paymentMethodsList ul li
+{
+    display: inline;
+    list-style-type: none;
+    float: left;
+    width: 150px;
+}
+
+#paymentMethodsBar #paymentMethodsContract{
+    text-align: justify;
+    float: left;
+    width: 30%;
+}
+
+#paymentMethodsBar #paymentMethodsContract a{
+    float: right;
+}
+
+#paymentDetails{
+    width: 100%;
+    height: 400px;
+    position: relative;
+}
+
+#paymentDetails #paymentDetailsFormBox{
+    float: left;
+    width: 60%;
+}
+
+#paymentDetails #paymentDetailsSummary{
+    background-color: #CCCCCC;
+    float: left;
+    width: 40%;
+    height: 100%;
+}
+
+#paymentDetails #paymentDetailsSummary h3{
+    font-size: 15px;
+    font-weight: bolder;
+    margin-bottom: 20px;
+}
+
+#paymentDetails #paymentDetailsSummary .col1{
+    margin-top:30%;
+    float: left;
+    width: 40%;
+}
+
+#paymentDetails #paymentDetailsSummary .col1 .item{
+    float: left;
+    width: 70%;
+}
+
+#paymentDetails #paymentDetailsSummary .col1 .price{
+    float: right;
+    text-align: right;
+    font-size: 19px;
+    width: 30%;
+}
+
+#paymentDetails #paymentDetailsSummary .col2{
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top:30%;
+    float: left;
+    text-align: justify;
+    font-size: 11px;
+    width: 56%;
+}
+
 /*END Add Project Wizard Pages Styles */

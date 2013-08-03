@@ -32,7 +32,7 @@
     <div class="page page-addproject-wizard-step1">
         <div id="wrapper">
             <main id="content" role="main">
-                <%@ include file="inc/addPrjWiz/step4.jspf" %>
+                <%@ include file="inc/addPrjWiz/step5.jspf" %>
             </main>
         </div>
     </div>

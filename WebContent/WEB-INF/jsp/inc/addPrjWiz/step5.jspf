@@ -1,0 +1,146 @@
+<article id="addPrjUserInfo">
+    <table>
+        <tr>
+            <td>
+                <section id="userDetails">
+                    <div id="userDetailsBox">
+
+                        <div class="image">
+                            <img src="http://lorempixum.com/q/100/130/people/null">
+                        </div>
+
+                        <div class="name">
+                            Radu Rapeanu
+                        </div>
+
+                        <div class="rating">
+                            Rating
+                        </div>
+
+                        <div class="profile">
+                            Profile 60%
+                        </div>
+                    </div>
+                </section>
+            </td>
+            <td>
+                <section id="userDetailsText">
+                    <div id="userDetailsTextBox">
+                        <p>aaassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+                            ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+                        <p>ddd</p>
+                    </div>
+                </section>
+            </td>
+        </tr></table>
+</article>
+
+<hr>
+
+<nav id="breadcrumbs">
+    <div id="breadcrumbsBox">
+        <img class="step5" src="${pageContext.request.contextPath}/images/img_trans.gif">
+    </div>
+</nav>
+
+
+<article id="story">
+    <div id="paymentMethodsBox">
+        <h1>Payment methods</h1>
+    </div>
+
+    <hr>
+
+    <div id="paymentMethodsBar">
+        <div id="paymentMethodsList">
+               <ul>
+                   <li>
+                       <input type="checkbox" id="ccPayment"/>
+                       <label for="ccPayment">Credit Card</label>
+                   </li>
+                   <li>
+                       <input type="checkbox" id="smsPayment"/>
+                       <label for="smsPayment">SMS</label>
+                   </li>
+                   <li>
+                       <input type="checkbox" id="bankPayment"/>
+                       <label for="bankPayment">Bank Order</label>
+                   </li>
+               </ul>
+        </div>
+        <div id="paymentMethodsContract">
+            <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</p>
+            <a href="#">Download</a>
+        </div>
+    </div>
+
+    <div id="paymentDetails">
+        <div id="paymentDetailsFormBox">
+           <form id="paymentDetailsForm">
+               <label for="nameForPayment">Name (as it appears on your card)</label> <br>
+               <input type="text" id="nameForPayment">                               <br>
+               <label for="ccForPayment">Card number (nodashes or spaces)</label>    <br>
+               <input type="text" id="ccForPayment">                                 <br>
+               <label for="ccExpDateForPayment">Expiration date</label>              <br>
+               <input type="text" id="ccExpDateForPayment" name="dateChooser" size="22" class="hasDatepicker"> <br>
+               <label for="ccCVCForPayment">Card number (nodashes or spaces)</label>  <br>
+               <input type="text" id="ccCVCForPayment" value="" size="9">
+               <img src="http://lorempixum.com/q/64/64/people/null">
+           </form>
+        </div>
+        <div id="paymentDetailsSummary">
+              <h3>Order summary</h3>
+              <div class="col1">
+                  <div class="item">
+                        Promo pack 3
+                  </div>
+                  <div class="price">
+                        15 $
+                  </div>
+
+                  <div class="item">
+                     Tax
+                  </div>
+                  <div class="price">
+                      1 $
+                  </div>
+
+                  <div class="item">
+                      Total
+                  </div>
+                  <div class="price">
+                      16 $
+                  </div>
+              </div>
+              <div class="col2">
+                  <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</p>
+              </div>
+        </div>
+    </div>
+
+    <nav>
+        <button id="nextStepButton"></button>
+    </nav>
+</article>
+
+<hr>
+
+<article id="addPrjFooter">
+    <table>
+        <tr>
+            <td class="col1">
+                <h1>SITEMAP</h1>
+            </td>
+            <td class="col2">
+                <h1>Image 1</h1>
+            </td>
+            <td class="col3">
+                <h1>Image 2</h1>
+            </td>
+        </tr>
+    </table>
+</article>
+
+<hr>
+
+<br/>
