@@ -1,5 +1,29 @@
 /*Add Project Wizard Pages Styles */
 
+/* General styles */
+.onMiddle{
+    margin-left: 50%;
+}
+
+.smallInputNumber{
+    width: 60px;
+}
+
+.withMargin{
+    margin-left: 35px;
+}
+
+.text_align_center{
+    text-align: center;
+}
+
+.smallBoldText{
+    font-family:Comic Sans MS,Verdana,Helvetica;
+    font-size:13px;
+    font-weight: bolder;
+}
+
+/* Step 1 specific*/
 #content{
     position: relative;
     background-color:#ffffff;
@@ -233,6 +257,7 @@
 
 #serialStorySetup{
     width: 100%;
+    text-align: justify;
 }
 
 #serialStorySetup h2{
@@ -397,6 +422,7 @@
 #backStoryItems{
     width: 100%;
     position: relative;
+    text-align: justify;
 }
 
 #backStoryItems .backStoryItemsHeader{
@@ -431,6 +457,7 @@
 }
 
 #backStoryItems .item .content{
+    text-align: justify;
     margin-left: 35px;
     font-size: 17px;
     font-family:Comic Sans MS,Verdana,Helvetica;
@@ -449,16 +476,186 @@
 #backStoryItems .content.twoColsContainer{
     width: 100%;
     height: auto;
-    overflow: auto;
+    overflow: hidden;
 }
 
 #backStoryItems .content.twoColsContainer .col1{
     float:left;
-    width: 50%;
+    padding-right: 10px;
+    width: 48%;
 }
 
 #backStoryItems .content.twoColsContainer .col2{
     float:left;
+    margin-left: 5px;
     width: 50%;
+}
+
+/* Step 3 specific*/
+#storyTermsBox{
+    position: relative;
+}
+
+#storyTermsBox h1{
+    margin-left: 35px;
+    font-size: 30px;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#storyTermsBox .storyTerm{
+    position: relative;
+}
+
+#storyTermsBox .storyTerm .title h2{
+    position: relative;
+    margin-left: 35px;
+    font-size: 22px;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#storyTermsBox .storyTerm .content{
+    position: relative;
+    text-align: justify;
+    margin-left: 35px;
+    width: 100%;
+}
+
+#storyTermsBox .storyTerm .content .onMiddle input{
+    font-size: 20px;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#storyTermsBox .storyTerm .content .onMiddle label{
+    vertical-align: middle;
+    font-size: 20px;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#storyTermsBox .storyTerm .content #uploadContainer{
+    width: 100%;
+    height:105px;
+}
+
+#storyTermsBox .storyTerm .content #uploadContainer #uploadProofFileBox{
+    float: left;
+    width: 25%;
+}
+
+#storyTermsBox .storyTerm .content #uploadContainer #uploadProofFileBox #uploadProofFile{
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 165px;
+    height: 28px;
+    cursor: pointer;
+    background:url(../images/content/en/uploadProofFile.png) 0 0 no-repeat;
+}
+
+#storyTermsBox .storyTerm .content #uploadContainer fieldset{
+    float: left;
+    overflow: hidden;
+    width: 72%;
+    height:100px;
+    border: 2px black solid;
+}
+
+#storyTermsBox .storyTerm .content #uploadContainer fieldset legend{
+    margin-left: 20px;
+    font-size: 20px;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#storyTermsBox .storyTerm .content #storyProjections{
+    width: 100%;
+    height: 100px;
+    border: 3px black solid;
+    line-height: 2;
+    font-size: 22px;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#storyTermsBox .storyTerm .content #storyProjections .col1{
+    width: 25%;
+    float:left;
+    text-align: center;
+}
+
+#storyTermsBox .storyTerm .content #storyProjections .col2{
+    width: 35%;
+    float:left;
+    text-align: center;
+}
+
+#storyTermsBox .storyTerm .content #storyProjections .col3{
+    width: 20%;
+    float:left;
+    text-align: center;
+}
+
+#storyTermsBox .storyTerm .content #storyProjections .col4{
+    width: 20%;
+    float:left;
+    text-align: center;
+}
+
+#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar{
+    width: 100%;
+    border: 3px black solid;
+}
+
+#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td{
+    border-left: 3px black solid;
+    border-right: 3px black solid;
+}
+
+#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td.filled{
+    background-color: #CCCCCC;
+}
+
+#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td.col1{
+    width: 10%;
+}
+#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td.col2{
+    width: 20%;
+}
+#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td.col3{
+    width: 15%;
+}
+#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td.col4{
+    width: 20%;
+}
+#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td.col5{
+    width: 20%;
+}
+#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td.col6{
+    width: 15%;
+}
+
+#storyTermsBox .storyTerm .content #storyDerrivativesProgressBarMilestones{
+    width: 100%;
+    font-size: 10px;
+    height: 40px;
+    font-family:Comic Sans MS,Verdana,Helvetica;
+}
+
+#storyTermsBox .storyTerm .content #storyDerrivativesProgressBarMilestones .col1{
+    float: left;
+    margin-left: 9%;
+}
+#storyTermsBox .storyTerm .content #storyDerrivativesProgressBarMilestones .col2{
+    float: left;
+    margin-left: 16%;
+}
+#storyTermsBox .storyTerm .content #storyDerrivativesProgressBarMilestones .col3{
+    float: left;
+    margin-left: 11%;
+}
+#storyTermsBox .storyTerm .content #storyDerrivativesProgressBarMilestones .col4{
+    float: left;
+    margin-left: 14%;
+}
+#storyTermsBox .storyTerm .content #storyDerrivativesProgressBarMilestones .col5{
+    float: left;
+    margin-left: 15%;
 }
 /*END Add Project Wizard Pages Styles */
