@@ -768,7 +768,6 @@
 
 #paymentMethodsBar{
     width: 100%;
-    height: 100px;
     position: relative;
 }
 
@@ -787,12 +786,16 @@
 
 #paymentMethodsBar #paymentMethodsContract{
     text-align: justify;
-    float: left;
+    margin-left: 70%;
     width: 30%;
 }
 
 #paymentMethodsBar #paymentMethodsContract a{
-    float: right;
+    margin-left: 78%;
+}
+
+#paymentMethodsBar #paymentMethodsContract a span{
+    cursor: pointer;
 }
 
 #paymentDetails{
