@@ -43,6 +43,7 @@ body {
 	width: 100%; 
 	overflow-x: hidden; 
 }
+
 ::-moz-selection {
 	background: #34ade8;
 	color: #ffffff;
@@ -76,10 +77,20 @@ a:hover,a:active { text-decoration: none; }
     width:1024px;
 }
 
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
 /* End general styling */
 
 .page {
     background: none repeat scroll 0 0 #ffffff;
+    overflow: auto;
 }
 
 /* Start top bar styling */

@@ -84,3 +84,34 @@ form {
     background: none repeat scroll 0 0 #BBB;
     display: inline;
 }
+
+.button-white {
+    border: 1px solid #AAA;
+    background-color: #FFF;
+    background-position: 50% 50%;
+
+    font-family: Arial;
+    font-weight: bold;
+    color: #222222;
+    border-radius: 3px 3px 3px 3px;
+    font-size: 14px;
+    padding: 5px 8px 6px;
+
+    line-height: 1em;
+    position: relative;
+    text-decoration: none;
+
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 1px 0 0 rgba(255, 255, 255, 0.05) inset, -1px 0 0 rgba(255, 255, 255, 0.05) inset, 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+
+    margin: 0;
+    vertical-align: baseline;
+
+    cursor: pointer;
+
+    width: auto;
+}
+
+.button-white:active {
+    background: none repeat scroll 0 0 #EEE;
+    display: inline;
+}
