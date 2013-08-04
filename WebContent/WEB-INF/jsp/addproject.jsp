@@ -29,12 +29,10 @@
 
     <%@ include file="inc/header.jspf" %>
 
-    <div class="page page-addproject-wizard-step1">
-        <div id="wrapper">
-            <main id="content" role="main">
-                <%@ include file="inc/addPrjWiz/step6.jspf" %>
+    <div class="page">
+            <main class="page-addproject-wizard" role="main">
+                <%@ include file="inc/addPrjWiz/step1.jspf" %>
             </main>
-        </div>
     </div>
 
     <%@ include file="inc/footer.jspf" %>

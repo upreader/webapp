@@ -1,184 +1,286 @@
 /*Add Project Wizard Pages Styles */
 
 /* General styles */
-.onMiddle{
-    margin-left: 50%;
-}
 
-.smallInputNumber{
+.small-input-number{
     width: 60px;
 }
 
-.withMargin{
-    margin-left: 35px;
-}
-
-.text_align_center{
+.text-align-center{
     text-align: center;
 }
 
-.smallBoldText{
-    font-family:Comic Sans MS,Verdana,Helvetica;
-    font-size:13px;
+.small-text-font{
+    font-size: 13px;
+}
+
+.bold-text{
     font-weight: bolder;
 }
 
-/* Step 1 specific*/
-#content{
-    position: relative;
-    background-color:#ffffff;
-}
-
-#userDetailsBox
-{
-    background-color:#ffffff;
-    position: relative;
-    font-size:13px;
-    height:130px;
-    margin-left:25px;
-    margin-top:20px;
-    width:200px;
-    z-index:4;
-    border: 2px solid;
-    border-color: #000;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-
-#userDetailsBox .image
-{
-    position:absolute;
-    width:100px;
-}
-
-#userDetailsBox .name
-{
-    color:#000000;
-    position:absolute;
-    font-size:13px;
-    height:21px;
-    left:105px;
-    top:20px;
-    width:90px;
-}
-
-#userDetailsBox .rating
-{
-    color:#000000;
-    position:absolute;
-    font-size:13px;
-    height:21px;
-    left:105px;
-    top:50px;
-    width:90px;
-}
-
-#userDetailsBox .profile
-{
-    color:#000000;
-    position:absolute;
-    font-size:13px;
-    height:21px;
-    left:105px;
-    top:70px;
-    width:90px;
-}
-
-#userDetailsTextBox
-{
-    background-color:#ffffff;
-    position: relative;
-    font-size:13px;
-    height:130px;
-    width: auto;
-    margin-left:10px;
-    margin-top:20px;
-    margin-right: 10px;
-    z-index:4;
-    border: 2px solid;
-    border-color: #000;
-    word-break: break-all;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-
-#termsAndConditionsBox textarea{
-    width: 950px;
-    margin-left: 35px;
-}
-
-#termsAndConditionsBox h1{
-    margin-left: 35px;
-    font-size: 30px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-
-#breadcrumbsBox{
-    margin-top:  20px;
-    margin-left: 35px;
-    margin-bottom: 20px;
-}
-
-#breadcrumbsBox img.step1{
-    width:930px;
-    height:50px;
-    background:url(../images/content/addprjsteps.png) 0 0 no-repeat;
-}
-
-#breadcrumbsBox img.step2{
-    width:930px;
-    height:50px;
-    background:url(../images/content/addprjsteps.png) 0 -55px no-repeat;
-}
-
-#breadcrumbsBox img.step3{
-    width:930px;
-    height:50px;
-    background:url(../images/content/addprjsteps.png) 0 -110px no-repeat;
-}
-
-#breadcrumbsBox img.step4{
-    width:930px;
-    height:50px;
-    background:url(../images/content/addprjsteps.png) 0 -165px no-repeat;
-}
-
-#breadcrumbsBox img.step5{
-    width:930px;
-    height:50px;
-    background:url(../images/content/addprjsteps.png) 0 -220px no-repeat;
-}
-
-#breadcrumbsBox img.step6{
-    width:930px;
-    height:50px;
-    background:url(../images/content/addprjsteps.png) 0 -275px no-repeat;
-}
-
-#acceptCheckBox{
+.full-width{
     width: 100%;
-    text-align: center;
 }
 
-#nextStepButton{
-    margin-left: 89%;
-    cursor: pointer;
-    width: 79px;
+.title{
+    padding-top: 25px;
+    padding-bottom: 20px;
+    font-size: 24px;
+}
+
+
+
+
+/**
+ * Add project wizard pages breadcrumbs
+ *
+ * All pages used in the add project wizard are based on the addproject-wizard-page class and
+ * have a breadcrumbs section with the following markup:
+ *
+    <nav class="addproject-wizard-breadcrumbs-wrapper">
+             <img class="addproject-wizard-breadcrumbs-step1" src="${pageContext.request.contextPath}/images/img_trans.gif">
+    </nav>
+ *
+ * Breadcrumbs are using both width and height being a sprite.
+ */
+.page-addproject-wizard{
+    margin: 0 auto;
+    width: 1024px;
+    font-family:Comic Sans MS,Verdana,Helvetica, sans-serif;
+    text-align: justify;
+}
+
+    .addproject-wizard-breadcrumbs-wrapper{
+        text-align: center;
+    }
+
+        .addproject-wizard-breadcrumbs-step1{
+            width:930px;
+            height:50px;
+            background:url(../images/content/addprjsteps.png) 0 0 no-repeat;
+        }
+
+        .addproject-wizard-breadcrumbs-step2{
+            width:930px;
+            height:50px;
+            background:url(../images/content/addprjsteps.png) 0 -55px no-repeat;
+        }
+
+        .addproject-wizard-breadcrumbs-step3{
+            width:930px;
+            height:50px;
+            background:url(../images/content/addprjsteps.png) 0 -110px no-repeat;
+        }
+
+        .addproject-wizard-breadcrumbs-step4{
+            width:930px;
+            height:50px;
+            background:url(../images/content/addprjsteps.png) 0 -165px no-repeat;
+        }
+
+        .addproject-wizard-breadcrumbs-step5{
+            width:930px;
+            height:50px;
+            background:url(../images/content/addprjsteps.png) 0 -220px no-repeat;
+        }
+
+        .addproject-wizard-breadcrumbs-step6{
+            width:930px;
+            height:50px;
+            background:url(../images/content/addprjsteps.png) 0 -275px no-repeat;
+        }
+
+
+
+
+
+/**
+ * Add project wizard pages header
+ *
+ * All pages used in the add project wizard have a common header with the following markup:
+ *
+    <article id="user-profile-info">
+        <div class="page-header-wrapper">
+            <div class="page-header">
+                <div class="user-profile">
+                    <div class="user-profile-photo-wrapper">
+                        <a class="user-profile-photo" href="#">
+                            <img class="user-profile-photo-img"
+                                 src="http://lorempixum.com/q/260/320/people/game%20of%20chairs"/>
+                        </a>
+                    </div>
+                    <div class="user-profile-details-wrapper">
+                        <div class="user-profile-details">
+                            <a class="user-profile-name" href="#">John Doe</a>
+                            <a class="user-profile-rating" href="#">Rating: 1</a>
+                            <a class="user-profile-profile" href="#">Profile: 60%</a>
+
+                            <div class="user-profile-profile-bar">
+                                ------------
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-summary-info-wrapper">
+                    <div class="user-summary-info">
+                        <p class="bold-text  small-text-font">lorem ipsum dolor sit amet, consectetur adipisicing </p>
+                        <p class="small-text-font">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed .</p>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </article>
+ *
+ */
+.page-header {
+    margin: 0 auto;
+    width: 1024px;
+    padding-top: 25px;
+    padding-bottom: 20px;
+}
+
+.user-profile {
+    width: 20%;
+    display: inline-block;
+}
+
+    .user-profile-photo-wrapper {
+        display: inline-block;
+    }
+
+        .user-profile-photo {
+            display: block;
+        }
+
+            .user-profile-photo-img {
+                display: block;
+                width: 100px !important;
+                height: 130px !important;
+            }
+
+    .user-profile-details-wrapper {
+        display: inline-block;
+        overflow: hidden;
+        margin-top: 15px;
+        margin-left: 5px;
+    }
+
+        .user-profile-details {
+            vertical-align: middle;
+        }
+
+            .user-profile-name,
+            .user-profile-rating,
+            .user-profile-profile,
+            .user-profile-profile-bar {
+                display: block;
+            }
+
+            .user-profile-profile {
+                margin-top: 10px;
+            }
+
+.user-summary-info-wrapper{
+    width: 79%;
+    display: inline-block;
+}
+
+    .user-summary-info{
+        display: block;
+    }
+
+
+
+/**
+ * Add project wizard pages footer
+ *
+ * All pages used in the add project wizard have a common footer with the following markup:
+ *
+    <div class="page-addproject-wizard-footer-wrapper">
+        <div class="page-addproject-wizard-footer">
+            <div class="addproject-wizard-sitemap-wrapper">
+                <div class="addproject-wizard-sitemap">
+                    <h1>Sitemap</h1>
+                    <p>lorem ipsum dolor sit amet.</p>
+                </div>
+            </div>
+            <div class="addproject-wizard-footer-first-image-wrapper">
+                 <div class="addproject-wizard-footer-first-image">
+                    <img src="http://lorempixel.com/q/313/305/people/game%20of%20chairs/">
+                 </div>
+            </div>
+            <div class="addproject-wizard-footer-second-image-wrapper">
+                <div class="addproject-wizard-footer-second-image">
+                    <img src="http://lorempixel.com/q/290/278/people/game%20of%20chairs/">
+                </div>
+            </div>
+        </div>
+    </div>
+ *
+ */
+.page-addproject-wizard-footer {
+    margin: 0 auto;
+    width: 1024px;
+    padding-top: 25px;
+    padding-bottom: 20px;
+}
+
+    .addproject-wizard-sitemap-wrapper{
+        width: 36%;
+        display: inline-block;
+    }
+
+        .addproject-wizard-sitemap{
+            text-align: center;
+            display: block;
+        }
+
+    .addproject-wizard-footer-first-image-wrapper{
+        width: 32%;
+        display: inline-block;
+    }
+
+        .addproject-wizard-footer-first-image{
+            display: block;
+        }
+
+    .addproject-wizard-footer-second-image-wrapper{
+         width: 31%;
+         margin-top: 1%;
+         display: inline-block;
+     }
+
+        .addproject-wizard-footer-second-image{
+            display: block;
+        }
+
+
+
+
+
+/* Navigation Buttons between pages */
+.addproject-wizard-next-step-button-wrapper{
     height: 31px;
-    margin-right: 50px;
-    background:url(../images/content/en/nextStep.png) 0 0 no-repeat;
 }
+    .addproject-wizard-next-step-button{
+        background:url(../images/content/en/nextStep.png) 0 0 no-repeat;
+        cursor: pointer;
+        width: 79px;
+        height: 31px;
+        float: right;
 
-#addPrjFooter{
-    margin-left: 35px;
-}
-#addPrjFooter td.col1{
-    width:500px;
-}
-#addPrjFooter td.col2{
-    width:200px;
-}
-#addPrjFooter td.col3{
-    width:200px;
-}
+    }
+
+
+
+
+
+/* Step 1 specific*/
+
+
+
+
 
 
 /* Page 2 specific */
@@ -520,12 +622,12 @@
     width: 100%;
 }
 
-#storyTermsBox .storyTerm .content .onMiddle input{
+#storyTermsBox .storyTerm .content .content-in-middle input{
     font-size: 20px;
     font-family:Comic Sans MS,Verdana,Helvetica;
 }
 
-#storyTermsBox .storyTerm .content .onMiddle label{
+#storyTermsBox .storyTerm .content .content-in-middle label{
     vertical-align: middle;
     font-size: 20px;
     font-family:Comic Sans MS,Verdana,Helvetica;
