@@ -1,4 +1,4 @@
-<jsp:include page="inc/addPrjWiz/header.jspf"/>
+<jsp:include page="header.jspf"/>
 
 
 <div class="page-addproject-wizard-content">
@@ -27,4 +27,4 @@
 
 </div>
 
-<jsp:include page="inc/addPrjWiz/footer.jspf"/>
+<jsp:include page="footer.jspf"/>
