@@ -1,47 +1,11 @@
-<article id="addPrjUserInfo">
-    <table>
-        <tr>
-            <td>
-                <section id="userDetails">
-                    <div id="userDetailsBox">
+<jsp:include page="inc/addPrjWiz/header.jspf"/>
 
-                        <div class="image">
-                            <img src="http://lorempixum.com/q/100/130/people/null">
-                        </div>
 
-                        <div class="name">
-                            Radu Rapeanu
-                        </div>
+<div class="page-addproject-wizard-step2-content">
 
-                        <div class="rating">
-                            Rating
-                        </div>
-
-                        <div class="profile">
-                            Profile 60%
-                        </div>
-                    </div>
-                </section>
-            </td>
-            <td>
-                <section id="userDetailsText">
-                    <div id="userDetailsTextBox">
-                        <p>aaassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-                            ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
-                        <p>ddd</p>
-                    </div>
-                </section>
-            </td>
-        </tr></table>
-</article>
-
-<hr>
-
-<nav id="breadcrumbs">
-    <div id="breadcrumbsBox">
-        <img class="step2" src="${pageContext.request.contextPath}/images/img_trans.gif">
-    </div>
-</nav>
+    <nav class="addproject-wizard-breadcrumbs-wrapper">
+        <img class="addproject-wizard-breadcrumbs-step2" src="${pageContext.request.contextPath}/images/img_trans.gif">
+    </nav>
 
 
 <article id="story">
@@ -171,22 +135,4 @@
 
 <hr>
 
-<article id="addPrjFooter">
-    <table>
-        <tr>
-            <td class="col1">
-                <h1>SITEMAP</h1>
-            </td>
-            <td class="col2">
-                <h1>Image 1</h1>
-            </td>
-            <td class="col3">
-                <h1>Image 2</h1>
-            </td>
-        </tr>
-    </table>
-</article>
-
-<hr>
-
-<br/>
+<jsp:include page="inc/addPrjWiz/footer.jspf"/>

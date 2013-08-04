@@ -1,7 +1,6 @@
-<jsp:include page="header.jspf"/>
+<jsp:include page="inc/addPrjWiz/header.jspf"/>
 
-
-<div class="page-addproject-wizard-content">
+<div class="page-addproject-wizard-step1-content">
 
     <nav class="addproject-wizard-breadcrumbs-wrapper">
         <img class="addproject-wizard-breadcrumbs-step1" src="${pageContext.request.contextPath}/images/img_trans.gif">
@@ -27,4 +26,4 @@
 
 </div>
 
-<jsp:include page="footer.jspf"/>
+<jsp:include page="inc/addPrjWiz/footer.jspf"/>
