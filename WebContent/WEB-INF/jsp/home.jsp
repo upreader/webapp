@@ -7,7 +7,6 @@
     <jsp:include page="inc/head.jspf" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css"  media="screen"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css"  media="screen"/>
-    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/js/jquery.leanModal.min.js"></script>
 </head>
 <body>
 

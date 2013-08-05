@@ -6,10 +6,8 @@
     <title>Upreader</title>
     <jsp:include page="inc/head.jspf"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/viewproject.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/projectcontent.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css" media="screen"/>
-    <script type="text/javascript" charset="utf-8"
-            src="${pageContext.request.contextPath}/js/jquery.leanModal.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/projectcontent.css" media="screen"/>
 </head>
 <body>
 

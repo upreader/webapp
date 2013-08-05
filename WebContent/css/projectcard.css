@@ -1,0 +1,74 @@
+/**
+* Sample Usage:
+*
+*    <div class="project-card">
+*        <div class="project-card-contents">
+*            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
+*            <div class="project-card-cover">
+*                <img class="user-profile-photo-img" src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
+*            </div>
+*            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
+*            <div class="project-card-author-rating">rating 1</div>
+*            <div class="project-card-status">
+*                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
+*            </div>
+*            <div class="project-card-details">
+*                <div>IRS: 7009$</div>
+*                <div>Days to deaddivne: 13</div>
+*                <div>Share price: 1$</div>
+*                <div>Upreders: 433</div>
+*                <div>Shares total: 7009</div>
+*                <div>Shares remaining: 6000</div>
+*                <div>Opened 12445 times</div>
+*                <div>Publishers interested: 3</div>
+*            </div>
+*        </div>
+*        <div class="project-card-pin-button">
+*            <input type="button" class="button-white" value="Pin to control panel"/>
+*        </div>
+*    </div>
+*
+**/
+
+/** START Project Card **/
+.project-card {
+    display: inline-block;
+    width: 220px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.project-card-contents {
+    border: 2px solid #333;
+}
+
+.project-card-title {
+    padding: 5px;
+}
+
+.project-card-author-rating {
+    margin-right: 30px;
+    text-align: right;
+}
+
+.project-card-details {
+    padding-right: 15px;
+    padding-top: 10px;
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.project-card-pin-button {
+    margin-top: 5px;
+    width: 220px;
+    margin-bottom: 15px;
+}
+
+.project-card-pin-button input {
+    width: 100%;
+}
+
+/** END Project Card **/

@@ -39,7 +39,7 @@
                     <li><a href="#">How it works</a></li>
                     <li><a href="<c:url value='/p/addproject'/>">Start a project</a></li>
                     <li><a href="#">Buy in a project</a></li>
-                    <li><a href="#">Library</a></li>
+                    <li><a href="<c:url value='/p/library'/>">Library</a></li>
                 </ul>
             </nav>
         </div>

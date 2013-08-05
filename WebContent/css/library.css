@@ -1,0 +1,172 @@
+/** START general page styles **/
+.page-library {
+    padding-bottom: 20px;
+}
+/** END general page styles **/
+
+
+/** START top section where page title is displayed **/
+.page-header-wrapper {
+    margin: 0 auto;
+    width: 1024px;
+    padding-bottom: 20px;
+}
+
+.page-header, .page-stats, .page-search {
+    border-bottom: 1px solid #333;
+    overflow: hidden;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.page-title {
+    float: left;
+}
+
+.page-title h1 {
+    font-size: 35px;
+    font-weight: normal;
+}
+
+.page-title-desc {
+    margin-left: 200px;
+    margin-top: 25px;
+}
+
+.page-stats-table {
+    width: 100%;
+}
+.page-stats-table td {
+    text-align: center;
+    font-size: 25px;
+}
+.page-stats-table th {
+    text-align: center;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.page-search ul { display: inline-block; }
+.page-search ul li { float: left; margin-left: 20px; }
+
+/** END top section where page title is displayed **/
+
+/** START center page layout **/
+.library-content {
+    margin: 0 auto;
+    width: 1024px;
+    padding: 25px 15px;
+}
+
+.library-sidebar {
+    display: inline;
+    float: left;
+    width: 220px;
+}
+
+.library-main {
+    display: inline;
+    float: left;
+    width: 715px;
+    margin-left: 20px;
+}
+/** END center page layout **/
+
+/** START sidebar **/
+.sidebar-box {
+    border: 1px solid #333;
+    padding: 10px;
+}
+
+.sidebar-title {
+    text-align: center;
+}
+
+.sidebar-selected {
+    border: 1px solid #333;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.selected-filter {
+    background-color: #ddd;
+    font-size: 14px;
+    padding-left: 5px;
+    white-space: nowrap;
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+}
+
+.sidebar-filters {
+    padding: 10px;
+}
+.delete-filter {
+    content: "x";
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+.filter-categories {
+    border: 1px solid #333;
+}
+
+.filter-category-title {
+    background-color: #ddd;
+    border: 1px solid #333;
+    padding-left: 5px;
+}
+
+.filter-category-contents li {
+    margin-left: 15px;
+}
+
+.filter-category-contents li .form-checkbox {
+    float:right;
+    margin-right: 10px;
+}
+/** END sidebar **/
+
+/** START main content **/
+.genre-header {
+    background-color: #eee;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.genre-header ul { display: inline-block; }
+.genre-header li { float: left; }
+
+.genre-title {
+    font-size: 20px;
+}
+
+.genre-subgenres {
+    margin-left: 50px;
+}
+
+
+.genre-content {
+
+}
+
+.genre-footer {
+    padding: 10px;
+    text-align: center;
+    background-color: #eee;
+    overflow: hidden;
+}
+
+.genre-browse-more {
+    float: left;
+    margin-left: 20px;
+}
+
+.genre-see-all {
+    float: right;
+    margin-right: 20px;
+}
+/** END main content **/
