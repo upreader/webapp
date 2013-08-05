@@ -130,6 +130,10 @@
 /** END sidebar **/
 
 /** START main content **/
+.genre {
+    margin-bottom: 20px;
+}
+
 .genre-header {
     background-color: #eee;
     padding-top: 10px;
