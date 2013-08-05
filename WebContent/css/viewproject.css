@@ -1,7 +1,11 @@
+/** START general styles **/
 .page-view-project {
     padding-bottom: 20px;
 }
 
+/** END general styles **/
+
+/** START top section where use profile info is displayed **/
 .page-header {
     margin: 0 auto;
     width: 1024px;
@@ -9,11 +13,7 @@
     padding-bottom: 20px;
 }
 
-.user-profile {
-    display: inline-block;
-}
-
-.user-profile-photo-wrapper {
+.user-profile, .user-profile-photo-wrapper {
     display: inline-block;
 }
 
@@ -46,16 +46,16 @@
     margin-top: 10px;
 }
 
-.user-projects {
+.user-projects, .user-actions {
     margin-left: 50px;
     display: inline-block;
 }
+/** END top section where use profile info is displayed **/
 
-.user-actions {
-    margin-left: 50px;
-    display: inline-block;
-}
 
+
+
+/** START layout of center section (sidebar and main columns) **/
 .project-content {
     margin: 0 auto;
     width: 1024px;
@@ -75,42 +75,25 @@
     margin-left: 20px;
 }
 
-.sidebar-status ul {
+/** END layout of center section (sidebar and main columns) **/
 
-}
-
+/** START sidebar layout **/
 .sidebar-status ul li {
     list-style-image: none;
     list-style-type: none;
     margin-bottom: 15px;
 }
 
-.image-text-box {
-    overflow: auto;
-}
-
-.image-text-box div {
-    text-align: left;
-}
-
-.image-text-box .image-text-box-image {
-    float: left;
-}
-
-.image-text-box .image-text-box-image img {
-    display: block;
-}
-
-.image-text-box .image-text-box-text {
-    margin-left: 35px;
-}
-
 .sidebar-timeleft {
     text-align: center;
 }
 
-.royaltystock-details .image-text-box-text,
-.sharestotal-details .image-text-box-text {
+.sidebar-royaltystock, .sidebar-sharestotal {
+    width: 170px;
+}
+
+.sidebar-royaltystock .image-text-box-text,
+.sidebar-sharestotal .image-text-box-text {
     text-align: center;
 }
 
@@ -177,120 +160,5 @@
 .sidebar-soldbooks {
     margin-top: 25px;
 }
-/** Main Column Start **/
-.project-content-main {
-    display: inline;
-    float: left;
-    width: 715px;
-    margin-left: 20px;
-}
 
-.story-header-details {
-    margin-left: 300px;
-}
-
-.story-synopsis {
-    font-size: 12px;
-    height: 225px;
-    overflow: auto;
-}
-
-.story-buy-box {
-    border: 1px solid #333;
-    padding: 8px 30px;
-    overflow: hidden;
-}
-
-.story-buy-box div {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 13px;
-}
-
-.story-buy-box-type {
-}
-
-.story-buy-box-price {
-    margin-left: 60px;
-}
-
-.story-buy-box-future {
-    margin-left: 60px;
-}
-
-.story-buy-ebook, .story-buy-shares {
-    margin-top: 11px;
-}
-
-.story-types-wrapper {
-    margin-top: 10px;
-}
-
-.story-types-table {
-    border: 1px solid #333333;
-    font-size: 13px;
-    width: 100%;
-}
-
-.story-types-table td,
-.story-types-table th {
-    border-bottom: none;
-    border-left: 1px solid #333;
-    text-align: center;
-}
-
-.story-types-table th {
-    background-color: #ddd;
-}
-
-.story-read-wrapper {
-    margin-top: 10px;
-    border: 1px solid #333333;
-    overflow: hidden;
-}
-
-.story-read-button {
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.story-read-button .button-white {
-    width: 200px;
-    font-weight: normal;
-}
-
-.story-promo-item-wrapper {
-    margin-top: 20px;
-}
-
-.story-promo-item {
-    margin-bottom: 20px;
-    overflow: hidden;
-    position: static;
-    width: 100%;
-}
-
-.story-promo-item-content {
-    margin: 10px 0;
-    clear: both;
-    position: static;
-}
-
-.story-promo-item-social {
-    margin-top: 12px;
-    padding-top: 5px;
-}
-
-.story-promo-item-social p {
-    text-align: right;
-}
-
-.story-promo-item-social p span {
-    display: inline-block;
-}
-
-.story-promo-item-end {
-    text-align: center;
-}
-/** Main Column End **/
+/** END sidebar layout **/
