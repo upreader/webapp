@@ -21,10 +21,9 @@ public class TwitterAuthenticationProvider {
     private static final Token EMPTY_TOKEN = null;
     private static final String PROTECTED_RESOURCE_URL = "https://api.twitter.com/1.1/account/verify_credentials.json";
 
-
     private String apiKey = "SDE8lUbgJZ7gnll4rmgRQ";
     private String apiSecret = "Amh24eCHZtUf0fxXVtRA88voRCzDaUpUpqeLn7bXg";
-    private String upreaderCallback = "http://dev.upreader.com:8080/upreader/i/loginWithTwitter";
+    private String upreaderCallback = "http://www.upreader.com:8080/upreader/i/loginWithTwitter";
     private OAuthService twtService;
 
     public TwitterAuthenticationProvider(String apiKey, String apiSecret, String upreaderCallback){

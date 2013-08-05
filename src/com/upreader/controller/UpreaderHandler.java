@@ -1,18 +1,15 @@
 package com.upreader.controller;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Collections;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.upreader.security.FacebookAuthenticationProvider;
+import com.upreader.security.FacebookLogin;
 import com.upreader.security.TwitterAuthenticationProvider;
 import org.apache.log4j.Logger;
 
-import com.caucho.server.security.CachingPrincipal;
-import com.caucho.util.Base64;
 import com.upreader.MimeTypes;
 import com.upreader.RequestFile;
 import com.upreader.UpreaderApplication;
@@ -20,8 +17,6 @@ import com.upreader.dispatcher.BasicPathHandler;
 import com.upreader.dispatcher.PathDefault;
 import com.upreader.dispatcher.PathSegment;
 import com.upreader.helper.CollectionHelper;
-import com.upreader.model.User;
-import com.upreader.util.EncryptHelper;
 
 /**
  * Test file
@@ -43,20 +38,22 @@ public class UpreaderHandler extends BasicPathHandler {
 
     @PathSegment("loginWithFacebook")
     public boolean loginWithFacebook() {
-        String token = context().request().getParameter(FacebookAuthenticationProvider.OAUTH_TOKEN);
-        String code = context().request().getParameter(FacebookAuthenticationProvider.OAUTH_CODE);
+        FacebookLogin login = new FacebookLogin();
+        Principal user = login.login(context().request().getRawRequest(), context().request().getRawResponse(), true);
+        if(user == null)
+            return false;
 
-//        if(token != null && token.length() > 0){
-//            //user previously authenticated
-//            return homepage();
-//        }
-        if(code != null && code.length() > 0) {
-            //exchange code for token
-            String result = getApplication().getFbauthProvider().performLogin(context().request(), code);
-            log.debug("facebook login result " + result);
-            return context().redirect("http://dev.upreader.com:8080/upreader");
-        }else{
-            return context().redirect(getApplication().getFbauthProvider().getAuthorizationURL());
+        String uri = session().get("com.caucho.servlet.login.path");
+        String query = session().get("com.caucho.servlet.login.query");
+        session().remove("com.caucho.servlet.login.path");
+        session().remove("com.caucho.servlet.login.query");
+
+        if ((uri != null) && (query != null)) {
+            uri = uri + "?" + query;
+            return context().request().redirect(context().request().getRawResponse().encodeRedirectURL(uri));
+        }
+        else {
+            return homepage();
         }
     }
 
@@ -68,7 +65,7 @@ public class UpreaderHandler extends BasicPathHandler {
         if(token != null && token.length() > 0 && verifierCode != null && verifierCode.length() > 0){
             String result =  getApplication().getTwtauthProvider().performLogin(token, verifierCode);
             log.debug("twitter login result " + result);
-            return context().redirect("http://dev.upreader.com:8080/upreader");
+            return context().redirect("http://www.upreader.com:8080/upreader");
         }
         else{
             return context().redirect(getApplication().getTwtauthProvider().goToTwitterAuthorization());
