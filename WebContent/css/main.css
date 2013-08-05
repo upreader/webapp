@@ -1,4 +1,4 @@
-/* Start general styling */
+/* START general styling */
 article,aside,audio,canvas,command,datalist,details,embed,figcaption,figure,footer,header,hgroup,keygen,meter,nav,output,progress,section,source,video { display: block;}
 mark,rp,rt,ruby,summary,time { display: inline; }
 a, abbr, acronym, address, applet, article, aside, audio, b, blockquote, big, body, center, canvas, caption, cite, code, command, datalist, dd, del, details, dfn, dl, div, dt, 
@@ -86,14 +86,54 @@ a:hover,a:active { text-decoration: none; }
     line-height: 0;
     visibility: hidden;
 }
-/* End general styling */
 
+/* Style to be applied to all pages */
 .page {
     background: none repeat scroll 0 0 #ffffff;
     overflow: auto;
 }
+/* END general styling */
 
-/* Start top bar styling */
+
+
+
+/** START general components **/
+
+/**
+* START Image followed by a text
+*
+* Usage:
+*   <div class="yourstyle image-text-box clearfix">
+*       <div class="image-text-box-image">
+*           <img src=...
+*       </div>
+*       <div class="image-text-box-text">
+*           <img src=...
+*       </div>
+*   </div>
+**/
+.image-text-box {
+    overflow: auto;
+}
+.image-text-box div {
+    text-align: left;
+}
+    .image-text-box .image-text-box-image {
+        float: left;
+    }
+    .image-text-box .image-text-box-image img {
+        display: block;
+    }
+    .image-text-box .image-text-box-text {
+        margin-left: 35px;
+    }
+/* END Image followed by a text */
+
+/** END general components **/
+
+
+
+/* START Top bar styling */
 .topbar-header {
     width: 100%;
 	height: 60px;
@@ -101,9 +141,9 @@ a:hover,a:active { text-decoration: none; }
     color: #fff;
 }
 
-.topbar-header a {
-    color: white
-}
+    .topbar-header a {
+        color: white
+    }
 
 .topbar-content {
     width: 980px;
@@ -140,8 +180,8 @@ a:hover,a:active { text-decoration: none; }
     font-weight: bold;
 }
 
-.topbar-nav ul { display: inline-block; }
-.topbar-nav ul li, .topbar-nav ul li a { float: left; color: #fff; margin-right: 7px; }
+    .topbar-nav ul { display: inline-block; }
+    .topbar-nav ul li, .topbar-nav ul li a { float: left; color: #fff; margin-right: 7px; }
 
 .search-bar {
     border: 1px solid #4fbccc;
@@ -169,9 +209,12 @@ a:hover,a:active { text-decoration: none; }
 
     width: 100%;
 }
-/* End Top Bar styling */
+/* END Top Bar styling */
 
-/* Start Footer styles */
+
+
+
+/* START Footer styles */
 .bottom-footer {
     position: relative;
     height: 150px;
@@ -186,6 +229,6 @@ a:hover,a:active { text-decoration: none; }
 
     font-size: 15px;
 }
-/* End Footer styles */
+/* END Footer styles */
 
 
