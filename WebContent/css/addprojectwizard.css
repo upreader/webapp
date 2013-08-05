@@ -46,6 +46,10 @@
     width: 49.5%;
 }
 
+.one-third-size-column{
+    width: 33%;
+}
+
 .quarter-size-column{
     width: 24.5%;
 }
@@ -66,6 +70,15 @@
 .ten-pixel-padding-bottom{
     padding-bottom: 10px;
 }
+
+.gray-background{
+    background-color: #CCCCCC;
+}
+
+.float-right{
+    float: right;
+}
+
 /**
  * Add project wizard pages breadcrumbs
  *
@@ -537,96 +550,43 @@
 
 
 /* Step 4 specific */
-#promosBox{
-    position: relative;
+.addproject-wizard-story-promos-wrapper{
+    padding-bottom: 10px;
 }
+    .addproject-wizard-story-promo-wrapper{
+        padding-bottom: 10px;
+    }
+        .addproject-wizard-story-promo-content{
+            border: 3px black solid;
+        }
+            .addproject-wizard-story-promo-content-column{
+               display: inline-block;
+               vertical-align: middle;
+            }
+                /*
+                 * Using inline blocks the background on the last column is set only on the content.
+                 * The column size is represented by the third column (with background). If the content from
+                 * another column reaches the hight the background on the last column will show white spaces.
+                 */
+                .addproject-wizard-story-promo-content-column-sizer{
+                    height: 250px;
+                }
+                    /*
+                     * Helper class used for vertical alignment of the actual content
+                     */
+                    .addproject-wizard-story-promo-content-column-sizer-ref{
+                        display: inline-block;
+                        height: 250px;
+                        vertical-align: middle;
+                    }
+                    /*
+                     *  The actual content from the third column
+                     */
+                    .addproject-wizard-story-promo-content-column-sizer-content{
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
 
-#promosBox h1{
-    margin-left: 35px;
-    font-size: 30px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-
-#promosBox p{
-    margin-left: 35px;
-}
-
-#promosBox .promo{
-    position: relative;
-    width: 100%;
-    margin-left: 35px;
-    border: 3px black solid;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-#promosBox .promo .title h2{
-    position: relative;
-    margin-left: 35px;
-    font-size: 22px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-
-#promosBox .promo .content{
-     position: relative;
-     text-align: justify;
-     margin-left: 35px;
-     height: 200px;
-     width: 100%;
- }
-
-#promosBox .promo .content .col1{
-    height: 100%;
-    margin-top: 80px;
-    position: absolute;
-    width: 18%;
-}
-
-#promosBox .promo .content .col1 h2{
-    font-size: 22px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-
-#promosBox .promo .content .col2{
-    height: 100%;
-    text-align: center;
-    float: left;
-    margin-left: 20%;
-    width: 55%;
-    position: absolute;
-}
-
-#promosBox .promo .content .col2 h3{
-    font-size: 17px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-
-#promosBox .promo .content .col2 p{
-    font-size: 15px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-
-
-#promosBox .promo .content .col3{
-    height: 100%;
-    vertical-align: middle;
-    text-align: center;
-    float: left;
-    margin-left: 75%;
-    width: 21.6%;
-    background-color: #CCCCCC;
-}
-
-#promosBox .promo .content .col3 h2{
-    margin-top: 60px;
-    font-size: 22px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-
-#promosBox .promo .content .col3 p{
-    font-size: 15px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
 
 /* Step 5 specific */
 #paymentMethodsBox{
