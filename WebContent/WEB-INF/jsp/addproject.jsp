@@ -17,6 +17,7 @@
     <!-- Main Upreader styles -->
     <link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css" media="screen"/>
     <link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/addprojectwizard.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/projectcontent.css" media="screen"/>
     <link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/tagging.css" media="screen"/>
     <!--Scripts-->
     <!-- JQuery -->
@@ -31,7 +32,7 @@
 
     <div class="page">
             <main class="page-addproject-wizard" role="main">
-                <%@ include file="inc/addPrjWiz/step4.jspf" %>
+                <%@ include file="inc/addPrjWiz/step6.jspf" %>
             </main>
     </div>
 

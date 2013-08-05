@@ -310,7 +310,16 @@
         float: right;
     }
 
-
+.addproject-wizard-postit-button-wrapper{
+    height: 31px;
+}
+    .addproject-wizard-postit-button{
+        background:url(../images/content/en/postProject.png) 0 0 no-repeat;
+        cursor: pointer;
+        width: 79px;
+        height: 31px;
+        float: right;
+    }
 
 /* Step 1 specific*/
 
@@ -588,284 +597,57 @@
                     }
 
 
+
+
+
+
 /* Step 5 specific */
-#paymentMethodsBox{
-    position: relative;
+.addproject-wizard-story-payment-methods-wrapper{
+    padding-bottom: 10px;
 }
+    .addproject-wizard-story-payment-methods-toolbar{
+        width: 100%;
+    }
+        .addproject-wizard-story-payment-methods-list{
+            display: inline-block;
+            width: 69%;
+        }
+            .addproject-wizard-story-payment-method-item{
+                display: inline-block;
+            }
+        .addproject-wizard-story-payment-method-contract{
+            display: inline-block;
+            width: 30%;
+        }
 
-#paymentMethodsBox h1{
-    margin-left: 35px;
-    font-size: 30px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
+    .addproject-wizard-story-payment-methods-form{
+        display: inline-block;
+        width: 54%;
+    }
+    .addproject-wizard-story-payment-summary{
+        display: inline-block;
+        width: 45%;
+    }
+        .addproject-wizard-story-payment-summary-column{
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+        }
+            .addproject-wizard-story-payment-summary-column-text{
+                display: inline-block;
+                width: 60%;
+                word-wrap: break-word;
+            }
+            .addproject-wizard-story-payment-summary-column-value{
+                display: inline-block;
+                width: 30%;
+                text-align: end;
+                word-wrap: break-word;
+            }
 
-#paymentMethodsBox p{
-    margin-left: 35px;
-}
 
-#paymentMethodsBar{
-    width: 100%;
-    position: relative;
-}
 
-#paymentMethodsBar #paymentMethodsList{
-    float: left;
-    width: 70%;
-}
-
-#paymentMethodsBar #paymentMethodsList ul li
-{
-    display: inline;
-    list-style-type: none;
-    float: left;
-    width: 150px;
-}
-
-#paymentMethodsBar #paymentMethodsContract{
-    text-align: justify;
-    margin-left: 70%;
-    width: 30%;
-}
-
-#paymentMethodsBar #paymentMethodsContract a{
-    margin-left: 78%;
-}
-
-#paymentMethodsBar #paymentMethodsContract a span{
-    cursor: pointer;
-}
-
-#paymentDetails{
-    width: 100%;
-    height: 400px;
-    position: relative;
-}
-
-#paymentDetails #paymentDetailsFormBox{
-    float: left;
-    width: 60%;
-}
-
-#paymentDetails #paymentDetailsSummary{
-    background-color: #CCCCCC;
-    float: left;
-    width: 40%;
-    height: 100%;
-}
-
-#paymentDetails #paymentDetailsSummary h3{
-    font-size: 15px;
-    font-weight: bolder;
-    margin-bottom: 20px;
-}
-
-#paymentDetails #paymentDetailsSummary .col1{
-    margin-top:30%;
-    float: left;
-    width: 40%;
-}
-
-#paymentDetails #paymentDetailsSummary .col1 .item{
-    float: left;
-    width: 70%;
-}
-
-#paymentDetails #paymentDetailsSummary .col1 .price{
-    float: right;
-    text-align: right;
-    font-size: 19px;
-    width: 30%;
-}
-
-#paymentDetails #paymentDetailsSummary .col2{
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-top:30%;
-    float: left;
-    text-align: justify;
-    font-size: 11px;
-    width: 56%;
-}
 
 /* Step 6 specific */
-.postProjectButton{
-    margin-left: 89%;
-    cursor: pointer;
-    width: 79px;
-    height: 31px;
-    margin-right: 50px;
-    background:url(../images/content/en/postProject.png) 0 0 no-repeat;
-}
-
-#previewProjectHeader{
-    position: relative;
-}
-
-#previewProjectHeader h1{
-    margin-left: 35px;
-    font-size: 30px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-
-#previewProjectHeader p{
-    margin-left: 35px;
-}
-
-#previewProjectBox{
-    margin-left: 35px;
-    margin-top: 10px;
-    position: relative;
-    height: 486px;
-}
-
-#previewProjectBox #mainImage{
-    float:left;
-    width:378px;
-    height: 486px;
-}
-
-#previewProjectBox #mainDetails{
-    float:left;
-    width: 524px;
-    height: 486px;
-}
-
-#previewProjectBox #mainDetails .mainText{
-    width: 524px;
-    height: 266px;
-    overflow-y: auto;
-}
-
-#previewProjectBox #mainDetails .ebookBuy{
-    height: 100px;
-    border: 1px black solid;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-#previewProjectBox #mainDetails .ebookBuy .col1{
-    float: left;
-    width: 25%;
-    text-align: center;
-    margin-top: 38px;
-}
-#previewProjectBox #mainDetails .ebookBuy .col2{
-    float: left;
-    width: 25%;
-    text-align: center;
-    margin-top: 28px;
-    font-size: 30px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-#previewProjectBox #mainDetails .ebookBuy .col3{
-    float: left;
-    width: 25%;
-    text-align: center;
-    margin-top: 28px;
-    font-size: 30px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-#previewProjectBox #mainDetails .ebookBuy .col4{
-    float: left;
-    width: 25%;
-    text-align: center;
-    margin-top: 38px;
-}
-
-#previewProjectBox #mainDetails .shareBuy{
-    height: 100px;
-    border: 1px black solid;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-#previewProjectBox #mainDetails .shareBuy .col1{
-    float: left;
-    width: 25%;
-    text-align: center;
-    margin-top: 38px;
-}
-#previewProjectBox #mainDetails .shareBuy .col2{
-    float: left;
-    width: 25%;
-    text-align: center;
-    margin-top: 28px;
-    font-size: 30px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-#previewProjectBox #mainDetails .shareBuy .col3{
-    float: left;
-    width: 25%;
-    text-align: center;
-    margin-top: 28px;
-    font-size: 30px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-#previewProjectBox #mainDetails .shareBuy .col4{
-    float: left;
-    width: 25%;
-    text-align: center;
-    margin-top: 38px;
-}
-
-#storyDetailsTable{
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 15px;
-    border-collapse: collapse;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-
-#storyDetailsTable th{
-    width: 200px;
-    border: 2px solid black;
-    background-color: #CCCCCC;
-}
-
-#storyDetailsPilotBox{
-    width: 100%;
-    height: 40px;
-    border: 2px solid black;
-}
-
-#storyDetailsPilotBox .readPilotButton{
-    position: absolute;
-    margin-top:8px;
-    left: 35%;
-}
-
-#storyDetailsPilotBox #goToReadingPanel{
-    position: absolute;
-    font-size: 11px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-    margin-top:20px;
-    left: 85%;
-}
-
-.readPilotButton{
-    cursor:pointer;display:inline-block;background-color:#ffffff;
-    background-repeat:no-repeat;
-    background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff),
-    color-stop(0.25, #ffffff), to(#ffffff));
-    background-image:-webkit-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
-    background-image:-moz-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
-    background-image:-ms-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
-    background-image:-o-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
-    background-image:linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
-    padding:4px 14px;text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);color:#333;
-    font-size:18px;
-    line-height:16px;
-    border:1px solid #ccc;border-bottom-color:#bbb;
-    -webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;
-    -webkit-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
-    -moz-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
-    box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
-    -webkit-transition:0.1s linear all;
-    -moz-transition:0.1s linear all;
-    transition:0.1s linear all;
-    width:277px;}
-.readPilotButton:hover{
-    background-position:0 -15px;color:#333;text-decoration:none;
-}
+/* in file projectcontent.css */
 /*END Add Project Wizard Pages Styles */
