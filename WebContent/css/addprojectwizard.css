@@ -46,6 +46,26 @@
     width: 49.5%;
 }
 
+.quarter-size-column{
+    width: 24.5%;
+}
+
+.one-pixel-edge-borders{
+    border-left: 1px black solid;
+    border-right: 1px black solid;
+}
+
+.one-pixel-left-border{
+    border-left: 1px black solid;
+}
+
+.one-pixel-right-border{
+    border-right: 1px black solid;
+}
+
+.ten-pixel-padding-bottom{
+    padding-bottom: 10px;
+}
 /**
  * Add project wizard pages breadcrumbs
  *
@@ -354,26 +374,12 @@
                 display: inline-block;
             }
                 .story-upload-button{
-                    cursor:pointer;display:inline-block;background-color:#ffffff;
-                    background-repeat:no-repeat;
-                    background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff),
-                    color-stop(0.25, #ffffff), to(#ffffff));
-                    background-image:-webkit-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
-                    background-image:-moz-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
-                    background-image:-ms-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
-                    background-image:-o-linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
-                    background-image:linear-gradient(#ffffff, #ffffff 0.25, #ffffff);
+                    cursor:pointer;display:inline-block;
+                    background:#ffffff no-repeat;
                     padding:4px 14px;text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);color:#333;
                     font-size:18px;
                     line-height:16px;
                     border:1px solid #ccc;border-bottom-color:#bbb;
-                    -webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;
-                    -webkit-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
-                    -moz-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
-                    box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
-                    -webkit-transition:0.1s linear all;
-                    -moz-transition:0.1s linear all;
-                    transition:0.1s linear all;
                     width:277px;
                 }
                     .story-upload-sample-button:hover{
@@ -415,173 +421,120 @@
                 text-align: center;
             }
 
+
+
+
+
 /* Step 3 specific*/
-#storyTermsBox{
-    position: relative;
+.addproject-wizard-story-terms-wrapper{
+    padding-bottom: 10px;
 }
+        .addproject-wizard-story-term-upload-wrapper{
+            width: 100%;
+        }
+            .addproject-wizard-story-term-upload-button-wrapper{
+                width: 40%;
+                padding-top: 1%;
+                display: inline-block;
+            }
+                .addproject-wizard-story-term-upload-button{
+                    display: inline-block;
+                    float: right;
+                    width: 165px;
+                    height: 28px;
+                    cursor: pointer;
+                    background:url(../images/content/en/uploadProofFile.png) 0 0 no-repeat;
+                }
+            .addproject-wizard-story-term-upload-fieldset-wrapper{
+                width: 59%;
+                display:inline-block;
+            }
+                .addproject-wizard-story-term-upload-fieldset{
+                    border: 2px black solid;
+                }
+                .addproject-wizard-story-term-upload-fieldset-legend{
+                    margin-left: 20px;
+                }
 
-#storyTermsBox h1{
-    margin-left: 35px;
-    font-size: 30px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
+        .story-term-sales-projections{
+            width: 100%;
+            border: 3px black solid;
+        }
+            .story-term-sales-projections-column{
+                display:inline-block;
+            }
 
-#storyTermsBox .storyTerm{
-    position: relative;
-}
+        .story-term-derrivatives-progressbar{
+            width: 100%;
+            height: 25px;
+            border: 3px black solid;
+        }
+        .story-term-derrivatives-progressbar-milestones{
+            width: 100%;
+            height: 25px;
+        }
+            .story-term-derrivatives-progressbar-filled{
+                background-color: #CCCCCC;
+            }
 
-#storyTermsBox .storyTerm .title h2{
-    position: relative;
-    margin-left: 35px;
-    font-size: 22px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
+            .story-term-derrivatives-progressbar-col1{
+                width: 10%;
+                display: inline-block;
+                float:left;
+            }
+            .story-term-derrivatives-progressbar-col2{
+                width: 20%;
+                display: inline-block;
+                float:left;
+            }
+            .story-term-derrivatives-progressbar-col3{
+                width: 15%;
+                display: inline-block;
+                float:left;
+            }
+            .story-term-derrivatives-progressbar-col4{
+                width: 20%;
+                display: inline-block;
+                float:left;
+            }
+            .story-term-derrivatives-progressbar-col5{
+                width: 20%;
+                display: inline-block;
+                float:left;
+            }
+            .story-term-derrivatives-progressbar-col6{
+                display: inline-block;
+                float:left;
+            }
+            .story-term-derrivatives-progressbar-milestones-col1{
+                margin-left: 10%;
+                display: inline-block;
+                float:left;
+            }
+            .story-term-derrivatives-progressbar-milestones-col2{
+                margin-left: 14%;
+                display: inline-block;
+                float:left;
+            }
+            .story-term-derrivatives-progressbar-milestones-col3{
+                margin-left: 11%;
+                display: inline-block;
+                float:left;
+            }
+            .story-term-derrivatives-progressbar-milestones-col4{
+                margin-left: 10%;
+                display: inline-block;
+                float:left;
+            }
+            .story-term-derrivatives-progressbar-milestones-col5{
+                margin-left: 14%;
+                display: inline-block;
+                float:left;
+            }
 
-#storyTermsBox .storyTerm .content{
-    position: relative;
-    text-align: justify;
-    margin-left: 35px;
-    width: 100%;
-}
 
-#storyTermsBox .storyTerm .content .content-in-middle input{
-    font-size: 20px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
 
-#storyTermsBox .storyTerm .content .content-in-middle label{
-    vertical-align: middle;
-    font-size: 20px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
 
-#storyTermsBox .storyTerm .content #uploadContainer{
-    width: 100%;
-    height:105px;
-}
-
-#storyTermsBox .storyTerm .content #uploadContainer #uploadProofFileBox{
-    float: left;
-    width: 25%;
-}
-
-#storyTermsBox .storyTerm .content #uploadContainer #uploadProofFileBox #uploadProofFile{
-    float: right;
-    margin-top: 20px;
-    margin-right: 20px;
-    width: 165px;
-    height: 28px;
-    cursor: pointer;
-    background:url(../images/content/en/uploadProofFile.png) 0 0 no-repeat;
-}
-
-#storyTermsBox .storyTerm .content #uploadContainer fieldset{
-    float: left;
-    overflow: hidden;
-    width: 72%;
-    height:100px;
-    border: 2px black solid;
-}
-
-#storyTermsBox .storyTerm .content #uploadContainer fieldset legend{
-    margin-left: 20px;
-    font-size: 20px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-
-#storyTermsBox .storyTerm .content #storyProjections{
-    width: 100%;
-    height: 100px;
-    border: 3px black solid;
-    line-height: 2;
-    font-size: 22px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-
-#storyTermsBox .storyTerm .content #storyProjections .col1{
-    width: 25%;
-    float:left;
-    text-align: center;
-}
-
-#storyTermsBox .storyTerm .content #storyProjections .col2{
-    width: 35%;
-    float:left;
-    text-align: center;
-}
-
-#storyTermsBox .storyTerm .content #storyProjections .col3{
-    width: 20%;
-    float:left;
-    text-align: center;
-}
-
-#storyTermsBox .storyTerm .content #storyProjections .col4{
-    width: 20%;
-    float:left;
-    text-align: center;
-}
-
-#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar{
-    width: 100%;
-    border: 3px black solid;
-}
-
-#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td{
-    border-left: 3px black solid;
-    border-right: 3px black solid;
-}
-
-#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td.filled{
-    background-color: #CCCCCC;
-}
-
-#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td.col1{
-    width: 10%;
-}
-#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td.col2{
-    width: 20%;
-}
-#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td.col3{
-    width: 15%;
-}
-#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td.col4{
-    width: 20%;
-}
-#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td.col5{
-    width: 20%;
-}
-#storyTermsBox .storyTerm .content #storyDerrivativesProgressBar td.col6{
-    width: 15%;
-}
-
-#storyTermsBox .storyTerm .content #storyDerrivativesProgressBarMilestones{
-    width: 100%;
-    font-size: 10px;
-    height: 40px;
-    font-family:Comic Sans MS,Verdana,Helvetica;
-}
-
-#storyTermsBox .storyTerm .content #storyDerrivativesProgressBarMilestones .col1{
-    float: left;
-    margin-left: 9%;
-}
-#storyTermsBox .storyTerm .content #storyDerrivativesProgressBarMilestones .col2{
-    float: left;
-    margin-left: 16%;
-}
-#storyTermsBox .storyTerm .content #storyDerrivativesProgressBarMilestones .col3{
-    float: left;
-    margin-left: 11%;
-}
-#storyTermsBox .storyTerm .content #storyDerrivativesProgressBarMilestones .col4{
-    float: left;
-    margin-left: 14%;
-}
-#storyTermsBox .storyTerm .content #storyDerrivativesProgressBarMilestones .col5{
-    float: left;
-    margin-left: 15%;
-}
 
 /* Step 4 specific */
 #promosBox{
