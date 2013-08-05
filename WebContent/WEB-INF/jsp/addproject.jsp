@@ -31,7 +31,7 @@
 
     <div class="page">
             <main class="page-addproject-wizard" role="main">
-                <%@ include file="inc/addPrjWiz/step2.jspf" %>
+                <%@ include file="inc/addPrjWiz/step3.jspf" %>
             </main>
     </div>
 
