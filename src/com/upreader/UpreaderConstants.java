@@ -4,6 +4,8 @@ package com.upreader;
  * Constants used throughout the platform
  */
 public class UpreaderConstants {
+    public static final String LOGIN_COOKIE_NAME = "upreaderAuthId";
+
     /**
      * User roles
      */
@@ -17,7 +19,7 @@ public class UpreaderConstants {
     /**
      * Keys for objects stored in HTTP session
      */
-	public static final String SESSION_USER = "_user_";
+	public static final String SESSION_USER = "user";
 	public static final String SESSION_NEWPROJECT = "_newproject_";
 }
 

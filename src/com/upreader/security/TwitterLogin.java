@@ -22,9 +22,12 @@ public class TwitterLogin extends AbstractLogin {
     private static final String API_SECRET = "IP5f9CvfxI9Ophof0qrP01shOS9wYv5t19rSScUOOHk";
     private static final String CALLBACK = "http://www.upreader.com:8080/upreader/i/loginWithTwitter";
 
-    public TwitterLogin() {
+    static {
         Twitter twitter = TwitterFactory.getSingleton();
         twitter.setOAuthConsumer(API_KEY, API_SECRET);
+    }
+
+    public TwitterLogin() {
         setAuthenticator(new NullAuthenticator());
     }
 
@@ -36,11 +39,10 @@ public class TwitterLogin extends AbstractLogin {
 
         if(twitter != null && verifier != null && verifier.length() > 0) {
             try {
-                /** this can be persisted and used later on **/
-                AccessToken accessToken = twitter.getOAuthAccessToken(requestToken, verifier);
+                twitter.getOAuthAccessToken(requestToken, verifier);
                 request.getSession().removeAttribute("twitterRequestToken");
                 User user = twitter.verifyCredentials();
-                String username = user.getName();
+                String username = user.getScreenName();
                 return new CachingPrincipal(username);
             } catch (TwitterException e) {
                 e.printStackTrace();
@@ -53,6 +55,7 @@ public class TwitterLogin extends AbstractLogin {
     @Override
     protected void loginChallenge(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Twitter twitter = TwitterFactory.getSingleton();
+        twitter.setOAuthAccessToken(null);
         request.getSession().setAttribute("twitter", twitter);
         try {
             RequestToken requestToken = twitter.getOAuthRequestToken(CALLBACK);

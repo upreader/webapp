@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.upreader.controller.LoginController;
 import org.apache.log4j.Logger;
 
 import com.upreader.UpreaderApplication;
@@ -33,12 +34,11 @@ import com.upreader.util.MethodAccess;
 public abstract class BasicPathHandler implements Configurable {
 	private Logger log = Logger.getLogger(BasicPathHandler.class);
 	private final UpreaderApplication application;
+
 	private final ThreadLocal<References> references;
 	private final MustacheManager mustacheManager;
 	private final JsonWriter javaScriptWriter;
-	private final UserController userController;
-	private final ProjectController projectController;
-	
+
 	private static final Class<?>[] CONTEXT_PARAMETER = { Context.class };
 
 	private final Map<String, PathSegmentMethod> annotatedHandleMethods;
@@ -58,8 +58,6 @@ public abstract class BasicPathHandler implements Configurable {
 		this.references = new ThreadLocal<>();
 		this.mustacheManager = application.getMustacheManager();
 		this.javaScriptWriter = (jsw != null ? jsw : application.getJavaScriptWriter());
-		this.userController = new UserController(this);
-		this.projectController = new ProjectController(this);
 		this.annotatedHandleMethods = new HashMap<String, PathSegmentMethod>();
 		this.methodAccess = MethodAccess.get(getClass());
 		this.defaultMethod = discoverAnnotatedMethods();
@@ -73,7 +71,7 @@ public abstract class BasicPathHandler implements Configurable {
 	}
 	
 	public boolean prehandle(PathSegments segments, Context context) {
-		this.references.set(new References(context, segments));
+		this.references.set(new References(this, context, segments));
 		return true;
 	}
 
@@ -185,7 +183,19 @@ public abstract class BasicPathHandler implements Configurable {
 	public Context context() {
 		return this.references.get().context;
 	}
-	
+
+    public UserController userController() {
+        return this.references.get().userController;
+    }
+
+    public ProjectController projectController() {
+        return this.references.get().projectController;
+    }
+
+    public LoginController loginController() {
+        return this.references.get().loginController;
+    }
+
 	public String uploadFolder() {
 		return uploadFolder;
 	}
@@ -222,29 +232,12 @@ public abstract class BasicPathHandler implements Configurable {
 		return context().files();
 	}
 
-	public String template() {
-		return ((References) this.references.get()).template;
-	}
-
-	public BasicPathHandler template(String name) {
-		((References) this.references.get()).template = name;
-		return this;
-	}
-
 	public UpreaderApplication getApplication() {
 		return application;
 	}
 	
 	public String username() {
 		return context().username();
-	}
-	
-	public UserController userController() {
-		return this.userController;
-	}
-	
-	public ProjectController projectController() {
-		return this.projectController;
 	}
 	
 	public boolean isUserInRole(String roleName) {
@@ -325,15 +318,25 @@ public abstract class BasicPathHandler implements Configurable {
 			this.contextParameter = contextParameter;
 		}
 	}
-	
+
+    /**
+     * Objects available in scope of a request
+     */
 	public static class References {
+        public final BasicPathHandler handler;
 		public final Context context;
 		public final PathSegments segments;
-		public String template;
+        public final UserController userController;
+        public final ProjectController projectController;
+        public final LoginController loginController;
 
-		public References(Context context, PathSegments segments) {
+		public References(BasicPathHandler handler, Context context, PathSegments segments) {
+            this.handler = handler;
 			this.context = context;
 			this.segments = segments;
+            this.userController = new UserController(handler, context);
+            this.projectController = new ProjectController(handler, context);
+            this.loginController = new LoginController(handler, context);
 		}
 	}
 }

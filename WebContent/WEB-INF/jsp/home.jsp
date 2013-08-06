@@ -19,7 +19,7 @@
                 <h1>Welcome to Upreader</h1>
             </div>
             <c:choose>
-                <c:when test="${not empty pageContext.request.userPrincipal}">
+                <c:when test="${not empty sessionScope.user}">
                     <div class="home-buttons">
                         <a class="button pink flat" href="#">My Workspace</a>
                     </div>

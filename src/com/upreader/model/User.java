@@ -152,6 +152,13 @@ public class User implements Serializable {
     private String confirmUUID;
 
     /**
+     * Cookie used to login the user using it's stored browser cookie.
+     * The cookie is set by the UpreaderAuthenticator
+     */
+    @Column(name = "cookie")
+    private String loginCookie;
+
+    /**
      * How the user pays/receives money
      */
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
@@ -471,5 +478,13 @@ public class User implements Serializable {
 
     public void setConfirmUUID(String confirmUUID) {
         this.confirmUUID = confirmUUID;
+    }
+
+    public String getLoginCookie() {
+        return loginCookie;
+    }
+
+    public void setLoginCookie(String loginCookie) {
+        this.loginCookie = loginCookie;
     }
 }

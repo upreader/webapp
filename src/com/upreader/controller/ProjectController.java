@@ -15,12 +15,10 @@ import com.upreader.model.Project;
 import com.upreader.model.ProjectOwnership;
 import com.upreader.model.User;
 
-public class ProjectController {
-	private final UpreaderHandler handler;
-
-	public ProjectController(BasicPathHandler handler) {
-		this.handler = (UpreaderHandler) handler;
-	}
+public class ProjectController extends BasicController {
+    public ProjectController(BasicPathHandler handler, Context context) {
+        super(handler, context);
+    }
 
 	public boolean doCmd(Context context) {
 		String cmd = context.query().get("do");
@@ -30,10 +28,10 @@ public class ProjectController {
 		case "s2":
 			return addProjectStep2(context);
         case "listPrjs":
-            return handler.json(loadProjectsTableJson(Integer.valueOf(context.query().get("startPos")).intValue(),
+            return handler().json(loadProjectsTableJson(Integer.valueOf(context.query().get("startPos")).intValue(),
                                                       Integer.valueOf(context.query().get("endPos")).intValue() ));
 		default:
-			return handler.homepage();
+			return handler().homepage();
 		}
 	}
 
@@ -73,11 +71,11 @@ public class ProjectController {
 			String coverUploadFile = UUID.randomUUID().toString();
 
 			try {
-				Path bookPath = FileSystems.getDefault().getPath(handler.uploadFolder(), "books", bookUploadFile + '.' + book.getExtension());
+				Path bookPath = FileSystems.getDefault().getPath(handler().uploadFolder(), "books", bookUploadFile + '.' + book.getExtension());
 				book.writeTo(bookPath);
-				Path samplePath = FileSystems.getDefault().getPath(handler.uploadFolder(), "samples", sampleUploadFile + '.' + sample.getExtension());
+				Path samplePath = FileSystems.getDefault().getPath(handler().uploadFolder(), "samples", sampleUploadFile + '.' + sample.getExtension());
 				sample.writeTo(samplePath);
-				Path coverPath = FileSystems.getDefault().getPath(handler.uploadFolder(), "covers", coverUploadFile + '.' + cover.getExtension());
+				Path coverPath = FileSystems.getDefault().getPath(handler().uploadFolder(), "covers", coverUploadFile + '.' + cover.getExtension());
 				sample.writeTo(coverPath);
 				
 //				AmazonService aws = handler.getApplication().getAmazonService();
@@ -142,6 +140,6 @@ public class ProjectController {
 	}
 
     public List<Project> loadProjectsTableJson(int startPos, int endPos){
-        return handler.context().projectDAO().findAllProjectsInRange(startPos, endPos);
+        return handler().context().projectDAO().findAllProjectsInRange(startPos, endPos);
     }
 }

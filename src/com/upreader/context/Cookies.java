@@ -1,5 +1,6 @@
 package com.upreader.context;
 
+import com.caucho.server.webapp.WebApp;
 import com.upreader.ResponseCookie;
 import com.upreader.UpreaderCookie;
 import com.upreader.helper.StringHelper;
@@ -49,13 +50,13 @@ public class Cookies {
 	}
 
 	/**
-	 * Removes a cookie from context using application path
-	 * 
+	 * Removes a cookie
+	 *
 	 * @param name cookie name
 	 * @return
 	 */
 	public Cookies remove(String name) {
-		remove(name, this.context.getInfrastructure().getUrl());
+		remove(name, "/", WebApp.getCurrent().generateCookieDomain(context.request().getRawRequest()));
 		return this;
 	}
 
@@ -66,8 +67,8 @@ public class Cookies {
 	 * @param path cookie path
 	 * @return
 	 */
-	public Cookies remove(String name, String path) {
-		this.context.request().deleteCookie(name, path);
+	public Cookies remove(String name, String path, String domain) {
+		this.context.request().deleteCookie(name, path, domain);
 		return this;
 	}
 	

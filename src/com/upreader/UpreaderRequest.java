@@ -25,6 +25,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.upreader.helper.CollectionHelper;
@@ -213,11 +214,14 @@ public class UpreaderRequest {
 		this.response.addCookie(targetCookie);
 	}
 
-	public void deleteCookie(String name, String path) {
+	public void deleteCookie(String name, String path, String domain) {
 		javax.servlet.http.Cookie deleteCookie = new javax.servlet.http.Cookie(name, "");
-		if (StringHelper.isNonEmpty(path)) {
+		if (!StringUtils.isEmpty(path)) {
 			deleteCookie.setPath(path);
 		}
+        if (!StringUtils.isEmpty(domain))
+            deleteCookie.setDomain(domain);
+
 		deleteCookie.setMaxAge(0);
 		this.response.addCookie(deleteCookie);
 	}

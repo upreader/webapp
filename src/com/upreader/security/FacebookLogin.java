@@ -33,7 +33,7 @@ public class FacebookLogin extends AbstractLogin {
         Facebook facebook = (Facebook) request.getSession().getAttribute("facebook");
         if(facebook != null && code != null && code.length() > 0) {
             try {
-                AccessToken accessToken = facebook.getOAuthAccessToken(code);
+                facebook.getOAuthAccessToken(code);
                 User user = facebook.getMe();
                 String email = user.getEmail();
                 return new CachingPrincipal(email);
