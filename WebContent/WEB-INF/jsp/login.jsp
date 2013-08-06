@@ -69,37 +69,37 @@
                         </span>
                     </div>
                     <div class="register-form">
-                        <FORM id="register-form" action="https://www.upreader.com:8443/upreader/i/register" method="post">
+                        <FORM id="register-form" action="https://www.upreader.com:8443/upreader/i/register" method="post" autocomplete="off">
                             <div class="form-vertical-item">
-                                <input type="text" class="form-input" id="firstName" name="firstName"/>
+                                <input type="text" class="form-input" id="firstName" name="firstName" autocomplete="off"/>
                                 <div class="form-input-hint">
                                     <span>first name</span>
                                 </div>
                             </div>
 
                             <div class="form-vertical-item">
-                                <input type="text" class="form-input" id="lastName" name="lastName"/>
+                                <input type="text" class="form-input" id="lastName" name="lastName" autocomplete="off"/>
                                 <div class="form-input-hint">
                                     <span>last name</span>
                                 </div>
                             </div>
 
                             <div class="form-vertical-item">
-                                <input type="text" class="form-input" id="email" name="email" placeholder="@"/>
+                                <input type="text" class="form-input" id="email" name="email" placeholder="@" autocomplete="off"/>
                                 <div class="form-input-hint">
                                     <span>email</span>
                                 </div>
                             </div>
 
                             <div class="form-vertical-item">
-                                <input type="password" class="form-input" id="password" name="password"/>
+                                <input type="password" class="form-input" id="password" name="password" autocomplete="off"/>
                                 <div class="form-input-hint">
                                     <div>password</div>
                                 </div>
                             </div>
 
                             <div class="form-vertical-item">
-                                <input type="text" class="form-input" id="countryCity" name="countryCity"/>
+                                <input type="text" class="form-input" id="countryCity" name="countryCity" autocomplete="off"/>
                                 <div class="form-input-hint">
                                     <span>country, city</span>
                                 </div>

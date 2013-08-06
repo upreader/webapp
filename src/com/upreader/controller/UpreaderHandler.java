@@ -2,8 +2,10 @@ package com.upreader.controller;
 
 import java.io.File;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
+import com.upreader.UpreaderConstants;
 import com.upreader.model.User;
 import com.upreader.security.FacebookLogin;
 import com.upreader.security.TwitterLogin;
@@ -127,6 +129,7 @@ public class UpreaderHandler extends BasicPathHandler {
                 return context().render(getRegisterUserFailedURL("This email is already registered with us"));
 
             User newUser = new User();
+            newUser.setRoles(UpreaderConstants.ROLE_PROSPECTOR);
             newUser.setFirstName(firstName);
             newUser.setLastName(lastName);
             newUser.setEmail(email);
@@ -136,9 +139,9 @@ public class UpreaderHandler extends BasicPathHandler {
             newUser.setUpdateMe("checked".equals(updateMe));
             newUser.setEmailConfirmed(false);
 
-            // email confirmation deadline is 5 days
+            // email confirmation deadline is 1 day
             Calendar confirmDeadline = Calendar.getInstance();
-            confirmDeadline.add(Calendar.DAY_OF_YEAR, 5);
+            confirmDeadline.add(Calendar.DAY_OF_YEAR, 1);
             newUser.setEmailConfirmDeadline(confirmDeadline.getTime());
             newUser.setConfirmUUID(UUID.randomUUID().toString());
 
@@ -146,6 +149,17 @@ public class UpreaderHandler extends BasicPathHandler {
             context().userDAO().insert(newUser);
 
             // send confirmation email
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+            Map<String, String> tplData = new HashMap<>();
+            tplData.put("link", "http://www.upreader.com:8080/upreader/i/confirmEmail?email="+email+"&uuid="+newUser.getConfirmUUID());
+            tplData.put("firstName", newUser.getFirstName());
+            tplData.put("lastName", newUser.getLastName());
+            tplData.put("email", newUser.getEmail());
+            tplData.put("deadline", dateFormat.format(newUser.getEmailConfirmDeadline()));
+            String emailSubject = "Please confirm your Upreader account";
+            String emailBody = renderMustacheTemplateToString("accountConfirmationEmailTemplate", tplData);
+            System.out.println(emailBody);
+            getApplication().getAmazonService().sendEmail("confirm.account@upreader.com", email, emailSubject, emailBody);
         }
         else {
             return context().render(getRegisterUserFailedURL("One of the fields is empty"));
@@ -157,6 +171,36 @@ public class UpreaderHandler extends BasicPathHandler {
     private String getRegisterUserFailedURL(String reason) {
         String url = new StringBuilder("login.jsp?regfailed=1&reason=").append(reason).toString();
         return context().request().getRawResponse().encodeRedirectURL(url);
+    }
+
+    @PathSegment("confirmEmail")
+    public boolean confirmEmail() {
+        String email = query().get("email");
+        String uuid = query().get("uuid");
+
+        if(!StringUtils.isEmpty(email) && !StringUtils.isEmpty(uuid)) {
+            User user = context().userDAO().findbyEmail(email);
+
+            // if no user found with this email goto homepage
+            if(user == null)
+                return homepage();
+
+            Date deadline = user.getEmailConfirmDeadline();
+            if(new Date().before(deadline)) {
+                if(user.getConfirmUUID().equals(uuid)) {
+                    // user is good to be confirmed
+                    user.setEmailConfirmed(true);
+                    context().userDAO().update(user);
+                    return context().render("confirmSuccess.jsp");
+                } else {
+                    return context().render("confirmError.jsp?uuid=1");
+                }
+            } else {
+                return context().render("confirmError.jsp?expired=1");
+            }
+        }
+
+        return homepage();
     }
 
 	@PathSegment("s/u")

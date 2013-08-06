@@ -1,5 +1,6 @@
 package com.upreader.dispatcher;
 
+import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Collections;
@@ -81,7 +82,7 @@ public abstract class BasicPathHandler implements Configurable {
 	}
 
 	public boolean message(String message) {
-		return render(Collections.singletonMap("message", message));
+		return json(Collections.singletonMap("message", message));
 	}
 
 	public boolean error(int httpStatusCode, String errorMessage) {
@@ -90,7 +91,7 @@ public abstract class BasicPathHandler implements Configurable {
 
 	public boolean error(int httpStatusCode, Map<String, String> response) {
 		context().setStatus(httpStatusCode);
-		return render(response);
+		return json(response);
 	}
 
 	public boolean badRequest(Map<String, String> response) {
@@ -133,20 +134,6 @@ public abstract class BasicPathHandler implements Configurable {
 		return context().redirect(segments().getUriBelowOffset() + uri);
 	}
 
-	public boolean render(Object object) {
-		String template = ((References) this.references.get()).template;
-
-		if ((StringHelper.isEmpty(template)) || (this.mustacheManager == null) || (WebHelper.isJsonRequest(context()))) {
-			return json(object);
-		}
-
-		return mustache(template, object);
-	}
-
-	public boolean render() {
-		return render(context().templateContext().getMap());
-	}
-
 	public boolean json(Object object) {
 		return WebHelper.sendJson(context(), object, this.javaScriptWriter);
 	}
@@ -155,15 +142,23 @@ public abstract class BasicPathHandler implements Configurable {
 		return WebHelper.sendPlaintext(context(), text);
 	}
 
-	public boolean mustache(String template) {
-		return mustache(template, context().templateContext().getMap());
+	public boolean renderMustacheTemplate(String template, TemplateContext templateContext) {
+		return renderMustacheTemplate(template, templateContext.getMap());
 	}
 
 	public void setBaseUri(String uri) {
 		this.baseUri = uri;
 	}
 
-	public boolean mustache(String template, Object object) {
+    /**
+     * Render a Mustache template to output using standard TemplateReferences
+     * together with the provided object
+     *
+     * @param template
+     * @param object
+     * @return
+     */
+	public boolean renderMustacheTemplate(String template, Object object) {
 		String filename = template + ".mustache";
 		Context context = context();
 
@@ -174,6 +169,14 @@ public abstract class BasicPathHandler implements Configurable {
 			this.application.getDispatcher().renderComplete(context);
 		}
 	}
+
+    public String renderMustacheTemplateToString(String template, Object object) {
+        String filename = template + ".mustache";
+        Context context = context();
+        StringWriter writer = new StringWriter();
+        this.mustacheManager.render(filename, writer, context, object);
+        return writer.toString();
+    }
 
 	public String getBaseUri() {
 		return this.baseUri;
@@ -205,10 +208,6 @@ public abstract class BasicPathHandler implements Configurable {
 
 	public SessionNamedValues session() {
 		return context().session();
-	}
-
-	public TemplateContext delivery() {
-		return context().templateContext();
 	}
 
 	public Cookies cookies() {

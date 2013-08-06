@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -26,7 +27,12 @@ public class UserDAO {
 
 	public User findbyEmail(String email) {
 		TypedQuery<User> query = em.createNamedQuery(User.NQ_FIND_BY_EMAIL, User.class);
-		return query.setParameter("email", email).getSingleResult();
+        try {
+            User user = query.setParameter("email", email).getSingleResult();
+            return user;
+        } catch(NoResultException ex) {
+            return null;
+        }
 	}
 
 	public List<User> list() {

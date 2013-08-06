@@ -20,7 +20,7 @@ import com.upreader.util.ConfigurationProperties;
  * 
  */
 public class MustacheManager implements Configurable {
-	public static final String DEFAULT_MUSTACHE_EXTENSION = ".mustache";
+	public static final String DEFAULT_MUSTACHE_EXTENSION = ".renderMustacheTemplate";
 	private final UpreaderApplication application;
 	private final TemplateAppReferences applicationReferences;
 	private MustacheFactory mustacheFactory;
@@ -38,7 +38,7 @@ public class MustacheManager implements Configurable {
 	@Override
 	public void configure(ConfigurationProperties props) {
 		this.enabled = props.getYesNoProperty("Mustache.Enabled", true);
-		this.mustacheDirectory = props.getProperty("MustacheDirectory", "${Servlet.WebInf}/mustache/");
+		this.mustacheDirectory = props.getProperty("MustacheDirectory", "${Servlet.WebInf}/renderMustacheTemplate/");
 		this.developmentMode = props.getYesNoProperty("Mustache.DevMode", true);
 
 		if (this.enabled) {
@@ -51,8 +51,8 @@ public class MustacheManager implements Configurable {
 		}
 	}
 
-	public TemplateReferences getTemplateReferences(Context context, Object requestScope) {
-		return new TemplateReferences(context, this.applicationReferences, requestScope);
+	public TemplateReferences getTemplateReferences(Context context, Object data) {
+		return new TemplateReferences(context, this.applicationReferences, data);
 	}
 
 	protected TemplateAppReferences getApplicationReferences() {
@@ -63,14 +63,14 @@ public class MustacheManager implements Configurable {
 		return this.developmentMode ? new DefaultMustacheFactory(new File(this.mustacheDirectory)) : this.mustacheFactory;
 	}
 
-	public void render(String filename, Writer writer, Object[] scope) {
-		if ((filename == null) || (writer == null) || (scope == null)) {
+	public void render(String filename, Writer writer, Object[] data) {
+		if ((filename == null) || (writer == null) || (data == null)) {
 			throw new IllegalArgumentException("MustacheManager.render received at least one null argument: " + filename + " " + writer
-					+ " " + scope);
+					+ " " + data);
 		}
 
 		Mustache mustache = getMustacheFactory().compile(filename);
-		mustache.execute(writer, scope);
+		mustache.execute(writer, data);
 	}
 
 	public boolean render(String filename, Context context, Object scope) {
@@ -83,4 +83,9 @@ public class MustacheManager implements Configurable {
 		}
 		return false;
 	}
+
+    public void  render(String filename, Writer writer, Context context, Object scope) {
+        TemplateReferences refs = getTemplateReferences(context, scope);
+        render(filename, writer, new Object[] { refs });
+    }
 }

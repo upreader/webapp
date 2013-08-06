@@ -48,7 +48,6 @@ public class Context {
 	private final EntityManagerFactory entityManagerFactory;
 	private final DataSource dataSource;
 	
-	private TemplateContext templateContext;
 	private Cookies cookies;
 	private Attachments files;
 	private Headers headers;
@@ -170,13 +169,6 @@ public class Context {
 			this.files = new Attachments(this);
 		}
 		return this.files;
-	}
-
-	public TemplateContext templateContext() {
-		if (this.templateContext == null) {
-			this.templateContext = new TemplateContext();
-		}
-		return this.templateContext;
 	}
 
 	public Cookies cookies() {

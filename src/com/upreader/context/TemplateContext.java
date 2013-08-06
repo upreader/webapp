@@ -6,7 +6,7 @@ import java.util.Map;
 import com.upreader.collection.MutableNamedObjects;
 
 /**
- * Mustache template context that is added when rendering a mustache template
+ * Mustache template context that is added when rendering a renderMustacheTemplate template
  * 
  * @author Flavius
  *

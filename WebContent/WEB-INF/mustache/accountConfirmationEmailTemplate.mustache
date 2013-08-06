@@ -1,0 +1,12 @@
+<p>Dear {{ data.firstName }} {{ data.lastName }},<p>
+
+<p>We have received a request to authorize this email address for use with Upreader. If you requested this verification, please go to the following URL to confirm that you are authorized to use this email address:</p>
+
+<p><a href="{{ data.link }}">{{ data.link }}</a></p>
+
+<p>Your request will not be processed unless you confirm the address using this URL. This link expires 24 hours after your original verification request.</p>
+
+<p>If you did NOT request to verify this email address, do not click on the link. Instead, please forward this notification to upreadder.enforcement@upreader.com and let us know in the forward that you did not request the verification.</p>
+
+<p>Sincerely,</p>
+<p>The Upreader Team</p>

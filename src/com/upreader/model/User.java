@@ -130,7 +130,7 @@ public class User implements Serializable {
     /**
      * Whether to receive emails from Upreader
      */
-    @Column(name = "updateMe")
+    @Column(name = "update_me")
     private Boolean updateMe;
 
     /**

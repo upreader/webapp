@@ -14,12 +14,12 @@ import com.upreader.context.Message;
 public class TemplateReferences {
 	public final TemplateAppReferences app;
 	public final String currentUser;
-	public final Object req;
+	public final Object data;
 	public final List<Message> messages;
 
-	public TemplateReferences(Context context, TemplateAppReferences applicationScope, Object requestScope) {
+	public TemplateReferences(Context context, TemplateAppReferences applicationScope, Object data) {
 		this.app = applicationScope;
-		this.req = requestScope;
+		this.data = data;
 		this.messages = context.messages().list();
 		this.currentUser = context.username();
 	}
