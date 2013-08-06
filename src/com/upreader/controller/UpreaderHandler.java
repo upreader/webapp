@@ -2,12 +2,13 @@ package com.upreader.controller;
 
 import java.io.File;
 import java.security.Principal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import com.upreader.model.User;
 import com.upreader.security.FacebookLogin;
 import com.upreader.security.TwitterLogin;
+import com.upreader.util.PasswordUtil;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.upreader.MimeTypes;
@@ -114,11 +115,50 @@ public class UpreaderHandler extends BasicPathHandler {
         String countryCity = context().query().get("countryCity");
         String updateMe = context().query().get("updateMe");
 
+        if(!StringUtils.isEmpty(firstName)
+                && !StringUtils.isEmpty(lastName)
+                && !StringUtils.isEmpty(email)
+                && !StringUtils.isEmpty(password)
+                && !StringUtils.isEmpty(countryCity)
+                && !StringUtils.isEmpty(updateMe)) {
+
+            User existingUser = context().userDAO().findbyEmail(email);
+            if(existingUser != null)
+                return context().render(getRegisterUserFailedURL("This email is already registered with us"));
+
+            User newUser = new User();
+            newUser.setFirstName(firstName);
+            newUser.setLastName(lastName);
+            newUser.setEmail(email);
+            newUser.setPassword(PasswordUtil.encryptPassword(email, password));
+            newUser.setCountry(countryCity);
+            newUser.setCity(countryCity);
+            newUser.setUpdateMe("checked".equals(updateMe));
+            newUser.setEmailConfirmed(false);
+
+            // email confirmation deadline is 5 days
+            Calendar confirmDeadline = Calendar.getInstance();
+            confirmDeadline.add(Calendar.DAY_OF_YEAR, 5);
+            newUser.setEmailConfirmDeadline(confirmDeadline.getTime());
+            newUser.setConfirmUUID(UUID.randomUUID().toString());
+
+            // insert new user in DB
+            context().userDAO().insert(newUser);
+
+            // send confirmation email
+        }
+        else {
+            return context().render(getRegisterUserFailedURL("One of the fields is empty"));
+        }
 
         return homepage();
     }
 
-	
+    private String getRegisterUserFailedURL(String reason) {
+        String url = new StringBuilder("login.jsp?regfailed=1&reason=").append(reason).toString();
+        return context().request().getRawResponse().encodeRedirectURL(url);
+    }
+
 	@PathSegment("s/u")
 	public boolean userService() {
 		return userController().doCmd(context());

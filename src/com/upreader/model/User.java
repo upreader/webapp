@@ -1,6 +1,7 @@
 package com.upreader.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -11,7 +12,8 @@ import com.upreader.UpreaderConstants;
 import com.upreader.helper.StringHelper;
 
 /**
- * An user of the UpReader platform
+ * An user of the UpReader platform.
+ * The user is identified uniquely by his email address.
  */
 @Entity
 @Table(name = "users", uniqueConstraints = {
@@ -124,6 +126,30 @@ public class User implements Serializable {
 
     @Column(name = "bio")
     private String bio;
+
+    /**
+     * Whether to receive emails from Upreader
+     */
+    @Column(name = "updateMe")
+    private Boolean updateMe;
+
+    /**
+     * User confirmed his email address or not
+     */
+    @Column(name = "email_confirmed")
+    private Boolean emailConfirmed;
+
+    /**
+     * By when the user needs to confirm email address
+     */
+    @Column(name = "confirm_deadline")
+    private Date emailConfirmDeadline;
+
+    /**
+     * Unique token used in email confirmation
+     */
+    @Column(name = "cofirm_uuid")
+    private String confirmUUID;
 
     /**
      * How the user pays/receives money
@@ -413,5 +439,37 @@ public class User implements Serializable {
 
     public void setPaymentMethod(UserPaymentMethod userPaymentMethod) {
         this.paymentMethod = userPaymentMethod;
+    }
+
+    public Boolean getUpdateMe() {
+        return updateMe;
+    }
+
+    public void setUpdateMe(Boolean updateMe) {
+        this.updateMe = updateMe;
+    }
+
+    public Boolean getEmailConfirmed() {
+        return emailConfirmed;
+    }
+
+    public void setEmailConfirmed(Boolean emailConfirmed) {
+        this.emailConfirmed = emailConfirmed;
+    }
+
+    public Date getEmailConfirmDeadline() {
+        return emailConfirmDeadline;
+    }
+
+    public void setEmailConfirmDeadline(Date emailConfirmDeadline) {
+        this.emailConfirmDeadline = emailConfirmDeadline;
+    }
+
+    public String getConfirmUUID() {
+        return confirmUUID;
+    }
+
+    public void setConfirmUUID(String confirmUUID) {
+        this.confirmUUID = confirmUUID;
     }
 }
