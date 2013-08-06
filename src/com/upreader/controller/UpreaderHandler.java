@@ -104,7 +104,20 @@ public class UpreaderHandler extends BasicPathHandler {
 		context().getSession(false).invalidate();
 		return homepage();
 	}
-	
+
+    @PathSegment("register")
+    public boolean register() {
+        String firstName = context().query().get("firstName");
+        String lastName = context().query().get("lastName");
+        String email = context().query().get("email");
+        String password = context().query().get("password");
+        String countryCity = context().query().get("countryCity");
+        String updateMe = context().query().get("updateMe");
+
+
+        return homepage();
+    }
+
 	
 	@PathSegment("s/u")
 	public boolean userService() {

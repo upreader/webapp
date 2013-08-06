@@ -71,42 +71,42 @@
                     <div class="register-form">
                         <FORM id="register-form" action="https://www.upreader.com:8443/upreader/i/register" method="post">
                             <div class="form-vertical-item">
-                                <input type="text" class="form-input" name="firstName"/>
+                                <input type="text" class="form-input" id="firstName" name="firstName"/>
                                 <div class="form-input-hint">
                                     <span>first name</span>
                                 </div>
                             </div>
 
                             <div class="form-vertical-item">
-                                <input type="text" class="form-input" name="lastName"/>
+                                <input type="text" class="form-input" id="lastName" name="lastName"/>
                                 <div class="form-input-hint">
                                     <span>last name</span>
                                 </div>
                             </div>
 
                             <div class="form-vertical-item">
-                                <input type="text" class="form-input" name="email" placeholder="@"/>
+                                <input type="text" class="form-input" id="email" name="email" placeholder="@"/>
                                 <div class="form-input-hint">
                                     <span>email</span>
                                 </div>
                             </div>
 
                             <div class="form-vertical-item">
-                                <input type="password" class="form-input" name="password"/>
+                                <input type="password" class="form-input" id="password" name="password"/>
                                 <div class="form-input-hint">
                                     <div>password</div>
                                 </div>
                             </div>
 
                             <div class="form-vertical-item">
-                                <input type="text" class="form-input" name="countryCity"/>
+                                <input type="text" class="form-input" id="countryCity" name="countryCity"/>
                                 <div class="form-input-hint">
                                     <span>country, city</span>
                                 </div>
                             </div>
 
                             <div class="form-vertical-item">
-                                <input type="checkbox" class="form-checkbox" name="remember">keep me updated
+                                <input type="checkbox" class="form-checkbox" id="updateMe" name="updateMe" checked="checked">keep me updated
                             </div>
 
                             <div class="form-vertical-item">
@@ -138,13 +138,33 @@
     </c:if>
 
     $(function () {
+        $('#register-button').click(function () {
+            // validate form
+            if($('#firstName').val().trim().length > 0
+                    && $('#lastName').val().trim().length > 0
+                    && $('#email').val().trim().length > 0
+                    && $('#password').val().trim().length > 0
+                    && $('#countryCity').val().trim().length > 0) {
+                $('#register-form').submit();
+            } else {
+                showRegisterError();
+            }
+
+        });
+
         $('#login-button').click(function () {
-            $('#login-form').submit();
+            // validate form
+
+            if($('#login-email').val().trim().length > 0
+                    && $('#login-password').val().trim().length > 0) {
+                $('#login-form').submit();
+            } else {
+                showLoginError();
+            }
         });
 
         if (loginError) {
-            $('#login-email').css('border-color', 'red').focus();
-            $('#login-password').css('border-color', 'red');
+            showLoginError();
         }
 
         $('#email').keypress(function (event) {
@@ -158,6 +178,28 @@
             }
         });
     });
+
+    function showLoginError() {
+        $('#login-email').css('border-color', 'red').focus();
+        $('#login-password').css('border-color', 'red');
+    }
+
+    function showRegisterError() {
+        if($('#firstName').val().trim().length == 0)
+            $('#firstName').css('border-color', 'red');
+
+        if($('#lastName').val().trim().length == 0)
+            $('#lastName').css('border-color', 'red');
+
+        if($('#email').val().trim().length == 0)
+            $('#email').css('border-color', 'red');
+
+        if($('#password').val().trim().length == 0)
+            $('#password').css('border-color', 'red');
+
+        if($('#countryCity').val().trim().length == 0)
+            $('#countryCity').css('border-color', 'red');
+    }
 </script>
 </body>
 </html>
