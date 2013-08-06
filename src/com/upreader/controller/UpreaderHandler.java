@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.upreader.security.FacebookLogin;
+import com.upreader.security.TwitterLogin;
 import org.apache.log4j.Logger;
 
 import com.upreader.MimeTypes;
@@ -58,18 +59,23 @@ public class UpreaderHandler extends BasicPathHandler {
 
     @PathSegment("loginWithTwitter")
     public boolean loginWithTwitter() {
-//        String token        = context().request().getParameter(TwitterAuthenticationProvider.OAUTH_TOKEN);
-//        String verifierCode = context().request().getParameter(TwitterAuthenticationProvider.OAUTH_CODE);
-//
-//        if(token != null && token.length() > 0 && verifierCode != null && verifierCode.length() > 0){
-//            String result =  getApplication().getTwtauthProvider().performLogin(token, verifierCode);
-//            log.debug("twitter login result " + result);
-//            return context().redirect("http://www.upreader.com:8080/upreader");
-//        }
-//        else{
-//            return context().redirect(getApplication().getTwtauthProvider().goToTwitterAuthorization());
-//        }
-        return false;
+        TwitterLogin login = new TwitterLogin();
+        Principal user = login.login(context().request().getRawRequest(), context().request().getRawResponse(), true);
+        if(user == null)
+            return false;
+
+        String uri = session().get("com.caucho.servlet.login.path");
+        String query = session().get("com.caucho.servlet.login.query");
+        session().remove("com.caucho.servlet.login.path");
+        session().remove("com.caucho.servlet.login.query");
+
+        if ((uri != null) && (query != null)) {
+            uri = uri + "?" + query;
+            return context().request().redirect(context().request().getRawResponse().encodeRedirectURL(uri));
+        }
+        else {
+            return homepage();
+        }
     }
 
 	@PathSegment("loginSuccessful")
