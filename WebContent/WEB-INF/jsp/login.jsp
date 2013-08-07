@@ -123,6 +123,11 @@
                     <div class="register-help-body">Get full access to all information, subscribe to free
                         serial-stories, check and compare stats on you Control Board
                     </div>
+                    <div id="register-errors">
+                        Errors found:
+
+                        <ul id="reg-error-list"></ul>
+                    </div>
                 </div>
             </section>
         </div>
@@ -133,9 +138,18 @@
 
 <script type="text/javascript">
     var loginError = false;
+    var registerError = false;
+    var errorReason = '';
 
-    <c:if test="${not empty param.failed}">loginError = true;
+    <c:if test="${not empty param.failed}">
+        loginError = true;
     </c:if>
+
+    <c:if test="${not empty param.regfailed}">
+        registerError = true;
+        errorReason = '<c:out value="${param.reason}"/>';
+    </c:if>
+
 
     $(function () {
         $('#register-button').click(function () {
@@ -165,6 +179,12 @@
 
         if (loginError) {
             showLoginError();
+        }
+
+        if(registerError) {
+            showRegisterError();
+            $('#register-errors').css('display', 'block');
+            $('#reg-error-list').append('<li>'+errorReason+'</li>');
         }
 
         $('#email').keypress(function (event) {
