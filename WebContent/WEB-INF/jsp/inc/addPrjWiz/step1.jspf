@@ -18,7 +18,11 @@
         </div>
 
         <nav class="addproject-wizard-next-step-button-wrapper">
-            <button ng-disabled="!wizardData.step1_agreeTermsAndConditions" ng-click="moveToNextStep(wizardData.currentStep+1)"  class="addproject-wizard-next-step-button"></button>
+            <button ng-show="wizardData.step1_agreeTermsAndConditions"
+                    ng-click="moveToNextStep(wizardData.currentStep+1)"
+                    class="addproject-wizard-next-step-button">
+            </button>
+            <img ng-show="!wizardData.step1_agreeTermsAndConditions" class="addproject-wizard-next-step-disabled" tooltip-placement="bottom" tooltip="Need to accept the terms to continue!"/>
         </nav>
 
         <hr>

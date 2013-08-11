@@ -4,7 +4,7 @@
  */
 
 //Initialize the angular application for the Upreader Projects page.
-var upreaderAddPrjAppModule = angular.module('upreaderAddPrjApp', []);
+var upreaderAddPrjAppModule = angular.module('upreaderAddPrjApp', ['ui.bootstrap', 'ui.tinymce']);
 
 //Initialize the common features of the projects table on the root scope of the angular application
 upreaderAddPrjAppModule.run( function($rootScope){
@@ -46,7 +46,7 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
     };
 
     /*
-     * Generic actions
+     * Generic
      */
     $scope.moveToNextStep = function(step){
          $scope.wizardData.currentStep = step;
@@ -63,6 +63,10 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
             window.location.reload();
             window.scrollTo(0, top);
         }, 'postingProject');
+    };
+
+    $scope.tinymceOptions = {
+
     };
 
     //initialize the controller

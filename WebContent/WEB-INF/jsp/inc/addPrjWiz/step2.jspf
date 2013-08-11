@@ -24,7 +24,7 @@
                         <select type="combobox" ng-model="wizardData.step2_storyType"><option     value="" label="<%=upreaderResources.getString("addProjectWizard.labelType")%>"><%=upreaderResources.getString("addProjectWizard.labelType")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
                         <select type="combobox" ng-model="wizardData.step2_storyGenre"><option    value="" label="<%=upreaderResources.getString("addProjectWizard.labelGenre")%>"><%=upreaderResources.getString("addProjectWizard.labelGenre")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
                         <select type="combobox" ng-model="wizardData.step2_storySubGenre"><option value="" label="<%=upreaderResources.getString("addProjectWizard.labelSubgenre")%>"><%=upreaderResources.getString("addProjectWizard.labelSubgenre")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
-                        <select type="combobox" ng-model="wizardData.step2_storyCategory"><option value="" label="<%=upreaderResources.getString("addProjectWizard.labelCategory")%>"><%=upreaderResources.getString("addProjectWizard.labelCategory")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
+                        <select type="combobox" ng-model="wizardData.step2_storyCategory"><option value="" label="<%=upreaderResources.getString("addProjectWizard.labelCategory")%>"><%=upreaderResources.getString("addProjectWizard.labelCategory")%></option><option value="option2" label="option2"> option2</option><option value="option3"label="option3"> option3</option></select>
                     </div>
 
                     <div class="story-details-form-col2-wrapper">
@@ -49,7 +49,7 @@
 
 
     <div class="story-synopsys-wrapper">
-        <textarea ng-model="wizardData.step2_storySynopsis" class="full-width  resize-only-vertical" name="story-synopsys-textarea" rows=20></textarea>
+        <textarea ui-tinymce="tinymceOptions" ng-model="wizardData.step2_storySynopsis" class="full-width  resize-only-vertical" name="story-synopsys-textarea" rows=20></textarea>
     </div>
 
     <div class="story-serial-setup-wrapper">
