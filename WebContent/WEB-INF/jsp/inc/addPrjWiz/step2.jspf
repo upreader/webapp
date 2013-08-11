@@ -9,7 +9,7 @@
 
 <article id="addproject-wizard-story">
 
-        <h1 class="title">Guidelines</h1>
+        <h1 class="title"><%=upreaderResources.getString("addProjectWizard.storyTitle")%></h1>
 
         <div class="story-details-wrapper">
             <div class="story-details-image-wrapper">
@@ -19,16 +19,16 @@
             <div class="story-details-form-wrapper" >
                 <form id="story-details-form" name="storyForm">
                     <div class="story-details-form-col1-wrapper">
-                        <input type="text" name="Title" value="Title" size="15">
-                        <select type="combobox"><option label="Format"> Format</option><option label="option2"> option2</option><option label="option3"> option3</option></select>
-                        <select type="combobox"><option label="Type"> Type</option><option label="option2"> option2</option><option label="option3"> option3</option></select>
-                        <select type="combobox"><option label="Genre"> Genre</option><option label="option2"> option2</option><option label="option3"> option3</option></select>
-                        <select type="combobox"><option label="Category"> Category</option><option label="option2"> option2</option><option label="option3"> option3</option></select>
-                        <select type="combobox"><option label="Subgenre"> Subgenre</option><option label="option2"> option2</option><option label="option3"> option3</option></select>
+                        <input  type="text" name="Title" value="Title" size="15" ng-model="wizardData.step2_storyTitle"/>
+                        <select type="combobox" ng-model="wizardData.step2_storyFormat"><option   value="" label="<%=upreaderResources.getString("addProjectWizard.labelFormat")%>"><%=upreaderResources.getString("addProjectWizard.labelFormat")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
+                        <select type="combobox" ng-model="wizardData.step2_storyType"><option     value="" label="<%=upreaderResources.getString("addProjectWizard.labelType")%>"><%=upreaderResources.getString("addProjectWizard.labelType")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
+                        <select type="combobox" ng-model="wizardData.step2_storyGenre"><option    value="" label="<%=upreaderResources.getString("addProjectWizard.labelGenre")%>"><%=upreaderResources.getString("addProjectWizard.labelGenre")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
+                        <select type="combobox" ng-model="wizardData.step2_storySubGenre"><option value="" label="<%=upreaderResources.getString("addProjectWizard.labelSubgenre")%>"><%=upreaderResources.getString("addProjectWizard.labelSubgenre")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
+                        <select type="combobox" ng-model="wizardData.step2_storyCategory"><option value="" label="<%=upreaderResources.getString("addProjectWizard.labelCategory")%>"><%=upreaderResources.getString("addProjectWizard.labelCategory")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
                     </div>
 
                     <div class="story-details-form-col2-wrapper">
-                        <textarea class="full-width" name="story-details-textarea" cols="37" rows="7/">Story pitch</textarea>
+                        <textarea class="full-width" name="story-details-textarea" cols="37" rows="7/" ng-model="wizardData.step2_storyPitch"></textarea>
                         <div class="story-details-tags-wrapper">
                             <p>Tags</p>
                             <ul class="posttags">
@@ -49,37 +49,37 @@
 
 
     <div class="story-synopsys-wrapper">
-        <textarea class="full-width" name="story-synopsys-textarea" rows=20>Synopsis</textarea>
+        <textarea ng-model="wizardData.step2_storySynopsis" class="full-width  resize-only-vertical" name="story-synopsys-textarea" rows=20></textarea>
     </div>
 
     <div class="story-serial-setup-wrapper">
-        <h2 class="title-level2">Serial story setup</h2>
-        <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <h2 class="title-level2"><%=upreaderResources.getString("addProjectWizard.serialStorySetupTitle")%></h2>
+        <p><%=upreaderResources.getString("addProjectWizard.serialStorySetupDesc")%></p>
 
         <div class="story-serial-count-values-wrapper">
             <div class="story-serial-chapters-count-wrapper  text-align-center">
-                <p>Chapters</p>
-                <input type="number" value="1" class="addproject-wizard-small-input-number"/>
+                <p><%=upreaderResources.getString("addProjectWizard.serialStoryChaptersTitle")%></p>
+                <input type="number" ng-model="wizardData.step2_storyChapters" class="addproject-wizard-small-input-number"/>
             </div>
 
             <div class="story-serial-word-count-wrapper  text-align-center">
-                <p>Aprox chapter wordcount</p>
-                <input type="number" value="1" class="addproject-wizard-small-input-number"/>
+                <p><%=upreaderResources.getString("addProjectWizard.serialStoryAproxWordCount")%></p>
+                <input type="number" ng-model="wizardData.step2_aproxChapterWordCount" class="addproject-wizard-small-input-number"/>
             </div>
 
             <div class="story-serial-chapter-delay-wrapper  text-align-center">
-                <p>Delay between chapter updates</p>
-                <input type="number" value="1" class="addproject-wizard-small-input-number"/>
+                <p><%=upreaderResources.getString("addProjectWizard.serialStoryDelayBetweenChapters")%></p>
+                <input type="number" ng-model="wizardData.step2_delayBetweenChapterUpdates" class="addproject-wizard-small-input-number"/>
             </div>
         </div>
 
         <div class="story-upload-wrapper">
             <div class="story-upload">
                 <div class="story-upload-sample-wrapper  text-align-center">
-                    <button class="story-upload-button">Upload sample</button>
+                    <button class="story-upload-button"><%=upreaderResources.getString("addProjectWizard.uploadSampleButtonText")%></button>
                 </div>
                 <div class="story-upload-story-wrapper  text-align-center">
-                    <button class="story-upload-button">Upload story</button>
+                    <button class="story-upload-button"><%=upreaderResources.getString("addProjectWizard.uploadStoryButtonText")%></button>
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
         </nav>
 
         <div class="story-serial-item-end">
-            <img class="full-width" src="/WebContent/images/viewproject-dotted-line.jpg">
+            <img class="full-width" src="${pageContext.request.contextPath}/images/viewproject-dotted-line.jpg">
         </div>
     </div>
 
@@ -106,7 +106,7 @@
                 </div>
             </div>
             <div class="story-backstory-item-end">
-                <img class="full-width" src="/WebContent/images/viewproject-dotted-line.jpg">
+                <img class="full-width" src="${pageContext.request.contextPath}/images/viewproject-dotted-line.jpg">
             </div>
         </div>
 
@@ -121,7 +121,7 @@
                 </div>
             </div>
             <div class="story-backstory-item-end">
-                <img class="full-width" src="/WebContent/images/viewproject-dotted-line.jpg">
+                <img class="full-width" src="${pageContext.request.contextPath}/images/viewproject-dotted-line.jpg">
             </div>
         </div>
 
@@ -134,14 +134,15 @@
                 </div>
             </div>
             <div class="story-backstory-item-end">
-                <img class="full-width" src="/WebContent/images/viewproject-dotted-line.jpg">
+                <img class="full-width" src="${pageContext.request.contextPath}/images/viewproject-dotted-line.jpg">
             </div>
         </div>
 
     </div>
 
     <nav class="addproject-wizard-next-step-button-wrapper">
-        <button class="addproject-wizard-next-step-button"></button>
+        <button  ng-click="moveToNextStep(wizardData.currentStep-1)" class="addproject-wizard-prev-step-button"></button>
+        <button  ng-click="moveToNextStep(wizardData.currentStep+1)" class="addproject-wizard-next-step-button"></button>
     </nav>
 
     <hr>

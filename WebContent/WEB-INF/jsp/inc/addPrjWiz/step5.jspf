@@ -9,7 +9,7 @@
 
     <article id="addproject-wizard-story-payment-methods">
         <div class="addproject-wizard-story-payment-methods-wrapper">
-            <h1 class="title">Payment methods</h1>
+            <h1 class="title"><%=upreaderResources.getString("addProjectWizard.paymentMethodsTitle")%></h1>
             <hr>
 
             <div class="addproject-wizard-story-payment-methods-toolbar">
@@ -77,7 +77,8 @@
         </div>
 
         <nav class="addproject-wizard-next-step-button-wrapper  ten-pixel-padding-bottom">
-            <button class="addproject-wizard-next-step-button"></button>
+            <button  ng-click="moveToNextStep(wizardData.currentStep-1)" class="addproject-wizard-prev-step-button"></button>
+            <button  ng-click="moveToNextStep(wizardData.currentStep+1)" class="addproject-wizard-next-step-button"></button>
         </nav>
 
         <hr>

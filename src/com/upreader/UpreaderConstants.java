@@ -21,5 +21,7 @@ public class UpreaderConstants {
      */
 	public static final String SESSION_USER = "user";
 	public static final String SESSION_NEWPROJECT = "_newproject_";
+    public static final String SESSION_NEWPROJECT_WIZ = "wizardData";
+
 }
 

@@ -24,6 +24,14 @@
     width: 100%;
 }
 
+.resize-only-vertical{
+    resize: vertical;
+}
+
+.resize-off{
+    resize: none;
+}
+
 .title{
     padding-top: 25px;
     padding-bottom: 20px;
@@ -292,18 +300,29 @@
     height: 31px;
 }
     .addproject-wizard-next-step-button{
-        background:url(../images/content/en/nextStep.png) 0 0 no-repeat;
+        background:url(../images/content/en/library-next.jpg) 0 0 no-repeat;
         cursor: pointer;
         width: 79px;
         height: 31px;
         float: right;
     }
 
+.addproject-wizard-prev-step-button-wrapper{
+    height: 31px;
+}
+.addproject-wizard-prev-step-button{
+    background:url(../images/content/en/library-prev.jpg) 0 0 no-repeat;
+    cursor: pointer;
+    width: 79px;
+    height: 31px;
+    float: left;
+}
+
 .addproject-wizard-skip-step-button-wrapper{
     height: 31px;
 }
     .addproject-wizard-skip-step-button{
-        background:url(../images/content/en/nextStep.png) 0 0 no-repeat;
+        background:url(../images/content/en/library-next.jpg) 0 0 no-repeat;
         cursor: pointer;
         width: 79px;
         height: 31px;

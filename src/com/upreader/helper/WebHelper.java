@@ -1,5 +1,6 @@
 package com.upreader.helper;
 
+import java.io.IOException;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -66,4 +67,9 @@ public class WebHelper {
 
 		return sendJson(context, map);
 	}
+
+    public static Object fromJson(Class targetInstance, String fromJson) throws IOException {
+         ObjectMapper mapper = new ObjectMapper();
+         return mapper.readValue(fromJson, targetInstance);
+    }
 }

@@ -10,19 +10,18 @@
 
     <article id="terms-and-conditions">
 
-        <h1 class="title">Guidelines</h1>
-        <textarea class="full-width" name='textarea' rows=50 cols=130></textarea>
+        <h1 class="title"><%=upreaderResources.getString("addProjectWizard.guideline")%></h1>
+        <textarea class="full-width  resize-off" name='textarea' rows=50 cols=130 readonly><%=upreaderResources.getString("addProjectWizzard.guidelinesText")%></textarea>
 
         <div class="text-align-center">
-            <input type="checkbox">I Understand and Agree with the Terms and Conditions</input>
+            <input type="checkbox" ng-model="wizardData.step1_agreeTermsAndConditions"><%=upreaderResources.getString("addProjectWizzard.understandTermsText")%></input>
         </div>
 
         <nav class="addproject-wizard-next-step-button-wrapper">
-            <button class="addproject-wizard-next-step-button"></button>
+            <button ng-disabled="!wizardData.step1_agreeTermsAndConditions" ng-click="moveToNextStep(wizardData.currentStep+1)"  class="addproject-wizard-next-step-button"></button>
         </nav>
 
-        <hr>                                `
-
+        <hr>
     </article>
 
 </div>

@@ -26,7 +26,10 @@ upreaderPrjsAppModule.doPostAsForm = function(http, url, params, retryLimit, cal
     ).success(function(data) {
             callCallback(data);
         }).error(function(){
-            upreaderPrjsAppModule.doPostAsForm(http, url, params, retryLimit - 1, callCallback );
+            if(retryLimit === 0){callCallback(false);}
+            else{
+                upreaderPrjsAppModule.doPostAsForm(http, url, params, retryLimit - 1, callCallback );
+            }
         });
 }
 

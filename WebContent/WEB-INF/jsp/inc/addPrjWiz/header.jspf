@@ -10,7 +10,7 @@
                 </div>
                 <div class="user-profile-details-wrapper">
                     <div class="user-profile-details">
-                        <a class="user-profile-name" href="#">John Doe</a>
+                        <a class="user-profile-name" href="#"><c:out value="${pageContext.request.remoteUser}"/></a>
                         <a class="user-profile-rating" href="#">Rating: 1</a>
                         <a class="user-profile-profile" href="#">Profile: 60%</a>
 

@@ -7,17 +7,17 @@
     </nav>
 
 <article id="addproject-wizard-story-terms">
-    <h1 class="title">Story Terms</h1>
+    <h1 class="title"><%=upreaderResources.getString("addProjectWizard.storyTermsTitle")%></h1>
     <hr>
 
     <div class="addproject-wizard-story-terms-wrapper">
         <div class="addproject-wizard-story-term-wrapper">
-            <h2 class="title-level2">Selling rights to platform</h2>
+            <h2 class="title-level2"><%=upreaderResources.getString("addProjectWizard.sellingRightToPlatformTitle")%></h2>
             <div class="addproject-wizard-story-term-content">
-                <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p><%=upreaderResources.getString("addProjectWizard.sellingRightToPlatformDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" class="addproject-wizard-small-input-number" value="1" id="selling-rights-to-platform"/>
-                    <label for="selling-rights-to-platform" >years</label>
+                    <input type="number" ng-model="wizardData.step3_yearsOfSellingRightsToPlatform" class="addproject-wizard-small-input-number" id="selling-rights-to-platform"/>
+                    <label for="selling-rights-to-platform" ><%=upreaderResources.getString("addProjectWizard.years")%></label>
                 </div>
             </div>
             <div class="addproject-wizard-story-term-end">
@@ -26,12 +26,12 @@
         </div>
 
         <div class="addproject-wizard-story-term-wrapper">
-            <h2 class="title-level2">Selling rights to platform</h2>
+            <h2 class="title-level2"><%=upreaderResources.getString("addProjectWizard.sellEstimatePerYearTitle")%></h2>
             <div class="addproject-wizard-story-term-content">
-                <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p><%=upreaderResources.getString("addProjectWizard.sellEstimatePerYearDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" class="addproject-wizard-small-input-number" value="1" id="sale-estimate-per-year"/>
-                    <label for="sale-estimate-per-year" >years</label>
+                    <input type="number" ng-model="wizardData.step3_sellEstimateUnitsPerYear" class="addproject-wizard-small-input-number" id="sale-estimate-per-year"/>
+                    <label for="sale-estimate-per-year" ><%=upreaderResources.getString("addProjectWizard.unitsPerYear")%></label>
                 </div>
                 <div class="addproject-wizard-story-term-upload-wrapper">
                     <div class="addproject-wizard-story-term-upload-button-wrapper">
@@ -39,7 +39,7 @@
                     </div>
                     <div class="addproject-wizard-story-term-upload-fieldset-wrapper">
                         <fieldset class="addproject-wizard-story-term-upload-fieldset">
-                            <legend class="addproject-wizard-story-term-upload-fieldset-legend">title</legend>
+                            <legend class="addproject-wizard-story-term-upload-fieldset-legend"><%=upreaderResources.getString("addProjectWizard.uploadedFiles")%></legend>
                             Etc<br/><br/>
                         </fieldset>
                     </div>
@@ -52,12 +52,12 @@
 
 
         <div class="addproject-wizard-story-term-wrapper">
-            <h2 class="title-level2">E-book price</h2>
+            <h2 class="title-level2"><%=upreaderResources.getString("addProjectWizard.ebookPriceTitle")%></h2>
             <div class="addproject-wizard-story-term-content">
-                <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p><%=upreaderResources.getString("addProjectWizard.ebookPriceDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" class="addproject-wizard-small-input-number" value="1" id="ebook-price"/>
-                    <label for="ebook-price" >years</label>
+                    <input type="number" ng-model="wizardData.step3_ebookPrice" class="addproject-wizard-small-input-number" id="ebook-price"/>
+                    <label for="ebook-price" ><%=upreaderResources.getString("addProjectWizard.currencySign")%></label>
                 </div>
             </div>
             <div class="addproject-wizard-story-term-end">
@@ -66,12 +66,12 @@
         </div>
 
         <div class="addproject-wizard-story-term-wrapper">
-            <h2 class="title-level2">Percent royalties to platform</h2>
+            <h2 class="title-level2"><%=upreaderResources.getString("addProjectWizard.percentRoyaltiesToPlatformTitle")%></h2>
             <div class="addproject-wizard-story-term-content">
-                <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p><%=upreaderResources.getString("addProjectWizard.percentRoyaltiesToPlatformDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" class="addproject-wizard-small-input-number" value="1" id="percent-royalties-to-platform"/>
-                    <label for="percent-royalties-to-platform" >years</label>
+                    <input type="number" ng-model="wizardData.step3_percentRoyaltiesToPlatform" class="addproject-wizard-small-input-number" id="percent-royalties-to-platform"/>
+                    <label for="percent-royalties-to-platform" ><%=upreaderResources.getString("addProjectWizard.percentSign")%></label>
                 </div>
             </div>
             <div class="addproject-wizard-story-term-end">
@@ -80,29 +80,29 @@
         </div>
 
         <div class="addproject-wizard-story-term-wrapper">
-            <h2 class="title-level2">Sales projections/IRS</h2>
+            <h2 class="title-level2"><%=upreaderResources.getString("addProjectWizard.salesProjectionsIRSTitle")%></h2>
             <div class="addproject-wizard-story-term-content">
-                <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p><%=upreaderResources.getString("addProjectWizard.salesProjectionsIRSDesc")%></p>
                 <div class="story-term-sales-projections">
                     <div class="story-term-sales-projections-column  quarter-size-column  text-align-center">
-                        Total sales projection <br/>
+                        <%=upreaderResources.getString("addProjectWizard.totalSalesProjectionsTitle")%> <br/>
                         12 000$
                     </div>
                     <div class="story-term-sales-projections-column  quarter-size-column  text-align-center">
-                        Initial Royalty Stock Value <br/>
+                        <%=upreaderResources.getString("addProjectWizard.initialRoyaltyStockValue")%><br/>
                         6000$
                     </div>
                     <div class="story-term-sales-projections-column  quarter-size-column  text-align-center">
-                        Deadline     <br/>
+                        <%=upreaderResources.getString("addProjectWizard.Deadline")%><br/>
                         30 days
                     </div>
                     <div class="story-term-sales-projections-column  quarter-size-column  text-align-center">
-                        Platform fee <br/>
+                        <%=upreaderResources.getString("addProjectWizard.PlatformFee")%><br/>
                         5%
                     </div>
                 </div>
                 <div class="text-align-center">
-                    <p class="small-text-font bold-text">You can modify/test this values by changing the options you chose above</p>
+                    <p class="small-text-font bold-text"><%=upreaderResources.getString("addProjectWizard.youCanModifyValuesToSeeChanges")%></p>
                 </div>
             </div>
             <div class="addproject-wizard-story-term-end">
@@ -111,13 +111,13 @@
         </div>
 
         <div class="addproject-wizard-story-term-wrapper">
-            <h2 class="title-level2">Number of shares</h2>
+            <h2 class="title-level2"><%=upreaderResources.getString("addProjectWizard.numberOfSharesTitle")%></h2>
             <div class="addproject-wizard-story-term-content">
-                <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p><%=upreaderResources.getString("addProjectWizard.numberOfSharesDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" class="addproject-wizard-small-input-number" value="1" id="number-of-shares-to-sell"/>
-                    <label for="number-of-shares-to-sell" >out of</label>
-                    <input type="number" class="addproject-wizard-small-input-number" value="1" id="total-number-of-shares"/>
+                    <input type="number" ng-model="wizardData.step3_numberOfSharesValue" class="addproject-wizard-small-input-number" id="number-of-shares-to-sell"/>
+                    <label for="number-of-shares-to-sell" ><%=upreaderResources.getString("addProjectWizard.outOf")%></label>
+                    <input type="number" ng-model="wizardData.step3_totalNumberOfShares" class="addproject-wizard-small-input-number" id="total-number-of-shares"/>
                     <label for="total-number-of-shares"></label>
                 </div>
             </div>
@@ -128,12 +128,12 @@
 
 
         <div class="addproject-wizard-story-term-wrapper">
-            <h2 class="title-level2">Share value</h2>
+            <h2 class="title-level2"><%=upreaderResources.getString("addProjectWizard.shareValueTitle")%></h2>
             <div class="addproject-wizard-story-term-content">
-                <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p><%=upreaderResources.getString("addProjectWizard.shareValueDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" class="small-input-number" value="1" id="share-value"/>
-                    <label for="share-value" >out of 5$ max</label>
+                    <input type="number" max="{{wizardData.step3_maxShareValue}}" ng-model="wizardData.step3_shareValue" class="addproject-wizard-small-input-number" id="share-value"/>
+                    <label for="share-value" ><%=upreaderResources.getString("addProjectWizard.shareValueTitle")%> {{wizardData.step3_maxShareValue}}<%=upreaderResources.getString("addProjectWizard.currencySign")%> <%=upreaderResources.getString("addProjectWizard.max")%></label>
                 </div>
             </div>
             <div class="addproject-wizard-story-term-end">
@@ -142,9 +142,9 @@
         </div>
 
         <div class="addproject-wizard-story-term-wrapper">
-            <h2 class="title-level2">Story Derrivatives</h2>
+            <h2 class="title-level2"><%=upreaderResources.getString("addProjectWizard.storyDerivativesTitle")%></h2>
             <div class="addproject-wizard-story-term-content">
-                <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p><%=upreaderResources.getString("addProjectWizard.storyDerivativesDesc")%></p>
 
                 <div class="story-term-derrivatives-progressbar">
                         <div class="story-term-derrivatives-progressbar-col1  one-pixel-edge-borders  story-term-derrivatives-progressbar-filled">&nbsp;</div>
@@ -156,34 +156,34 @@
                 </div>
                 <div class="story-term-derrivatives-progressbar-milestones">
                     <div class="story-term-derrivatives-progressbar-milestones-col1">
-                        <input type="checkbox" id="printDerivative">
-                        <label for="printDerivative">print</label>
+                        <input type="checkbox" id="printDerivative" ng-model="wizardData.step3_agreePrint">
+                        <label for="printDerivative"><%=upreaderResources.getString("addProjectWizard.storyDerivativePrint")%></label>
                     </div>
                     <div class="story-term-derrivatives-progressbar-milestones-col2">
-                        <input type="checkbox" id="TVDerivative">
-                        <label for="TVDerivative">TV</label>
+                        <input type="checkbox" id="TVDerivative" ng-model="wizardData.step3_agreeTV">
+                        <label for="TVDerivative"><%=upreaderResources.getString("addProjectWizard.storyDerivativeTv")%></label>
                     </div>
                     <div class="story-term-derrivatives-progressbar-milestones-col3">
-                        <input type="checkbox" id="audiobookDerivative">
-                        <label for="audiobookDerivative">audiobook</label>
+                        <input type="checkbox" id="audiobookDerivative" ng-model="wizardData.step3_agreeAudioBook">
+                        <label for="audiobookDerivative"><%=upreaderResources.getString("addProjectWizard.storyDerivativeAudiobook")%></label>
                     </div>
                     <div class="story-term-derrivatives-progressbar-milestones-col4">
-                        <input type="checkbox" id="movieDerivative">
-                        <label for="movieDerivative">movie</label>
+                        <input type="checkbox" id="movieDerivative" ng-model="wizardData.step3_agreeMovie">
+                        <label for="movieDerivative"><%=upreaderResources.getString("addProjectWizard.storyDerivativeMovie")%></label>
                     </div>
                     <div class="story-term-derrivatives-progressbar-milestones-col5">
-                        <input type="checkbox" id="UKDerivative">
-                        <label for="UKDerivative">UK</label>
+                        <input type="checkbox" id="UKDerivative" ng-model="wizardData.step3_agreeUK">
+                        <label for="UKDerivative"><%=upreaderResources.getString("addProjectWizard.storyDerivativeUk")%></label>
                     </div>
                 </div>
             </div>
 
             <div class="text-align-center  small-text-font  bold-text">
-                <input type="checkbox" id="agree-with-story-submission"/>
-                <label for="agree-with-story-submission">I agree to these values and want to continue with the submission of my work</label>
+                <input type="checkbox" id="agree-with-story-submission" ng-model="wizardData.step3_agreeEnteredValues"/>
+                <label for="agree-with-story-submission"><%=upreaderResources.getString("addProjectWizard.agreeWithStorySubmission")%></label>
                 <br/>
-                <input type="checkbox" id="understand-story-final-values"/>
-                <label for="understand-story-final-values">I understand that these values cannot be changed once I go to next step of the submission</label>
+                <input type="checkbox" id="understand-story-final-values" ng-model="wizardData.step3_agreeCannotReturn"/>
+                <label for="understand-story-final-values"><%=upreaderResources.getString("addProjectWizard.agreeFinalStoryValues")%></label>
             </div>
 
             <div class="addproject-wizard-story-term-end">
@@ -193,7 +193,8 @@
     </div>
 
     <nav class="addproject-wizard-next-step-button-wrapper  ten-pixel-padding-bottom">
-        <button class="addproject-wizard-next-step-button"></button>
+        <button  ng-click="moveToNextStep(wizardData.currentStep-1)" class="addproject-wizard-prev-step-button"></button>
+        <button  ng-click="moveToNextStep(wizardData.currentStep+1)" class="addproject-wizard-next-step-button"></button>
     </nav>
 
     <hr>

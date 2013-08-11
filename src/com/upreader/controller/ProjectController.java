@@ -11,13 +11,17 @@ import com.upreader.RequestFile;
 import com.upreader.UpreaderConstants;
 import com.upreader.context.Context;
 import com.upreader.dispatcher.BasicPathHandler;
+import com.upreader.helper.AddProjectWizardHelper;
 import com.upreader.model.Project;
 import com.upreader.model.ProjectOwnership;
 import com.upreader.model.User;
 
 public class ProjectController extends BasicController {
+    private final AddProjectWizardHelper addProjectHelper;
+
     public ProjectController(BasicPathHandler handler, Context context) {
         super(handler, context);
+        addProjectHelper = new AddProjectWizardHelper(handler, context);
     }
 
 	public boolean doCmd(Context context) {
@@ -29,7 +33,11 @@ public class ProjectController extends BasicController {
 			return addProjectStep2(context);
         case "listPrjs":
             return handler().json(loadProjectsTableJson(Integer.valueOf(context.query().get("startPos")).intValue(),
-                                                      Integer.valueOf(context.query().get("endPos")).intValue() ));
+                                                        Integer.valueOf(context.query().get("endPos")).intValue() ));
+        case "addingProject":
+            return addProjectHelper.getWizardDataJson();
+        case "postingProject":
+                return addProjectHelper.getPostProjectResult();
 		default:
 			return handler().homepage();
 		}

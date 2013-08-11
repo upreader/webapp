@@ -272,7 +272,7 @@ public class Project implements Serializable {
      * project author. This is mandatory and cannot be updated
      */
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
-    @JoinColumn(name = "author_id", nullable = false, updatable = false)
+    @JoinColumn(name = "project_id", nullable = false, updatable = false)
     private ProjectOwnership author;
 
     /**

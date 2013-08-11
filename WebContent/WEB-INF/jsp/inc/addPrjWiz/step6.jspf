@@ -6,17 +6,18 @@
         <img class="addproject-wizard-breadcrumbs-step6" src="${pageContext.request.contextPath}/images/img_trans.gif">
     </nav>
 
-    <h1 class="title">Preview your project post</h1>
+    <h1 class="title"><%=upreaderResources.getString("addProjectWizard.previewProjectTitle")%></h1>
     <hr>
 
     <nav class="addproject-wizard-postit-button-wrapper  ten-pixel-padding-bottom">
-        <button class="addproject-wizard-postit-button"></button>
+        <button ng-click="confirmProjectPost()" class="addproject-wizard-postit-button"></button>
     </nav>
 
     <jsp:include page="inc/projectcontent.jspf"/>
 
     <nav class="addproject-wizard-postit-button-wrapper">
-        <button class="addproject-wizard-postit-button"></button>
+        <button  ng-click="moveToNextStep(wizardData.currentStep-1)" class="addproject-wizard-prev-step-button"></button>
+        <button  ng-click="confirmProjectPost()" class="addproject-wizard-postit-button"></button>
     </nav>
     <hr>
 </div>
