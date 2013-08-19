@@ -12,6 +12,10 @@
     text-align: center;
 }
 
+.vertical-align-top{
+    vertical-align: top;
+}
+
 .small-text-font{
     font-size: 13px;
 }
@@ -58,8 +62,19 @@
     width: 33%;
 }
 
+.thirty-percent-size-column{
+    width: 30%;
+}
+
 .quarter-size-column{
     width: 24.5%;
+}
+
+.one-pixel-edge-full-borders{
+    border-top: 1px black solid;
+    border-bottom: 1px black solid;
+    border-left: 1px black solid;
+    border-right: 1px black solid;
 }
 
 .one-pixel-edge-borders{
@@ -89,6 +104,18 @@
 
 .page-header{
     border: none;
+}
+
+.inline-block{
+    display: inline-block;
+}
+
+.display-block{
+    display: block;
+}
+
+.padding-bottom-15px{
+    padding-bottom: 15px;
 }
 /**
  * Add project wizard pages breadcrumbs
@@ -386,6 +413,23 @@
             display: inline-block;
         }
 
+.tag {
+    background-color: #ddd;
+    font-size: 14px;
+    padding-left: 5px;
+    white-space: nowrap;
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding-bottom: 3px;
+}
+
+.delete-tag {
+    content: "x";
+    padding-left: 10px;
+    padding-right: 5px;
+}
 
 .story-synopsys-wrapper{
     width: 100%;

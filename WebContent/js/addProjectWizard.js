@@ -31,9 +31,10 @@ upreaderAddPrjAppModule.doPostAsForm = function(http, url, params, retryLimit, c
 }
 
 //Initialize a controller for the add project wizard
-upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$rootScope', '$http', function($scope,$rootScope, $http){
+upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$rootScope', '$http', '$dialog', function($scope,$rootScope, $http, $dialog){
     $scope.init = function(success, targetAction){
         if(targetAction === null || targetAction === undefined){targetAction = 'addingProject'}
+        $scope.isAddingANewItem = true;
         $addProjectWizardPostData = $.param({do: targetAction, jsonWizData: angular.toJson($scope.wizardData) });
         upreaderAddPrjAppModule.doPostAsForm( $http,
                                               $rootScope.addProjectWizardCommons.projectsUrl,
@@ -43,6 +44,19 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
                 if(success !== null && success !== undefined){success(data)};
         });
 
+    };
+
+    /*
+     * Step 2 Tag Management
+     */
+    $scope.addTag = function() {
+        $scope.wizardData.step2_tags.push( $scope.newTag );
+        $scope.newTag = "";
+    };
+
+    // This is the ng-click handler to remove an item
+    $scope.removeTag = function ( idx ) {
+        $scope.wizardData.step2_tags.splice( idx, 1 );
     };
 
     /*
@@ -65,14 +79,33 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
         }, 'postingProject');
     };
 
+    /*
+     * Initialize the tinymce editor
+     */
     $scope.tinymceOptions = {
 
     };
 
+    /*
+     * Backstory items
+     */
+    $scope.closePost = function(){
+        $scope.postContent = "";
+        $scope.isAddingANewItem = !$scope.isAddingANewItem;
+    };
+
+    $scope.addPost = function(postContent){
+        $scope.wizardData.step2_backstories.push( postContent );
+        $scope.postContent = "";
+        $scope.isAddingANewItem = !$scope.isAddingANewItem;
+    };
+    /*
+     * End backstory items post logic
+     */
+
     //initialize the controller
     $scope.init();
 }]);
-
 
 var addProjectWizardCommons = {
     'config' : {

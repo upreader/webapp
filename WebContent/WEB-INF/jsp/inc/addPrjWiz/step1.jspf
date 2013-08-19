@@ -22,7 +22,7 @@
                     ng-click="moveToNextStep(wizardData.currentStep+1)"
                     class="addproject-wizard-next-step-button">
             </button>
-            <img ng-show="!wizardData.step1_agreeTermsAndConditions" class="addproject-wizard-next-step-disabled" tooltip-placement="bottom" tooltip="Need to accept the terms to continue!"/>
+            <img ng-show="!wizardData.step1_agreeTermsAndConditions" class="addproject-wizard-next-step-disabled" tooltip-placement="bottom" tooltip="<%=upreaderResources.getString("addProjectWizzard.guidelinesToolTip")%>"/>
         </nav>
 
         <hr>

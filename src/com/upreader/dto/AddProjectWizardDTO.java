@@ -29,6 +29,8 @@ public class AddProjectWizardDTO {
     private String step2_storyCategory;
     private String step2_storyPitch;
     private String step2_storySynopsis;
+    private String[] step2_tags;
+    private String[] step2_backstories;
 
     private Integer step2_storyChapters;
     private Integer step2_aproxChapterWordCount;
@@ -90,7 +92,8 @@ public class AddProjectWizardDTO {
         step2_storyChapters              = source.getStep2_storyChapters();
         step2_aproxChapterWordCount      = source.getStep2_aproxChapterWordCount();
         step2_delayBetweenChapterUpdates = source.getStep2_delayBetweenChapterUpdates();
-
+        step2_tags                       = source.getStep2_tags();
+        step2_backstories                = source.getStep2_backstories();
 
         step3_yearsOfSellingRightsToPlatform = source.getStep3_yearsOfSellingRightsToPlatform();
         step3_sellEstimateUnitsPerYear       = source.getStep3_sellEstimateUnitsPerYear();
@@ -130,6 +133,8 @@ public class AddProjectWizardDTO {
         step2_storyChapters              = Integer.valueOf(1);
         step2_aproxChapterWordCount      = Integer.valueOf(1);
         step2_delayBetweenChapterUpdates = Integer.valueOf(1);
+        step2_tags                       = new String[]{};
+        step2_backstories                = new String[]{};
 
         step3_yearsOfSellingRightsToPlatform = Integer.valueOf(1);
         step3_percentRoyaltiesToPlatform     = Integer.valueOf(10);
@@ -258,6 +263,22 @@ public class AddProjectWizardDTO {
 
     public void setStep2_delayBetweenChapterUpdates(Integer step2_delayBetweenChapterUpdates) {
         this.step2_delayBetweenChapterUpdates = step2_delayBetweenChapterUpdates;
+    }
+
+    public String[] getStep2_tags() {
+        return step2_tags;
+    }
+
+    public void setStep2_tags(String[] step2_tags) {
+        this.step2_tags = step2_tags;
+    }
+
+    public String[] getStep2_backstories() {
+        return step2_backstories;
+    }
+
+    public void setStep2_backstories(String[] step2_backstories) {
+        this.step2_backstories = step2_backstories;
     }
 
     public Integer getStep3_yearsOfSellingRightsToPlatform() {

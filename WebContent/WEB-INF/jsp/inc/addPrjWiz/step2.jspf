@@ -31,16 +31,14 @@
                         <textarea class="full-width" name="story-details-textarea" cols="37" rows="7/" ng-model="wizardData.step2_storyPitch"></textarea>
                         <div class="story-details-tags-wrapper">
                             <p>Tags</p>
-                            <ul class="posttags">
-                                <li><a href="">Tag 1 <span>X</span></a></li>
-                                <li><a href="">Tag 2 <span>X</span></a></li>
-                                <li><a href="">Tag 3 <span>X</span></a></li>
-                                <li><a href="">Tag 4 <span>X</span></a></li>
-                                <li><a href="">Tag 5 <span>X</span></a></li>
-                                <li><a href="">Tag 6 <span>X</span></a></li>
-                                <li><a href="">Tag 7 <span>X</span></a></li>
-                                <li><a href="">Tag 8 <span>X</span></a></li>
-                            </ul>
+                            <input  type="text" ng-model="newTag"/>
+                            <a class="btn vertical-align-top" ng-click="addTag()">Add</a>
+                            <div class="display-block">
+                                <span ng-repeat="(idx, tag) in wizardData.step2_tags" class="tag">
+                                    {{tag}}
+                                    <a ng-click="removeTag(idx)" ng-href="#"><span class="delete-tag">x</span></a>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -49,7 +47,7 @@
 
 
     <div class="story-synopsys-wrapper">
-        <textarea ui-tinymce="tinymceOptions" ng-model="wizardData.step2_storySynopsis" class="full-width  resize-only-vertical" name="story-synopsys-textarea" rows=20></textarea>
+        <textarea ng-model="wizardData.step2_storySynopsis" class="full-width  resize-only-vertical" name="story-synopsys-textarea" rows=20></textarea>
     </div>
 
     <div class="story-serial-setup-wrapper">
@@ -95,49 +93,27 @@
 
     <div class="story-backstories-items-wrapper">
         <h2 class="story-backstories-title title-level2">Backstory Items</h2>
-        <h3 class="story-backstories-add-item"><a href="#">Add item</a></h3>
+        <h3 class="story-backstories-add-item"><a ng-href="#newPost" ng-click="isAddingANewItem = !isAddingANewItem" data-toggle="modal">Add item</a></h3>
         <p  class="story-backstories-about">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <hr>
 
-        <div class="story-backstory-item-wrapper">
-            <h3 class="title-level3">Video Content</h3>
+        <div class="story-backstory-item-wrapper" collapse="isAddingANewItem">
+            <a name="newPost"></a>
             <div class="story-backstory-item-content">
-                <div class="story-backstory-item-video-content">
-                    <iframe width="677" height="328" src="http://www.youtube.com/embed/6ooInluKNbs" frameborder="0" allowfullscreen=""></iframe>
-                </div>
+                <textarea ui-tinymce ng-model="postContent" class="full-width  resize-only-vertical"></textarea>
             </div>
+            <div class="story-backstory-item-end  float-right">
+                <button ng-click="addPost(postContent)" class="btn  btn-primary" >Post</button>
+                <button ng-click="closePost()" class="btn  btn-primary" >Close</button>
+            </div>
+        </div>
+
+        <div class="story-backstory-item-wrapper" ng-repeat="backstory in wizardData.step2_backstories">
+            <div class="story-backstory-item-content" ng-bind-html-unsafe="backstory"></div>
             <div class="story-backstory-item-end">
                 <img class="full-width" src="${pageContext.request.contextPath}/images/viewproject-dotted-line.jpg">
             </div>
         </div>
-
-        <div class="story-backstory-item-wrapper">
-            <h3 class="title-level3">2 Cols Content</h3>
-            <div class="story-backstory-item-content">
-                <div class="story-backstory-item-generic-content  half-size-column">
-                    <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-                <div class="story-backstory-item-generic-content  half-size-column">
-                    <img src="http://lorempixum.com/q/425/301/people/">
-                </div>
-            </div>
-            <div class="story-backstory-item-end">
-                <img class="full-width" src="${pageContext.request.contextPath}/images/viewproject-dotted-line.jpg">
-            </div>
-        </div>
-
-
-        <div class="story-backstory-item-wrapper">
-            <h3 class="title-level3">1 Column Content</h3>
-            <div class="story-backstory-item-content">
-                <div class="story-backstory-item-generic-content">
-                    <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-            </div>
-            <div class="story-backstory-item-end">
-                <img class="full-width" src="${pageContext.request.contextPath}/images/viewproject-dotted-line.jpg">
-            </div>
-        </div>
-
     </div>
 
     <nav class="addproject-wizard-next-step-button-wrapper">
