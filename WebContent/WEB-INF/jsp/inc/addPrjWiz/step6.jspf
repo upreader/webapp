@@ -16,7 +16,7 @@
     <jsp:include page="inc/projectcontent.jspf"/>
 
     <nav class="addproject-wizard-postit-button-wrapper">
-        <button  ng-click="moveToNextStep(wizardData.currentStep-1)" class="addproject-wizard-prev-step-button"></button>
+        <button  ng-click="moveToNextStep(wizardData.currentStep-3)" class="addproject-wizard-prev-step-button"></button>
         <button  ng-click="confirmProjectPost()" class="addproject-wizard-postit-button"></button>
     </nav>
     <hr>

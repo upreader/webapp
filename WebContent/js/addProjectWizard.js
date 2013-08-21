@@ -73,7 +73,7 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
 
     $scope.confirmProjectPost = function(){
         $scope.init(function(data) {
-            //need to reload the page to check the project status
+            //need to reload the page to check the project a
             window.location.reload();
             window.scrollTo(0, top);
         }, 'postingProject');
@@ -83,7 +83,8 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
      * Initialize the tinymce editor
      */
     $scope.tinymceOptions = {
-
+        plugins: "fullscreen image filemanager",
+        document_base_url: "http://www.upreader.com/upreader/"
     };
 
     /*

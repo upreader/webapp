@@ -100,7 +100,7 @@
         <div class="story-backstory-item-wrapper" collapse="isAddingANewItem">
             <a name="newPost"></a>
             <div class="story-backstory-item-content">
-                <textarea ui-tinymce ng-model="postContent" class="full-width  resize-only-vertical"></textarea>
+                <textarea ui-tinymce="tinymceOptions" ng-model="postContent" class="full-width  resize-only-vertical" rows=20></textarea>
             </div>
             <div class="story-backstory-item-end  float-right">
                 <button ng-click="addPost(postContent)" class="btn  btn-primary" >Post</button>

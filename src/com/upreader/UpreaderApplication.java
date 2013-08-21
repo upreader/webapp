@@ -69,7 +69,7 @@ public class UpreaderApplication {
 		this.mustacheManager = new MustacheManager(this);
 		this.dispatcher = new Dispatcher(this, new UpreaderHandler(this), new BasicExceptionHandler(this));
 		this.standardJsw = new JsonWriter();
-		this.amazonService = new AmazonService(this);
+		this.amazonService = new AmazonService(this, this.standardJsw);
 	}
 
 	/**

@@ -3,19 +3,26 @@ package com.upreader.aws;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.Security;
+import java.util.ArrayList;
 import java.util.Date;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.*;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceAsyncClient;
 import com.amazonaws.services.simpleemail.model.*;
+import com.amazonaws.util.json.JSONWriter;
+import com.upreader.dto.AmazonS3FileDetails;
+import com.upreader.dto.AmazonS3FileDetailsBuilder;
+import com.upreader.helper.AmazonS3Helper;
+import com.upreader.helper.JsonWriter;
+import com.upreader.helper.WebHelper;
 import org.jets3t.service.CloudFrontService;
 import org.jets3t.service.CloudFrontServiceException;
 import org.jets3t.service.utils.ServiceUtils;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.ProgressListener;
-import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.upreader.UpreaderApplication;
@@ -34,22 +41,25 @@ public class AmazonService implements Configurable {
     private AWSCredentials credentials;
     private String bucketName;
     private String cfAccessKey;
+    private JsonWriter jsonWriter;
     byte[] derPrivateKey;
+    private AmazonS3 s3;
 
-    public AmazonService(UpreaderApplication application) {
+    public AmazonService(UpreaderApplication application, JsonWriter jsonWriter) {
         this.application = application;
         this.application.getConfigurator().addConfigurable(this);
+        this.jsonWriter = jsonWriter;
     }
 
     @Override
     public void configure(ConfigurationProperties props) {
-        this.bucketName = props.getProperty("S3ContentBucketName");
+        this.bucketName  = props.getProperty("S3ContentBucketName");
         String accessKey = props.getProperty("AWSAccessKeyId");
         String secretKey = props.getProperty("AWSSecretKey");
         this.cfAccessKey = props.getProperty("CFAccessKey");
         if (accessKey != null && secretKey != null)
             this.credentials = new BasicAWSCredentials(accessKey, secretKey);
-
+            this.s3 = new AmazonS3Client(this.credentials);
         try {
             InputStream is = getClass().getClassLoader().getResourceAsStream("cf.der");
             derPrivateKey = ServiceUtils.readInputStreamToBytes(is);
@@ -94,6 +104,32 @@ public class AmazonService implements Configurable {
         return null;
     }
 
+    public String listFolderContents(String folderPath){
+        ArrayList<AmazonS3FileDetails> result = new ArrayList<AmazonS3FileDetails>();
+
+        ObjectListing objectListing = s3.listObjects(new ListObjectsRequest().
+                                                     withBucketName(this.getBucketName()).
+                                                     withPrefix(folderPath).
+                                                     withDelimiter("/"));
+
+        for(S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
+                final String key = objectSummary.getKey();
+
+                if (AmazonS3Helper.isImmediateDescendant(folderPath, key)) {
+                    result.add(new AmazonS3FileDetailsBuilder().
+                                        withKey(key).
+                                        withLink(getSignedURL(key)).
+                                        withFileName(AmazonS3Helper.trimPath(folderPath, key)).
+                                        withSize(Long.toString(objectSummary.getSize())).
+                                        withFolder(folderPath).
+                                        withExt(AmazonS3Helper.getExt(folderPath, key)).
+                                        withLastModified(objectSummary.getLastModified()).
+                                        build());
+                }
+        }
+        return jsonWriter.write(result);
+    }
+
     public void sendEmail(String from, String to, String subject, String htmlBody) {
         // Construct an object to contain the recipient address.
         Destination destination = new Destination().withToAddresses(new String[]{to});
@@ -116,5 +152,9 @@ public class AmazonService implements Configurable {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public String getBucketName() {
+        return bucketName;
     }
 }
