@@ -36,8 +36,10 @@ public class ProjectController extends BasicController {
                                                         Integer.valueOf(context.query().get("endPos")).intValue() ));
         case "addingProject":
             return addProjectHelper.getWizardDataJson();
+        case "addingProjectUploadFile":
+            return addProjectHelper.uploadProjectFile();
         case "postingProject":
-                return addProjectHelper.getPostProjectResult();
+            return addProjectHelper.getPostProjectResult();
 		default:
 			return handler().homepage();
 		}

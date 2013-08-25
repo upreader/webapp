@@ -23,6 +23,13 @@ public class UpreaderConstants {
 	public static final String SESSION_NEWPROJECT = "_newproject_";
     public static final String SESSION_NEWPROJECT_WIZ = "wizardData";
 
+    /**
+     * Enum detailing the file types for upload
+     */
+     public static String PUBLIC_IMAGE = "1";
+     public static String STORY = "2";
+     public static String STORY_SAMPLE = "3";
+     public static String COVER = "4";
 
     /**
      * Configuration used for the tinyMCE File Manager plugin
@@ -75,7 +82,8 @@ public class UpreaderConstants {
     //Permits config
     //******************
     public static final String DELETE_FILE="true";
-    public static final String CREATE_FOLDER="true";
+    public static final String EDIT_FILE="false";
+    public static final String CREATE_FOLDER="false";
     public static final String DELETE_FOLDER="true";
     public static final String UPLOAD_FILES="true";
     public static final String RENAME_FILES="true";
@@ -89,7 +97,7 @@ public class UpreaderConstants {
     public static final String EXT_VIDEO = "'mov', 'mpeg', 'mp4', 'avi', 'mpg','wma'"; //Videos
     public static final String EXT_MUSIC = "'mp3', 'm4a', 'ac3', 'aiff', 'mid'"; //Music
     public static final String EXT_MISC  = "'zip', 'rar','gzip'"; //Archives
-
+    public static final String EXT_BOOKS  = "'pdf', 'doc','docx'"; //Documents
 
     public static final String EXT=EXT_IMG + "," + EXT_FILE + "," + EXT_VIDEO + "," + EXT_MUSIC + "," + EXT_MISC; //allowed extensions
 
@@ -104,7 +112,7 @@ public class UpreaderConstants {
     /*******************
      * JAVA upload
      *******************/
-    public static final String JAVA_UPLOAD="true";
+    public static final String JAVA_UPLOAD="false";
     public static final String MAX_JAVA_SIZE_UPLOAD="200"; //Gb
 }
 

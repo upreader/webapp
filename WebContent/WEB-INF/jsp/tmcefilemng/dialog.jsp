@@ -3,6 +3,7 @@
 <jsp:useBean id="upreaderConst" class="com.upreader.UpreaderConstants" scope="session"/>
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page import="com.upreader.UpreaderApplication" %>
+<%@ page import="com.upreader.UpreaderConstants" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
@@ -14,8 +15,6 @@
      */
     String _type     = request.getParameter("type")  == null ? "0" : request.getParameter("type");
     String _view     = request.getParameter("view_type")  == null ? upreaderConst.DEFAULT_VIEW : request.getParameter("view_type");
-    String _popup    = request.getParameter("popup") == null ? "0" : request.getParameter("popup");
-    String _field_id = request.getParameter("popup") == null ? "0" : request.getParameter("field_id");
     String _editor   = request.getParameter("editor") == null ? "" : request.getParameter("editor");
     String _lang     = request.getLocale().toString();
 
@@ -26,29 +25,6 @@
     if(_type.equals("1")){
         _cur_dir += upreaderConst.IMAGES_PATH_INSIDE_UPREADER_BUCHET;
     }
-
-//    String _fldr = request.getParameter("fldr");
-//    String _subdir = "";
-//    if(_fldr != null && !_fldr.isEmpty()){
-//        _subdir = _fldr.replaceAll("/","");
-//        _subdir = _subdir + "/";
-//    }
-
-//    String _subFolder = request.getParameter("subfolder")==null ? "" : request.getParameter("subfolder");
-//    String _cur_dir="";
-//    String _cur_path="";
-//    String _thumbs_path="";
-//    if(!_subFolder.isEmpty() && !_subFolder.equals("undefined")){
-//        _cur_dir  = upreaderConst.UPLOAD_DIR + _subFolder + "/" + _subdir;
-//        _cur_path = upreaderConst.CURRENT_PATH + _subFolder + "/" + _subdir;
-//        _thumbs_path = "thumbs/" + _subFolder + "/";
-//        //TODO
-//        //if (!file_exists($thumbs_path.$subdir)) create_folder(false,$thumbs_path.$subdir);
-//    }else{
-//        _cur_dir     = upreaderConst.UPLOAD_DIR + _subdir;
-//        _cur_path    = upreaderConst.CURRENT_PATH + _subdir;
-//        _thumbs_path = "thumbs/";
-//    }
 %>
 
 <!doctype html>
@@ -70,51 +46,49 @@
         </style><![endif]-->
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/tinymce/plugins/filemanager/js/filemanagerController.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/tinymce/plugins/filemanager/js/jquery.1.9.1.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/tinymce/plugins/filemanager/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/tinymce/plugins/filemanager/js/bootstrap-lightbox.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/tinymce/plugins/filemanager/js/dropzone.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/tinymce/plugins/filemanager/js/jquery.touchSwipe.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/tinymce/plugins/filemanager/js/modernizr.custom.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/tinymce/plugins/filemanager/js/bootbox.min.js"></script>
+
         <script>
             var ext_img=new Array(<%=upreaderConst.EXT_IMG%>);
-            var allowed_ext=new Array(<%=upreaderConst.EXT%>);
+            var allowed_ext=new Array(<%
+                                        if(_type.equals("1")){ %>
+                                            <%=upreaderConst.EXT_IMG%>
+                                        <%}else{ %>
+                                            <%=upreaderConst.EXT%>
+                                         <% } %>);
 
             //dropzone config
-            Dropzone.options.myAwesomeDropzone = {
+            Dropzone.options.dropzoneUpload = {
                 dictInvalidFileType: "<%=upreaderResources.getString("tinyMCE.fileManager.langErrorExtension")%>",
                 dictFileTooBig: "<%=upreaderResources.getString("tinyMCE.fileManager.fileTooBig")%>",
                 dictResponseError: "<%=upreaderResources.getString("tinyMCE.fileManager.serverError")%>",
                 paramName: "file", // The name that will be used to transfer the file
                 maxFilesize: <%=upreaderConst.MAX_UPLOAD_SIZE%>, // MB
-                url: "upload.php",
-                    accept: function(file, done) {
-                var extension=file.name.split('.').pop().toLowerCase();
-                if ($.inArray(extension, allowed_ext) > -1) {
-                    done();
+                accept: function(file, done) {
+                        var extension=file.name.split('.').pop().toLowerCase();
+                        if ($.inArray(extension, allowed_ext) > -1) {
+                            done();
+                        }
+                        else { done("<%=upreaderResources.getString("tinyMCE.fileManager.langErrorExtension")%>"); }
                 }
-                else { done("<%=upreaderResources.getString("tinyMCE.fileManager.langErrorExtension")%>"); }
-            }
             };
         </script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/tinymce/plugins/filemanager/js/include.js"></script>
     </head>
     <body ng-controller="tinyfileManagerController">
-		<input type="hidden" id="popup" value="<%=_popup%>" />
+        <input type="hidden" id="type" value="<%=_type%>" />
         <input type="hidden" id="view" value="<%=_view%>" />
-		<input type="hidden" id="track" value="<%=_editor%>" />
+        <input type="hidden" id="track" value="<%=_editor%>" />
+        <input type="hidden" id="cur_dir" value="<%=_cur_dir%>" />
         <input type="hidden" id="ok" value="<%=upreaderResources.getString("tinyMCE.fileManager.OK")%>" />
         <input type="hidden" id="cancel" value="<%=upreaderResources.getString("tinyMCE.fileManager.Cancel")%>" />
         <input type="hidden" id="rename" value="<%=upreaderResources.getString("tinyMCE.fileManager.Rename")%>" />
-		<input type="hidden" id="cur_dir" value="<%=_cur_dir%>" />
-		<%--<input type="hidden" id="cur_dir_thumb" value="<%=_thumbs_path+_subdir%>" />--%>
-		<%--<input type="hidden" id="root" value="/" />--%>
-		<%--<input type="hidden" id="insert_folder_name" value="<%=upreaderResources.getString("tinyMCE.fileManager.InsertFolderName")%>" />--%>
-		<%--<input type="hidden" id="new_folder" value="<%=upreaderResources.getString("tinyMCE.fileManager.NewFolder")%>" />--%>
-        <%--<input type="hidden" id="base_url" value="<%=upreaderConst.BASE_URL%>"/>--%>
-        <%--<input type="hidden" id="image_dimension_passing" value="<%=upreaderConst.IMAGE_DIMENSSION_PASSING%>" />--%>
-
         <%  //if having permission to upload files
             if(upreaderConst.UPLOAD_FILES.equals("true")){ %>
         <!----- uploader div start ------->
@@ -130,24 +104,10 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab1">
                         <% } %>
-                        <form action="dialog" method="post" enctype="multipart/form-data" id="myAwesomeDropzone" class="dropzone">
+                        <form action="/upreader/i/s/p" method="post" enctype="multipart/form-data" id="dropzoneUpload" class="dropzone">
+                              <input type="hidden" name="do"       value="addingProjectUploadFile"/>
+                              <input type="hidden" name="fileType" value="<%=upreaderConst.PUBLIC_IMAGE%>"/>
                         </form>
-                        <%--<form action="dialog" method="post" enctype="multipart/form-data" id="myAwesomeDropzone" class="dropzone">--%>
-                            <%--<input type="hidden" name="path" value="<%=_cur_path%>"/>--%>
-                            <%--<input type="hidden" name="path_thumb" value="<%=_thumbs_path+_subdir%>"/>--%>
-                            <%--<div class="fallback">--%>
-                                <%--<%=upreaderResources.getString("tinyMCE.fileManager.UploadFileLabel")%>--%>
-                                <%--<input name="file" type="file" />--%>
-                                <%--<input type="hidden" name="fldr" value="<%=_subdir%>"/>--%>
-                                <%--<input type="hidden" name="view" value="<%=_view%>"/>--%>
-                                <%--<input type="hidden" name="type" value="<%=_type%>"/>--%>
-                                <%--<input type="hidden" name="field_id" value="<%=_field_id%>"/>--%>
-                                <%--<input type="hidden" name="popup" value="<%=_popup%>"/>--%>
-                                <%--<input type="hidden" name="editor" value="<%=_editor%>"/>--%>
-                                <%--<input type="hidden" name="lang" value="<%=_lang%>"/>--%>
-                                <%--<input type="submit" name="submit" value="OK" />--%>
-                            <%--</div>--%>
-                        <%--</form>--%>
                         <% if(upreaderConst.JAVA_UPLOAD.equals("true")){ %>
                         </div>
                         <div class="tab-pane" id="tab2">
@@ -190,9 +150,12 @@
                                     </div>
                                     <div class="span3 half view-controller">
                                         <span><%=upreaderResources.getString("tinyMCE.fileManager.view")%>:</span>
-                                        <button class="btn tip<% if(_view.equals("0")){%> btn-inverse <%}%>" id="view0" data-value="0" title="<%=upreaderResources.getString("tinyMCE.fileManager.viewBoxes")%>"><i class="icon-th <% if(_view.equals("0")){%> icon-white <%}%>"></i></button>
-                                        <button class="btn tip<% if(_view.equals("1")){%> btn-inverse <%}%>" id="view1" data-value="1" title="<%=upreaderResources.getString("tinyMCE.fileManager.viewList")%>"><i class="icon-align-justify <% if(_view.equals("1")){%> icon-white <%}%>"></i></button>
-                                        <button class="btn tip<% if(_view.equals("2")){%> btn-inverse <%}%>" id="view2" data-value="2" title="<%=upreaderResources.getString("tinyMCE.fileManager.viewColumnsList")%>"><i class="icon-fire <% if(_view.equals("2")){%> icon-white <%}%>"></i></button>
+                                        <button class="btn tip<% if(_view.equals("0")){%> btn-inverse <%}%>" id="view0" data-value="0"
+                                                title="<%=upreaderResources.getString("tinyMCE.fileManager.viewBoxes")%>"><i class="icon-th <% if(_view.equals("0")){%> icon-white <%}%>"></i></button>
+                                        <button class="btn tip<% if(_view.equals("1")){%> btn-inverse <%}%>" id="view1" data-value="1"
+                                                title="<%=upreaderResources.getString("tinyMCE.fileManager.viewList")%>"><i class="icon-align-justify <% if(_view.equals("1")){%> icon-white <%}%>"></i></button>
+                                        <button class="btn tip<% if(_view.equals("2")){%> btn-inverse <%}%>" id="view2" data-value="2"
+                                                title="<%=upreaderResources.getString("tinyMCE.fileManager.viewColumnsList")%>"><i class="icon-fire <% if(_view.equals("2")){%> icon-white <%}%>"></i></button>
                                     </div>
 
 
@@ -226,45 +189,21 @@
 
             <!----- breadcrumb div start ------->
             <div class="row-fluid">
-                <%--<%--%>
-                    <%--String link = "";--%>
-                    <%--link="dialog?type="+ _type +"&editor=";--%>
-                    <%--link += !_editor.isEmpty() ? _editor : "mce_0";--%>
-                    <%--link +="&popup="+_popup+"&lang=";--%>
-                    <%--link += _lang != null ? _lang : "en_EN";--%>
-                    <%--link += "&field_id=";--%>
-                    <%--link += (_field_id != null && !_field_id.equals("0")) ? _field_id : "";--%>
-                    <%--link +="&subfolder=" + _subFolder;--%>
-                    <%--link +="&fldr=";--%>
-                 <%--%>--%>
                 <ul class="breadcrumb">
                     <li class="pull-left">
-                        <a href="#"><i class="icon-home"></i></a>
+                        <a href="dialog?type=<%=_type%>"><i class="icon-home"></i></a>
                     </li>
                     <li>
                         <span class="divider">/</span>
                     </li>
-                    <%--<?php--%>
-                        <%--$bc=explode('/',$subdir);--%>
-                        <%--$tmp_path='';--%>
-                        <%--if(!empty($bc))--%>
-                        <%--foreach($bc as $k=>$b){--%>
-                            <%--$tmp_path.=$b."/";--%>
-                            <%--if($k==count($bc)-2){--%>
-                        <%--?> <li class="active"><?php echo $b?></li><?php--%>
-		                <%--}elseif($b!=""){ ?>--%>
-                          <%--<li><a href="<?php echo $link.$tmp_path?>"><?php echo $b?></a></li><li><span class="divider">/</span></li>--%>
-                        <%--<?php }--%>
-	                       <%--}--%>
-	                    <%--?>--%>
                     <li class="pull-right">
-                        <a id="refresh" href="#"><i class="icon-refresh"></i></a>
+                        <a id="refresh" href="dialog?type=<%=_type%>"><i class="icon-refresh"></i></a>
                     </li>
                 </ul>
             </div>
             <!----- breadcrumb div end ------->
             <div class="row-fluid ff-container">
-               <input type="hidden"  id="s3FolderContents" value=<%=UpreaderApplication.getInstance().getAmazonService().listFolderContents(_cur_dir)%> />
+               <input type="hidden"  id="s3FolderContents" value=<%=UpreaderApplication.getInstance().getAmazonService().listFolderContents(_cur_dir, true)%> />
 
                 <% if(upreaderConst.SHOW_SORTING_BAR.equals("true")){ %>
                 <!-- sorter -->
@@ -279,22 +218,31 @@
 
                 <!--ul class="thumbnails ff-items"-->
                 <ul class="grid cs-style-2 list-view<%=_view%>">
-                    <li ng-repeat="currentFile in currentListing" class="ff-item-type-{{currentFile.ext}}"  data-name="{{currentFile.fileName}}">
+                    <li ng-repeat="currentFile in currentListing" class="ff-item-type-{{currentFile.ext}}"  data-name={{currentFile.fileName}}>
                         <figure>
-                            <a href="javascript:void('')" title="<%=upreaderResources.getString("tinyMCE.fileManager.select")%>" class="link" data-file="{{currentFile.fileName}}" data-type="<%=_type%>" data-field_id="<%=_field_id%>" data-function="">
+                            <a href="javascript:void('')" title="<%=upreaderResources.getString("tinyMCE.fileManager.select")%>"
+                               class="link"
+                               data-file={{currentFile.fileName}}
+                               data-type="<%=_type%>"
+                               data-field_id={{currentFile.link}}
+                                   data-function="<% if(_type.equals("1")) {%>apply_img<%}%>">
                                 <div class="img-precontainer">
                                     <div class="img-container">
                                         <span></span>
-                                        <img width="122" height="91" alt="image" class="original" ng-src="{{currentFile.link}}">
+                                        <img alt="image" class="original" ng-src={{currentFile.link}} />
                                     </div>
                                 </div>
                                 <div class="img-container-mini original-thumb">
-                                    <img alt="image" ng-src="{{currentFile.link}}">
+                                    <img alt="image" ng-src={{currentFile.link}}>
                                 </div>
                             </a>
                             <div class="box">
-                                <h4><a href="javascript:void('')" title="<%=upreaderResources.getString("tinyMCE.fileManager.select")%>" class="link" data-file="{{currentFile.fileName}}" data-type="<%=_type%>" data-field_id="<%=_field_id%>" data-function="">
-                                    {{currentFile.fileName}}</a> </h4>
+                                <h4>
+                                    <a href="javascript:void('')" title="<%=upreaderResources.getString("tinyMCE.fileManager.select")%>"
+                                       class="link" data-file={{currentFile.fileName}} data-type="<%=_type%>"
+                                       data-function=""
+                                       ng-bind="currentFile.fileName"></a>
+                                </h4>
                             </div>
 
                             <div class="file-date" ng-bind="currentFile.lastModified | date:<%=upreaderResources.getString("projectsTable.dateFormatShort")%>"></div>
@@ -302,17 +250,29 @@
                             <div class='file-extension' ng-bind="currentFile.ext"></div>
                             <figcaption>
                                 <form method="post" class="download-form">
-                                    <a title="Download" class="tip-right" href="javascript:void('')"><i class="icon-download"></i></a>
-                                    <?php if($is_img){ ?>
-                                    <a class="tip-right preview" title="<?php echo lang_Preview?>" data-url="<?php echo $src;?>" data-toggle="lightbox" href="#previewLightbox"><i class=" icon-eye-open"></i></a>
-                                    <?php }else{ ?>
-                                    <a class="preview disabled"><i class="icon-eye-open icon-white"></i></a>
-                                    <?php } ?>
-                                    <a href="javascript:void('')" class="tip-left edit-button">
-                                    <i class="icon-pencil icon-white"></i></a>
+                                    <a title="Download" class="tip-right" ng-href={{currentFile.link}} download><i class="icon-download"></i></a>
 
-                                    <a href="javascript:void('')" class="tip-left erase-button <% if(upreaderConst.DELETE_FILE.equals("true")){%> delete-file"<%}%> title="Erase" data-confirm="Confirm Del" data-path="/123" data-thumb="/1234">
-                                    <i class="icon-trash <% if(upreaderConst.DELETE_FILE.equals("true")){%> icon-white"<%}%>"></i>
+                                    <a  class="tip-right preview"
+                                        title="<%=upreaderResources.getString("tinyMCE.fileManager.preview")%>"
+                                        data-url="{{currentFile.link}}"
+                                        data-toggle="lightbox"
+                                        href="#previewLightbox"
+                                        ng-show="currentFile.itIsImage">
+                                        <i class=" icon-eye-open"></i>
+                                    </a>
+                                    <a ng-show="!currentFile.itIsImage" class="preview disabled"><i class="icon-eye-open icon-white"></i></a>
+
+                                    <% if(upreaderConst.EDIT_FILE.equals("true")){%>
+                                        <a href="javascript:void('')" class="tip-left edit-button">
+                                        <i class="icon-pencil icon-white"></i></a>
+                                    <%}%>
+
+                                    <a href="javascript:void('')"
+                                       class="tip-left erase-button <% if(upreaderConst.DELETE_FILE.equals("true")){%> delete-file"<%}%>
+                                       title="<%=upreaderResources.getString("tinyMCE.fileManager.delete")%>"
+                                       data-confirm="<%=upreaderResources.getString("tinyMCE.fileManager.confirmDelete")%>"
+                                       data-path="" data-thumb="">
+                                    <i class="icon-trash <% if(!upreaderConst.DELETE_FILE.equals("true")){%> icon-white"<%}%>"></i>
                                     </a>
                                 </form>
                             </figcaption>

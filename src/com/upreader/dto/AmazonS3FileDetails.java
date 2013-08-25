@@ -14,6 +14,7 @@ public class AmazonS3FileDetails {
     private String fileName;
     private String size;
     private String folder;
+    private boolean itIsImage;
     private Date lastModified;
 
     public AmazonS3FileDetails(AmazonS3FileDetailsBuilder builder){
@@ -23,7 +24,8 @@ public class AmazonS3FileDetails {
         this.fileName = builder.fileName;
         this.size     = builder.size;
         this.folder   = builder.folder;
-        this.lastModified     = builder.lastModified;
+        this.itIsImage    = builder.itIsImage;
+        this.lastModified = builder.lastModified;
     }
 
     public String getKey() {
@@ -48,6 +50,10 @@ public class AmazonS3FileDetails {
 
     public String getFolder() {
         return folder;
+    }
+
+    public boolean isItIsImage() {
+        return itIsImage;
     }
 
     public Date getLastModified(){

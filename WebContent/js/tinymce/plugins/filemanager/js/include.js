@@ -286,7 +286,7 @@ function apply_link(file,type_file,external){
     var path = $('#cur_dir').val();
     var base_url = $('#base_url').val();
     var track = $('#track').val().replace('[','').replace(']','');
-    
+
     if (external=="") {
 		$('.mce-link_'+track, window_parent.document).val(base_url+path+file);
 		var closed = $('.mce-filemanager', window_parent.document);
@@ -312,42 +312,38 @@ function getImgSize(imgSrc)
 
 }
 
-function apply_img(file,type_file,external){
-    if ($('#popup').val()==1) var window_parent=window.opener; else var window_parent=window.parent;
-    var path = $('#cur_dir').val();
-    var base_url = $('#base_url').val();
+function apply_img(file,type_file,fileUrl){
+    var window_parent=window.parent;
     var track = $('#track').val().replace('[','').replace(']','');
-    if (external=="") {		
-		var target = $('.mce-img_'+track, window_parent.document);
-		var alt = $('.mce-alt_img_'+track, window_parent.document);
-		
-		var closed = $('.mce-filemanager', window_parent.document);
-		$(target).val(base_url+path+file);
-		$(alt).val(file.substr(0, file.lastIndexOf('.')));
-		
-		if($('#image_dimension_passing').val()==1){
-		    $.ajax({
-			async: true,
-			url: "ajax_calls.php?action=image_size",
-			type: "POST",
-			data: {path: path+file}
-		    }).done(function( msg ) {
-			var info=JSON.parse(msg);
-			if (typeof info[0] != 'undefined') {
-			    var width = $('.mce-width_img_'+track, window_parent.document);
-			    var height = $('.mce-height_img_'+track, window_parent.document);
-			    $(width).val(info[0]);
-			    $(height).val(info[1]);
-			$(closed).find('.mce-close').trigger('click');
-			}
-		    });
-		}else{
-		    $(closed).find('.mce-close').trigger('click');
-		}
+    var target = $('.mce-img_'+track, window_parent.document);
+    var alt = $('.mce-alt_img_'+track, window_parent.document);
+
+    var closed = $('.mce-filemanager', window_parent.document);
+    $(target).val(fileUrl);
+    $(alt).val(file.substr(0, file.lastIndexOf('.')));
+
+    if($('#image_dimension_passing').val()==1){
+    /*
+     * Passing the width and height of the image in the image popup.
+     */
+//        $.ajax({
+//        async: true,
+//        url: "ajax_calls.php?action=image_size",
+//        type: "POST",
+//        data: {path: path+file}
+//        }).done(function( msg ) {
+//        var info=JSON.parse(msg);
+//        if (typeof info[0] != 'undefined') {
+//            var width = $('.mce-width_img_'+track, window_parent.document);
+//            var height = $('.mce-height_img_'+track, window_parent.document);
+//            $(width).val(info[0]);
+//            $(height).val(info[1]);
+//        $('.mce-close').trigger('click');
+//        }
+//        });
     }else{
-		var target = $('#'+external, window_parent.document);
-		$(target).val(base_url+path+file);
-		close_window();
+        $(closed).find('.mce-close').trigger('click');
+        $('.mce-widget.mce-btn.mce-primary.mce-first.mce-abs-layout-item', window_parent.document).find("button").click();
     }
 }
 
@@ -356,7 +352,7 @@ function apply_video(file,type_file,external){
     var path = $('#cur_dir').val();
     var base_url = $('#base_url').val();
     var track = $('#track').val().replace('[','').replace(']','');
-    
+
     if (external=="") {
 		var target = $('.mce-video'+ type_file +'_'+track,window_parent.document);
 		var closed = $('.mce-filemanager',window_parent.document);
@@ -494,7 +490,6 @@ function sortUnorderedList(ul, sortDescending,sort_field) {
     $.each(lis,function(index){
 	var _this=$(this);
 	var value=_this.find(sort_field).val();
-	console.log(index+" "+value);
 	if ($.isNumeric(value)) {
 	    value=parseFloat(value);
 	    while (typeof vals[value] !== "undefined" &&  vals[value] ) {

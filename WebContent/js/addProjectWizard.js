@@ -43,7 +43,6 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
                 $scope.wizardData = data;
                 if(success !== null && success !== undefined){success(data)};
         });
-
     };
 
     /*
@@ -59,6 +58,19 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
         $scope.wizardData.step2_tags.splice( idx, 1 );
     };
 
+    $scope.uploadStorySample = function(){
+        $scope.uploadFileType = "3";
+        $('.uploader').show(500);
+    };
+
+    $scope.uploadStory = function(){
+        $scope.uploadFileType = "2";
+        $('.uploader').show(500);
+    };
+
+    $scope.closeUploader = function(){
+        $('.uploader').hide(500);
+    };
     /*
      * Generic
      */

@@ -124,6 +124,11 @@ public abstract class BasicPathHandler implements Configurable {
 		return error(400, errorMessage);
 	}
 
+    public String serverError(String errorMessage) {
+        context().setStatus(500);
+        return errorMessage;
+    }
+
 	public boolean redirect(String url) {
 		return context().redirect(url);
 	}

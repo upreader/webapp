@@ -1,5 +1,7 @@
 package com.upreader.helper;
 
+import com.upreader.UpreaderConstants;
+
 /**
  * Created
  * User: Razvan.Ionescu
@@ -23,7 +25,13 @@ public class AmazonS3Helper {
         }
         final int parentLen = parent.length();
         String fileName = child.substring(parentLen);
-        return fileName.substring(fileName.indexOf('.'));
+        return fileName.substring(fileName.indexOf('.')+1);
+    }
+
+    public static boolean isImage(final String parent, final String child){
+        String ext = getExt(parent, child);
+
+        return UpreaderConstants.EXT_IMG.contains(ext);
     }
 
     public static boolean isImmediateDescendant(final String parent, final String child) {

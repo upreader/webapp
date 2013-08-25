@@ -2,121 +2,138 @@
 
 /* General styles */
 
-.addproject-wizard-small-input-number{
+.addproject-wizard-small-input-number {
     font-size: 15px;
     font-weight: bold;
     width: 60px;
 }
 
-.text-align-center{
+.text-align-center {
     text-align: center;
 }
 
-.vertical-align-top{
+.vertical-align-top {
     vertical-align: top;
 }
 
-.small-text-font{
+.small-text-font {
     font-size: 13px;
 }
 
-.bold-text{
+.bold-text {
     font-weight: bolder;
 }
 
-.full-width{
+.full-width {
     width: 100%;
 }
 
-.resize-only-vertical{
+.resize-only-vertical {
     resize: vertical;
 }
 
-.resize-off{
+.resize-off {
     resize: none;
 }
 
-.title{
+.title {
     padding-top: 25px;
     padding-bottom: 20px;
     font-size: 24px;
 }
 
-.title-level2{
+.title-level2 {
     padding-top: 20px;
     padding-bottom: 20px;
     font-size: 20px;
 }
 
-.title-level3{
+.title-level3 {
     padding-top: 15px;
     padding-bottom: 15px;
     font-size: 18px;
 }
 
-.half-size-column{
+.half-size-column {
     width: 49.5%;
 }
 
-.one-third-size-column{
+.one-third-size-column {
     width: 33%;
 }
 
-.thirty-percent-size-column{
+.thirty-percent-size-column {
     width: 30%;
 }
 
-.quarter-size-column{
+.quarter-size-column {
     width: 24.5%;
 }
 
-.one-pixel-edge-full-borders{
+.one-pixel-edge-full-borders {
     border-top: 1px black solid;
     border-bottom: 1px black solid;
     border-left: 1px black solid;
     border-right: 1px black solid;
 }
 
-.one-pixel-edge-borders{
+.one-pixel-edge-borders {
     border-left: 1px black solid;
     border-right: 1px black solid;
 }
 
-.one-pixel-left-border{
+.one-pixel-left-border {
     border-left: 1px black solid;
 }
 
-.one-pixel-right-border{
+.one-pixel-right-border {
     border-right: 1px black solid;
 }
 
-.ten-pixel-padding-bottom{
+.ten-pixel-padding-bottom {
     padding-bottom: 10px;
 }
 
-.gray-background{
+.gray-background {
     background-color: #CCCCCC;
 }
 
-.float-right{
+.float-right {
     float: right;
 }
 
-.page-header{
+.page-header {
     border: none;
 }
 
-.inline-block{
+.inline-block {
     display: inline-block;
 }
 
-.display-block{
+.display-block {
     display: block;
 }
 
-.padding-bottom-15px{
+.padding-bottom-15px {
     padding-bottom: 15px;
 }
+
+.uploader {
+
+    top: 50px;
+    left: 14px;
+    margin: auto;
+    width: 50%;
+    z-index: 9999;
+    overflow: hidden;
+    background: #eee;
+    padding-top: 20px;
+    border: 1px solid #ccc;
+    display: none;
+    -webkit-box-shadow: 0 0 10px 0 rgba(1, 1, 1, 0.5);
+    box-shadow: 0 0 10px 0 rgba(1, 1, 1, 0.5)
+}
+
 /**
  * Add project wizard pages breadcrumbs
  *
@@ -129,49 +146,52 @@
  *
  * Breadcrumbs are using both width and height being a sprite.
  */
-.page-addproject-wizard{
+.page-addproject-wizard {
     margin: 0 auto;
     width: 1024px;
-    font-family:Comic Sans MS,Verdana,Helvetica, sans-serif;
+    font-family: Comic Sans MS, Verdana, Helvetica, sans-serif;
     text-align: justify;
 }
-    .addproject-wizard-breadcrumbs-wrapper{
-        text-align: center;
-    }
-        .addproject-wizard-breadcrumbs-step1{
-            width:930px;
-            height:50px;
-            background:url(../images/content/addprjsteps.png) 0 0 no-repeat;
-        }
-        .addproject-wizard-breadcrumbs-step2{
-            width:930px;
-            height:50px;
-            background:url(../images/content/addprjsteps.png) 0 -55px no-repeat;
-        }
-        .addproject-wizard-breadcrumbs-step3{
-            width:930px;
-            height:50px;
-            background:url(../images/content/addprjsteps.png) 0 -110px no-repeat;
-        }
-        .addproject-wizard-breadcrumbs-step4{
-            width:930px;
-            height:50px;
-            background:url(../images/content/addprjsteps.png) 0 -165px no-repeat;
-        }
-        .addproject-wizard-breadcrumbs-step5{
-            width:930px;
-            height:50px;
-            background:url(../images/content/addprjsteps.png) 0 -220px no-repeat;
-        }
-        .addproject-wizard-breadcrumbs-step6{
-            width:930px;
-            height:50px;
-            background:url(../images/content/addprjsteps.png) 0 -275px no-repeat;
-        }
 
+.addproject-wizard-breadcrumbs-wrapper {
+    text-align: center;
+}
 
+.addproject-wizard-breadcrumbs-step1 {
+    width: 930px;
+    height: 50px;
+    background: url(../images/content/addprjsteps.png) 0 0 no-repeat;
+}
 
+.addproject-wizard-breadcrumbs-step2 {
+    width: 930px;
+    height: 50px;
+    background: url(../images/content/addprjsteps.png) 0 -55px no-repeat;
+}
 
+.addproject-wizard-breadcrumbs-step3 {
+    width: 930px;
+    height: 50px;
+    background: url(../images/content/addprjsteps.png) 0 -110px no-repeat;
+}
+
+.addproject-wizard-breadcrumbs-step4 {
+    width: 930px;
+    height: 50px;
+    background: url(../images/content/addprjsteps.png) 0 -165px no-repeat;
+}
+
+.addproject-wizard-breadcrumbs-step5 {
+    width: 930px;
+    height: 50px;
+    background: url(../images/content/addprjsteps.png) 0 -220px no-repeat;
+}
+
+.addproject-wizard-breadcrumbs-step6 {
+    width: 930px;
+    height: 50px;
+    background: url(../images/content/addprjsteps.png) 0 -275px no-repeat;
+}
 
 /**
  * Add project wizard pages header
@@ -223,45 +243,51 @@
     width: 20%;
     display: inline-block;
 }
-    .user-profile-photo-wrapper {
-        display: inline-block;
-    }
-        .user-profile-photo {
-            display: block;
-        }
-            .user-profile-photo-img {
-                display: block;
-                width: 100px !important;
-                height: 130px !important;
-            }
-    .user-profile-details-wrapper {
-        display: inline-block;
-        overflow: hidden;
-        margin-top: 15px;
-        margin-left: 5px;
-    }
-        .user-profile-details {
-            vertical-align: middle;
-        }
-            .user-profile-name,
-            .user-profile-rating,
-            .user-profile-profile,
-            .user-profile-profile-bar {
-                display: block;
-            }
-            .user-profile-profile {
-                margin-top: 10px;
-            }
 
-.user-summary-info-wrapper{
+.user-profile-photo-wrapper {
+    display: inline-block;
+}
+
+.user-profile-photo {
+    display: block;
+}
+
+.user-profile-photo-img {
+    display: block;
+    width: 100px !important;
+    height: 130px !important;
+}
+
+.user-profile-details-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+.user-profile-details {
+    vertical-align: middle;
+}
+
+.user-profile-name,
+.user-profile-rating,
+.user-profile-profile,
+.user-profile-profile-bar {
+    display: block;
+}
+
+.user-profile-profile {
+    margin-top: 10px;
+}
+
+.user-summary-info-wrapper {
     width: 79%;
     display: inline-block;
 }
-    .user-summary-info{
-        display: block;
-    }
 
-
+.user-summary-info {
+    display: block;
+}
 
 /**
  * Add project wizard pages footer
@@ -296,93 +322,94 @@
     padding-top: 25px;
     padding-bottom: 20px;
 }
-    .addproject-wizard-sitemap-wrapper{
-        width: 36%;
-        display: inline-block;
-    }
 
-        .addproject-wizard-sitemap{
-            text-align: center;
-            display: block;
-        }
-    .addproject-wizard-footer-first-image-wrapper{
-        width: 32%;
-        display: inline-block;
-    }
-        .addproject-wizard-footer-first-image{
-            display: block;
-        }
-    .addproject-wizard-footer-second-image-wrapper{
-         width: 31%;
-         margin-top: 1%;
-         display: inline-block;
-     }
-        .addproject-wizard-footer-second-image{
-            display: block;
-        }
+.addproject-wizard-sitemap-wrapper {
+    width: 36%;
+    display: inline-block;
+}
 
+.addproject-wizard-sitemap {
+    text-align: center;
+    display: block;
+}
 
+.addproject-wizard-footer-first-image-wrapper {
+    width: 32%;
+    display: inline-block;
+}
 
+.addproject-wizard-footer-first-image {
+    display: block;
+}
 
+.addproject-wizard-footer-second-image-wrapper {
+    width: 31%;
+    margin-top: 1%;
+    display: inline-block;
+}
+
+.addproject-wizard-footer-second-image {
+    display: block;
+}
 
 /* Navigation Buttons between pages */
-.addproject-wizard-next-step-button-wrapper{
+.addproject-wizard-next-step-button-wrapper {
     height: 31px;
 }
-    .addproject-wizard-next-step-button{
-        background:url(../images/content/en/library-next.jpg) 0 0 no-repeat;
-        cursor: pointer;
-        width: 79px;
-        height: 31px;
-        float: right;
-    }
-    .addproject-wizard-next-step-disabled{
-        background:url(../images/content/en/library-next.jpg) 0 0 no-repeat;
-        cursor: pointer;
-        width: 79px;
-        height: 31px;
-        float: right;
-    }
 
-.addproject-wizard-prev-step-button-wrapper{
+.addproject-wizard-next-step-button {
+    background: url(../images/content/en/library-next.jpg) 0 0 no-repeat;
+    cursor: pointer;
+    width: 79px;
+    height: 31px;
+    float: right;
+}
+
+.addproject-wizard-next-step-disabled {
+    background: url(../images/content/en/library-next.jpg) 0 0 no-repeat;
+    cursor: pointer;
+    width: 79px;
+    height: 31px;
+    float: right;
+}
+
+.addproject-wizard-prev-step-button-wrapper {
     height: 31px;
 }
-.addproject-wizard-prev-step-button{
-    background:url(../images/content/en/library-prev.jpg) 0 0 no-repeat;
+
+.addproject-wizard-prev-step-button {
+    background: url(../images/content/en/library-prev.jpg) 0 0 no-repeat;
     cursor: pointer;
     width: 79px;
     height: 31px;
     float: left;
 }
 
-.addproject-wizard-skip-step-button-wrapper{
+.addproject-wizard-skip-step-button-wrapper {
     height: 31px;
 }
-    .addproject-wizard-skip-step-button{
-        background:url(../images/content/en/library-next.jpg) 0 0 no-repeat;
-        cursor: pointer;
-        width: 79px;
-        height: 31px;
-        float: right;
-    }
 
-.addproject-wizard-postit-button-wrapper{
+.addproject-wizard-skip-step-button {
+    background: url(../images/content/en/library-next.jpg) 0 0 no-repeat;
+    cursor: pointer;
+    width: 79px;
+    height: 31px;
+    float: right;
+}
+
+.addproject-wizard-postit-button-wrapper {
     height: 31px;
 }
-    .addproject-wizard-postit-button{
-        background:url(../images/content/en/postProject.png) 0 0 no-repeat;
-        cursor: pointer;
-        width: 79px;
-        height: 31px;
-        float: right;
-    }
+
+.addproject-wizard-postit-button {
+    background: url(../images/content/en/postProject.png) 0 0 no-repeat;
+    cursor: pointer;
+    width: 79px;
+    height: 31px;
+    float: right;
+}
 
 /* Step 1 specific*/
-
-
-
-
-
 
 /* Page 2 specific */
 
@@ -391,27 +418,31 @@
  * Story details grid orchestrating the children alignment
  *
  */
-.story-details-wrapper{
+.story-details-wrapper {
     width: 100%;
     padding-bottom: 20px;
 }
-    .story-details-image-wrapper{
-        width: 30%;
-        display: inline-block;
-    }
-    .story-details-form-wrapper{
-        width: 69%;
-        display: inline-block;
-    }
-        .story-details-form-col1-wrapper{
-            width: 35%;
-            line-height: 3;
-            display: inline-block;
-        }
-        .story-details-form-col2-wrapper{
-            width: 64%;
-            display: inline-block;
-        }
+
+.story-details-image-wrapper {
+    width: 30%;
+    display: inline-block;
+}
+
+.story-details-form-wrapper {
+    width: 69%;
+    display: inline-block;
+}
+
+.story-details-form-col1-wrapper {
+    width: 35%;
+    line-height: 3;
+    display: inline-block;
+}
+
+.story-details-form-col2-wrapper {
+    width: 64%;
+    display: inline-block;
+}
 
 .tag {
     background-color: #ddd;
@@ -431,295 +462,333 @@
     padding-right: 5px;
 }
 
-.story-synopsys-wrapper{
+.story-synopsys-wrapper {
     width: 100%;
 }
 
-.story-serial-setup-wrapper{
+.story-serial-setup-wrapper {
     width: 100%;
 }
-    .story-serial-count-values-wrapper{
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
-        .story-serial-chapters-count-wrapper{
-            width: 33%;
-            display: inline-block;
-        }
-        .story-serial-word-count-wrapper{
-            width: 33%;
-            display: inline-block;
-        }
-        .story-serial-chapter-delay-wrapper{
-            width: 33%;
-            display: inline-block;
-        }
 
-    .story-upload-wrapper{
-        padding-bottom: 20px;
-    }
-        .story-upload{
-            border: 2px solid  #000;
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-            .story-upload-sample-wrapper,
-            .story-upload-story-wrapper{
-                width: 49%;
-                display: inline-block;
-            }
-                .story-upload-button{
-                    cursor:pointer;display:inline-block;
-                    background:#ffffff no-repeat;
-                    padding:4px 14px;text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);color:#333;
-                    font-size:18px;
-                    line-height:16px;
-                    border:1px solid #ccc;border-bottom-color:#bbb;
-                    width:277px;
-                }
-                    .story-upload-sample-button:hover{
-                        background-position:0 -15px;color:#333;text-decoration:none;
-                    }
+.story-serial-count-values-wrapper {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
 
-    .story-serial-item-end {
-        text-align: center;
-    }
+.story-serial-chapters-count-wrapper {
+    width: 33%;
+    display: inline-block;
+}
 
-.story-backstories-items-wrapper{
+.story-serial-word-count-wrapper {
+    width: 33%;
+    display: inline-block;
+}
+
+.story-serial-chapter-delay-wrapper {
+    width: 33%;
+    display: inline-block;
+}
+
+.story-upload-wrapper {
     padding-bottom: 20px;
 }
-    .story-backstories-title{
-        display: inline-block;
-    }
-    .story-backstories-add-item{
-        float: right;
-        padding-top: 20px;
-        display: inline-block;
-    }
-    .story-backstories-about{
-        display: block;
-    }
 
-    .story-backstory-item-wrapper{
-        width: 100%;
-    }
-        .story-backstory-item-content{
-            padding-bottom: 15px;
-        }
-            .story-backstory-item-video-content{
-                text-align: center;
-            }
-            .story-backstory-item-generic-content{
-                display: inline-block;
-            }
-            .story-backstory-item-end{
-                text-align: center;
-            }
+.story-upload {
+    border: 2px solid #000;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
 
+.story-upload-sample-wrapper,
+.story-upload-story-wrapper {
+    width: 49%;
+    display: inline-block;
+}
 
+.story-upload-button {
+    cursor: pointer;
+    display: inline-block;
+    background: #ffffff no-repeat;
+    padding: 4px 14px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    color: #333;
+    font-size: 18px;
+    line-height: 16px;
+    border: 1px solid #ccc;
+    border-bottom-color: #bbb;
+    width: 277px;
+}
 
+.story-upload-sample-button:hover {
+    background-position: 0 -15px;
+    color: #333;
+    text-decoration: none;
+}
 
+.story-serial-item-end {
+    text-align: center;
+}
+
+.story-backstories-items-wrapper {
+    padding-bottom: 20px;
+}
+
+.story-backstories-title {
+    display: inline-block;
+}
+
+.story-backstories-add-item {
+    float: right;
+    padding-top: 20px;
+    display: inline-block;
+}
+
+.story-backstories-about {
+    display: block;
+}
+
+.story-backstory-item-wrapper {
+    width: 100%;
+}
+
+.story-backstory-item-content {
+    padding-bottom: 15px;
+}
+
+.story-backstory-item-video-content {
+    text-align: center;
+}
+
+.story-backstory-item-generic-content {
+    display: inline-block;
+}
+
+.story-backstory-item-end {
+    text-align: center;
+}
 
 /* Step 3 specific*/
-.addproject-wizard-story-terms-wrapper{
+.addproject-wizard-story-terms-wrapper {
     padding-bottom: 10px;
 }
-        .addproject-wizard-story-term-upload-wrapper{
-            width: 100%;
-        }
-            .addproject-wizard-story-term-upload-button-wrapper{
-                width: 40%;
-                padding-top: 1%;
-                display: inline-block;
-            }
-                .addproject-wizard-story-term-upload-button{
-                    display: inline-block;
-                    float: right;
-                    width: 165px;
-                    height: 28px;
-                    cursor: pointer;
-                    background:url(../images/content/en/uploadProofFile.png) 0 0 no-repeat;
-                }
-            .addproject-wizard-story-term-upload-fieldset-wrapper{
-                width: 59%;
-                display:inline-block;
-            }
-                .addproject-wizard-story-term-upload-fieldset{
-                    border: 2px black solid;
-                }
-                .addproject-wizard-story-term-upload-fieldset-legend{
-                    margin-left: 20px;
-                }
 
-        .story-term-sales-projections{
-            width: 100%;
-            border: 3px black solid;
-        }
-            .story-term-sales-projections-column{
-                display:inline-block;
-            }
+.addproject-wizard-story-term-upload-wrapper {
+    width: 100%;
+}
 
-        .story-term-derrivatives-progressbar{
-            width: 100%;
-            height: 25px;
-            border: 3px black solid;
-        }
-        .story-term-derrivatives-progressbar-milestones{
-            width: 100%;
-            height: 25px;
-        }
-            .story-term-derrivatives-progressbar-filled{
-                background-color: #CCCCCC;
-            }
+.addproject-wizard-story-term-upload-button-wrapper {
+    width: 40%;
+    padding-top: 1%;
+    display: inline-block;
+}
 
-            .story-term-derrivatives-progressbar-col1{
-                width: 10%;
-                display: inline-block;
-                float:left;
-            }
-            .story-term-derrivatives-progressbar-col2{
-                width: 20%;
-                display: inline-block;
-                float:left;
-            }
-            .story-term-derrivatives-progressbar-col3{
-                width: 15%;
-                display: inline-block;
-                float:left;
-            }
-            .story-term-derrivatives-progressbar-col4{
-                width: 20%;
-                display: inline-block;
-                float:left;
-            }
-            .story-term-derrivatives-progressbar-col5{
-                width: 20%;
-                display: inline-block;
-                float:left;
-            }
-            .story-term-derrivatives-progressbar-col6{
-                display: inline-block;
-                float:left;
-            }
-            .story-term-derrivatives-progressbar-milestones-col1{
-                margin-left: 10%;
-                display: inline-block;
-                float:left;
-            }
-            .story-term-derrivatives-progressbar-milestones-col2{
-                margin-left: 14%;
-                display: inline-block;
-                float:left;
-            }
-            .story-term-derrivatives-progressbar-milestones-col3{
-                margin-left: 11%;
-                display: inline-block;
-                float:left;
-            }
-            .story-term-derrivatives-progressbar-milestones-col4{
-                margin-left: 10%;
-                display: inline-block;
-                float:left;
-            }
-            .story-term-derrivatives-progressbar-milestones-col5{
-                margin-left: 14%;
-                display: inline-block;
-                float:left;
-            }
+.addproject-wizard-story-term-upload-button {
+    display: inline-block;
+    float: right;
+    width: 165px;
+    height: 28px;
+    cursor: pointer;
+    background: url(../images/content/en/uploadProofFile.png) 0 0 no-repeat;
+}
 
+.addproject-wizard-story-term-upload-fieldset-wrapper {
+    width: 59%;
+    display: inline-block;
+}
 
+.addproject-wizard-story-term-upload-fieldset {
+    border: 2px black solid;
+}
 
+.addproject-wizard-story-term-upload-fieldset-legend {
+    margin-left: 20px;
+}
 
+.story-term-sales-projections {
+    width: 100%;
+    border: 3px black solid;
+}
+
+.story-term-sales-projections-column {
+    display: inline-block;
+}
+
+.story-term-derrivatives-progressbar {
+    width: 100%;
+    height: 25px;
+    border: 3px black solid;
+}
+
+.story-term-derrivatives-progressbar-milestones {
+    width: 100%;
+    height: 25px;
+}
+
+.story-term-derrivatives-progressbar-filled {
+    background-color: #CCCCCC;
+}
+
+.story-term-derrivatives-progressbar-col1 {
+    width: 10%;
+    display: inline-block;
+    float: left;
+}
+
+.story-term-derrivatives-progressbar-col2 {
+    width: 20%;
+    display: inline-block;
+    float: left;
+}
+
+.story-term-derrivatives-progressbar-col3 {
+    width: 15%;
+    display: inline-block;
+    float: left;
+}
+
+.story-term-derrivatives-progressbar-col4 {
+    width: 20%;
+    display: inline-block;
+    float: left;
+}
+
+.story-term-derrivatives-progressbar-col5 {
+    width: 20%;
+    display: inline-block;
+    float: left;
+}
+
+.story-term-derrivatives-progressbar-col6 {
+    display: inline-block;
+    float: left;
+}
+
+.story-term-derrivatives-progressbar-milestones-col1 {
+    margin-left: 10%;
+    display: inline-block;
+    float: left;
+}
+
+.story-term-derrivatives-progressbar-milestones-col2 {
+    margin-left: 14%;
+    display: inline-block;
+    float: left;
+}
+
+.story-term-derrivatives-progressbar-milestones-col3 {
+    margin-left: 11%;
+    display: inline-block;
+    float: left;
+}
+
+.story-term-derrivatives-progressbar-milestones-col4 {
+    margin-left: 10%;
+    display: inline-block;
+    float: left;
+}
+
+.story-term-derrivatives-progressbar-milestones-col5 {
+    margin-left: 14%;
+    display: inline-block;
+    float: left;
+}
 
 /* Step 4 specific */
-.addproject-wizard-story-promos-wrapper{
+.addproject-wizard-story-promos-wrapper {
     padding-bottom: 10px;
 }
-    .addproject-wizard-story-promo-wrapper{
-        padding-bottom: 10px;
-    }
-        .addproject-wizard-story-promo-content{
-            border: 3px black solid;
-        }
-            .addproject-wizard-story-promo-content-column{
-               display: inline-block;
-               vertical-align: middle;
-            }
-                /*
-                 * Using inline blocks the background on the last column is set only on the content.
-                 * The column size is represented by the third column (with background). If the content from
-                 * another column reaches the hight the background on the last column will show white spaces.
-                 */
-                .addproject-wizard-story-promo-content-column-sizer{
-                    height: 250px;
-                }
-                    /*
-                     * Helper class used for vertical alignment of the actual content
-                     */
-                    .addproject-wizard-story-promo-content-column-sizer-ref{
-                        display: inline-block;
-                        height: 250px;
-                        vertical-align: middle;
-                    }
-                    /*
-                     *  The actual content from the third column
-                     */
-                    .addproject-wizard-story-promo-content-column-sizer-content{
-                        display: inline-block;
-                        vertical-align: middle;
-                    }
 
+.addproject-wizard-story-promo-wrapper {
+    padding-bottom: 10px;
+}
 
+.addproject-wizard-story-promo-content {
+    border: 3px black solid;
+}
 
+.addproject-wizard-story-promo-content-column {
+    display: inline-block;
+    vertical-align: middle;
+}
 
+/*
+ * Using inline blocks the background on the last column is set only on the content.
+ * The column size is represented by the third column (with background). If the content from
+ * another column reaches the hight the background on the last column will show white spaces.
+ */
+.addproject-wizard-story-promo-content-column-sizer {
+    height: 250px;
+}
 
+/*
+ * Helper class used for vertical alignment of the actual content
+ */
+.addproject-wizard-story-promo-content-column-sizer-ref {
+    display: inline-block;
+    height: 250px;
+    vertical-align: middle;
+}
+
+/*
+ *  The actual content from the third column
+ */
+.addproject-wizard-story-promo-content-column-sizer-content {
+    display: inline-block;
+    vertical-align: middle;
+}
 
 /* Step 5 specific */
-.addproject-wizard-story-payment-methods-wrapper{
+.addproject-wizard-story-payment-methods-wrapper {
     padding-bottom: 10px;
 }
-    .addproject-wizard-story-payment-methods-toolbar{
-        width: 100%;
-    }
-        .addproject-wizard-story-payment-methods-list{
-            display: inline-block;
-            width: 69%;
-        }
-            .addproject-wizard-story-payment-method-item{
-                display: inline-block;
-            }
-        .addproject-wizard-story-payment-method-contract{
-            display: inline-block;
-            width: 30%;
-        }
 
-    .addproject-wizard-story-payment-methods-form{
-        display: inline-block;
-        width: 54%;
-    }
-    .addproject-wizard-story-payment-summary{
-        display: inline-block;
-        width: 45%;
-    }
-        .addproject-wizard-story-payment-summary-column{
-            display: inline-block;
-            text-align: center;
-            vertical-align: middle;
-        }
-            .addproject-wizard-story-payment-summary-column-text{
-                display: inline-block;
-                width: 60%;
-                word-wrap: break-word;
-            }
-            .addproject-wizard-story-payment-summary-column-value{
-                display: inline-block;
-                width: 30%;
-                text-align: end;
-                word-wrap: break-word;
-            }
+.addproject-wizard-story-payment-methods-toolbar {
+    width: 100%;
+}
 
+.addproject-wizard-story-payment-methods-list {
+    display: inline-block;
+    width: 69%;
+}
 
+.addproject-wizard-story-payment-method-item {
+    display: inline-block;
+}
 
+.addproject-wizard-story-payment-method-contract {
+    display: inline-block;
+    width: 30%;
+}
+
+.addproject-wizard-story-payment-methods-form {
+    display: inline-block;
+    width: 54%;
+}
+
+.addproject-wizard-story-payment-summary {
+    display: inline-block;
+    width: 45%;
+}
+
+.addproject-wizard-story-payment-summary-column {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.addproject-wizard-story-payment-summary-column-text {
+    display: inline-block;
+    width: 60%;
+    word-wrap: break-word;
+}
+
+.addproject-wizard-story-payment-summary-column-value {
+    display: inline-block;
+    width: 30%;
+    text-align: end;
+    word-wrap: break-word;
+}
 
 /* Step 6 specific */
 /* in file projectcontent.css */

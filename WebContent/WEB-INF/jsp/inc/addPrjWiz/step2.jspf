@@ -74,13 +74,57 @@
         <div class="story-upload-wrapper">
             <div class="story-upload">
                 <div class="story-upload-sample-wrapper  text-align-center">
-                    <button class="story-upload-button"><%=upreaderResources.getString("addProjectWizard.uploadSampleButtonText")%></button>
+                    <button ng-click="uploadStorySample()" class="story-upload-button"><%=upreaderResources.getString("addProjectWizard.uploadSampleButtonText")%></button>
                 </div>
                 <div class="story-upload-story-wrapper  text-align-center">
-                    <button class="story-upload-button"><%=upreaderResources.getString("addProjectWizard.uploadStoryButtonText")%></button>
+                    <button ng-click="uploadStory()" class="story-upload-button"><%=upreaderResources.getString("addProjectWizard.uploadStoryButtonText")%></button>
                 </div>
             </div>
-        </div>
+            <div class="uploader">
+                <script>
+                    var ext_books=new Array(<%=UpreaderConstants.EXT_BOOKS%>);
+                    var allowed_ext=new Array(ext_books);
+
+                    //dropzone config
+                    Dropzone.options.storyDropzoneUpload = {
+                        init: function() {
+                            var _this = this;
+                            $("button.close-uploader").click( function() {
+                                _this.removeAllFiles();
+                            });
+                        },
+                        maxFiles: 1,
+                        dictDefaultMessage:  "<%=upreaderResources.getString("tinyMCE.fileManager.uploadMessage")%>",
+                        dictInvalidFileType: "<%=upreaderResources.getString("tinyMCE.fileManager.langErrorExtension")%>",
+                        dictFileTooBig: "<%=upreaderResources.getString("tinyMCE.fileManager.fileTooBig")%>",
+                        dictResponseError: "<%=upreaderResources.getString("tinyMCE.fileManager.serverError")%>",
+                        paramName: "file", // The name that will be used to transfer the file
+                        maxFilesize: <%=UpreaderConstants.MAX_UPLOAD_SIZE%>, // MB
+                        accept: function(file, done) {
+                            var extension=file.name.split('.').pop().toLowerCase();
+                            if ($.inArray(extension, allowed_ext) > -1) {
+                                done();
+                            }
+                            else { done("<%=upreaderResources.getString("tinyMCE.fileManager.langErrorExtension")%>"); }
+                        }
+                    };
+                </script>
+                <center>
+                        <button ng-click="closeUploader()" class="btn btn-inverse close-uploader">
+                        <%=upreaderResources.getString("addProjectWizard.closeUploader")%>
+                        <i class="icon-backward icon-white"></i>
+                </center>
+                <div class="space10"></div><div class="space10"></div>
+
+                <div class="tabbable upload-tabbable">
+                    <div class="tab-pane active" id="tab1">
+                        <form action="/upreader/i/s/p" method="post" enctype="multipart/form-data" id="storyDropzoneUpload" class="dropzone">
+                            <input type="hidden" name="do" value="addingProjectUploadFile"/>
+                            <input type="hidden" name="fileType" ng-model="uploadFileType"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
         <nav class="addproject-wizard-skip-step-button-wrapper">
             <button class="addproject-wizard-skip-step-button"></button>

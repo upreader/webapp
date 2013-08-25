@@ -2,6 +2,7 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" isELIgnored="false"%>
 <jsp:useBean id="upreader" class="com.upreader.UpreaderApplication" scope="session"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.upreader.UpreaderConstants" %>
 <%@ page import="java.util.ResourceBundle" %>
 
 <%
@@ -20,6 +21,7 @@
     <link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/addprojectwizard.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/projectcontent.css" media="screen"/>
     <link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/tagging.css" media="screen"/>
+    <link href="${pageContext.request.contextPath}/js/tinymce/plugins/filemanager/css/dropzone.css" type="text/css" rel="stylesheet" />
 
     <!--Scripts-->
     <!-- JQuery -->
@@ -30,6 +32,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-bootstrap-tpls-0.5.0.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/angular-ui-tinymce/tinymce.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/tinymce/plugins/filemanager/js/dropzone.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/addProjectWizard.js"></script>
 </head>
 
