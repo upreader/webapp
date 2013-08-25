@@ -109,11 +109,11 @@
                         }
                     };
                 </script>
-                <center>
+                <div class="text-align-center padding-bottom-15px">
                         <button ng-click="closeUploader()" class="btn btn-inverse close-uploader">
                         <%=upreaderResources.getString("addProjectWizard.closeUploader")%>
                         <i class="icon-backward icon-white"></i>
-                </center>
+                </div>
                 <div class="space10"></div><div class="space10"></div>
 
                 <div class="tabbable upload-tabbable">
@@ -126,12 +126,13 @@
                 </div>
             </div>
 
-        <nav class="addproject-wizard-skip-step-button-wrapper">
-            <button class="addproject-wizard-skip-step-button"></button>
-        </nav>
+            <nav class="addproject-wizard-skip-step-button-wrapper">
+                <button class="addproject-wizard-skip-step-button"></button>
+            </nav>
 
-        <div class="story-serial-item-end">
-            <img class="full-width" src="${pageContext.request.contextPath}/images/viewproject-dotted-line.jpg">
+            <div class="story-serial-item-end">
+                <img class="full-width" src="${pageContext.request.contextPath}/images/viewproject-dotted-line.jpg">
+            </div>
         </div>
     </div>
 
