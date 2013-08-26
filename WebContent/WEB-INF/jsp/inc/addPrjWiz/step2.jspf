@@ -121,6 +121,9 @@
                         <form action="/upreader/i/s/p" method="post" enctype="multipart/form-data" id="storyDropzoneUpload" class="dropzone">
                             <input type="hidden" name="do" value="addingProjectUploadFile"/>
                             <input type="hidden" name="fileType" ng-model="uploadFileType"/>
+                            <div class="fallback">
+                                <input name="file" type="file" multiple />
+                            </div>
                         </form>
                     </div>
                 </div>

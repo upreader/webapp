@@ -41,7 +41,7 @@
     <%@ include file="inc/header.jspf" %>
 
     <div class="page" ng-controller="addProjectWizardController">
-            <main class="page-addproject-wizard" role="main">
+            <div class="page-addproject-wizard" role="main">
                 <c:choose>
                     <c:when test="${empty sessionScope.wizardData.currentStep}">
                         <%@ include file="inc/addPrjWiz/step1.jspf" %>
@@ -65,7 +65,7 @@
                         <%@ include file="inc/addPrjWiz/step6.jspf" %>
                     </c:when>
                 </c:choose>
-            </main>
+            </div>
     </div>
 
     <%@ include file="inc/footer.jspf" %>

@@ -107,6 +107,9 @@
                         <form action="/upreader/i/s/p" method="post" enctype="multipart/form-data" id="dropzoneUpload" class="dropzone">
                               <input type="hidden" name="do"       value="addingProjectUploadFile"/>
                               <input type="hidden" name="fileType" value="<%=upreaderConst.PUBLIC_IMAGE%>"/>
+                              <div class="fallback">
+                                    <input name="file" type="file" multiple />
+                              </div>
                         </form>
                         <% if(upreaderConst.JAVA_UPLOAD.equals("true")){ %>
                         </div>
