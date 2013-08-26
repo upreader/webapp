@@ -35,13 +35,76 @@
                 </div>
                 <div class="addproject-wizard-story-term-upload-wrapper">
                     <div class="addproject-wizard-story-term-upload-button-wrapper">
-                        <button class="addproject-wizard-story-term-upload-button"></button>
+                        <button ng-click="uploadProofDocument()" class="addproject-wizard-story-term-upload-button"></button>
                     </div>
                     <div class="addproject-wizard-story-term-upload-fieldset-wrapper">
                         <fieldset class="addproject-wizard-story-term-upload-fieldset">
                             <legend class="addproject-wizard-story-term-upload-fieldset-legend"><%=upreaderResources.getString("addProjectWizard.uploadedFiles")%></legend>
-                            Etc<br/><br/>
+                            <div class="story-details-tags-wrapper">
+                                  <div class="display-block  full-width" >
+                                <span ng-repeat="(idx, uploadedFile) in uploadedProofFiles" class="tag">
+                                    {{uploadedFile}}
+                                </span>
+                                </div>
+                            </div>
                         </fieldset>
+                    </div>
+                    <div class="uploader">
+                        <script>
+                            var ext_books=new Array(<%=UpreaderConstants.EXT_BOOKS%>);
+                            var allowed_ext=ext_books;
+
+                            //dropzone config
+                            Dropzone.options.proofDropzoneUpload = {
+                                init: function() {
+                                    var _this = this;
+                                    $("button.close-uploader").click( function() {
+                                        _this.removeAllFiles();
+                                    });
+                                },
+                                dictDefaultMessage:  "<%=upreaderResources.getString("tinyMCE.fileManager.uploadMessage")%>",
+                                dictInvalidFileType: "<%=upreaderResources.getString("tinyMCE.fileManager.langErrorExtension")%>",
+                                dictFileTooBig: "<%=upreaderResources.getString("tinyMCE.fileManager.fileTooBig")%>",
+                                dictResponseError: "<%=upreaderResources.getString("tinyMCE.fileManager.serverError")%>",
+                                paramName: "file", // The name that will be used to transfer the file
+                                maxFilesize: <%=UpreaderConstants.MAX_UPLOAD_SIZE%>, // MB
+                                accept: function(file, done) {
+                                    var extension=file.name.split('.').pop().toLowerCase();
+                                    if ($.inArray(extension, allowed_ext) > -1) {
+                                        done();
+                                    }
+                                    else { done("<%=upreaderResources.getString("tinyMCE.fileManager.langErrorExtension")%>"); }
+                                },
+                                complete: function(file, done){
+                                    if(file.status === 'success') {
+                                       angular.element($('#addProjectWizardController')).scope().addProofDocument(file.name);
+                                    }
+                                }
+                            };
+                        </script>
+                        <div class="text-align-center padding-bottom-15px">
+                            <button ng-click="closeUploader()" class="btn btn-inverse close-uploader">
+                                <%=upreaderResources.getString("addProjectWizard.closeUploader")%>
+                                <i class="icon-backward icon-white"></i></button>
+                        </div>
+                        <div class="space10"></div><div class="space10"></div>
+
+                        <div class="tabbable upload-tabbable">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab1">
+                                    <form action="/upreader/i/s/p" method="post" enctype="multipart/form-data" id="proofDropzoneUpload" class="dropzone">
+                                        <input type="hidden" name="do" value="addingProjectUploadFile"/>
+                                        <input type="hidden" name="fileType" ng-model="uploadFileType" value="{{uploadFileType}}" />
+                                        <div class="fallback">
+                                            <input name="file" type="file" multiple />
+                                            <a  href="#" ng-click="submitUploadForm($event)" class="btn btn-inverse">
+                                                <%=upreaderResources.getString("addProjectWizard.submitUpload")%>
+                                                <i class="icon-backward icon-white"></i></a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -178,7 +241,7 @@
                 </div>
             </div>
 
-            <div class="text-align-center  small-text-font  bold-text">
+            <div class="text-align-center  small-text-font  bold-text  padding-top-20px">
                 <input type="checkbox" id="agree-with-story-submission" ng-model="wizardData.step3_agreeEnteredValues"/>
                 <label for="agree-with-story-submission"><%=upreaderResources.getString("addProjectWizard.agreeWithStorySubmission")%></label>
                 <br/>

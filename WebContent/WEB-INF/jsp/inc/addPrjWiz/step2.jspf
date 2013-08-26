@@ -31,7 +31,7 @@
                         <textarea class="full-width" name="story-details-textarea" cols="37" rows="7/" ng-model="wizardData.step2_storyPitch"></textarea>
                         <div class="story-details-tags-wrapper">
                             <p>Tags</p>
-                            <input  type="text" ng-model="newTag"/>
+                            <input  type="text" ng-model="newTag" required="true"/>
                             <a class="btn vertical-align-top" ng-click="addTag()">Add</a>
                             <div class="display-block">
                                 <span ng-repeat="(idx, tag) in wizardData.step2_tags" class="tag">
@@ -157,8 +157,8 @@
                 <textarea ui-tinymce="tinymceOptions" ng-model="postContent" class="full-width  resize-only-vertical" rows=20></textarea>
             </div>
             <div class="story-backstory-item-end  float-right">
-                <button ng-click="addPost(postContent)" class="" >Post</button>
-                <button ng-click="closePost()" class="" >Close</button>
+                <button ng-click="addPost(postContent)" class="btn btn-primary" >Post</button>
+                <button ng-click="closePost()" class="btn btn-primary" >Close</button>
             </div>
         </div>
 

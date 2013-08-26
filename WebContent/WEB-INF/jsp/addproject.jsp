@@ -40,7 +40,7 @@
 
     <%@ include file="inc/header.jspf" %>
 
-    <div class="page" ng-controller="addProjectWizardController">
+    <div class="page" id="addProjectWizardController" ng-controller="addProjectWizardController">
             <div class="page-addproject-wizard" role="main">
                 <c:choose>
                     <c:when test="${empty sessionScope.wizardData.currentStep}">

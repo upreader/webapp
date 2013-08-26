@@ -66,12 +66,16 @@ public class AddProjectWizardHelper extends BasicController{
             prefix = "images/";
         }
         if(fType.equals(UpreaderConstants.STORY)){
-              isPublic = false;
-              prefix = "stories/";
+            isPublic = false;
+            prefix = "stories/";
         }
         if(fType.equals(UpreaderConstants.STORY_SAMPLE)){
-          isPublic = false;
-          prefix = "stories/samples/";
+            isPublic = false;
+            prefix = "samples/";
+        }
+        if(fType.equals(UpreaderConstants.PROOF_DOCUMENT)){
+            isPublic = false;
+            prefix = "proofDocuments/";
          }
         //TODO
         //prefix += loggedUser.getEmail() + "/";

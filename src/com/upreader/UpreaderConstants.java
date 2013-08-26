@@ -30,6 +30,7 @@ public class UpreaderConstants {
      public static String STORY = "2";
      public static String STORY_SAMPLE = "3";
      public static String COVER = "4";
+     public static String PROOF_DOCUMENT = "5";
 
     /**
      * Configuration used for the tinyMCE File Manager plugin

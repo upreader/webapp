@@ -114,6 +114,10 @@
     display: block;
 }
 
+.padding-top-20px {
+    padding-top: 20px;
+}
+
 .padding-bottom-15px {
     padding-bottom: 15px;
 }
@@ -598,10 +602,24 @@
 
 .addproject-wizard-story-term-upload-fieldset {
     border: 2px black solid;
+    display: block;
+    -webkit-margin-start: 2px;
+    -webkit-margin-end: 2px;
+    -webkit-padding-before: 0.35em;
+    -webkit-padding-start: 0.75em;
+    -webkit-padding-end: 19.9em;
+    -webkit-padding-after: 0.625em;
+    min-width: -webkit-min-content;
 }
 
 .addproject-wizard-story-term-upload-fieldset-legend {
-    margin-left: 20px;
+    -webkit-padding-start: 2px;
+    -webkit-padding-end: 2px;
+    border: none;
+}
+
+.addproject-wizard-story-term-upload-fieldset-content{
+    width: 120px;
 }
 
 .story-term-sales-projections {
@@ -670,25 +688,25 @@
 }
 
 .story-term-derrivatives-progressbar-milestones-col2 {
-    margin-left: 14%;
+    margin-left: 17%;
     display: inline-block;
     float: left;
 }
 
 .story-term-derrivatives-progressbar-milestones-col3 {
-    margin-left: 11%;
+    margin-left: 13%;
     display: inline-block;
     float: left;
 }
 
 .story-term-derrivatives-progressbar-milestones-col4 {
-    margin-left: 10%;
+    margin-left: 12%;
     display: inline-block;
     float: left;
 }
 
 .story-term-derrivatives-progressbar-milestones-col5 {
-    margin-left: 14%;
+    margin-left: 16%;
     display: inline-block;
     float: left;
 }
