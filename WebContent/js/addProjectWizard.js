@@ -71,6 +71,11 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
     $scope.closeUploader = function(){
         $('.uploader').hide(500);
     };
+
+    $scope.submitUploadForm = function($event){
+      $event.preventDefault();
+      console.log("The form is now submitted");
+    };
     /*
      * Generic
      */

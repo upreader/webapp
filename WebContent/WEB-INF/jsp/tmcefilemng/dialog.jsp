@@ -93,7 +93,7 @@
             if(upreaderConst.UPLOAD_FILES.equals("true")){ %>
         <!----- uploader div start ------->
         <div class="uploader">
-            <center><button class="btn btn-inverse close-uploader"><i class="icon-backward icon-white"></i>  <%=upreaderResources.getString("tinyMCE.fileManager.returnToFileList")%>  </center>
+            <center><button class="btn btn-inverse close-uploader"><i class="icon-backward icon-white"></i>  <%=upreaderResources.getString("tinyMCE.fileManager.returnToFileList")%></button>  </center>
             <div class="space10"></div><div class="space10"></div>
             <% if(upreaderConst.JAVA_UPLOAD.equals("true")){ %>
             <div class="tabbable upload-tabbable"> <!-- Only required for left/right tabs -->

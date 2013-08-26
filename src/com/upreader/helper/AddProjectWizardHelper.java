@@ -65,7 +65,14 @@ public class AddProjectWizardHelper extends BasicController{
             isPublic = true;
             prefix = "images/";
         }
-
+        if(fType.equals(UpreaderConstants.STORY)){
+              isPublic = false;
+              prefix = "stories/";
+        }
+        if(fType.equals(UpreaderConstants.STORY_SAMPLE)){
+          isPublic = false;
+          prefix = "stories/samples/";
+         }
         //TODO
         //prefix += loggedUser.getEmail() + "/";
         prefix += "upreader@upreader.com/";

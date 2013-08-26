@@ -80,10 +80,15 @@
                     <button ng-click="uploadStory()" class="story-upload-button"><%=upreaderResources.getString("addProjectWizard.uploadStoryButtonText")%></button>
                 </div>
             </div>
+            <nav class="addproject-wizard-skip-step-button-wrapper">
+                <button class="addproject-wizard-skip-step-button"></button>
+            </nav>
+
+
             <div class="uploader">
                 <script>
                     var ext_books=new Array(<%=UpreaderConstants.EXT_BOOKS%>);
-                    var allowed_ext=new Array(ext_books);
+                    var allowed_ext=ext_books;
 
                     //dropzone config
                     Dropzone.options.storyDropzoneUpload = {
@@ -110,33 +115,34 @@
                     };
                 </script>
                 <div class="text-align-center padding-bottom-15px">
-                        <button ng-click="closeUploader()" class="btn btn-inverse close-uploader">
-                        <%=upreaderResources.getString("addProjectWizard.closeUploader")%>
-                        <i class="icon-backward icon-white"></i>
+                    <button ng-click="closeUploader()" class="btn btn-inverse close-uploader">
+                            <%=upreaderResources.getString("addProjectWizard.closeUploader")%>
+                        <i class="icon-backward icon-white"></i></button>
                 </div>
                 <div class="space10"></div><div class="space10"></div>
 
                 <div class="tabbable upload-tabbable">
-                    <div class="tab-pane active" id="tab1">
-                        <form action="/upreader/i/s/p" method="post" enctype="multipart/form-data" id="storyDropzoneUpload" class="dropzone">
-                            <input type="hidden" name="do" value="addingProjectUploadFile"/>
-                            <input type="hidden" name="fileType" ng-model="uploadFileType"/>
-                            <div class="fallback">
-                                <input name="file" type="file" multiple />
-                            </div>
-                        </form>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <form action="/upreader/i/s/p" method="post" enctype="multipart/form-data" id="storyDropzoneUpload" class="dropzone">
+                                <input type="hidden" name="do" value="addingProjectUploadFile"/>
+                                <input type="hidden" name="fileType" ng-model="uploadFileType" value="{{uploadFileType}}" />
+                                <div class="fallback">
+                                    <input name="file" type="file" multiple />
+                                    <a  href="#" ng-click="submitUploadForm($event)" class="btn btn-inverse">
+                                        <%=upreaderResources.getString("addProjectWizard.submitUpload")%>
+                                        <i class="icon-backward icon-white"></i></a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <nav class="addproject-wizard-skip-step-button-wrapper">
-                <button class="addproject-wizard-skip-step-button"></button>
-            </nav>
-
-            <div class="story-serial-item-end">
-                <img class="full-width" src="${pageContext.request.contextPath}/images/viewproject-dotted-line.jpg">
-            </div>
         </div>
+    </div>
+
+    <div class="story-serial-item-end">
+        <img class="full-width" src="${pageContext.request.contextPath}/images/viewproject-dotted-line.jpg">
     </div>
 
     <div class="story-backstories-items-wrapper">
@@ -151,8 +157,8 @@
                 <textarea ui-tinymce="tinymceOptions" ng-model="postContent" class="full-width  resize-only-vertical" rows=20></textarea>
             </div>
             <div class="story-backstory-item-end  float-right">
-                <button ng-click="addPost(postContent)" class="btn  btn-primary" >Post</button>
-                <button ng-click="closePost()" class="btn  btn-primary" >Close</button>
+                <button ng-click="addPost(postContent)" class="" >Post</button>
+                <button ng-click="closePost()" class="" >Close</button>
             </div>
         </div>
 
