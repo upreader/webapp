@@ -37,8 +37,8 @@
 }
 
 .register-help-section {
-    margin-left: 430px;
-    width: 170px;
+    margin-left: 420px;
+    width: 190px;
 }
 
 .register-help-header {
@@ -64,4 +64,21 @@
 
 .register-social-fb {
     margin-right: 10px;
+}
+
+#register-errors {
+    color: red;
+    font-size: 14px;
+    margin-top: 30px;
+    display: none;
+}
+
+#register-errors ul {
+    list-style-type: square;
+}
+
+#reg-error-list > li {
+    font-size: 12px;
+    margin-left: 25px;
+    margin-top: 5px;
 }
