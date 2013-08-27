@@ -12,7 +12,7 @@ import java.sql.Blob;
 @Table(name = "proofs_of_sales")
 public class ProofOfSales implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)

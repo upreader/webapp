@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "promo_packs")
 public class PromoPack implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
 
     @Column(name = "name", nullable = false, unique = true)

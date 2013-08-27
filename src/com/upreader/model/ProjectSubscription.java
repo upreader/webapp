@@ -28,7 +28,7 @@ public class ProjectSubscription implements Serializable {
 	public static final int MONTHLY = 1;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Integer id;
 
 	/**

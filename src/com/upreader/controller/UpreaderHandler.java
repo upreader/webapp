@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.*;
 
 import com.upreader.UpreaderConstants;
+import com.upreader.model.Project;
+import com.upreader.model.User;
 import org.apache.log4j.Logger;
 
 import com.upreader.MimeTypes;
@@ -75,6 +77,25 @@ public class UpreaderHandler extends BasicPathHandler {
 	}
 
 	// TEST FEATURES ONLY BELOW HERE//
+    @PathSegment("s/ti")
+    public boolean testProject() {
+        Project project = new Project();
+        project.setTitle("Title "+System.currentTimeMillis());
+        project.setGenre("Genre");
+        project.setSubgenre("Subgenre");
+        project.setSynopsis("Synopsis");
+        //project.setBook();
+        //project.setCover(coverUploadFile);
+
+        project.setBookPrice(12.55f);
+        project.setAuthor((User) context().session().getObject("_user_"));
+        project.setApproved(false);
+
+        context().projectDAO().insert(project);
+
+        return true;
+    }
+
 	@PathSegment("error")
 	public boolean error() throws Exception {
 		throw new Exception("ERRRRRORRR");
