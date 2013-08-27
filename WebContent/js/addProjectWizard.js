@@ -43,8 +43,6 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
                 $scope.wizardData = data;
                 if(success !== null && success !== undefined){success(data)};
         });
-
-        $scope.uploadedProofFiles = new Array();
     };
 
     /*
@@ -87,8 +85,8 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
         $('.uploader').show(500);
     };
 
-    $scope.addProofDocument = function(fileName){
-        $scope.uploadedProofFiles.push( fileName );
+    $scope.addProofDocument = function(fileItemDTO){
+        $scope.wizardData.step3_uploadedProofDocuments.push( fileItemDTO );
         $scope.$apply();
         $('.uploader').hide(500);
 
