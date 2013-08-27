@@ -11,7 +11,6 @@
         <class>com.upreader.model.PinnedProject</class>
         <class>com.upreader.model.Project</class>
         <class>com.upreader.model.ProjectMembership</class>
-        <class>com.upreader.model.ProjectOwnership</class>
         <class>com.upreader.model.ProjectPromoPack</class>
         <class>com.upreader.model.ProjectSubscription</class>
         <class>com.upreader.model.PromoItem</class>
@@ -21,7 +20,6 @@
         <class>com.upreader.model.User</class>
         <class>com.upreader.model.UserLogin</class>
         <class>com.upreader.model.UserMessage</class>
-        <class>com.upreader.model.UserPaymentMethod</class>
 
 		<properties>
 			<!-- DDL operations, DROP | CREATE (*) | UPDATE | VERIFY | NONE -->

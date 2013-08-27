@@ -13,7 +13,6 @@ import com.upreader.context.Context;
 import com.upreader.dispatcher.BasicPathHandler;
 import com.upreader.helper.AddProjectWizardHelper;
 import com.upreader.model.Project;
-import com.upreader.model.ProjectOwnership;
 import com.upreader.model.User;
 
 public class ProjectController extends BasicController {
@@ -133,12 +132,8 @@ public class ProjectController extends BasicController {
 
 		Float bookPrice = context.query().getFloat("bookprice");
 
-		ProjectOwnership projectOwnership = new ProjectOwnership();
-		projectOwnership.setProject(project);
-		projectOwnership.setUser((User) context.session().getObject("_user_"));
-
 		project.setBookPrice(bookPrice);
-		project.setAuthor(projectOwnership);
+		project.setAuthor((User) context.session().getObject("_user_"));
 		project.setApproved(false);
 
 		context.projectDAO().insert(project);

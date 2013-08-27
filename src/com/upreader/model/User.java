@@ -27,7 +27,7 @@ public class User implements Serializable {
     public static final String NQ_FIND_ALL = "User_findAll";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
 
     @Column(name = "email", unique = true)
@@ -159,19 +159,12 @@ public class User implements Serializable {
     private String loginCookie;
 
     /**
-     * How the user pays/receives money
-     */
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-    @JoinColumn(name = "payment_method_id", nullable = false, updatable = false)
-    private UserPaymentMethod paymentMethod;
-
-    /**
      * no cascading for projects
      * if user is delete, project is allowed to stay as orphan for historical
      *  reasons
      */
-    @OneToMany(mappedBy = "user", orphanRemoval = false, fetch = FetchType.LAZY)
-    protected List<ProjectOwnership> ownedProjects;
+    @OneToMany(mappedBy = "author", orphanRemoval = false, fetch = FetchType.LAZY)
+    protected List<Project> ownedProjects;
 
     /**
      * projects the user is a shareholder in
@@ -246,11 +239,11 @@ public class User implements Serializable {
         this.rating = rating;
     }
 
-    public List<ProjectOwnership> getOwnedProjects() {
+    public List<Project> getOwnedProjects() {
         return ownedProjects;
     }
 
-    public void setOwnedProjects(List<ProjectOwnership> ownedProjects) {
+    public void setOwnedProjects(List<Project> ownedProjects) {
         this.ownedProjects = ownedProjects;
     }
 
@@ -438,14 +431,6 @@ public class User implements Serializable {
 
     public void setLockedReason(String lockedReason) {
         this.lockedReason = lockedReason;
-    }
-
-    public UserPaymentMethod getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(UserPaymentMethod userPaymentMethod) {
-        this.paymentMethod = userPaymentMethod;
     }
 
     public Boolean getUpdateMe() {

@@ -2,29 +2,20 @@ package com.upreader.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import sun.management.GcInfoCompositeData;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "projects")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Project implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
 
     /**
@@ -268,12 +259,25 @@ public class Project implements Serializable {
     @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<PromoItem> promoItems;
 
+
+    /**
+     * Author contract agreed with the platform
+     */
+    @Column(name = "contract")
+    private String contract;
+
+    /**
+     * Contract agreement date
+     */
+    @Column(name = "contract_date")
+    private Date contractDate;
+
     /**
      * project author. This is mandatory and cannot be updated
      */
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ownerid", nullable = false, updatable = false)
-    private ProjectOwnership author;
+    @ManyToOne(fetch = FetchType.LAZY )
+    @JoinColumn(name = "author_id", nullable = true, updatable = false)
+    private User author;
 
     /**
      * users that own shares in this project
@@ -470,11 +474,27 @@ public class Project implements Serializable {
         this.promoItems = promoItems;
     }
 
-    public ProjectOwnership getAuthor() {
+    public String getContract() {
+        return contract;
+    }
+
+    public void setContract(String contract) {
+        this.contract = contract;
+    }
+
+    public Date getContractDate() {
+        return contractDate;
+    }
+
+    public void setContractDate(Date contractDate) {
+        this.contractDate = contractDate;
+    }
+
+    public User getAuthor() {
         return author;
     }
 
-    public void setAuthor(ProjectOwnership author) {
+    public void setAuthor(User author) {
         this.author = author;
     }
 

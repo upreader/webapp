@@ -3,10 +3,7 @@ package com.upreader.helper;
 import com.amazonaws.services.s3.model.ProgressEvent;
 import com.amazonaws.services.s3.model.ProgressListener;
 import com.amazonaws.services.s3.transfer.Upload;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Optional;
-import com.upreader.BasicExceptionHandler;
 import com.upreader.UpreaderConstants;
 import com.upreader.aws.AmazonService;
 import com.upreader.context.Context;
@@ -16,19 +13,11 @@ import com.upreader.dto.AddProjectWizardDTO;
 import com.upreader.dto.AmazonS3FileDetails;
 import com.upreader.dto.AmazonS3FileDetailsBuilder;
 import com.upreader.model.Project;
-import com.upreader.model.ProjectOwnership;
 import com.upreader.model.User;
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.log4j.Logger;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.Part;
 import java.io.*;
-import java.util.HashMap;
-import java.util.List;
 
 import static com.google.common.base.Strings.emptyToNull;
 
@@ -154,12 +143,8 @@ public class AddProjectWizardHelper extends BasicController{
         //project.setBook();
         //project.setCover(coverUploadFile);
 
-        ProjectOwnership projectOwnership = new ProjectOwnership();
-        projectOwnership.setProject(project);
-        projectOwnership.setUser((User) context().session().getObject("_user_"));
-
         project.setBookPrice(theWizardData.getStep3_ebookPrice().floatValue());
-        project.setAuthor(projectOwnership);
+        project.setAuthor((User) context().session().getObject("_user_"));
         project.setApproved(false);
 
         context().projectDAO().insert(project);
