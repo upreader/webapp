@@ -15,7 +15,7 @@ import com.upreader.aws.AmazonService;
 import com.upreader.context.Context;
 import com.upreader.controller.UpreaderHandler;
 import com.upreader.dispatcher.Dispatcher;
-import com.upreader.helper.JsonWriter;
+import com.upreader.util.JsonWriter;
 import com.upreader.locale.LocaleManager;
 import com.upreader.mustache.MustacheManager;
 import com.upreader.thread.DeferredAsyncResource;

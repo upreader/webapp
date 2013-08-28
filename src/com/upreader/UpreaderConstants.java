@@ -22,7 +22,7 @@ public class UpreaderConstants {
 	public static final String SESSION_USER = "user";
 	public static final String SESSION_NEWPROJECT = "_newproject_";
     public static final String SESSION_NEWPROJECT_WIZ = "wizardData";
-    public static final String SESSION_MONITOR_BOARD_DATA = "user";
+    public static final String SESSION_MONITOR_BOARD_DATA = "mbData";
 
     /**
      * Enum detailing the file types for upload

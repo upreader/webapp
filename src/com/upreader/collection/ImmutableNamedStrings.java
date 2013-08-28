@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.upreader.helper.StringHelper;
-import com.upreader.util.NumberHelper;
+import com.upreader.helper.NumberHelper;
 
 public class ImmutableNamedStrings implements ImmutableNamedValues {
 	private final Map<String, String> values;

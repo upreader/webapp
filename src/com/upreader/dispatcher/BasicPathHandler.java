@@ -23,7 +23,7 @@ import com.upreader.context.SessionNamedValues;
 import com.upreader.context.TemplateContext;
 import com.upreader.controller.ProjectController;
 import com.upreader.controller.UserController;
-import com.upreader.helper.JsonWriter;
+import com.upreader.util.JsonWriter;
 import com.upreader.helper.ReflectionHelper;
 import com.upreader.helper.StringHelper;
 import com.upreader.helper.WebHelper;

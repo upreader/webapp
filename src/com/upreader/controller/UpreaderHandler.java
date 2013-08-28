@@ -87,11 +87,8 @@ public class UpreaderHandler extends BasicPathHandler {
 
 	// TEST FEATURES ONLY BELOW HERE//
     @PathSegment("s/tp")
-    public boolean testProject() {
-        DatatablesCriterias criterias = DatatablesCriterias.getFromRequest(context().request().getRawRequest());
-        DataSet<Project> dataSet = context().projectDAO().findWithDatatablesCriterias(criterias);
-        DatatablesResponse<Project> response = DatatablesResponse.build(dataSet, criterias);
-        return json(response);
+    public boolean createProjectData() {
+        return true;
     }
 
 	@PathSegment("error")

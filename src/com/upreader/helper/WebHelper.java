@@ -1,12 +1,12 @@
 package com.upreader.helper;
 
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.upreader.context.Context;
+import com.upreader.util.JsonWriter;
 
 public class WebHelper {
 	public static boolean isJsonRequest(Context context) {

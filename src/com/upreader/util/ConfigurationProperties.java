@@ -3,6 +3,7 @@ package com.upreader.util;
 import java.util.Properties;
 
 import com.upreader.UpreaderApplication;
+import com.upreader.helper.NumberHelper;
 import com.upreader.helper.StringHelper;
 
 /**

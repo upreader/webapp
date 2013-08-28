@@ -3,7 +3,7 @@ package com.upreader.dispatcher;
 import com.upreader.collection.ImmutableNamedStrings;
 import com.upreader.collection.ImmutableNamedValues;
 import com.upreader.helper.StringHelper;
-import com.upreader.util.NumberHelper;
+import com.upreader.helper.NumberHelper;
 
 public class PathSegments {
 	private final String uri;

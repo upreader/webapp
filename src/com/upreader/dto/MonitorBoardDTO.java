@@ -1,43 +1,46 @@
 package com.upreader.dto;
 
-public class MonitorBoardDTO {
-    private int id;
+import java.io.Serializable;
+
+public class MonitorBoardDTO implements Serializable {
+    private Integer id;
 
     // project data
     private String title;
-    private float bookPrice;
-    private int upreaders;
-    private float shareValue;
-    private int irsProgress;
-    private int daysToDeadline;
-    private int noViews;
-    private int booksSold;
-    private int sharesToSale;
-    private int subscribers;
-    private int serialStorySubscriptionPrice;
-    private int income;
+    private Float bookPrice;
+    private Integer upreaders;
+    private Float shareValue;
+    private Integer irsProgress;
+    private Integer irsMax;
+    private Integer daysToDeadline;
+    private Integer noViews;
+    private Integer booksSold;
+    private Integer sharesToSale;
+    private Integer subscribers;
+    private Float serialStorySubscriptionPrice;
+    private Integer income;
     private String derivatives;
 
     // author data
     private String authorName;
-    private int authorRating;
+    private Integer authorRating;
 
     public MonitorBoardDTO() {
     }
 
-    public float getBookPrice() {
+    public Float getBookPrice() {
         return bookPrice;
     }
 
-    public void setBookPrice(float bookPrice) {
+    public void setBookPrice(Float bookPrice) {
         this.bookPrice = bookPrice;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -49,83 +52,77 @@ public class MonitorBoardDTO {
         this.title = title;
     }
 
-    public int getUpreaders() {
+    public Integer getUpreaders() {
         return upreaders;
     }
 
-    public void setUpreaders(int upreaders) {
+    public void setUpreaders(Integer upreaders) {
         this.upreaders = upreaders;
     }
 
-    public float getShareValue() {
+    public Float getShareValue() {
         return shareValue;
     }
 
-    public void setShareValue(float shareValue) {
+    public void setShareValue(Float shareValue) {
         this.shareValue = shareValue;
     }
 
-    public int getIrsProgress() {
+    public Integer getIrsProgress() {
         return irsProgress;
     }
 
-    public void setIrsProgress(int irsProgress) {
+    public void setIrsProgress(Integer irsProgress) {
         this.irsProgress = irsProgress;
     }
 
-    public int getDaysToDeadline() {
+    public Integer getDaysToDeadline() {
         return daysToDeadline;
     }
 
-    public void setDaysToDeadline(int daysToDeadline) {
+    public void setDaysToDeadline(Integer daysToDeadline) {
         this.daysToDeadline = daysToDeadline;
     }
 
-    public int getNoViews() {
+    public Integer getNoViews() {
         return noViews;
     }
 
-    public void setNoViews(int noViews) {
+    public void setNoViews(Integer noViews) {
         this.noViews = noViews;
     }
 
-    public int getBooksSold() {
+    public Integer getBooksSold() {
         return booksSold;
     }
 
-    public void setBooksSold(int booksSold) {
+    public void setBooksSold(Integer booksSold) {
         this.booksSold = booksSold;
     }
 
-    public int getSharesToSale() {
-        return sharesToSale;
-    }
 
-    public void setSharesToSale(int sharesToSale) {
-        this.sharesToSale = sharesToSale;
-    }
 
-    public int getSubscribers() {
+    public Integer getSubscribers() {
         return subscribers;
     }
 
-    public void setSubscribers(int subscribers) {
+    public void setSubscribers(Integer subscribers) {
         this.subscribers = subscribers;
     }
 
-    public int getSerialStorySubscriptionPrice() {
+    public Float getSerialStorySubscriptionPrice() {
         return serialStorySubscriptionPrice;
     }
 
-    public void setSerialStorySubscriptionPrice(int serialStorySubscriptionPrice) {
+    public void setSerialStorySubscriptionPrice(Float serialStorySubscriptionPrice) {
         this.serialStorySubscriptionPrice = serialStorySubscriptionPrice;
     }
 
-    public int getIncome() {
+    public Integer getIncome() {
         return income;
     }
 
-    public void setIncome(int income) {
+    public void setIncome(Integer income) {
         this.income = income;
     }
 
@@ -145,11 +142,27 @@ public class MonitorBoardDTO {
         this.authorName = authorName;
     }
 
-    public int getAuthorRating() {
+    public Integer getAuthorRating() {
         return authorRating;
     }
 
-    public void setAuthorRating(int authorRating) {
+    public void setAuthorRating(Integer authorRating) {
         this.authorRating = authorRating;
+    }
+
+    public Integer getSharesToSale() {
+        return sharesToSale;
+    }
+
+    public void setSharesToSale(Integer sharesToSale) {
+        this.sharesToSale = sharesToSale;
+    }
+
+    public Integer getIrsMax() {
+        return irsMax;
+    }
+
+    public void setIrsMax(Integer irsMax) {
+        this.irsMax = irsMax;
     }
 }
