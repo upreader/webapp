@@ -105,7 +105,9 @@ public class MonitoringBoardController extends BasicController {
             context().session().putObject(UpreaderConstants.SESSION_MONITOR_BOARD_DATA, dtos);
         }
 
-        DataSet<MonitorBoardDTO> dataSet = new DataSet(dtos, (long) dtos.size(), (long) dtos.size());
+        List<MonitorBoardDTO> display_dtos = dtos.subList(criterias.getDisplayStart(), criterias.getDisplayStart()+criterias.getDisplaySize());
+
+        DataSet<MonitorBoardDTO> dataSet = new DataSet(display_dtos, (long) dtos.size(), (long) dtos.size());
         DatatablesResponse<MonitorBoardDTO> response = DatatablesResponse.build(dataSet, criterias);
         return handler().json(response);
     }
@@ -113,7 +115,7 @@ public class MonitoringBoardController extends BasicController {
     private List<MonitorBoardDTO> generateTestDTOs() {
         List<MonitorBoardDTO> dtos = new ArrayList<>();
 
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 50; i++) {
             MonitorBoardDTO dto = new MonitorBoardDTO();
             dto.setId(i);
             dto.setTitle("Project " + i);

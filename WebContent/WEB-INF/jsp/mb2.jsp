@@ -70,7 +70,9 @@
             "bServerSide": true,
             "sAjaxSource": "${datasource}",
             "bAutoWidth": false,
-            "bPaginate": false,
+            "bScrollInfinite": true,
+            "bScrollCollapse": true,
+            "sScrollY": "500px",
             "fnCreatedRow" : fnRowCreated,
             "aoColumns": [
                 { "mData": "id", "bVisible": false },
