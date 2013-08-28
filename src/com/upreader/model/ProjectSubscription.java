@@ -32,7 +32,8 @@ public class ProjectSubscription implements Serializable {
 	private Integer id;
 
 	/**
-	 * Subscription price
+	 * Subscription price for which the subscription was made at the signDate
+     * This is separate from the Project serialStorySubscriptionPrice because that one can change
 	 */
 	@Column(name = "price")
 	private float price;

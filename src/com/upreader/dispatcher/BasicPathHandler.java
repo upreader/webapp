@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.upreader.controller.LoginController;
+import com.upreader.controller.MonitoringBoardController;
 import org.apache.log4j.Logger;
 
 import com.upreader.UpreaderApplication;
@@ -197,6 +198,10 @@ public abstract class BasicPathHandler implements Configurable {
         return this.references.get().projectController;
     }
 
+    public MonitoringBoardController monitoringBoardController() {
+        return this.references.get().monitoringBoardController;
+    }
+
     public LoginController loginController() {
         return this.references.get().loginController;
     }
@@ -334,6 +339,7 @@ public abstract class BasicPathHandler implements Configurable {
         public final UserController userController;
         public final ProjectController projectController;
         public final LoginController loginController;
+        public final MonitoringBoardController monitoringBoardController;
 
 		public References(BasicPathHandler handler, Context context, PathSegments segments) {
             this.handler = handler;
@@ -342,6 +348,7 @@ public abstract class BasicPathHandler implements Configurable {
             this.userController = new UserController(handler, context);
             this.projectController = new ProjectController(handler, context);
             this.loginController = new LoginController(handler, context);
+            this.monitoringBoardController = new MonitoringBoardController(handler, context);
 		}
 	}
 }

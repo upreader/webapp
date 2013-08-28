@@ -23,16 +23,16 @@ public class ProjectController extends BasicController {
         addProjectHelper = new AddProjectWizardHelper(handler, context);
     }
 
-	public boolean doCmd(Context context) {
-		String cmd = context.query().get("do");
+	public boolean doCmd() {
+		String cmd = context().query().get("do");
 		switch (cmd) {
 		case "s1":
-			return addProjectStep1(context);
+			return addProjectStep1(context());
 		case "s2":
-			return addProjectStep2(context);
+			return addProjectStep2(context());
         case "listPrjs":
-            return handler().json(loadProjectsTableJson(Integer.valueOf(context.query().get("startPos")).intValue(),
-                                                        Integer.valueOf(context.query().get("endPos")).intValue() ));
+            return handler().json(loadProjectsTableJson(Integer.valueOf(context().query().get("startPos")).intValue(),
+                                                        Integer.valueOf(context().query().get("endPos")).intValue() ));
         case "addingProject":
             return addProjectHelper.getWizardDataJson();
         case "addingProjectUploadFile":
@@ -47,16 +47,16 @@ public class ProjectController extends BasicController {
 	private boolean addProjectStep1(Context context) {
 		// create a new project and store it on session
 		// until wizard is complete
-		String title = context.query().get("title");
-		String genre = context.query().get("genre");
-		String subgenres = context.query().get("subgenres");
-		RequestFile book = context.files().get("book");
-		RequestFile sample = context.files().get("sample");
-		RequestFile cover = context.files().get("cover");
-		String pitch = context.query().get("pitch");
-		String synopsis = context.query().get("synopsis");
-		String references = context.query().get("references");
-		String backstory = context.query().get("backstory");
+		String title = context().query().get("title");
+		String genre = context().query().get("genre");
+		String subgenres = context().query().get("subgenres");
+		RequestFile book = context().files().get("book");
+		RequestFile sample = context().files().get("sample");
+		RequestFile cover = context().files().get("cover");
+		String pitch = context().query().get("pitch");
+		String synopsis = context().query().get("synopsis");
+		String references = context().query().get("references");
+		String backstory = context().query().get("backstory");
 
 		try {
 			if (book == null)
@@ -106,40 +106,40 @@ public class ProjectController extends BasicController {
 			project.setSynopsis(synopsis);
 			project.setBook(bookUploadFile);
 			project.setCover(coverUploadFile);
-			context.session().putObject(UpreaderConstants.SESSION_NEWPROJECT, project);
+			context().session().putObject(UpreaderConstants.SESSION_NEWPROJECT, project);
 
-			return context.redirect(context.getContextPath() + "/p/newproject2");
+			return context().redirect(context().getContextPath() + "/p/newproject2");
 		} catch (BusinessException e) {
 			// set form fields to what user entered
-			context.request().addAttribute("title", title);
-			context.request().addAttribute("genre", genre);
-			context.request().addAttribute("subgenres", subgenres);
-			context.request().addAttribute("pitch", pitch);
-			context.request().addAttribute("synopsis", synopsis);
-			context.request().addAttribute("references", references);
-			context.request().addAttribute("backstory", backstory);
+			context().request().addAttribute("title", title);
+			context().request().addAttribute("genre", genre);
+			context().request().addAttribute("subgenres", subgenres);
+			context().request().addAttribute("pitch", pitch);
+			context().request().addAttribute("synopsis", synopsis);
+			context().request().addAttribute("references", references);
+			context().request().addAttribute("backstory", backstory);
 			
 			// return to Step 1 and show error
-			context.request().addAttribute("uerror", e.getMessage());
-			return context.render("newproject1.jsp");
+			context().request().addAttribute("uerror", e.getMessage());
+			return context().render("newproject1.jsp");
 		}
 	}
 
 	private boolean addProjectStep2(Context context) {
-		Project project = context.session().getObject(UpreaderConstants.SESSION_NEWPROJECT);
+		Project project = context().session().getObject(UpreaderConstants.SESSION_NEWPROJECT);
 		if (project == null)
 			throw new RuntimeException("No project on session. Aborting...");
 
-		Float bookPrice = context.query().getFloat("bookprice");
+		Float bookPrice = context().query().getFloat("bookprice");
 
 		project.setBookPrice(bookPrice);
-		project.setAuthor((User) context.session().getObject("_user_"));
+		project.setAuthor((User) context().session().getObject("_user_"));
 		project.setApproved(false);
 
-		context.projectDAO().insert(project);
+		context().projectDAO().insert(project);
 
 		// project is created, remove it from session
-		context.session().remove(UpreaderConstants.SESSION_NEWPROJECT);
+		context().session().remove(UpreaderConstants.SESSION_NEWPROJECT);
 
 		return true;
 	}

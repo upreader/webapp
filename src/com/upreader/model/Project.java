@@ -207,6 +207,12 @@ public class Project implements Serializable {
     private Integer noViews;
 
     /**
+     * How many books were sold (READONLY, for monitoring board)
+     */
+    @Column(name = "books_sold")
+    private Integer booksSold;
+
+    /**
      * status of story:
      *
      * free (only for serial story)
@@ -232,6 +238,12 @@ public class Project implements Serializable {
      */
     @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<ProjectPromoPack> promoPacks;
+
+    /**
+     * (Serial Story) How many chapters it will have.
+     */
+    @Column(name = "sub_price")
+    private Float serialStorySubscriptionPrice;
 
     /**
      * (Serial Story) How many chapters it will have.
@@ -652,5 +664,21 @@ public class Project implements Serializable {
 
     public void setPromoPacks(List<ProjectPromoPack> promoPacks) {
         this.promoPacks = promoPacks;
+    }
+
+    public Integer getBooksSold() {
+        return booksSold;
+    }
+
+    public void setBooksSold(Integer booksSold) {
+        this.booksSold = booksSold;
+    }
+
+    public Float getSerialStorySubscriptionPrice() {
+        return serialStorySubscriptionPrice;
+    }
+
+    public void setSerialStorySubscriptionPrice(Float serialStorySubscriptionPrice) {
+        this.serialStorySubscriptionPrice = serialStorySubscriptionPrice;
     }
 }

@@ -3,6 +3,9 @@ package com.upreader.controller;
 import java.io.File;
 import java.util.*;
 
+import com.github.dandelion.datatables.core.ajax.DataSet;
+import com.github.dandelion.datatables.core.ajax.DatatablesCriterias;
+import com.github.dandelion.datatables.core.ajax.DatatablesResponse;
 import com.upreader.UpreaderConstants;
 import com.upreader.model.Project;
 import com.upreader.model.User;
@@ -68,32 +71,27 @@ public class UpreaderHandler extends BasicPathHandler {
 
 	@PathSegment("s/u")
 	public boolean userService() {
-		return userController().doCmd(context());
+		return userController().doCmd();
 	}
 	
 	@PathSegment("s/p")
 	public boolean projectService() {
-		return projectController().doCmd(context());
+		return projectController().doCmd();
 	}
 
+    @PathSegment("s/m")
+    public boolean monitoringBoardService() {
+        return monitoringBoardController().data();
+    }
+
+
 	// TEST FEATURES ONLY BELOW HERE//
-    @PathSegment("s/ti")
+    @PathSegment("s/tp")
     public boolean testProject() {
-        Project project = new Project();
-        project.setTitle("Title "+System.currentTimeMillis());
-        project.setGenre("Genre");
-        project.setSubgenre("Subgenre");
-        project.setSynopsis("Synopsis");
-        //project.setBook();
-        //project.setCover(coverUploadFile);
-
-        project.setBookPrice(12.55f);
-        project.setAuthor((User) context().session().getObject("_user_"));
-        project.setApproved(false);
-
-        context().projectDAO().insert(project);
-
-        return true;
+        DatatablesCriterias criterias = DatatablesCriterias.getFromRequest(context().request().getRawRequest());
+        DataSet<Project> dataSet = context().projectDAO().findWithDatatablesCriterias(criterias);
+        DatatablesResponse<Project> response = DatatablesResponse.build(dataSet, criterias);
+        return json(response);
     }
 
 	@PathSegment("error")
@@ -104,7 +102,6 @@ public class UpreaderHandler extends BasicPathHandler {
 	@PathSegment("message")
 	public boolean messageDemo() {
 		String signedURL = getApplication().getAmazonService().getSignedURL("c2e1b504-ef24-4d32-9ff3-a7d44913035b.pfx");
-		
 		return message("this is a message");
 	}
 	

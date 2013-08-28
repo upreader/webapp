@@ -7,11 +7,16 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import com.github.dandelion.datatables.core.ajax.ColumnDef;
+import com.github.dandelion.datatables.core.ajax.DataSet;
+import com.github.dandelion.datatables.core.ajax.DatatablesCriterias;
 import com.upreader.UpreaderApplication;
 import com.upreader.model.Project;
+import com.upreader.model.User;
+import com.upreader.util.DatatablesHelper;
 import org.apache.log4j.Logger;
 
-import java.util.List;
+import java.util.*;
 
 public class ProjectDAO {
     Logger log = Logger.getLogger(ProjectDAO.class);
@@ -46,5 +51,32 @@ public class ProjectDAO {
         query.setFirstResult(startPosition);
         query.setMaxResults(endPosition - startPosition);
         return query.getResultList();
+    }
+
+    public List<Project> findAllProjectsForUser(Integer userId) {
+        List<Project> result = new ArrayList<>();
+
+        // owned projects
+        Query query = em.createQuery("select p from Project p where p.author.id = "+userId, Project.class);
+        result.addAll(query.getResultList());
+
+        // projects in which user is shareholder
+        query = em.createQuery("select p from Project p join p.shareholders s where s.user.id = "+userId, Project.class);
+        result.addAll(query.getResultList());
+
+        // projects to which user subscribed
+        query = em.createQuery("select p from Project p join p.subscribers s where s.user.id = "+userId, Project.class);
+        result.addAll(query.getResultList());
+
+        // pinned projects
+        query = em.createQuery("select p from Project p join p.interestedUsers s where s.user.id = "+userId, Project.class);
+        result.addAll(query.getResultList());
+
+        return result;
+    }
+
+    public List<Project> findWithQuery(String query) {
+        TypedQuery<Project> tquery = em.createQuery(query, Project.class);
+        return tquery.getResultList();
     }
 }

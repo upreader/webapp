@@ -71,38 +71,38 @@ public class UserController extends BasicController {
         return context().request().getRawResponse().encodeRedirectURL(url);
     }
 
-	public boolean doCmd(Context context) {
-		String cmd = context.query().get("do");
+	public boolean doCmd() {
+		String cmd = context().query().get("do");
 		switch (cmd) {
 		case "get":
-			int id = context.query().getInt("objid");
-			User user = context.userDAO().get(id);
+			int id = context().query().getInt("objid");
+			User user = context().userDAO().get(id);
 			return handler().json(user);
 		case "lst":
-			DatatablesCriterias criterias = DatatablesCriterias.getFromRequest(context.request().getRawRequest());
-			DataSet<User> dataSet = context.userDAO().findWithDatatablesCriterias(criterias);
+			DatatablesCriterias criterias = DatatablesCriterias.getFromRequest(context().request().getRawRequest());
+			DataSet<User> dataSet = context().userDAO().findWithDatatablesCriterias(criterias);
 			DatatablesResponse<User> response = DatatablesResponse.build(dataSet, criterias);
 			return handler().json(response);
 		case "add":
-            String email = context.query().get("email");
-			String password = context.query().get("password");
-			int rating = context.query().getInt("rating");
-			String[] roles = context.query().getStrings("roles");
+            String email = context().query().get("email");
+			String password = context().query().get("password");
+			int rating = context().query().getInt("rating");
+			String[] roles = context().query().getStrings("roles");
 			user = new User();
 			user.setEmail(email);
 			user.setRating(rating);
 			user.setPassword(PasswordUtil.encryptPassword(email, password));
 			user.setRoles(StringHelper.join(",", roles));
 			
-			context.userDAO().insert(user);
-			return context.render("admin/users.jsp");
+			context().userDAO().insert(user);
+			return context().render("admin/users.jsp");
 		case "upd":
-			id = context.query().getInt("objid");
-			password = context.query().get("password");
-			email = context.query().get("email");
-			rating = context.query().getInt("rating");
-			roles = context.query().getStrings("roles");
-			user = context.userDAO().get(id);
+			id = context().query().getInt("objid");
+			password = context().query().get("password");
+			email = context().query().get("email");
+			rating = context().query().getInt("rating");
+			roles = context().query().getStrings("roles");
+			user = context().userDAO().get(id);
 			if(user != null) {
 				user.setEmail(email);
 				user.setRating(rating);
@@ -110,14 +110,14 @@ public class UserController extends BasicController {
 				if(StringHelper.isNonEmpty(password))
 					user.setPassword(PasswordUtil.encryptPassword(email, password));
 				
-				context.userDAO().update(user);
-				return context.render("admin/users.jsp");
+				context().userDAO().update(user);
+				return context().render("admin/users.jsp");
 			}
 			else 
 				return handler().message("NOK");
 		case "del":
-			id = context.query().getInt("objid");
-			context.userDAO().delete(id);
+			id = context().query().getInt("objid");
+			context().userDAO().delete(id);
 			return handler().message("OK");
 		default:
 			break;
