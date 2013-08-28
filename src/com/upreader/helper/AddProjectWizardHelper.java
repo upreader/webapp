@@ -10,6 +10,8 @@ import com.upreader.context.Context;
 import com.upreader.controller.BasicController;
 import com.upreader.dispatcher.BasicPathHandler;
 import com.upreader.dto.AddProjectWizardDTO;
+import com.upreader.dto.AmazonS3FileDetails;
+import com.upreader.dto.AmazonS3FileDetailsBuilder;
 import com.upreader.model.Project;
 import com.upreader.model.User;
 import org.apache.commons.fileupload.FileItem;
@@ -77,7 +79,11 @@ public class AddProjectWizardHelper extends BasicController{
 					}
 				});
 				upload.waitForCompletion();
-                return true;
+                String uploadedKey = prefix + uploadedFile.getName();
+                return handler().json(new AmazonS3FileDetailsBuilder().withFileName(uploadedFile.getName())
+                                                                      .withKey(uploadedKey)
+                                                                      .withIsPublicFlag(isPublic)
+                                                                      .build());
       }catch(Exception e){
           log.error(e);
           return !handler().serverError(e.getMessage()).isEmpty();

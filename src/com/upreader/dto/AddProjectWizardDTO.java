@@ -29,6 +29,8 @@ public class AddProjectWizardDTO {
     private String step2_storyCategory;
     private String step2_storyPitch;
     private String step2_storySynopsis;
+    private AmazonS3FileDetails step2_uploadedStory;
+    private AmazonS3FileDetails step2_uploadedSampleStory;
     private String[] step2_tags;
     private String[] step2_backstories;
 
@@ -47,7 +49,7 @@ public class AddProjectWizardDTO {
     private Integer step3_totalNumberOfShares;
     private BigDecimal step3_shareValue;
     private BigDecimal step3_maxShareValue;
-
+    private AmazonS3FileDetails[]   step3_uploadedProofDocuments;
     private boolean step3_agreePrint;
     private boolean step3_agreeTV;
     private boolean step3_agreeAudioBook;
@@ -90,6 +92,8 @@ public class AddProjectWizardDTO {
         step2_storyPitch                 = source.getStep2_storyPitch();
         step2_storySynopsis              = source.getStep2_storySynopsis();
         step2_storyChapters              = source.getStep2_storyChapters();
+        step2_uploadedStory              = source.getStep2_uploadedStory();
+        step2_uploadedSampleStory        = source.getStep2_uploadedSampleStory();
         step2_aproxChapterWordCount      = source.getStep2_aproxChapterWordCount();
         step2_delayBetweenChapterUpdates = source.getStep2_delayBetweenChapterUpdates();
         step2_tags                       = source.getStep2_tags();
@@ -98,6 +102,7 @@ public class AddProjectWizardDTO {
         step3_yearsOfSellingRightsToPlatform = source.getStep3_yearsOfSellingRightsToPlatform();
         step3_sellEstimateUnitsPerYear       = source.getStep3_sellEstimateUnitsPerYear();
         step3_ebookPrice                     = source.getStep3_ebookPrice();
+        step3_uploadedProofDocuments         = source.getStep3_uploadedProofDocuments();
         step3_percentRoyaltiesToPlatform     = source.getStep3_percentRoyaltiesToPlatform();
         step3_numberOfSharesValue            = source.getStep3_numberOfSharesValue();
         step3_totalNumberOfShares            = source.getStep3_totalNumberOfShares();
@@ -140,6 +145,7 @@ public class AddProjectWizardDTO {
         step3_percentRoyaltiesToPlatform     = Integer.valueOf(10);
         step3_sellEstimateUnitsPerYear       = Integer.valueOf(1);
         step3_ebookPrice          = BigDecimal.valueOf(0.01);
+        step3_uploadedProofDocuments = new AmazonS3FileDetails[]{};
         step3_numberOfSharesValue = Integer.valueOf(1);
         step3_totalNumberOfShares = Integer.valueOf(100);
         step3_shareValue          = BigDecimal.valueOf(1.00);
@@ -281,6 +287,22 @@ public class AddProjectWizardDTO {
         this.step2_backstories = step2_backstories;
     }
 
+    public AmazonS3FileDetails getStep2_uploadedStory() {
+        return step2_uploadedStory;
+    }
+
+    public void setStep2_uploadedStory(AmazonS3FileDetails step2_uploadedStory) {
+        this.step2_uploadedStory = step2_uploadedStory;
+    }
+
+    public AmazonS3FileDetails getStep2_uploadedSampleStory() {
+        return step2_uploadedSampleStory;
+    }
+
+    public void setStep2_uploadedSampleStory(AmazonS3FileDetails step2_uploadedSampleStory) {
+        this.step2_uploadedSampleStory = step2_uploadedSampleStory;
+    }
+
     public Integer getStep3_yearsOfSellingRightsToPlatform() {
         return step3_yearsOfSellingRightsToPlatform;
     }
@@ -399,5 +421,13 @@ public class AddProjectWizardDTO {
 
     public void setStep3_agreeCannotReturn(boolean step3_agreeCannotReturn) {
         this.step3_agreeCannotReturn = step3_agreeCannotReturn;
+    }
+
+    public AmazonS3FileDetails[] getStep3_uploadedProofDocuments() {
+        return step3_uploadedProofDocuments;
+    }
+
+    public void setStep3_uploadedProofDocuments(AmazonS3FileDetails[] step3_uploadedProofDocuments) {
+        this.step3_uploadedProofDocuments = step3_uploadedProofDocuments;
     }
 }

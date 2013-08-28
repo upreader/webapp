@@ -97,6 +97,17 @@
                             $("button.close-uploader").click( function() {
                                 _this.removeAllFiles();
                             });
+
+                            this.on("success", function(file, response) {
+                                if(angular.element($('#addProjectWizardController')).scope().uploadFileType === "2")  {
+                                    //upload story
+                                    angular.element($('#addProjectWizardController')).scope().wizardData.step2_uploadedStory = response;
+                                }
+                                if(angular.element($('#addProjectWizardController')).scope().uploadFileType === "3")  {
+                                    //upload story sample
+                                    angular.element($('#addProjectWizardController')).scope().wizardData.step2_uploadedSampleStory = response;
+                                }
+                            });
                         },
                         maxFiles: 1,
                         dictDefaultMessage:  "<%=upreaderResources.getString("tinyMCE.fileManager.uploadMessage")%>",

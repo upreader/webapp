@@ -42,8 +42,8 @@
                             <legend class="addproject-wizard-story-term-upload-fieldset-legend"><%=upreaderResources.getString("addProjectWizard.uploadedFiles")%></legend>
                             <div class="story-details-tags-wrapper">
                                   <div class="display-block  full-width" >
-                                <span ng-repeat="(idx, uploadedFile) in uploadedProofFiles" class="tag">
-                                    {{uploadedFile}}
+                                <span ng-repeat="(idx, uploadedFile) in wizardData.step3_uploadedProofDocuments" class="tag">
+                                    {{uploadedFile.fileName}}
                                 </span>
                                 </div>
                             </div>
@@ -61,6 +61,13 @@
                                     $("button.close-uploader").click( function() {
                                         _this.removeAllFiles();
                                     });
+
+                                    this.on("success", function(file, response) {
+                                        if(angular.element($('#addProjectWizardController')).scope().uploadFileType === "5")  {
+                                            //uploaded proof document keys
+                                            angular.element($('#addProjectWizardController')).scope().addProofDocument(response);
+                                        }
+                                    });
                                 },
                                 dictDefaultMessage:  "<%=upreaderResources.getString("tinyMCE.fileManager.uploadMessage")%>",
                                 dictInvalidFileType: "<%=upreaderResources.getString("tinyMCE.fileManager.langErrorExtension")%>",
@@ -74,11 +81,6 @@
                                         done();
                                     }
                                     else { done("<%=upreaderResources.getString("tinyMCE.fileManager.langErrorExtension")%>"); }
-                                },
-                                complete: function(file, done){
-                                    if(file.status === 'success') {
-                                       angular.element($('#addProjectWizardController')).scope().addProofDocument(file.name);
-                                    }
                                 }
                             };
                         </script>
