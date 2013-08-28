@@ -105,8 +105,8 @@
         var options = {
             width:150, height:30,
             legend: 'none',
+            backgroundColor: { fill: "none" },
             hAxis: {
-                backgroundColor: "white",
                 baselineColor: "none",
                 minValue: 0,
                 maxValue: aData.irsMax,
@@ -127,8 +127,8 @@
         var options = {
             width:150, height:30,
             legend: 'none',
+            backgroundColor: { fill: "none" },
             hAxis: {
-                backgroundColor: "white",
                 baselineColor: "none",
                 minValue: 0,
                 maxValue: 1000,
@@ -150,11 +150,11 @@
     }
 
     function fnRenderIrsProgress(data, type, row) {
-        return '<div id="irschart_'+row.id+'" class="irs-chart" style="width: 200px; height: 50px;"></div>';
+        return '<div id="irschart_'+row.id+'" class="irs-chart"></div>';
     }
 
     function fnRenderSubscribers(data, type, row) {
-        return '<div id="subchart_'+row.id+'" class="sub-chart" style="width: 200px; height: 50px;"></div>';
+        return '<div id="subchart_'+row.id+'" class="sub-chart"></div>';
     }
 
     function fnRenderDerivatives(data, type, row) {
