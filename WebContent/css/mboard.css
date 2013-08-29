@@ -1,0 +1,37 @@
+.mboard {
+
+}
+
+.mboard-table {
+    font-size: 12px;
+}
+
+.mboard-empty {
+
+}
+
+.mboard-info-row {
+
+}
+
+.mboard-details-inner {
+    display: none;
+    text-align: left;
+    background-color: #DDDDDD;
+}
+
+/** DataTables customization **/
+.mboard-table.dataTable td {
+    padding: 0;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.mboard-table.dataTable thead th {
+    text-align: center;
+}
+
+.dataTables_info {
+    display: none;
+}
+/** DataTables customization **/
