@@ -13,7 +13,90 @@
         <button ng-click="confirmProjectPost()" class="addproject-wizard-postit-button"></button>
     </nav>
 
-    <jsp:include page="inc/projectcontent.jspf"/>
+    <article id="story">
+        <div class="story-header-wrapper">
+            <div class="story-header image-text-box clearfix">
+                <div class="story-header-image image-text-box-image">
+                    <img src="http://lorempixum.com/q/290/360/people/game of chairs">
+                </div>
+                <div class="story-header-details">
+                    <div class="story-synopsis">
+                        <p style="font-weight: bold" ng-bind="wizardData.step2_storyPitch">
+                        </p>
+                    </div>
+                    <div class="story-buy-ebook story-buy-box">
+                        <div class="story-buy-box-type">
+                            <p>buy</p>
+
+                            <p>e-book</p>
+                        </div>
+                        <div class="story-buy-box-price">
+                            {{wizardData.step3_ebookPrice}}
+                        </div>
+                        <div class="story-buy-box-future">
+                            future-price
+                        </div>
+                    </div>
+                    <div class="story-buy-shares story-buy-box">
+                        <div class="story-buy-box-type">
+                            <p>buy</p>
+                            <p>shares</p>
+                        </div>
+                        <div class="story-buy-box-price">
+                            {{wizardData.step3_numberOfSharesValue}}
+                        </div>
+                        <div class="story-buy-box-future">
+                            shares available     {{wizardData.step3_totalNumberOfShares}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="story-types-wrapper">
+            <table class="story-types-table">
+                <tr>
+                    <th>type</th>
+                    <th>format</th>
+                    <th>category</th>
+                    <th>genre</th>
+                    <th>subgenre</th>
+                    <th>tags</th>
+                </tr>
+                <tr>
+                    <td ng-bind="wizardData.step2_storyType"></td>
+                    <td ng-bind="wizardData.step2_storyFormat"></td>
+                    <td ng-bind="wizardData.step2_storyCategory"></td>
+                    <td ng-bind="wizardData.step2_storyGenre"></td>
+                    <td ng-bind="wizardData.step2_storySubGenre"></td>
+                    <td>
+                        <p ng-repeat="(idx, tag) in wizardData.step2_tags">
+                            <p ng-bind="tag"></p>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="story-read-wrapper">
+            <div class="story-read-button">
+                <button class="btn btn-primary button-white" value="read the pilot" ng-click="isReadPilot = !isReadPilot">Read The Pilot</button>
+            </div>
+            <div class="story-promo-item-wrapper"  collapse="isReadPilot">
+                <p ng-bind="wizardData.step2_storySynopsis"></p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="story-backstories-items-wrapper">
+            <div class="story-backstory-item-wrapper" ng-repeat="backstory in wizardData.step2_backstories">
+                <div class="story-backstory-item-content" ng-bind-html-unsafe="backstory">
+                </div>
+                <div class="story-promo-item-end">
+                    <img src="${pageContext.request.contextPath}/images/viewproject-dotted-line.jpg"/>
+                </div>
+            </div>
+        </div>
+    </article>
 
     <nav class="addproject-wizard-postit-button-wrapper">
         <button  ng-click="moveToNextStep(wizardData.currentStep-3)" class="addproject-wizard-prev-step-button"></button>

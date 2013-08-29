@@ -63,7 +63,7 @@
                                     });
 
                                     this.on("success", function(file, response) {
-                                        if(angular.element($('#addProjectWizardController')).scope().uploadFileType === <%=UpreaderConstants.PROOF_DOCUMENT%>)  {
+                                        if(angular.element($('#addProjectWizardController')).scope().uploadFileType === "<%=UpreaderConstants.PROOF_DOCUMENT%>")  {
                                             //uploaded proof document keys
                                             angular.element($('#addProjectWizardController')).scope().addProofDocument(response);
                                         }

@@ -57,7 +57,7 @@
                 <td ng-bind="wizardData.step2_storySubGenre"></td>
                 <td>
                     <p ng-repeat="(idx, tag) in wizardData.step2_tags">
-                        {{tag}}
+                        <p ng-bind="tag"></p>
                     </p>
                 </td>
             </tr>

@@ -8,7 +8,9 @@ var upreaderAddPrjAppModule = angular.module('upreaderAddPrjApp', ['ui.bootstrap
 
 upreaderAddPrjAppModule.filter('isEmpty', function() {
     return function(input) {
-        if(input) return true;
+        if(input === null){return true;}
+        if(input === undefined){return true;}
+        if(input === ""){return true;}
         return false;
     }
 });
