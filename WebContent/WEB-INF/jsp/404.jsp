@@ -7,7 +7,7 @@
 <jsp:include page="inc/head.jspf" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css"  media="screen"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css"  media="screen"/>
-<link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datatable.css" media="screen" />
+<link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datatable_crud.css" media="screen" />
 <link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/admin.css" media="screen" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.raty.min.js"></script>
 
