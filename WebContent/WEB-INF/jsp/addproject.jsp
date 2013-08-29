@@ -12,8 +12,12 @@
 <!doctype html>
 <html lang="en" id="ng-app" ng-app="upreaderAddPrjApp">
 <head>
-    <title><%=upreaderResources.getString("addProjectWizard.title")%>
-    </title>
+    <title><%=upreaderResources.getString("addProjectWizard.title")%></title>
+    <c:choose>
+        <c:when test="${empty sessionScope.user}">
+            <c:redirect url="login"/>
+        </c:when>
+    </c:choose>
     <!-- Styles-->
     <!-- Main Upreader styles -->
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">

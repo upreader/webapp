@@ -25,13 +25,18 @@ public class UpreaderConstants {
     public static final String SESSION_MONITOR_BOARD_DATA = "user";
 
     /**
-     * Enum detailing the file types for upload
+     * File types for upload
      */
      public static String PUBLIC_IMAGE = "1";
      public static String STORY = "2";
      public static String STORY_SAMPLE = "3";
      public static String COVER = "4";
      public static String PROOF_DOCUMENT = "5";
+     public static String SERIAL_STORY = "6";
+
+    /**
+     * Options used during project creation
+     */
 
     /**
      * Configuration used for the tinyMCE File Manager plugin

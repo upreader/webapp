@@ -6,6 +6,13 @@
 //Initialize the angular application for the Upreader Projects page.
 var upreaderAddPrjAppModule = angular.module('upreaderAddPrjApp', ['ui.bootstrap', 'ui.tinymce']);
 
+upreaderAddPrjAppModule.filter('isEmpty', function() {
+    return function(input) {
+        if(input) return true;
+        return false;
+    }
+});
+
 //Initialize the common features of the projects table on the root scope of the angular application
 upreaderAddPrjAppModule.run( function($rootScope){
     $rootScope.addProjectWizardCommons = addProjectWizardCommons.init();
@@ -35,6 +42,7 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
     $scope.init = function(success, targetAction){
         if(targetAction === null || targetAction === undefined){targetAction = 'addingProject'}
         $scope.isAddingANewItem = true;
+        $scope.isReadPilot = true;
         $addProjectWizardPostData = $.param({do: targetAction, jsonWizData: angular.toJson($scope.wizardData) });
         upreaderAddPrjAppModule.doPostAsForm( $http,
                                               $rootScope.addProjectWizardCommons.projectsUrl,

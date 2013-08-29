@@ -10,7 +10,7 @@
     <h1 class="title"><%=upreaderResources.getString("addProjectWizard.storyTermsTitle")%></h1>
     <hr>
 
-    <div class="addproject-wizard-story-terms-wrapper">
+    <div class="addproject-wizard-story-terms-wrapper" ng-form="storyTermsForm">
         <div class="addproject-wizard-story-term-wrapper">
             <h2 class="title-level2"><%=upreaderResources.getString("addProjectWizard.sellingRightToPlatformTitle")%></h2>
             <div class="addproject-wizard-story-term-content">
@@ -63,7 +63,7 @@
                                     });
 
                                     this.on("success", function(file, response) {
-                                        if(angular.element($('#addProjectWizardController')).scope().uploadFileType === "5")  {
+                                        if(angular.element($('#addProjectWizardController')).scope().uploadFileType === <%=UpreaderConstants.PROOF_DOCUMENT%>)  {
                                             //uploaded proof document keys
                                             angular.element($('#addProjectWizardController')).scope().addProofDocument(response);
                                         }
@@ -121,7 +121,7 @@
             <div class="addproject-wizard-story-term-content">
                 <p><%=upreaderResources.getString("addProjectWizard.ebookPriceDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" ng-model="wizardData.step3_ebookPrice" class="addproject-wizard-small-input-number" id="ebook-price"/>
+                    <input type="number" ng-model="wizardData.step3_ebookPrice" class="addproject-wizard-small-input-number" id="ebook-price" ng-required="true"/>
                     <label for="ebook-price" ><%=upreaderResources.getString("addProjectWizard.currencySign")%></label>
                 </div>
             </div>
@@ -135,7 +135,7 @@
             <div class="addproject-wizard-story-term-content">
                 <p><%=upreaderResources.getString("addProjectWizard.percentRoyaltiesToPlatformDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" ng-model="wizardData.step3_percentRoyaltiesToPlatform" class="addproject-wizard-small-input-number" id="percent-royalties-to-platform"/>
+                    <input type="number" ng-model="wizardData.step3_percentRoyaltiesToPlatform" class="addproject-wizard-small-input-number" id="percent-royalties-to-platform" ng-required="true"/>
                     <label for="percent-royalties-to-platform" ><%=upreaderResources.getString("addProjectWizard.percentSign")%></label>
                 </div>
             </div>
@@ -180,9 +180,9 @@
             <div class="addproject-wizard-story-term-content">
                 <p><%=upreaderResources.getString("addProjectWizard.numberOfSharesDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" ng-model="wizardData.step3_numberOfSharesValue" class="addproject-wizard-small-input-number" id="number-of-shares-to-sell"/>
+                    <input type="number" ng-model="wizardData.step3_numberOfSharesValue" class="addproject-wizard-small-input-number" id="number-of-shares-to-sell" ng-required="true"/>
                     <label for="number-of-shares-to-sell" ><%=upreaderResources.getString("addProjectWizard.outOf")%></label>
-                    <input type="number" ng-model="wizardData.step3_totalNumberOfShares" class="addproject-wizard-small-input-number" id="total-number-of-shares"/>
+                    <input type="number" ng-model="wizardData.step3_totalNumberOfShares" class="addproject-wizard-small-input-number" id="total-number-of-shares" ng-required="true"/>
                     <label for="total-number-of-shares"></label>
                 </div>
             </div>
@@ -197,7 +197,7 @@
             <div class="addproject-wizard-story-term-content">
                 <p><%=upreaderResources.getString("addProjectWizard.shareValueDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" max="{{wizardData.step3_maxShareValue}}" ng-model="wizardData.step3_shareValue" class="addproject-wizard-small-input-number" id="share-value"/>
+                    <input type="number" max="{{wizardData.step3_maxShareValue}}" ng-model="wizardData.step3_shareValue" class="addproject-wizard-small-input-number" id="share-value" ng-required="true"/>
                     <label for="share-value" ><%=upreaderResources.getString("addProjectWizard.shareValueTitle")%> {{wizardData.step3_maxShareValue}}<%=upreaderResources.getString("addProjectWizard.currencySign")%> <%=upreaderResources.getString("addProjectWizard.max")%></label>
                 </div>
             </div>
@@ -259,7 +259,23 @@
 
     <nav class="addproject-wizard-next-step-button-wrapper  ten-pixel-padding-bottom">
         <button  ng-click="moveToNextStep(wizardData.currentStep-1)" class="addproject-wizard-prev-step-button"></button>
-        <button  ng-click="moveToNextStep(wizardData.currentStep+3)" class="addproject-wizard-next-step-button"></button>
+        <button ng-show="(wizardData.step3_uploadedProofDocuments | isEmpty) &&
+                         (wizardData.step3_uploadedProofDocuments | isEmpty)  &&
+                         (storyTermsForm.$valid) &&
+                         (wizardData.step3_agreeEnteredValues == 1) &&
+                         (wizardData.step3_agreeCannotReturn  == 1)
+                         "
+                ng-click="moveToNextStep(wizardData.currentStep+3)"
+                class="addproject-wizard-next-step-button">
+        </button>
+        <img ng-show="(!wizardData.step3_uploadedProofDocuments | isEmpty) ||
+                      (!wizardData.step3_uploadedProofDocuments | isEmpty)  ||
+                      (!storyTermsForm.$valid) ||
+                      (!wizardData.step3_agreeEnteredValues == 1) ||
+                      (!wizardData.step3_agreeCannotReturn  == 1)
+                     "
+             class="addproject-wizard-next-step-disabled" tooltip-placement="bottom" tooltip="<%=upreaderResources.getString("addProjectWizzard.step2ProceedToolTip")%>"/>
+
     </nav>
 
     <hr>

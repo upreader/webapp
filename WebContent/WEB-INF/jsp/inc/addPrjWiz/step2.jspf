@@ -16,68 +16,73 @@
                 <img src="http://lorempixum.com/q/260/320/people/game of chairs">
             </div>
 
-            <div class="story-details-form-wrapper" >
-                <form id="story-details-form" name="storyForm">
-                    <div class="story-details-form-col1-wrapper">
-                        <input  type="text" name="Title" value="Title" size="15" ng-model="wizardData.step2_storyTitle"/>
-                        <select type="combobox" ng-model="wizardData.step2_storyFormat"><option   value="" label="<%=upreaderResources.getString("addProjectWizard.labelFormat")%>"><%=upreaderResources.getString("addProjectWizard.labelFormat")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
-                        <select type="combobox" ng-model="wizardData.step2_storyType"><option     value="" label="<%=upreaderResources.getString("addProjectWizard.labelType")%>"><%=upreaderResources.getString("addProjectWizard.labelType")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
-                        <select type="combobox" ng-model="wizardData.step2_storyGenre"><option    value="" label="<%=upreaderResources.getString("addProjectWizard.labelGenre")%>"><%=upreaderResources.getString("addProjectWizard.labelGenre")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
-                        <select type="combobox" ng-model="wizardData.step2_storySubGenre"><option value="" label="<%=upreaderResources.getString("addProjectWizard.labelSubgenre")%>"><%=upreaderResources.getString("addProjectWizard.labelSubgenre")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
-                        <select type="combobox" ng-model="wizardData.step2_storyCategory"><option value="" label="<%=upreaderResources.getString("addProjectWizard.labelCategory")%>"><%=upreaderResources.getString("addProjectWizard.labelCategory")%></option><option value="option2" label="option2"> option2</option><option value="option3"label="option3"> option3</option></select>
-                    </div>
+            <div class="story-details-form-wrapper" ng-form="storyForm" >
+                <div class="story-details-form-col1-wrapper">
+                    <input  type="text" name="Title" value="Title" size="15" ng-model="wizardData.step2_storyTitle" ng-required="true" />
+                    <select type="combobox" ng-model="wizardData.step2_storyFormat" ng-required="true"><option    value="" label="<%=upreaderResources.getString("addProjectWizard.labelFormat")%>"><%=upreaderResources.getString("addProjectWizard.labelFormat")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
+                    <select type="combobox" ng-model="wizardData.step2_storyType"   ng-required="true"><option    value="" label="<%=upreaderResources.getString("addProjectWizard.labelType")%>"><%=upreaderResources.getString("addProjectWizard.labelType")%></option><option value="<%=UpreaderConstants.SERIAL_STORY%>"><%=upreaderResources.getString("addProjectWizard.typeSerialStoryOption")%></option><option value="<%=UpreaderConstants.STORY%>"><%=upreaderResources.getString("addProjectWizard.typeStoryOption")%></option></select>
+                    <select type="combobox" ng-model="wizardData.step2_storyGenre"  ng-required="true"><option    value="" label="<%=upreaderResources.getString("addProjectWizard.labelGenre")%>"><%=upreaderResources.getString("addProjectWizard.labelGenre")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
+                    <select type="combobox" ng-model="wizardData.step2_storySubGenre" ng-required="true"><option  value="" label="<%=upreaderResources.getString("addProjectWizard.labelSubgenre")%>"><%=upreaderResources.getString("addProjectWizard.labelSubgenre")%></option><option value="option2" label="option2"> option2</option><option value="option3" label="option3"> option3</option></select>
+                    <select type="combobox" ng-model="wizardData.step2_storyCategory" ng-required="true"><option  value="" label="<%=upreaderResources.getString("addProjectWizard.labelCategory")%>"><%=upreaderResources.getString("addProjectWizard.labelCategory")%></option><option value="option2" label="option2"> option2</option><option value="option3"label="option3"> option3</option></select>
+                </div>
 
-                    <div class="story-details-form-col2-wrapper">
-                        <textarea class="full-width" name="story-details-textarea" cols="37" rows="7/" ng-model="wizardData.step2_storyPitch"></textarea>
-                        <div class="story-details-tags-wrapper">
-                            <p>Tags</p>
-                            <input  type="text" ng-model="newTag" required="true"/>
-                            <a class="btn vertical-align-top" ng-click="addTag()">Add</a>
-                            <div class="display-block">
-                                <span ng-repeat="(idx, tag) in wizardData.step2_tags" class="tag">
-                                    {{tag}}
-                                    <a ng-click="removeTag(idx)" ng-href="#"><span class="delete-tag">x</span></a>
-                                </span>
-                            </div>
+                <div class="story-details-form-col2-wrapper">
+                    <textarea class="full-width" name="story-details-textarea" cols="37" rows="7/" ng-model="wizardData.step2_storyPitch" ng-required="true"></textarea>
+                    <div class="story-details-tags-wrapper">
+                        <p>Tags</p>
+                        <input  type="text" ng-model="newTag"/>
+                        <a class="btn vertical-align-top" ng-click="addTag()">Add</a>
+                        <div class="display-block">
+                            <span ng-repeat="(idx, tag) in wizardData.step2_tags" class="tag">
+                                {{tag}}
+                                <a ng-click="removeTag(idx)" ng-href="#"><span class="delete-tag">x</span></a>
+                            </span>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
 
 
     <div class="story-synopsys-wrapper">
-        <textarea ng-model="wizardData.step2_storySynopsis" class="full-width  resize-only-vertical" name="story-synopsys-textarea" rows=20></textarea>
+        <textarea ng-model="wizardData.step2_storySynopsis" class="full-width  resize-only-vertical" name="story-synopsys-textarea" rows=20 ng-required="true"></textarea>
     </div>
 
     <div class="story-serial-setup-wrapper">
         <h2 class="title-level2"><%=upreaderResources.getString("addProjectWizard.serialStorySetupTitle")%></h2>
         <p><%=upreaderResources.getString("addProjectWizard.serialStorySetupDesc")%></p>
 
-        <div class="story-serial-count-values-wrapper">
+        <div ng-show="wizardData.step2_storyType == <%=UpreaderConstants.SERIAL_STORY%>" class="story-serial-count-values-wrapper" ng-form='storySetupForm'>
             <div class="story-serial-chapters-count-wrapper  text-align-center">
                 <p><%=upreaderResources.getString("addProjectWizard.serialStoryChaptersTitle")%></p>
-                <input type="number" ng-model="wizardData.step2_storyChapters" class="addproject-wizard-small-input-number"/>
+                <input type="number" ng-model="wizardData.step2_storyChapters" class="addproject-wizard-small-input-number" ng-required="true"/>
             </div>
 
             <div class="story-serial-word-count-wrapper  text-align-center">
                 <p><%=upreaderResources.getString("addProjectWizard.serialStoryAproxWordCount")%></p>
-                <input type="number" ng-model="wizardData.step2_aproxChapterWordCount" class="addproject-wizard-small-input-number"/>
+                <input type="number" ng-model="wizardData.step2_aproxChapterWordCount" class="addproject-wizard-small-input-number" ng-required="true"/>
             </div>
 
             <div class="story-serial-chapter-delay-wrapper  text-align-center">
                 <p><%=upreaderResources.getString("addProjectWizard.serialStoryDelayBetweenChapters")%></p>
-                <input type="number" ng-model="wizardData.step2_delayBetweenChapterUpdates" class="addproject-wizard-small-input-number"/>
+                <input type="number" ng-model="wizardData.step2_delayBetweenChapterUpdates" class="addproject-wizard-small-input-number" ng-required="true"/>
             </div>
         </div>
 
         <div class="story-upload-wrapper">
             <div class="story-upload">
                 <div class="story-upload-sample-wrapper  text-align-center">
-                    <button ng-click="uploadStorySample()" class="story-upload-button"><%=upreaderResources.getString("addProjectWizard.uploadSampleButtonText")%></button>
+                    <button ng-disabled="wizardData.step2_storyType == <%=UpreaderConstants.SERIAL_STORY%>" ng-click="uploadStorySample()" class="story-upload-button"><%=upreaderResources.getString("addProjectWizard.uploadSampleButtonText")%></button>
                 </div>
-                <div class="story-upload-story-wrapper  text-align-center">
-                    <button ng-click="uploadStory()" class="story-upload-button"><%=upreaderResources.getString("addProjectWizard.uploadStoryButtonText")%></button>
+                <div ng-disabled="!wizardData.step2_storyType == <%=UpreaderConstants.STORY%> &&
+                                  !wizardData.step2_storyType == <%=UpreaderConstants.SERIAL_STORY%>"
+                                class="story-upload-story-wrapper  text-align-center">
+                    <button ng-click="uploadStory()" class="story-upload-button">
+                       <span ng-show="wizardData.step2_storyType == <%=UpreaderConstants.STORY%>"><%=upreaderResources.getString("addProjectWizard.uploadStoryButtonText")%></span>
+                       <span ng-show="wizardData.step2_storyType == <%=UpreaderConstants.SERIAL_STORY%>"><%=upreaderResources.getString("addProjectWizard.uploadSerialStoryButtonText")%></span>
+                       <span ng-show="!wizardData.step2_storyType == <%=UpreaderConstants.STORY%> &&
+                                      !wizardData.step2_storyType == <%=UpreaderConstants.SERIAL_STORY%>"><%=upreaderResources.getString("addProjectWizard.selectStory")%></span>
+                    </button>
                 </div>
             </div>
             <nav class="addproject-wizard-skip-step-button-wrapper">
@@ -99,11 +104,11 @@
                             });
 
                             this.on("success", function(file, response) {
-                                if(angular.element($('#addProjectWizardController')).scope().uploadFileType === "2")  {
+                                if(angular.element($('#addProjectWizardController')).scope().uploadFileType === <%=UpreaderConstants.STORY%>)  {
                                     //upload story
                                     angular.element($('#addProjectWizardController')).scope().wizardData.step2_uploadedStory = response;
                                 }
-                                if(angular.element($('#addProjectWizardController')).scope().uploadFileType === "3")  {
+                                if(angular.element($('#addProjectWizardController')).scope().uploadFileType === <%=UpreaderConstants.STORY_SAMPLE%>)  {
                                     //upload story sample
                                     angular.element($('#addProjectWizardController')).scope().wizardData.step2_uploadedSampleStory = response;
                                 }
@@ -182,8 +187,23 @@
     </div>
 
     <nav class="addproject-wizard-next-step-button-wrapper">
-        <button  ng-click="moveToNextStep(wizardData.currentStep-1)" class="addproject-wizard-prev-step-button"></button>
-        <button  ng-click="moveToNextStep(wizardData.currentStep+1)" class="addproject-wizard-next-step-button"></button>
+        <button  ng-click="moveToNextStep(wizardData.currentStep-1)" class="addproject-wizard-prev-step-button" ></button>
+
+        <button ng-show="(wizardData.step2_uploadedStory.fileName | isEmpty) &&
+                         (wizardData.step2_uploadedSampleStory.fileName | isEmpty)  &&
+                         (storyForm.$valid) &&
+                         (storySetupForm.$valid)
+                         "
+                ng-click="moveToNextStep(wizardData.currentStep+1)"
+                class="addproject-wizard-next-step-button">
+        </button>
+        <img ng-show="(!wizardData.step2_uploadedStory.fileName | isEmpty) ||
+                      (!wizardData.step2_uploadedSampleStory.fileName | isEmpty) ||
+                      (!storyForm.$valid) ||
+                      (!storySetupForm.$valid)
+                       "
+             class="addproject-wizard-next-step-disabled" tooltip-placement="bottom" tooltip="<%=upreaderResources.getString("addProjectWizzard.step2ProceedToolTip")%>"/>
+
     </nav>
 
     <hr>
