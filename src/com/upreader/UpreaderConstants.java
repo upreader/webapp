@@ -8,6 +8,7 @@ public class UpreaderConstants {
     public static final String UPREADER_CONTEXT = "/upreader";
 
     public static final String LOGIN_COOKIE_NAME = "upreaderAuthId";
+    public static final String WORKSPACE_URI = "workspace";
 
     /**
      * User roles

@@ -259,8 +259,7 @@
 
     <nav class="addproject-wizard-next-step-button-wrapper  ten-pixel-padding-bottom">
         <button  ng-click="moveToNextStep(wizardData.currentStep-1)" class="addproject-wizard-prev-step-button"></button>
-        <button ng-show="(wizardData.step3_uploadedProofDocuments | isEmpty) &&
-                         (wizardData.step3_uploadedProofDocuments | isEmpty)  &&
+        <button ng-show="(!(wizardData.step3_uploadedProofDocuments | isEmpty)) &&
                          (storyTermsForm.$valid) &&
                          (wizardData.step3_agreeEnteredValues == 1) &&
                          (wizardData.step3_agreeCannotReturn  == 1)
@@ -268,8 +267,7 @@
                 ng-click="moveToNextStep(wizardData.currentStep+3)"
                 class="addproject-wizard-next-step-button">
         </button>
-        <img ng-show="(!wizardData.step3_uploadedProofDocuments | isEmpty) ||
-                      (!wizardData.step3_uploadedProofDocuments | isEmpty)  ||
+        <img ng-show="(wizardData.step3_uploadedProofDocuments | isEmpty) ||
                       (!storyTermsForm.$valid) ||
                       (!wizardData.step3_agreeEnteredValues == 1) ||
                       (!wizardData.step3_agreeCannotReturn  == 1)

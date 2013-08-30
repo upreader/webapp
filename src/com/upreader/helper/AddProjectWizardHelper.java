@@ -5,6 +5,7 @@ import com.amazonaws.services.s3.model.ProgressListener;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
+import com.upreader.BusinessException;
 import com.upreader.UpreaderConstants;
 import com.upreader.aws.AmazonService;
 import com.upreader.context.Context;
@@ -101,8 +102,11 @@ public class AddProjectWizardHelper extends BasicController{
 
     public boolean getPostProjectResult(){
         processWizardData();
-        createAndInsertNewProject(wizardData);
-
+        try{
+            createAndInsertNewProject(wizardData);
+        }catch(BusinessException be){
+            return false;
+        }
         return true;
     }
 
@@ -138,56 +142,62 @@ public class AddProjectWizardHelper extends BasicController{
           }
     }
 
-    public void createAndInsertNewProject(AddProjectWizardDTO theWizardData){
-        User loggedUser = (User) context().session().getObject(UpreaderConstants.SESSION_USER);
-        Project project = new Project();
+    public void createAndInsertNewProject(AddProjectWizardDTO theWizardData) throws BusinessException {
+        try{
+            User loggedUser = (User) context().session().getObject(UpreaderConstants.SESSION_USER);
+            Project project = new Project();
 
-        //Step 2 data
-        project.setTitle(theWizardData.getStep2_storyTitle());
-        project.setFormat(theWizardData.getStep2_storyFormat());
-        project.setType(theWizardData.getStep2_storyType());
-        project.setGenre(theWizardData.getStep2_storyGenre());
-        project.setSubgenre(theWizardData.getStep2_storySubGenre());
-        project.setCategory(theWizardData.getStep2_storyCategory());
-        //The pitch
-        Joiner joiner = Joiner.on("; ").skipNulls();
-        project.setTags( joiner.join(theWizardData.getStep2_tags()) );
-        project.setSynopsis(theWizardData.getStep2_storySynopsis());
-        //the chapters no
-        project.setSerialStoryAvgWordsPerChapter(Integer.valueOf(theWizardData.getStep2_aproxChapterWordCount()));
-        project.setSerialStoryUpdateDelay(Integer.valueOf(theWizardData.getStep2_delayBetweenChapterUpdates()));
-        project.setSample(theWizardData.getStep2_uploadedSampleStory().getKey());
-        project.setBook(theWizardData.getStep2_uploadedStory().getKey());
+            //Step 2 data
+            project.setTitle(theWizardData.getStep2_storyTitle());
+            project.setFormat(theWizardData.getStep2_storyFormat());
+            project.setType(theWizardData.getStep2_storyType());
+            project.setGenre(theWizardData.getStep2_storyGenre());
+            project.setSubgenre(theWizardData.getStep2_storySubGenre());
+            project.setCategory(theWizardData.getStep2_storyCategory());
+            //The pitch
+            Joiner joiner = Joiner.on("; ").skipNulls();
+            project.setTags( joiner.join(theWizardData.getStep2_tags()) );
+            project.setSynopsis(theWizardData.getStep2_storySynopsis());
+            //the chapters no
+            project.setSerialStoryAvgWordsPerChapter(Integer.valueOf(theWizardData.getStep2_aproxChapterWordCount()));
+            project.setSerialStoryUpdateDelay(Integer.valueOf(theWizardData.getStep2_delayBetweenChapterUpdates()));
+            project.setSample(theWizardData.getStep2_uploadedSampleStory().getKey());
+            project.setBook(theWizardData.getStep2_uploadedStory().getKey());
 
-        //Step3 Data
-        project.setSellingRights(theWizardData.getStep3_yearsOfSellingRightsToPlatform());
-        project.setEstimatedUnitSales(theWizardData.getStep3_sellEstimateUnitsPerYear());
-        project.setBookPrice(theWizardData.getStep3_ebookPrice().floatValue());
-        project.setPercentToPlatform(theWizardData.getStep3_percentRoyaltiesToPlatform());
-        project.setSharesToSale(theWizardData.getStep3_numberOfSharesValue());
-        project.setTotalShares(theWizardData.getStep3_totalNumberOfShares());
-        project.setShareValue(theWizardData.getStep3_shareValue().floatValue());
-        String derivatives = theWizardData.isStep3_agreeAudioBook() ? "audiobook " : "";
-        derivatives += theWizardData.isStep3_agreeMovie() ?  "movie " : "";
-        derivatives += theWizardData.isStep3_agreePrint() ?  "print " : "";
-        derivatives += theWizardData.isStep3_agreeTV() ?  "tv " : "";
-        derivatives += theWizardData.isStep3_agreeUK() ?  "UK " : "";
-        project.setDerivatives(derivatives);
+            //Step3 Data
+            project.setSellingRights(theWizardData.getStep3_yearsOfSellingRightsToPlatform());
+            project.setEstimatedUnitSales(theWizardData.getStep3_sellEstimateUnitsPerYear());
+            project.setBookPrice(theWizardData.getStep3_ebookPrice().floatValue());
+            project.setPercentToPlatform(theWizardData.getStep3_percentRoyaltiesToPlatform());
+            project.setSharesToSale(theWizardData.getStep3_numberOfSharesValue());
+            project.setTotalShares(theWizardData.getStep3_totalNumberOfShares());
+            project.setShareValue(theWizardData.getStep3_shareValue().floatValue());
+            String derivatives = theWizardData.isStep3_agreeAudioBook() ? "audiobook " : "";
+            derivatives += theWizardData.isStep3_agreeMovie() ?  "movie " : "";
+            derivatives += theWizardData.isStep3_agreePrint() ?  "print " : "";
+            derivatives += theWizardData.isStep3_agreeTV() ?  "tv " : "";
+            derivatives += theWizardData.isStep3_agreeUK() ?  "UK " : "";
+            project.setDerivatives(derivatives);
 
-        AmazonS3FileDetails[] uploadedProofs = theWizardData.getStep3_uploadedProofDocuments();
-        List<ProofOfSales> proofOfSales = new ArrayList<ProofOfSales>();
-        for(int i=0; i < uploadedProofs.length; i++){
-            ProofOfSales newProofOfSales = new ProofOfSales();
-            newProofOfSales.setProject(project);
-            newProofOfSales.setProof(uploadedProofs[i].getKey());
-            proofOfSales.add(newProofOfSales);
+            AmazonS3FileDetails[] uploadedProofs = theWizardData.getStep3_uploadedProofDocuments();
+            List<ProofOfSales> proofOfSales = new ArrayList<ProofOfSales>();
+            for(int i=0; i < uploadedProofs.length; i++){
+                ProofOfSales newProofOfSales = new ProofOfSales();
+                newProofOfSales.setProject(project);
+                newProofOfSales.setProof(uploadedProofs[i].getKey());
+                proofOfSales.add(newProofOfSales);
+            }
+            //FKs
+            project.setAuthor(loggedUser);
+            project.setProofsOfSales(proofOfSales);
+            project.setApproved(false);
+
+            context().projectDAO().insert(project);
+
+            context().redirect(UpreaderConstants.WORKSPACE_URI);
+        }catch(Exception e){
+            throw new BusinessException(e.getMessage());
         }
-        //FKs
-        project.setAuthor(loggedUser);
-        project.setProofsOfSales(proofOfSales);
-        project.setApproved(false);
-
-        context().projectDAO().insert(project);
     }
     /*
      * Basic getters and setters
