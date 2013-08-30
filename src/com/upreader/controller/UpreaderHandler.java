@@ -37,6 +37,11 @@ public class UpreaderHandler extends BasicPathHandler {
 		return context().render("home.jsp");
 	}
 
+    @PathSegment("workspace")
+    public boolean workspace() {
+        return context().render("workspace.jsp");
+    }
+
     @PathSegment("loginWithFacebook")
     public boolean loginWithFacebook() throws Exception {
         return loginController().loginWithFacebook();

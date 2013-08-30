@@ -53,7 +53,7 @@ public class UserController extends BasicController {
         // send confirmation email
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
         Map<String, String> tplData = new HashMap<>();
-        tplData.put("link", "http://www.upreader.com:8080/upreader/i/confirmEmail?email="+email+"&uuid="+newUser.getConfirmUUID());
+        tplData.put("link", UpreaderConstants.UPREADER_HOST+UpreaderConstants.UPREADER_CONTEXT+"/i/confirmEmail?email="+email+"&uuid="+newUser.getConfirmUUID());
         tplData.put("firstName", newUser.getFirstName());
         tplData.put("lastName", newUser.getLastName());
         tplData.put("email", newUser.getEmail());

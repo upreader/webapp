@@ -3,6 +3,7 @@ package com.upreader.security;
 import com.caucho.security.AbstractLogin;
 import com.caucho.security.NullAuthenticator;
 import com.caucho.server.security.CachingPrincipal;
+import com.upreader.UpreaderConstants;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -20,7 +21,7 @@ public class TwitterLogin extends AbstractLogin {
     public static final String OAUTH_CODE = "oauth_verifier";
     private static final String API_KEY = "33448R6VFKpSdw2JYULtA";
     private static final String API_SECRET = "IP5f9CvfxI9Ophof0qrP01shOS9wYv5t19rSScUOOHk";
-    private static final String CALLBACK = "http://www.upreader.com:8080/upreader/i/loginWithTwitter";
+    private static final String CALLBACK = UpreaderConstants.UPREADER_HOST+UpreaderConstants.UPREADER_CONTEXT+"/i/loginWithTwitter";
 
     static {
         Twitter twitter = TwitterFactory.getSingleton();

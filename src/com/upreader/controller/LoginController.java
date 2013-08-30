@@ -92,7 +92,7 @@ public class LoginController extends BasicController {
         User user = context().userDAO().findbyEmail(loggedUser);
         context().session().putObject(UpreaderConstants.SESSION_USER, user);
 
-        return context().redirect("http://www.upreader.com:8080/upreader");
+        return context().redirect(UpreaderConstants.UPREADER_HOST+UpreaderConstants.UPREADER_CONTEXT+"/i/workspace");
     }
 
     public boolean register() {

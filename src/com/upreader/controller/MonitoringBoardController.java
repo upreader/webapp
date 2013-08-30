@@ -120,7 +120,7 @@ public class MonitoringBoardController extends BasicController {
     private List<MonitorBoardDTO> generateTestDTOs() {
         List<MonitorBoardDTO> dtos = new ArrayList<>();
 
-        for (int i = 1; i <= 5000; i++) {
+        for (int i = 1; i <= 50; i++) {
             MonitorBoardDTO dto = new MonitorBoardDTO();
             dto.setId(i);
             dto.setTitle("Project " + i);

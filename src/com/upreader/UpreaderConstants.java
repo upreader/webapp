@@ -4,6 +4,9 @@ package com.upreader;
  * Constants used throughout the platform
  */
 public class UpreaderConstants {
+    public static final String UPREADER_HOST = "http://www.upreader.com:8080";
+    public static final String UPREADER_CONTEXT = "/upreader";
+
     public static final String LOGIN_COOKIE_NAME = "upreaderAuthId";
 
     /**

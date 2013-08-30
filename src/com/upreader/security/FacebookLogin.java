@@ -3,6 +3,7 @@ package com.upreader.security;
 import com.caucho.security.AbstractLogin;
 import com.caucho.security.NullAuthenticator;
 import com.caucho.server.security.CachingPrincipal;
+import com.upreader.UpreaderConstants;
 import facebook4j.Facebook;
 import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
@@ -20,7 +21,7 @@ public class FacebookLogin extends AbstractLogin {
     public static final String OAUTH_TOKEN = "token";
     private static final String API_KEY = "676106519069423";
     private static final String API_SECRET = "2f22e41f43e2d8793cc5ce56d15d798a";
-    private static final String CALLBACK = "http://www.upreader.com:8080/upreader/i/loginWithFacebook";
+    private static final String CALLBACK = UpreaderConstants.UPREADER_HOST+UpreaderConstants.UPREADER_CONTEXT+"/i/loginWithFacebook";
 
     public FacebookLogin() {
         setAuthenticator(new NullAuthenticator());
