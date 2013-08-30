@@ -40,7 +40,7 @@ upreaderAddPrjAppModule.doPostAsForm = function(http, url, params, retryLimit, c
 }
 
 //Initialize a controller for the add project wizard
-upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$rootScope', '$http', '$dialog', function($scope,$rootScope, $http, $dialog){
+upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$rootScope', '$http', '$location', function($scope,$rootScope, $http, $location){
     $scope.init = function(success, targetAction){
         if(targetAction === null || targetAction === undefined){targetAction = 'addingProject'}
         $scope.isAddingANewItem = true;
@@ -116,8 +116,12 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
     $scope.confirmProjectPost = function(){
         $scope.init(function(data) {
             //need to reload the page to check the project a
-            window.location.reload();
-            window.scrollTo(0, top);
+            if($scope.wizardData.currentStep === 1){
+                console.log("changing location");
+                window.location = "workspace";
+            }else{
+                window.location.reload();
+            }
         }, 'postingProject');
     };
 

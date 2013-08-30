@@ -104,10 +104,10 @@ public class AddProjectWizardHelper extends BasicController{
         processWizardData();
         try{
             createAndInsertNewProject(wizardData);
+            return handler().json(getWizardData());
         }catch(BusinessException be){
-            return false;
+           return false;
         }
-        return true;
     }
 
     private boolean processWizardData(){
@@ -161,8 +161,14 @@ public class AddProjectWizardHelper extends BasicController{
             //the chapters no
             project.setSerialStoryAvgWordsPerChapter(Integer.valueOf(theWizardData.getStep2_aproxChapterWordCount()));
             project.setSerialStoryUpdateDelay(Integer.valueOf(theWizardData.getStep2_delayBetweenChapterUpdates()));
-            project.setSample(theWizardData.getStep2_uploadedSampleStory().getKey());
-            project.setBook(theWizardData.getStep2_uploadedStory().getKey());
+
+            //if story and not serial story
+            if(theWizardData.getStep2_uploadedSampleStory() != null){
+                project.setSample(theWizardData.getStep2_uploadedSampleStory().getKey());
+            }
+            if(theWizardData.getStep2_uploadedStory() != null){
+                project.setBook(theWizardData.getStep2_uploadedStory().getKey());
+            }
 
             //Step3 Data
             project.setSellingRights(theWizardData.getStep3_yearsOfSellingRightsToPlatform());
@@ -194,10 +200,20 @@ public class AddProjectWizardHelper extends BasicController{
 
             context().projectDAO().insert(project);
 
-            context().redirect(UpreaderConstants.WORKSPACE_URI);
+            //Reinitialize session wizard data
+            resetWizardData();
         }catch(Exception e){
+            this.wizardData.setStep6_errorMessage(e.getMessage() + "\n" + e.getCause());
+            context().session().putObject(UpreaderConstants.SESSION_NEWPROJECT_WIZ, this.wizardData);
             throw new BusinessException(e.getMessage());
         }
+    }
+
+    public void resetWizardData(){
+        AddProjectWizardDTO defaults = new AddProjectWizardDTO();
+        defaults.setWizardDefaults(context());
+        this.wizardData = defaults;
+        context().session().putObject(UpreaderConstants.SESSION_NEWPROJECT_WIZ, this.wizardData);
     }
     /*
      * Basic getters and setters

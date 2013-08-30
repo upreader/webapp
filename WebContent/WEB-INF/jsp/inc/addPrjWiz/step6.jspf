@@ -9,6 +9,10 @@
     <h1 class="title"><%=upreaderResources.getString("addProjectWizard.previewProjectTitle")%></h1>
     <hr>
 
+    <div class="error full-width" ng-show="!(wizardData.step6_errorMessage | isEmpty)">
+        <p class="red" ng-bind="wizardData.step6_errorMessage"></p>
+    </div>
+
     <nav class="addproject-wizard-postit-button-wrapper  ten-pixel-padding-bottom">
         <button ng-click="confirmProjectPost()" class="addproject-wizard-postit-button"></button>
     </nav>

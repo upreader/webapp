@@ -69,6 +69,7 @@ public class AddProjectWizardDTO {
     /*
      * Variables used in step 6
      */
+    private String step6_errorMessage;
 
     public AddProjectWizardDTO(){
     }
@@ -116,6 +117,8 @@ public class AddProjectWizardDTO {
         step3_agreeEnteredValues             = source.isStep3_agreeEnteredValues();
         step3_agreeCannotReturn              = source.isStep3_agreeCannotReturn();
 
+        //do not want to push the same error message around
+        step6_errorMessage                   = "";
     }
 
     /*
@@ -157,6 +160,8 @@ public class AddProjectWizardDTO {
         step3_agreeUK             = false;
         step3_agreeEnteredValues  = false;
         step3_agreeCannotReturn   = false;
+
+        step6_errorMessage        = "";
     }
 
     public Integer getCurrentStep() {
@@ -429,5 +434,13 @@ public class AddProjectWizardDTO {
 
     public void setStep3_uploadedProofDocuments(AmazonS3FileDetails[] step3_uploadedProofDocuments) {
         this.step3_uploadedProofDocuments = step3_uploadedProofDocuments;
+    }
+
+    public String getStep6_errorMessage() {
+        return step6_errorMessage;
+    }
+
+    public void setStep6_errorMessage(String step6_errorMessage) {
+        this.step6_errorMessage = step6_errorMessage;
     }
 }

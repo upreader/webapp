@@ -137,6 +137,10 @@
     box-shadow: 0 0 10px 0 rgba(1, 1, 1, 0.5)
 }
 
+.red{
+    color: red;
+    border: 2px solid red;
+}
 /**
  * Add project wizard pages breadcrumbs
  *
