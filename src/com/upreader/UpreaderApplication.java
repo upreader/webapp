@@ -60,6 +60,9 @@ public class UpreaderApplication {
 	}
 
 	public UpreaderApplication() {
+        System.setProperty("http.proxyHost", "localhost");
+        System.setProperty("http.proxyPort", "8888");
+
 		this.version = new UpreaderVersion();
 		this.asyncResources = new ArrayList<>();
 		this.deferredAsyncResources = new ArrayList<>();

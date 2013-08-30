@@ -118,9 +118,9 @@ public class Project implements Serializable {
     private Integer estimatedUnitSales;
 
     /**
-    * Holds the documents uploaded by the author during project creation (step 3)
-    * proving the number of claimed book sales per year
-    */
+     * Holds the documents uploaded by the author during project creation (step 3)
+     * proving the number of claimed book sales per year
+     */
     @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<ProofOfSales> proofsOfSales;
 

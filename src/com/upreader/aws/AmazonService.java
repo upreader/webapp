@@ -6,6 +6,8 @@ import java.security.Security;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.amazonaws.ClientConfiguration;
+import com.amazonaws.Protocol;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.*;
@@ -60,9 +62,10 @@ public class AmazonService implements Configurable {
         String accessKey = props.getProperty("AWSAccessKeyId");
         String secretKey = props.getProperty("AWSSecretKey");
         this.cfAccessKey = props.getProperty("CFAccessKey");
-        if (accessKey != null && secretKey != null)
+        if (accessKey != null && secretKey != null) {
             this.credentials = new BasicAWSCredentials(accessKey, secretKey);
             this.s3 = new AmazonS3Client(this.credentials);
+        }
         try {
             InputStream is = getClass().getClassLoader().getResourceAsStream("cf.der");
             derPrivateKey = ServiceUtils.readInputStreamToBytes(is);

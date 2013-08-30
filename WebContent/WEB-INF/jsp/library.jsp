@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Upreader</title>
+    <title>Upreader - Library</title>
     <jsp:include page="inc/head.jspf"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/library.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/projectcard.css" media="screen"/>

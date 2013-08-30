@@ -1,0 +1,80 @@
+.page-workspace {
+    min-height: 600px;
+}
+
+/** START top section where use profile info is displayed **/
+.page-header {
+    margin: 0 auto;
+    width: 1024px;
+    padding-top: 25px;
+    padding-bottom: 20px;
+}
+
+.user-profile, .user-profile-photo-wrapper {
+    display: inline-block;
+}
+
+.user-profile-photo {
+    display: block;
+}
+
+.user-profile-photo-img {
+    display: block;
+    width: 100px !important;
+    height: 130px !important;
+}
+
+.user-profile-details-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+.user-profile-details {
+    vertical-align: middle;
+}
+
+.user-profile-name, .user-profile-rating, .user-profile-profile, user-profile-profile-bar {
+    display: block;
+}
+
+.user-profile-profile {
+    margin-top: 10px;
+}
+
+.user-projects, .user-actions {
+    margin-left: 50px;
+    display: inline-block;
+}
+/** END top section where use profile info is displayed **/
+
+
+
+
+/** START Notification area **/
+.notification-wrapper {
+
+}
+/** END Notification area **/
+
+
+/** START Monitoring Board area **/
+.mboard-wrapper {
+
+}
+/** END Monitoring Board area **/
+
+
+/** START Financial area **/
+.financial-wrapper {
+
+}
+/** END Financial area **/
+
+
+/** START Recommended area **/
+.recommended-wrapper {
+
+}
+/** END Recommended area **/

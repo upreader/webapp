@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.upreader.UpreaderSession;
 import com.upreader.collection.MutableNamedValues;
-import com.upreader.util.NumberHelper;
+import com.upreader.helper.NumberHelper;
 
 /**
  * Easy attribute handler for the HTTP Session

@@ -1,16 +1,9 @@
 package com.upreader.context;
 
-import java.io.File;
-import java.util.List;
-
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
 import com.upreader.UpreaderRequest;
 import com.upreader.collection.ImmutableNamedValues;
 import com.upreader.helper.StringHelper;
-import com.upreader.util.NumberHelper;
+import com.upreader.helper.NumberHelper;
 
 /**
  * HTTP GET parameters (URL Query)
