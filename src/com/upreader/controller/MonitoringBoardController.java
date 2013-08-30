@@ -92,23 +92,20 @@ public class MonitoringBoardController extends BasicController {
         User user = context().session().getObject(UpreaderConstants.SESSION_USER);
 
         if (user != null) {
-            dtos = context().session().getObject(UpreaderConstants.SESSION_MONITOR_BOARD_DATA);
-            if (dtos == null) {
-                //List<Project> projects = context().projectDAO().findAllProjectsForUser(user.getId());
-                //dtos = toMonitorBoardDTOs(projects);
-                dtos = generateTestDTOs();
-            }
+            //List<Project> projects = context().projectDAO().findAllProjectsForUser(user.getId());
+            //dtos = toMonitorBoardDTOs(projects);
+            dtos = generateTestDTOs();
+
             if (criterias.hasOneSortedColumn()) {
                 // sorting was asked
                 Collections.sort(dtos, composeComparator(criterias));
             }
-            context().session().putObject(UpreaderConstants.SESSION_MONITOR_BOARD_DATA, dtos);
         }
 
         List<MonitorBoardDTO> display_dtos = null;
 
-        if(dtos.size() > criterias.getDisplayStart()+criterias.getDisplaySize())
-            display_dtos = dtos.subList(criterias.getDisplayStart(), criterias.getDisplayStart()+criterias.getDisplaySize());
+        if (dtos.size() > criterias.getDisplayStart() + criterias.getDisplaySize())
+            display_dtos = dtos.subList(criterias.getDisplayStart(), criterias.getDisplayStart() + criterias.getDisplaySize());
         else
             display_dtos = dtos;
 
@@ -120,7 +117,7 @@ public class MonitoringBoardController extends BasicController {
     private List<MonitorBoardDTO> generateTestDTOs() {
         List<MonitorBoardDTO> dtos = new ArrayList<>();
 
-        for (int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= 10; i++) {
             MonitorBoardDTO dto = new MonitorBoardDTO();
             dto.setId(i);
             dto.setTitle("Project " + i);
@@ -139,7 +136,7 @@ public class MonitoringBoardController extends BasicController {
                 dto.setSubscribers(600);
             dto.setSerialStorySubscriptionPrice(0.99f * i);
             dto.setIncome(111 * i);
-            dto.setDerivatives("movie,audiobook");
+            dto.setDerivatives("movie");
             dto.setAuthorName("Author Name " + i);
             dto.setAuthorRating(i);
             dtos.add(dto);

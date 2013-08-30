@@ -50,18 +50,49 @@
 /** END top section where use profile info is displayed **/
 
 
-
+.page-content {
+    width: 980px;
+    margin: 0 auto;
+}
 
 /** START Notification area **/
-.notification-wrapper {
+.inbox-wrapper {
+    margin-bottom: 30px;
+}
 
+.inbox-table {
+    border: 1px solid;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.inbox-table th, .inbox-table tr, .inbox-table td {
+    border: 1px solid;
+    border-collapse: collapse;
 }
 /** END Notification area **/
 
 
 /** START Monitoring Board area **/
 .mboard-wrapper {
+    margin-bottom: 30px;
+}
 
+.mboard-title {
+    margin-bottom: 20px;
+}
+
+.pin-projects {
+    margin-top: 20px;
+}
+
+.pin-projects-text {
+    display: inline-block;
+    width: 810px;
+}
+
+.pin-projects-button {
+    display: inline-block;
 }
 /** END Monitoring Board area **/
 
