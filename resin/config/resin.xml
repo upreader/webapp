@@ -55,8 +55,8 @@
 		<server-default>
 			<jvm-arg-line>-Xmx256m -XX:MaxPermSize=128m</jvm-arg-line>
 			<jvm-mode>-server</jvm-mode>
-			<http address="*" port="8080" />
-			<http address="*" port="8443">
+			<http address="*" port="80" />
+			<http address="*" port="443">
 				<jsse-ssl self-signed-certificate-name="www.upreader.com" />
 			</http>
 			<user-name>upreader</user-name>
@@ -78,7 +78,7 @@
 		</web-app-default>
 
 		<host id="" root-directory=".">
-            <secure-host-name>www.upreader.com:8443</secure-host-name>
+            <secure-host-name>www.upreader.com:443</secure-host-name>
 
 			<access-log path="log/access.log"
 				format='%h %l %u %t "%r" %s %b "%{Referer}i" "%{User-Agent}i"'

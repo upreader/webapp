@@ -1,3 +1,5 @@
+<%@ page import="com.upreader.UpreaderConstants" %>
+<%@ page import="com.upreader.UpreaderRequest" %>
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -12,6 +14,9 @@
 
 <jsp:include page="inc/header.jspf"/>
 
+<%
+    String serverPath = UpreaderConstants.UPREADER_SECURE_HOST + UpreaderConstants.UPREADER_CONTEXT;
+%>
 <div class="page page-login">
     <section class="login-register-section">
         <header class="status-header">
@@ -22,7 +27,7 @@
         <div class="login-register-frame">
             <section class="login-section">
                 <div class="login-form">
-                    <FORM id="login-form" action="https://www.upreader.com:8443/upreader/j_security_check" method="post" autocomplete="on">
+                    <FORM id="login-form" action="<%= serverPath %>/j_security_check" method="post" autocomplete="on">
                         <div class="login-form-header">Already a member ?</div>
                         <div class="login-form-title">Login</div>
 
@@ -69,7 +74,7 @@
                         </span>
                     </div>
                     <div class="register-form">
-                        <FORM id="register-form" action="https://www.upreader.com:8443/upreader/i/register" method="post" autocomplete="off">
+                        <FORM id="register-form" action="<%= serverPath %>/i/register" method="post" autocomplete="off">
                             <div class="form-vertical-item">
                                 <input type="text" class="form-input" id="firstName" name="firstName" autocomplete="off"/>
                                 <div class="form-input-hint">
