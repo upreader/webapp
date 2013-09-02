@@ -174,4 +174,11 @@ public class NumberHelper {
         else if(dif > 0) return 1;
         return 0;
     }
+
+    public static <T extends Number> T safeNumber(T input, T defaultValue) {
+        if(input == null)
+            return defaultValue;
+        else
+            return input;
+    }
 }

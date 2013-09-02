@@ -21,6 +21,10 @@
     <!-- Monitor Board -->
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/projectcard.css" media="screen"/>
+
+    <script src="${pageContext.request.contextPath}/js/jquery.jcarousel.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jcarousel-skin.css" media="screen"/>
+
 </head>
 <body>
 
@@ -67,103 +71,191 @@
 
         <hr/>
 
-        <div class="fb-projects-wrapper">
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
+        <div class="projects-wrapper">
+            <ul id="projects-carousel" class="jcarousel-skin-tango">
+                <li>
+                    <div class="project-card">
+                        <div class="project-card-contents">
+                            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
+                            <div class="project-card-cover">
+                                <img class="user-profile-photo-img"
+                                     src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
+                            </div>
+                            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
+                            <div class="project-card-author-rating">rating 1</div>
+                            <div class="project-card-status">
+                                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
+                            </div>
+                            <div class="project-card-details">
+                                <div>IRS: 7009$</div>
+                                <div>Days to deaddivne: 13</div>
+                                <div>Share price: 1$</div>
+                                <div>Upreders: 433</div>
+                                <div>Shares total: 7009</div>
+                                <div>Shares remaining: 6000</div>
+                                <div>Opened 12445 times</div>
+                                <div>Publishers interested: 3</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
+                </li>
+                <li>
+                    <div class="project-card">
+                        <div class="project-card-contents">
+                            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
+                            <div class="project-card-cover">
+                                <img class="user-profile-photo-img"
+                                     src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
+                            </div>
+                            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
+                            <div class="project-card-author-rating">rating 1</div>
+                            <div class="project-card-status">
+                                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
+                            </div>
+                            <div class="project-card-details">
+                                <div>IRS: 7009$</div>
+                                <div>Days to deaddivne: 13</div>
+                                <div>Share price: 1$</div>
+                                <div>Upreders: 433</div>
+                                <div>Shares total: 7009</div>
+                                <div>Shares remaining: 6000</div>
+                                <div>Opened 12445 times</div>
+                                <div>Publishers interested: 3</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
+                </li>
+                <li>
+                    <div class="project-card">
+                        <div class="project-card-contents">
+                            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
+                            <div class="project-card-cover">
+                                <img class="user-profile-photo-img"
+                                     src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
+                            </div>
+                            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
+                            <div class="project-card-author-rating">rating 1</div>
+                            <div class="project-card-status">
+                                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
+                            </div>
+                            <div class="project-card-details">
+                                <div>IRS: 7009$</div>
+                                <div>Days to deaddivne: 13</div>
+                                <div>Share price: 1$</div>
+                                <div>Upreders: 433</div>
+                                <div>Shares total: 7009</div>
+                                <div>Shares remaining: 6000</div>
+                                <div>Opened 12445 times</div>
+                                <div>Publishers interested: 3</div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
+                </li>
+                <li>
+                    <div class="project-card">
+                        <div class="project-card-contents">
+                            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
+                            <div class="project-card-cover">
+                                <img class="user-profile-photo-img"
+                                     src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
+                            </div>
+                            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
+                            <div class="project-card-author-rating">rating 1</div>
+                            <div class="project-card-status">
+                                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
+                            </div>
+                            <div class="project-card-details">
+                                <div>IRS: 7009$</div>
+                                <div>Days to deaddivne: 13</div>
+                                <div>Share price: 1$</div>
+                                <div>Upreders: 433</div>
+                                <div>Shares total: 7009</div>
+                                <div>Shares remaining: 6000</div>
+                                <div>Opened 12445 times</div>
+                                <div>Publishers interested: 3</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
+                </li>
+                <li>
+                    <div class="project-card">
+                        <div class="project-card-contents">
+                            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
+                            <div class="project-card-cover">
+                                <img class="user-profile-photo-img"
+                                     src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
+                            </div>
+                            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
+                            <div class="project-card-author-rating">rating 1</div>
+                            <div class="project-card-status">
+                                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
+                            </div>
+                            <div class="project-card-details">
+                                <div>IRS: 7009$</div>
+                                <div>Days to deaddivne: 13</div>
+                                <div>Share price: 1$</div>
+                                <div>Upreders: 433</div>
+                                <div>Shares total: 7009</div>
+                                <div>Shares remaining: 6000</div>
+                                <div>Opened 12445 times</div>
+                                <div>Publishers interested: 3</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
+                </li>
+                <li>
+                    <div class="project-card">
+                        <div class="project-card-contents">
+                            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
+                            <div class="project-card-cover">
+                                <img class="user-profile-photo-img"
+                                     src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
+                            </div>
+                            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
+                            <div class="project-card-author-rating">rating 1</div>
+                            <div class="project-card-status">
+                                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
+                            </div>
+                            <div class="project-card-details">
+                                <div>IRS: 7009$</div>
+                                <div>Days to deaddivne: 13</div>
+                                <div>Share price: 1$</div>
+                                <div>Upreders: 433</div>
+                                <div>Shares total: 7009</div>
+                                <div>Shares remaining: 6000</div>
+                                <div>Opened 12445 times</div>
+                                <div>Publishers interested: 3</div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
+                </li>
+                <li>
+                    <div class="project-card">
+                        <div class="project-card-contents">
+                            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
+                            <div class="project-card-cover">
+                                <img class="user-profile-photo-img"
+                                     src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
+                            </div>
+                            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
+                            <div class="project-card-author-rating">rating 1</div>
+                            <div class="project-card-status">
+                                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
+                            </div>
+                            <div class="project-card-details">
+                                <div>IRS: 7009$</div>
+                                <div>Days to deaddivne: 13</div>
+                                <div>Share price: 1$</div>
+                                <div>Upreders: 433</div>
+                                <div>Shares total: 7009</div>
+                                <div>Shares remaining: 6000</div>
+                                <div>Opened 12445 times</div>
+                                <div>Publishers interested: 3</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                    </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                    </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                    </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
 
         <hr/>
@@ -189,7 +281,7 @@
 
         <hr/>
 
-        <div class="projects-wrapper">
+        <div class="fb-projects-wrapper">
             <div class="project-card">
                 <div class="project-card-contents">
                     <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
@@ -298,6 +390,14 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    $(function(){
+        $('#projects-carousel').jcarousel();
+    });
+
+</script>
 
 <jsp:include page="inc/footer.jspf"/>
 

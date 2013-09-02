@@ -9,8 +9,6 @@ import com.upreader.controller.ProjectDAO;
 import com.upreader.model.Project;
 
 import javax.annotation.Resource;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.naming.InitialContext;
@@ -25,8 +23,6 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
-@ManagedBean(name="projectData")
-@ViewScoped
 public class ViewProjectBean {
     private DataSource dataSource;
 

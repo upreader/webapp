@@ -414,7 +414,7 @@ public class Project implements Serializable {
         IRS = iRS;
     }
 
-    public int getTotalShares() {
+    public Integer getTotalShares() {
         return totalShares;
     }
 
@@ -542,11 +542,11 @@ public class Project implements Serializable {
         this.derivatives = derivatives;
     }
 
-    public int getNoViews() {
+    public Integer getNoViews() {
         return noViews;
     }
 
-    public void setNoViews(int noViews) {
+    public void setNoViews(Integer noViews) {
         this.noViews = noViews;
     }
 
@@ -636,10 +636,6 @@ public class Project implements Serializable {
 
     public void setShareValue(Float shareValue) {
         this.shareValue = shareValue;
-    }
-
-    public void setNoViews(Integer noViews) {
-        this.noViews = noViews;
     }
 
     public String getBookViewUUID() {
