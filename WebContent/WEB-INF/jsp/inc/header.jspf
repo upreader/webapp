@@ -5,7 +5,7 @@
 <header class="topbar-header">
     <div class="topbar-content">
         <div class="topbar-logo">
-            <span class="topbar-logo-text"><a href="/upreader">Upreader</a></span>
+            <span class="topbar-logo-text"><a href="<c:url value="/"/>">Upreader</a></span>
         </div>
 
         <div class="topbar-info">
@@ -13,7 +13,7 @@
                 <ul>
                     <c:choose>
                         <c:when test="${not empty sessionScope.user}">
-                            <li><a href="#"><c:out value="${pageContext.request.remoteUser}"/></a></li>
+                            <li><a href="<c:url value="/p/workspace"/>"><c:out value="${pageContext.request.remoteUser}"/></a></li>
                             <c:if test="${fn:containsIgnoreCase(sessionScope.user.roles, 'admin')}">
                                 <li><a href="<c:url value='/p/admin/status'/>">A</a></li>
                             </c:if>
