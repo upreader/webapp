@@ -92,14 +92,17 @@ public class MonitoringBoardController extends BasicController {
         User user = context().session().getObject(UpreaderConstants.SESSION_USER);
 
         if (user != null) {
-            //List<Project> projects = context().projectDAO().findAllProjectsForUser(user.getId());
-            //dtos = toMonitorBoardDTOs(projects);
-            dtos = generateTestDTOs();
+            // this is the user monitor board, show featured projects
+            List<Project> projects = context().projectDAO().findAllProjectsForUser(user.getId());
+            dtos = toMonitorBoardDTOs(projects);
 
             if (criterias.hasOneSortedColumn()) {
                 // sorting was asked
                 Collections.sort(dtos, composeComparator(criterias));
             }
+        } else {
+            // this is the homepage monitor board, show featured projects
+            dtos = generateTestDTOs();
         }
 
         List<MonitorBoardDTO> display_dtos = null;

@@ -3,26 +3,50 @@
 }
 
 .home-container {
-    left: 0;
+    width: 1024px;
+    margin: 0 auto;
 }
 
-.home-content {
-    width: 980px;
-    margin-left: auto;
-    margin-right: auto;
-    height: 400px;
-}
-
-.banner-welcome {
-    position: relative;
-    text-align: center;
-    top: 50%;
-    font-size: 35px;
-}
-
-.home-buttons {
+.top-banner {
     margin-top: 20px;
-    position: relative;
+}
+
+.mboard-wrapper {
+    margin-top: 20px;
+}
+
+.projects-wrapper {
+    margin-top: 20px;
     text-align: center;
-    top: 50%;
+}
+
+.global-stats-table {
+    width: 100%;
+}
+.global-stats-table td {
+    text-align: center;
+    font-size: 25px;
+}
+.global-stats-table th {
+    text-align: center;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.fb-projects-wrapper {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.fb-overlay {
+    background-color: rgba(200, 200, 200, 0.7);
+    height: 360px;
+    margin-top: -550px;
+    padding-top: 200px;
+    position: relative;
+    z-index: 100;
+}
+
+ .fb-overlay-img {
+    text-align: center;
 }

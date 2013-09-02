@@ -78,7 +78,7 @@ function drawIRSProgress(row, aData) {
         ['', aData.irsProgress]
     ]);
     var options = {
-        width: 100, height: 20,
+        width: 75, height: 20,
         legend: 'none',
         backgroundColor: { fill: "none" },
         hAxis: {
@@ -102,7 +102,7 @@ function drawSubscriptionProgress(row, aData) {
         ['', aData.irsProgress]
     ]);
     var options = {
-        width: 100, height: 20,
+        width: 75, height: 20,
         legend: 'none',
         backgroundColor: { fill: "none" },
         hAxis: {
