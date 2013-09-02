@@ -48,6 +48,11 @@ public class ProjectDAO {
         return query.getResultList();
     }
 
+    public Project findProjectById(Integer projectId) {
+        Query query = em.createQuery("select p from Project p where p.id = "+projectId, Project.class);
+        return (Project) query.getResultList().get(0);
+    }
+
     public List<Project> findAllProjectsForUser(Integer userId) {
         List<Project> result = new ArrayList<>();
 

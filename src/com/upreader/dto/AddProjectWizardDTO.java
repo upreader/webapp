@@ -1,8 +1,10 @@
 package com.upreader.dto;
 
+import com.upreader.UpreaderConstants;
 import com.upreader.context.Context;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddProjectWizardDTO {
@@ -13,6 +15,13 @@ public class AddProjectWizardDTO {
     private String username;
     private Integer currentStep;
 
+    //LOVs
+    private ArrayList<SelectItem> story_Format_LOV;
+    private ArrayList<SelectItem> story_Type_LOV;
+    private ArrayList<SelectItem> story_Genre_LOV;
+    private ArrayList<SelectItem> story_SubGenre_LOV;
+    private ArrayList<SelectItem> story_Category_LOV;
+
     /*
      * Variables used in step 1
      */
@@ -22,11 +31,11 @@ public class AddProjectWizardDTO {
      * Variables used in step 2
      */
     private String step2_storyTitle;
-    private String step2_storyFormat;
-    private String step2_storyType;
-    private String step2_storyGenre;
-    private String step2_storySubGenre;
-    private String step2_storyCategory;
+    private SelectItem step2_storyFormat;
+    private SelectItem step2_storyType;
+    private SelectItem step2_storyGenre;
+    private SelectItem step2_storySubGenre;
+    private SelectItem step2_storyCategory;
     private String step2_storyPitch;
     private String step2_storySynopsis;
     private AmazonS3FileDetails step2_uploadedStory;
@@ -127,14 +136,16 @@ public class AddProjectWizardDTO {
     public void setWizardDefaults(Context context){
         ResourceBundle upreaderResources = context.getApplication().getLocaleManager().getResources("com.upreader.i18n.UpreaderResources", context.getLocale());
 
+        populateLOVs(upreaderResources);
+
         this.currentStep = new Integer(1);
         this.step1_agreeTermsAndConditions = false;
 
-        step2_storyFormat                = "";
-        step2_storyType                  = "";
-        step2_storyGenre                 = "";
-        step2_storySubGenre              = "";
-        step2_storyCategory              = "";
+        step2_storyFormat                = new SelectItem("", upreaderResources.getString("addProjectWizard.labelFormat"));
+        step2_storyType                  = new SelectItem("", upreaderResources.getString("addProjectWizard.labelType"));
+        step2_storyGenre                 = new SelectItem("", upreaderResources.getString("addProjectWizard.labelGenre"));
+        step2_storySubGenre              = new SelectItem("", upreaderResources.getString("addProjectWizard.labelSubgenre"));
+        step2_storyCategory              = new SelectItem("", upreaderResources.getString("addProjectWizard.labelCategory"));
         step2_storyTitle                 = upreaderResources.getString("addProjectWizard.storyTitle");
         step2_storyPitch                 = upreaderResources.getString("addProjectWizard.storyPitch");
         step2_storySynopsis              = upreaderResources.getString("addProjectWizard.storySynopsis");
@@ -164,6 +175,37 @@ public class AddProjectWizardDTO {
         step6_errorMessage        = "";
     }
 
+    public void populateLOVs(ResourceBundle upreaderResources){
+        //TODO
+        // more generic implementation to read the options from the resource bundle
+
+        //Format LOV
+        story_Format_LOV = new ArrayList<SelectItem>();
+        story_Format_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelFormat")));
+        story_Format_LOV.add( new SelectItem(UpreaderConstants.SERIAL_STORY, upreaderResources.getString("addProjectWizard.formatOption")) );
+
+       //Type LOV
+        story_Type_LOV = new ArrayList<SelectItem>();
+        story_Type_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelType")) );
+        story_Type_LOV.add( new SelectItem(UpreaderConstants.SERIAL_STORY, upreaderResources.getString("addProjectWizard.typeSerialStoryOption")) );
+        story_Type_LOV.add( new SelectItem(UpreaderConstants.STORY, upreaderResources.getString("addProjectWizard.typeStoryOption")) );
+
+        //Genre LOV
+        story_Genre_LOV = new ArrayList<SelectItem>();
+        story_Genre_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelGenre")));
+        story_Genre_LOV.add( new SelectItem(UpreaderConstants.SERIAL_STORY, upreaderResources.getString("addProjectWizard.genreOption")) );
+
+        //Sub Genre LOV
+        story_SubGenre_LOV = new ArrayList<SelectItem>();
+        story_SubGenre_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelSubgenre")));
+        story_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SERIAL_STORY, upreaderResources.getString("addProjectWizard.subGenreOption")) );
+
+        //Category LOV
+        story_Category_LOV = new ArrayList<SelectItem>();
+        story_Category_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelCategory")));
+        story_Category_LOV.add( new SelectItem(UpreaderConstants.SERIAL_STORY, upreaderResources.getString("addProjectWizard.categoryOption")) );
+    }
+
     public Integer getCurrentStep() {
         return currentStep;
     }
@@ -178,6 +220,46 @@ public class AddProjectWizardDTO {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public ArrayList<SelectItem> getStory_Format_LOV() {
+        return story_Format_LOV;
+    }
+
+    public void setStory_Format_LOV(ArrayList<SelectItem> story_Format_LOV) {
+        this.story_Format_LOV = story_Format_LOV;
+    }
+
+    public ArrayList<SelectItem> getStory_Category_LOV() {
+        return story_Category_LOV;
+    }
+
+    public void setStory_Category_LOV(ArrayList<SelectItem> story_Category_LOV) {
+        this.story_Category_LOV = story_Category_LOV;
+    }
+
+    public ArrayList<SelectItem> getStory_SubGenre_LOV() {
+        return story_SubGenre_LOV;
+    }
+
+    public void setStory_SubGenre_LOV(ArrayList<SelectItem> story_SubGenre_LOV) {
+        this.story_SubGenre_LOV = story_SubGenre_LOV;
+    }
+
+    public ArrayList<SelectItem> getStory_Genre_LOV() {
+        return story_Genre_LOV;
+    }
+
+    public void setStory_Genre_LOV(ArrayList<SelectItem> story_Genre_LOV) {
+        this.story_Genre_LOV = story_Genre_LOV;
+    }
+
+    public ArrayList<SelectItem> getStory_Type_LOV() {
+        return story_Type_LOV;
+    }
+
+    public void setStory_Type_LOV(ArrayList<SelectItem> story_Type_LOV) {
+        this.story_Type_LOV = story_Type_LOV;
     }
 
     public boolean isStep1_agreeTermsAndConditions() {
@@ -196,43 +278,43 @@ public class AddProjectWizardDTO {
         this.step2_storyTitle = step2_storyTitle;
     }
 
-    public String getStep2_storyFormat() {
+    public SelectItem getStep2_storyFormat() {
         return step2_storyFormat;
     }
 
-    public void setStep2_storyFormat(String step2_storyFormat) {
+    public void setStep2_storyFormat(SelectItem step2_storyFormat) {
         this.step2_storyFormat = step2_storyFormat;
     }
 
-    public String getStep2_storyType() {
+    public SelectItem getStep2_storyType() {
         return step2_storyType;
     }
 
-    public void setStep2_storyType(String step2_storyType) {
+    public void setStep2_storyType(SelectItem step2_storyType) {
         this.step2_storyType = step2_storyType;
     }
 
-    public String getStep2_storyGenre() {
+    public SelectItem getStep2_storyGenre() {
         return step2_storyGenre;
     }
 
-    public void setStep2_storyGenre(String step2_storyGenre) {
+    public void setStep2_storyGenre(SelectItem step2_storyGenre) {
         this.step2_storyGenre = step2_storyGenre;
     }
 
-    public String getStep2_storySubGenre() {
+    public SelectItem getStep2_storySubGenre() {
         return step2_storySubGenre;
     }
 
-    public void setStep2_storySubGenre(String step2_storySubGenre) {
+    public void setStep2_storySubGenre(SelectItem step2_storySubGenre) {
         this.step2_storySubGenre = step2_storySubGenre;
     }
 
-    public String getStep2_storyCategory() {
+    public SelectItem getStep2_storyCategory() {
         return step2_storyCategory;
     }
 
-    public void setStep2_storyCategory(String step2_storyCategory) {
+    public void setStep2_storyCategory(SelectItem step2_storyCategory) {
         this.step2_storyCategory = step2_storyCategory;
     }
 

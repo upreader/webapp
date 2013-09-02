@@ -67,11 +67,11 @@
                     <th>tags</th>
                 </tr>
                 <tr>
-                    <td ng-bind="wizardData.step2_storyType"></td>
-                    <td ng-bind="wizardData.step2_storyFormat"></td>
-                    <td ng-bind="wizardData.step2_storyCategory"></td>
-                    <td ng-bind="wizardData.step2_storyGenre"></td>
-                    <td ng-bind="wizardData.step2_storySubGenre"></td>
+                    <td ng-bind="wizardData.step2_storyType.label"></td>
+                    <td ng-bind="wizardData.step2_storyFormat.label"></td>
+                    <td ng-bind="wizardData.step2_storyCategory.label"></td>
+                    <td ng-bind="wizardData.step2_storyGenre.label"></td>
+                    <td ng-bind="wizardData.step2_storySubGenre.label"></td>
                     <td>
                         <p ng-repeat="(idx, tag) in wizardData.step2_tags">
                             <p ng-bind="tag"></p>

@@ -1,5 +1,4 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" isELIgnored="false"%>
-
 <article id="story">
     <div class="story-header-wrapper">
         <div class="story-header image-text-box clearfix">
@@ -8,7 +7,8 @@
             </div>
             <div class="story-header-details">
                 <div class="story-synopsis">
-                    <p style="font-weight: bold" ng-bind="wizardData.step2_storyPitch">
+                    <p style="font-weight: bold">
+                        ${projectData.project.title}
                     </p>
                 </div>
                 <div class="story-buy-ebook story-buy-box">
@@ -18,7 +18,7 @@
                         <p>e-book</p>
                     </div>
                     <div class="story-buy-box-price">
-                        {{wizardData.step3_ebookPrice}}
+                        ${projectData.project.bookPrice}
                     </div>
                     <div class="story-buy-box-future">
                         future-price
@@ -30,10 +30,11 @@
                         <p>shares</p>
                     </div>
                     <div class="story-buy-box-price">
-                        {{wizardData.step3_numberOfSharesValue}}
+                        ${projectData.project.sharesToSale}
                     </div>
                     <div class="story-buy-box-future">
-                        shares available     {{wizardData.step3_totalNumberOfShares}}
+                        shares available
+                        ${projectData.project.totalShares}
                     </div>
                 </div>
             </div>
@@ -50,8 +51,19 @@
                 <th>tags</th>
             </tr>
             <tr>
-                <td ng-bind="wizardData.step2_storyType"></td>
-                <td ng-bind="wizardData.step2_storyFormat"></td>
+                <td ng-bind="wizardData.step2_storyType">
+                    <c:choose>
+                        <c:when test="${projectData.project.type.equals(upreaderConstants.values['STORY'])}">
+                            <%=upreaderResources.getString("addProjectWizard.typeStoryOption")%>
+                        </c:when>
+                        <c:when test="${projectData.project.type.equals(upreaderConstants.values['SERIAL_STORY'])}">
+                            <%=upreaderResources.getString("addProjectWizard.typeSerialStoryOption")%>
+                        </c:when>
+                    </c:choose>
+                </td>
+                <td ng-bind="wizardData.step2_storyFormat">
+
+                </td>
                 <td ng-bind="wizardData.step2_storyCategory"></td>
                 <td ng-bind="wizardData.step2_storyGenre"></td>
                 <td ng-bind="wizardData.step2_storySubGenre"></td>

@@ -4,7 +4,7 @@
  */
 
 //Initialize the angular application for the Upreader Projects page.
-var upreaderAddPrjAppModule = angular.module('upreaderAddPrjApp', ['ui.bootstrap', 'ui.tinymce']);
+var upreaderAddPrjAppModule = angular.module('upreaderAddPrjApp', ['ui.bootstrap', 'ui.tinymce','ngynSelectKey']);
 
 upreaderAddPrjAppModule.filter('isEmpty', function() {
     return function(input) {

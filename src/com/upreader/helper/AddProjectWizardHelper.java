@@ -149,11 +149,11 @@ public class AddProjectWizardHelper extends BasicController{
 
             //Step 2 data
             project.setTitle(theWizardData.getStep2_storyTitle());
-            project.setFormat(theWizardData.getStep2_storyFormat());
-            project.setType(theWizardData.getStep2_storyType());
-            project.setGenre(theWizardData.getStep2_storyGenre());
-            project.setSubgenre(theWizardData.getStep2_storySubGenre());
-            project.setCategory(theWizardData.getStep2_storyCategory());
+            project.setFormat(theWizardData.getStep2_storyFormat().getValue());
+            project.setType(theWizardData.getStep2_storyType().getValue());
+            project.setGenre(theWizardData.getStep2_storyGenre().getValue());
+            project.setSubgenre(theWizardData.getStep2_storySubGenre().getValue());
+            project.setCategory(theWizardData.getStep2_storyCategory().getValue());
             //The pitch
             Joiner joiner = Joiner.on("; ").skipNulls();
             project.setTags( joiner.join(theWizardData.getStep2_tags()) );

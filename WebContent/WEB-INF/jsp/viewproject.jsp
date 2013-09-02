@@ -1,5 +1,16 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="upreader" class="com.upreader.UpreaderApplication" scope="session"/>
+<jsp:useBean id="upreaderConstants" class="com.upreader.UpreaderConstants" scope="session" />
+<jsp:useBean id="projectData" type="com.upreader.beans.ViewProjectBean" class="com.upreader.beans.ViewProjectBean" scope="page">
+    <jsp:setProperty name="projectData" property="request" value="${pageContext.request}" />
+</jsp:useBean>
+<%@ page import="java.util.ResourceBundle" %>
+<%
+    //Retreive the resourceBundle for the current language according to the user's locale.
+    ResourceBundle upreaderResources = upreader.getLocaleManager().getResources("com.upreader.i18n.UpreaderResources", request.getLocale());
+%>
+
 <!DOCTYPE html>
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -222,7 +233,7 @@
     </div>
 </div>
 <div class="project-content-main">
-    <jsp:include page="inc/projectcontent.jspf"/>
+    <%@include file="/WEB-INF/jsp/inc/projectcontent.jspf"%>
 </div>
 </div>
 </div>

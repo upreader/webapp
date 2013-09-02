@@ -1,15 +1,21 @@
 package com.upreader;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Constants used throughout the platform
  */
 public class UpreaderConstants {
+    public Map constants=new HashMap();
+
     public static final String UPREADER_HOST = "http://www.upreader.com";
     public static final String UPREADER_SECURE_HOST = "https://www.upreader.com";
     public static final String UPREADER_CONTEXT = "/upreader";
-
+    public static final String DATASOURCE_JNDI = "java:comp/env/jdbc/mysql";
+    public static final String PERSISTANCEUNIT_JNDI = "java:comp/env/persistence";
     public static final String LOGIN_COOKIE_NAME = "upreaderAuthId";
-    public static final String WORKSPACE_URI = "workspace";
+
 
     /**
      * User roles
@@ -26,7 +32,7 @@ public class UpreaderConstants {
      */
 	public static final String SESSION_USER = "user";
 	public static final String SESSION_NEWPROJECT = "_newproject_";
-    public static final String SESSION_NEWPROJECT_WIZ = "wizardData";
+    public static final String SESSION_NEWPROJECT_WIZ = "wizardData";  //DTO used on addProjectWizard Steps
     public static final String SESSION_MONITOR_BOARD_DATA = "mbData";
 
     /**
@@ -126,5 +132,15 @@ public class UpreaderConstants {
      *******************/
     public static final String JAVA_UPLOAD="false";
     public static final String MAX_JAVA_SIZE_UPLOAD="200"; //Gb
+
+    public Map getValues(){
+        constants.put("PUBLIC_IMAGE", PUBLIC_IMAGE);
+        constants.put("STORY", STORY);
+        constants.put("STORY_SAMPLE", STORY_SAMPLE);
+        constants.put("COVER", COVER);
+        constants.put("PROOF_DOCUMENT", PROOF_DOCUMENT);
+        constants.put("SERIAL_STORY", SERIAL_STORY);
+        return constants;
+    }
 }
 
