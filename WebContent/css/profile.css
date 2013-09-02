@@ -1,0 +1,90 @@
+.page-profile {
+    min-height: 600px;
+}
+
+.profile-container {
+    width: 1024px;
+    margin: 0 auto;
+}
+
+.info1-col1 {
+    display: inline-block;
+}
+
+.profile-actions {
+    text-align: center;
+}
+
+.info1-col2 {
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.info1-col3 {
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 550px;
+}
+
+.info1-table {
+    width: 300px;
+}
+
+.info1-form-label {
+    text-align: right;
+    width: 100px;
+}
+
+.info1-form-value {
+    padding-left: 15px;
+}
+
+.education-table {
+    width: 100%;
+}
+
+.info2-col1 {
+    display: inline-block;
+}
+
+.info2-col2 {
+    float: right;
+    width: 600px;
+}
+
+.experience-table {
+    width: 200px;
+}
+
+.motivation-display {
+    overflow: auto;
+    height: 150px;
+}
+
+.experience-title {
+    display: inline-block;
+}
+
+.experience-table-wrapper {
+    display: inline-block;
+}
+
+.inspiration-tag {
+    background-color: #ddd;
+    font-size: 14px;
+    padding-left: 5px;
+    padding-right: 5px;
+    white-space: nowrap;
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+}
+
+.bio-display {
+    overflow: auto;
+    height: 200px;
+}
+

@@ -34,7 +34,7 @@ public class UpreaderServlet extends HttpServlet {
 	@Inject @Named("jdbc/mysql")
 	private DataSource dataSource;
 	
-	@PersistenceUnit(unitName="default")
+    @PersistenceUnit(unitName="default")
 	private EntityManagerFactory entityManagerFactory;
 	
 	private final UpreaderApplication application = getApplication();
