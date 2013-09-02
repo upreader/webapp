@@ -12,19 +12,24 @@
 %>
 
 <!DOCTYPE html>
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" id="ng-app" ng-app="upreaderViewPrjApp">
 <head>
     <title>Upreader</title>
     <jsp:include page="inc/head.jspf"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/viewproject.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/projectcontent.css" media="screen"/>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/angularmodules/ngyn-select-key.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-bootstrap-tpls-0.5.0.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/upreaderViewProject.js"></script>
 </head>
 <body>
 
 <jsp:include page="inc/header.jspf"/>
 
-<div class="page page-view-project">
+<div class="page page-view-project" ng-controller="viewProjectController">
 <div class="page-header-wrapper">
     <div class="page-header">
         <div class="user-profile">
@@ -36,7 +41,7 @@
             </div>
             <div class="user-profile-details-wrapper">
                 <div class="user-profile-details">
-                    <a class="user-profile-name" href="#">John Doe</a>
+                    <a class="user-profile-name" href="#">${projectData.project.author.firstName} ${projectData.project.author.lastName}</a>
                     <a class="user-profile-rating" href="#">Rating: 1</a>
                     <a class="user-profile-profile" href="#">Profile: 60%</a>
 
@@ -61,7 +66,7 @@
         <ul>
             <li>
                 <div class="sidebar-timeleft">
-                    <h1>8/25 days left</h1>
+                    <h1>8/${projectData.project.deadline} days left</h1>
                 </div>
             </li>
             <li>

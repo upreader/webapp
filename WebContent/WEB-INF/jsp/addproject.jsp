@@ -38,7 +38,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/tinymce/tinymce.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/angular-ui-tinymce/tinymce.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/tinymce/plugins/filemanager/js/dropzone.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/addProjectWizard.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/upreaderAddProjectWizard.js"></script>
 </head>
 
 <body>
