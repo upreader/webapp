@@ -21,8 +21,4 @@ tinyfileManagerAppModule.doPostAsForm = function(http, url, params, retryLimit, 
 
 tinyfileManagerAppModule.controller('tinyfileManagerController', ['$scope','$rootScope', '$http', function($scope,$rootScope, $http){
     $scope.currentListing = angular.fromJson($("#s3FolderContents").val());
-
-    $scope.letters = '1234567890';
-    $scope.letterLimit = 3;
-
 }]);

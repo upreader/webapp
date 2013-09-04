@@ -20,8 +20,10 @@ import com.upreader.model.ProofOfSales;
 import com.upreader.model.User;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.log4j.Logger;
+import org.joda.time.DateTime;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -143,6 +145,8 @@ public class AddProjectWizardHelper extends BasicController{
     }
 
     public void createAndInsertNewProject(AddProjectWizardDTO theWizardData) throws BusinessException {
+        //TODO
+        //validate the received data according to the house rules
         try{
             User loggedUser = (User) context().session().getObject(UpreaderConstants.SESSION_USER);
             Project project = new Project();
@@ -176,7 +180,7 @@ public class AddProjectWizardHelper extends BasicController{
             project.setBookPrice(theWizardData.getStep3_ebookPrice().floatValue());
             project.setPercentToPlatform(theWizardData.getStep3_percentRoyaltiesToPlatform());
             project.setSharesToSale(theWizardData.getStep3_numberOfSharesValue());
-            project.setTotalShares(theWizardData.getStep3_totalNumberOfShares());
+
             project.setShareValue(theWizardData.getStep3_shareValue().floatValue());
             String derivatives = theWizardData.isStep3_agreeAudioBook() ? "audiobook " : "";
             derivatives += theWizardData.isStep3_agreeMovie() ?  "movie " : "";
@@ -193,6 +197,29 @@ public class AddProjectWizardHelper extends BasicController{
                 newProofOfSales.setProof(uploadedProofs[i].getKey());
                 proofOfSales.add(newProofOfSales);
             }
+
+            //Calculated Fields
+            project.setSalesProjection(theWizardData.getStep3_ebookPrice()
+                                       .multiply(BigDecimal.valueOf(theWizardData.getStep3_sellEstimateUnitsPerYear().doubleValue()))
+                                       .multiply(BigDecimal.valueOf(theWizardData.getStep3_yearsOfSellingRightsToPlatform().doubleValue())).intValue()
+            );
+            project.setIRS(theWizardData.getStep3_ebookPrice()
+                    .multiply(BigDecimal.valueOf(theWizardData.getStep3_sellEstimateUnitsPerYear().doubleValue()))
+                    .multiply(BigDecimal.valueOf(theWizardData.getStep3_yearsOfSellingRightsToPlatform().doubleValue()))
+                    .multiply(BigDecimal.valueOf(theWizardData.getStep3_percentRoyaltiesToPlatform().doubleValue()))
+                    .divide(BigDecimal.valueOf(100))
+                    .intValue()
+            );
+
+            /**
+             * Set deadline
+             */
+            if(0 < project.getIRS() && project.getIRS() < 10000){project.setDeadline(DateTime.now().plusDays(30).toDate());}
+            if(10000 <= project.getIRS() && project.getIRS() < 20000){project.setDeadline(DateTime.now().plusDays(45).toDate());}
+            if(20000 <= project.getIRS() ){project.setDeadline(DateTime.now().plusDays(60).toDate());}
+
+            float totalSharesExactValue = project.getIRS().floatValue() / project.getShareValue();
+            project.setTotalShares(BigDecimal.valueOf(totalSharesExactValue).intValue());
             //FKs
             project.setAuthor(loggedUser);
             project.setProofsOfSales(proofOfSales);

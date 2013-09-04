@@ -57,7 +57,6 @@ public class AddProjectWizardDTO {
     private Integer step3_numberOfSharesValue;
     private Integer step3_totalNumberOfShares;
     private BigDecimal step3_shareValue;
-    private BigDecimal step3_maxShareValue;
     private AmazonS3FileDetails[]   step3_uploadedProofDocuments;
     private boolean step3_agreePrint;
     private boolean step3_agreeTV;
@@ -117,7 +116,6 @@ public class AddProjectWizardDTO {
         step3_numberOfSharesValue            = source.getStep3_numberOfSharesValue();
         step3_totalNumberOfShares            = source.getStep3_totalNumberOfShares();
         step3_shareValue                     = source.getStep3_shareValue();
-        step3_maxShareValue                  = source.getStep3_maxShareValue();
         step3_agreePrint                     = source.isStep3_agreePrint();
         step3_agreeTV                        = source.isStep3_agreeTV();
         step3_agreeAudioBook                 = source.isStep3_agreeAudioBook();
@@ -155,15 +153,14 @@ public class AddProjectWizardDTO {
         step2_tags                       = new String[]{};
         step2_backstories                = new String[]{};
 
-        step3_yearsOfSellingRightsToPlatform = Integer.valueOf(1);
-        step3_percentRoyaltiesToPlatform     = Integer.valueOf(10);
-        step3_sellEstimateUnitsPerYear       = Integer.valueOf(1);
-        step3_ebookPrice          = BigDecimal.valueOf(0.01);
+        step3_yearsOfSellingRightsToPlatform = Integer.valueOf(0);
+        step3_percentRoyaltiesToPlatform     = Integer.valueOf(0);
+        step3_sellEstimateUnitsPerYear       = Integer.valueOf(0);
+        step3_ebookPrice          = BigDecimal.valueOf(0);
         step3_uploadedProofDocuments = new AmazonS3FileDetails[]{};
-        step3_numberOfSharesValue = Integer.valueOf(1);
-        step3_totalNumberOfShares = Integer.valueOf(100);
-        step3_shareValue          = BigDecimal.valueOf(1.00);
-        step3_maxShareValue       = BigDecimal.valueOf(5);
+        step3_numberOfSharesValue = Integer.valueOf(0);
+        step3_totalNumberOfShares = Integer.valueOf(0);
+        step3_shareValue          = BigDecimal.valueOf(1);
         step3_agreePrint          = false;
         step3_agreeTV             = false;
         step3_agreeAudioBook      = false;
@@ -444,14 +441,6 @@ public class AddProjectWizardDTO {
 
     public void setStep3_shareValue(BigDecimal step3_shareValue) {
         this.step3_shareValue = step3_shareValue;
-    }
-
-    public BigDecimal getStep3_maxShareValue() {
-        return step3_maxShareValue;
-    }
-
-    public void setStep3_maxShareValue(BigDecimal step3_maxShareValue) {
-        this.step3_maxShareValue = step3_maxShareValue;
     }
 
     public boolean isStep3_agreePrint() {

@@ -235,6 +235,10 @@ public class User implements Serializable {
         return rating;
     }
 
+    public String getRatingAsString() {
+        return rating.toString();
+    }
+
     public void setRating(Integer rating) {
         this.rating = rating;
     }

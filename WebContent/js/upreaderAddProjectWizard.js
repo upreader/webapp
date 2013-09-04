@@ -2,16 +2,25 @@
  * Client side component for the add project wizard
  *
  */
-
 //Initialize the angular application for the Upreader Projects page.
-var upreaderAddPrjAppModule = angular.module('upreaderAddPrjApp', ['ui.bootstrap', 'ui.tinymce','ngynSelectKey']);
+var upreaderAddPrjAppModule = angular.module('upreaderAddPrjApp', ['ui.utils','ui.bootstrap', 'ui.tinymce','ngynSelectKey']);
 
 upreaderAddPrjAppModule.filter('isEmpty', function() {
     return function(input) {
         if(input === null){return true;}
         if(input === undefined){return true;}
         if(input === ""){return true;}
+        if(input.length === 0){return true;}
         return false;
+    }
+});
+
+upreaderAddPrjAppModule.filter('deadlineValue', function() {
+    return function(input) {
+        if(0 < input && input < 10000){return 30;}
+        if(10000 <= input && input < 20000){return 45;}
+        if(20000 <= input ){return 60;}
+        return "";
     }
 });
 
@@ -45,12 +54,39 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
         if(targetAction === null || targetAction === undefined){targetAction = 'addingProject'}
         $scope.isAddingANewItem = true;
         $scope.isReadPilot = true;
+        $scope.userRating = $("#USER_RATING").val();
+        $scope.saleEstimatePerYear= $("#SALE_ESTIMATE_PER_YEAR").val();
+        $scope.minBookPrice = $("#MIN_BOOK_PRICE").val();
+        $scope.maxBookPrice = $("#MAX_BOOK_PRICE").val();
+        $scope.minYearsSellingRightsToPlatform = $("#MIN_YEARS_SELLING_RIGHTS_TO_PLATFORM").val();
+        $scope.minPercentRoyaltiesToPlatform = $("#MIN_PERCENT_ROYALTIES_TO_PLATFORM").val();
+        $scope.minShares = $("#MIN_SHARES").val();
+        $scope.maxShares = $("#MAX_SHARES").val();
+        $scope.maxSharePrice = $("#SHARE_PRICE").val();
         $addProjectWizardPostData = $.param({do: targetAction, jsonWizData: angular.toJson($scope.wizardData) });
         upreaderAddPrjAppModule.doPostAsForm( $http,
                                               $rootScope.addProjectWizardCommons.projectsUrl,
                                               $addProjectWizardPostData, 5,
             function(data) {
                 $scope.wizardData = data;
+                /**
+                 * Set default values according to the user rating
+                 */
+                if($scope.wizardData.step3_yearsOfSellingRightsToPlatform === 0){
+                    $scope.wizardData.step3_yearsOfSellingRightsToPlatform = $scope.minYearsSellingRightsToPlatform;
+                }
+                if($scope.wizardData.step3_sellEstimateUnitsPerYear === 0){
+                    $scope.wizardData.step3_sellEstimateUnitsPerYear = $scope.saleEstimatePerYear;
+                }
+                if($scope.wizardData.step3_ebookPrice === 0){
+                    $scope.wizardData.step3_ebookPrice = $scope.minBookPrice;
+                }
+                if($scope.wizardData.step3_percentRoyaltiesToPlatform === 0){
+                    $scope.wizardData.step3_percentRoyaltiesToPlatform = $scope.minPercentRoyaltiesToPlatform;
+                }
+                if($scope.wizardData.step3_numberOfSharesValue === 0){
+                    $scope.wizardData.step3_numberOfSharesValue = $scope.minShares;
+                }
                 if(success !== null && success !== undefined){success(data)};
         });
     };
