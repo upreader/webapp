@@ -222,7 +222,7 @@
             <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-opened.jpg">
         </div>
         <div class="image-text-box-text">
-            <h1>Opened 4321 times</h1>
+            <h1>Opened ${projectData.project.noViews} times</h1>
         </div>
     </div>
     <div class="sidebar-irs-stats">
