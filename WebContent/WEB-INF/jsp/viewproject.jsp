@@ -66,7 +66,7 @@
         <ul>
             <li>
                 <div class="sidebar-timeleft">
-                    <h1>8/${projectData.project.deadline} days left</h1>
+                    <h1>${projectData.usedDaysFromDeadlineDays}/${projectData.initialDeadlineDays} days left</h1>
                 </div>
             </li>
             <li>
@@ -82,7 +82,7 @@
                     <div class="image-text-box-text">
                         <h1>Royalty Stock:</h1>
 
-                        <h1>5789$</h1>
+                        <h1>${projectData.project.IRS}<%=upreaderResources.getString("addProjectWizard.currencySign")%></h1>
                     </div>
                 </div>
             </li>
@@ -94,7 +94,7 @@
                     <div class="image-text-box-text">
                         <h1>shares total:</h1>
 
-                        <h1>5789</h1>
+                        <h1>${projectData.project.totalShares}</h1>
                     </div>
                 </div>
             </li>
@@ -104,7 +104,7 @@
                         <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-sharevalue.jpg">
                     </div>
                     <div class="image-text-box-text">
-                        <h1>share value: 1$</h1>
+                        <h1>share value: ${projectData.project.shareValue}<%=upreaderResources.getString("addProjectWizard.currencySign")%></h1>
                     </div>
                 </div>
             </li>
@@ -114,7 +114,7 @@
                         <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-upreader.jpg">
                     </div>
                     <div class="image-text-box-text">
-                        <h1>956 Upreaders</h1>
+                        <h1>${projectData.interestedUsersCount} Upreaders</h1>
                     </div>
                 </div>
             </li>
@@ -132,9 +132,9 @@
             </div>
         </div>
         <div class="sidebar-contract">
-            <p>Years given to platform: 5</p>
+            <p>Years given to platform: ${projectData.project.sellingRights}</p>
 
-            <p>Royalties given to platform: 5</p>
+            <p>Royalties given to platform: ${projectData.project.percentToPlatform}</p>
         </div>
     </div>
     <div class="sidebar-publishers">
@@ -154,7 +154,7 @@
             </div>
         </div>
     </div>
-    <div class="sidebar-promopacks">
+    <div class="sidebar-promopacks  hidden">
         <h2>PROMO-PACKS</h2>
         <ul>
             <li>

@@ -2,6 +2,10 @@
 .page-view-project {
     padding-bottom: 20px;
 }
+
+.hidden{
+    display: none;
+}
 /** END general page styles **/
 
 

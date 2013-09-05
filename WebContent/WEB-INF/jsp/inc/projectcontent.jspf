@@ -10,6 +10,9 @@
                     <p style="font-weight: bold">
                         ${projectData.project.title}
                     </p>
+                    <p>
+                        ${projectData.project.synopsis}
+                    </p>
                 </div>
                 <div class="story-buy-ebook story-buy-box">
                     <div class="story-buy-box-type">

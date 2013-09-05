@@ -7,6 +7,8 @@ import com.upreader.UpreaderRequest;
 import com.upreader.context.Context;
 import com.upreader.controller.ProjectDAO;
 import com.upreader.model.Project;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -61,6 +63,22 @@ public class ViewProjectBean {
 
     public Project getProject() {
         return project;
+    }
+
+    public Integer getInitialDeadlineDays(){
+        DateTime contractDate = new DateTime(project.getContractDate().getTime());
+        DateTime deadlineEnd  = new DateTime(project.getDeadline().getTime());
+        return Days.daysBetween(contractDate, deadlineEnd).getDays();
+    }
+
+    public Integer getUsedDaysFromDeadlineDays(){
+        DateTime contractDate = new DateTime(project.getContractDate().getTime());
+        DateTime now = DateTime.now();
+        return Days.daysBetween(contractDate, now).getDays();
+    }
+
+    public Integer getInterestedUsersCount(){
+        return project.getInterestedUsers() == null ? 0 : project.getInterestedUsers().size();
     }
 
     public ArrayList<String> getErrors() {
