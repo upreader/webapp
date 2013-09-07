@@ -37,6 +37,8 @@ public class ProjectController extends BasicController {
             return addProjectHelper.getPostProjectResult();
         case "viewProject":
             return addProjectHelper.getPostProjectResult();
+        case "incrementNoViews":
+            return addProjectHelper.incrementProjectNoViews();
 		default:
 			return handler().homepage();
 		}

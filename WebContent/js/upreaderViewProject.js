@@ -37,7 +37,17 @@ upreaderViewPrjAppModule.doPostAsForm = function(http, url, params, retryLimit, 
 //Initialize a controller for the view project page
 upreaderViewPrjAppModule.controller('viewProjectController', ['$scope','$rootScope', '$http', '$location', function($scope,$rootScope, $http, $location){
     $scope.init = function(){
-        $scope.isReadPilot = true;
+        $incrementProjectNoViewsPostData = $.param({do: 'incrementNoViews', projectId: $("#PROJECT_ID").val() });
+        upreaderViewPrjAppModule.doPostAsForm( $http,
+            '/upreader/i/s/p',
+            $incrementProjectNoViewsPostData, 5,
+            function(data) {
+                //handle response if necessary
+            });
+    };
+
+    $scope.downloadStory = function(){
+
     };
 
     $scope.init();

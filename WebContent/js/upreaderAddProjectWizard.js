@@ -105,12 +105,12 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
     };
 
     $scope.uploadStorySample = function(){
-        $scope.uploadFileType = "3";
+        $scope.uploadFileType = $("#STORY_SAMPLE").val();
         $('.uploader').show(500);
     };
 
     $scope.uploadStory = function(){
-        $scope.uploadFileType = "2";
+        $scope.uploadFileType = $("#STORY").val();
         $('.uploader').show(500);
     };
 

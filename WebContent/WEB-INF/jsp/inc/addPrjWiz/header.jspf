@@ -19,6 +19,12 @@
                         <input type="hidden" id="MIN_SHARES" value="<c:out value="${upreaderConst.values['RULES'].get(sessionScope.user.ratingAsString).get('MIN_SHARES')}"/>"  />
                         <input type="hidden" id="MAX_SHARES" value="<c:out value="${upreaderConst.values['RULES'].get(sessionScope.user.ratingAsString).get('MAX_SHARES')}"/>"  />
                         <input type="hidden" id="SHARE_PRICE" value="<c:out value="${upreaderConst.values['RULES'].get(sessionScope.user.ratingAsString).get('SHARE_PRICE')}"/>"  />
+                        <input type="hidden" id="PUBLIC_IMAGE" value="<c:out value="${upreaderConst.values['PUBLIC_IMAGE']}"/>"  />
+                        <input type="hidden" id="STORY" value="<c:out value="${upreaderConst.values['STORY']}"/>"  />
+                        <input type="hidden" id="STORY_SAMPLE" value="<c:out value="${upreaderConst.values['STORY_SAMPLE']}"/>"  />
+                        <input type="hidden" id="COVER" value="<c:out value="${upreaderConst.values['COVER']}"/>"  />
+                        <input type="hidden" id="PROOF_DOCUMENT" value="<c:out value="${upreaderConst.values['PROOF_DOCUMENT']}"/>"  />
+                        <input type="hidden" id="SERIAL_STORY" value="<c:out value="${upreaderConst.values['SERIAL_STORY']}"/>"  />
 
                         <a class="user-profile-name" href="#"><c:out value="${sessionScope.user.firstName}"/> <c:out value="${sessionScope.user.lastName}"/></a>
                         <a class="user-profile-rating" href="#">Rating: <c:out value="${sessionScope.user.rating}"/></a>

@@ -40,6 +40,18 @@ public class AddProjectWizardHelper extends BasicController{
             super(handler,context);
     }
 
+    public boolean incrementProjectNoViews(){
+        String projectId = context().request().getParameter("projectId");
+        Project project = context().projectDAO().get(Integer.valueOf(projectId));
+        project.setNoViews(project.getNoViews() == null ? 0 : project.getNoViews()+1);
+        try{
+            context().projectDAO().update(project);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
     /**
      * Function used to upload a project file in the
      * appropriate bucket and the appropriate folder
@@ -179,7 +191,8 @@ public class AddProjectWizardHelper extends BasicController{
             project.setEstimatedUnitSales(theWizardData.getStep3_sellEstimateUnitsPerYear());
             project.setBookPrice(theWizardData.getStep3_ebookPrice().floatValue());
             project.setPercentToPlatform(theWizardData.getStep3_percentRoyaltiesToPlatform());
-            project.setSharesToSale(theWizardData.getStep3_numberOfSharesValue());
+            project.setMinSharesToBuy(theWizardData.getStep3_numberOfSharesValue()); //target shares to be sold
+            project.setSharesToSale(theWizardData.getStep3_numberOfSharesValue()); //the shares will decrease as the upreaders buy in.
 
             project.setShareValue(theWizardData.getStep3_shareValue().floatValue());
             String derivatives = theWizardData.isStep3_agreeAudioBook() ? "audiobook " : "";

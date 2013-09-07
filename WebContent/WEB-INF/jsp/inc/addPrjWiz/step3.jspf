@@ -173,8 +173,7 @@
                     </div>
                     <div class="story-term-sales-projections-column  quarter-size-column  text-align-center">
                         <%=upreaderResources.getString("addProjectWizard.PlatformFee")%><br/>
-                        5% = {{ ( ((wizardData.step3_ebookPrice * wizardData.step3_sellEstimateUnitsPerYear * wizardData.step3_yearsOfSellingRightsToPlatform * wizardData.step3_percentRoyaltiesToPlatform)/100) * 0.05) | number:2 }}
-                        <%=upreaderResources.getString("addProjectWizard.currencySign")%>
+                        5%<%=upreaderResources.getString("addProjectWizard.currencySign")%>
                     </div>
                 </div>
                 <div class="text-align-center">

@@ -30,6 +30,7 @@
 <jsp:include page="inc/header.jspf"/>
 
 <div class="page page-view-project" ng-controller="viewProjectController">
+<input type="hidden" id="PROJECT_ID" value="${projectData.project.id}" />
 <div class="page-header-wrapper">
     <div class="page-header">
         <div class="user-profile">
@@ -143,14 +144,12 @@
         </div>
         <div>
             <div class="sidebar-publishers-box">
-                <div>
-                    <span>Barnes & Noble - 2 days ago</span>
-                    <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-publishereye.jpg">
-                </div>
-                <div>
-                    <span>Pengiun - 4 days ago</span>
-                    <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-publishereye.jpg">
-                </div>
+                <c:forEach items="${projectData.project.interestedPublishers}" var="publisher" varStatus="index">
+                    <div>
+                        <span>${publisher.publisher.firstName} ${publisher.publisher.lastName} </span>
+                        <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-publishereye.jpg">
+                    </div>
+                </c:forEach>
             </div>
         </div>
     </div>
@@ -206,13 +205,13 @@
     <div class="sidebar-user-status">
         <h1>Your status:</h1>
 
-        <p>Shares owned: 6</p>
+        <p>Shares owned: ${projectData.boughtShares}</p>
 
         <p>Dividend value: 0$</p>
 
-        <p>Promo-pack donation: 0$</p>
+        <p class="hidden">Promo-pack donation: 0$</p>
 
-        <p>Received promo materials: 5</p>
+        <p class="hidden">Received promo materials: 5</p>
     </div>
     <div class="sidebar-dividend-stats">
         <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-dividentstats.jpg">
@@ -233,7 +232,7 @@
             <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-soldbooks.jpg">
         </div>
         <div class="image-text-box-text">
-            <h1>sold books 554</h1>
+            <h1>sold books ${projectData.boughtBooks}</h1>
         </div>
     </div>
 </div>

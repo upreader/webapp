@@ -6,7 +6,9 @@ import com.upreader.UpreaderConstants;
 import com.upreader.UpreaderRequest;
 import com.upreader.context.Context;
 import com.upreader.controller.ProjectDAO;
+import com.upreader.model.BookTransaction;
 import com.upreader.model.Project;
+import com.upreader.model.ProjectMembership;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 
@@ -52,7 +54,7 @@ public class ViewProjectBean {
                 projectIdValue = Integer.valueOf(projectId);
 
                 Context context = (Context) request.getServletContext().getAttribute("context");
-                this.project = context.projectDAO().findProjectById(projectIdValue);
+                this.project = context.projectDAO().get(projectIdValue);
             }catch(Exception e){
                 e.printStackTrace();
                 errors.add(e.getMessage() + " " + e.getCause());
@@ -69,6 +71,30 @@ public class ViewProjectBean {
         DateTime contractDate = new DateTime(project.getContractDate().getTime());
         DateTime deadlineEnd  = new DateTime(project.getDeadline().getTime());
         return Days.daysBetween(contractDate, deadlineEnd).getDays();
+    }
+
+    public Integer getBoughtShares(){
+        Integer result = 0;
+        List<ProjectMembership> shareHolders = project.getShareholders();
+        if(shareHolders == null){return 0;}
+        else{
+            for(ProjectMembership holder : shareHolders){
+                result += holder.getShares();
+            }
+        }
+        return result;
+    }
+
+    public Integer getBoughtBooks(){
+        Integer result = 0;
+        List<BookTransaction> bookTransactions = project.getBookTransactions();
+        if(bookTransactions == null){return 0;}
+        else{
+            for(BookTransaction transaction : bookTransactions){
+                result += transaction.getBooksQty();
+            }
+        }
+        return result;
     }
 
     public Integer getUsedDaysFromDeadlineDays(){
