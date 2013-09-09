@@ -26,10 +26,10 @@
                         <input type="hidden" id="PROOF_DOCUMENT" value="<c:out value="${upreaderConst.values['PROOF_DOCUMENT']}"/>"  />
                         <input type="hidden" id="SERIAL_STORY" value="<c:out value="${upreaderConst.values['SERIAL_STORY']}"/>"  />
 
-                        <a class="user-profile-name" href="#"><c:out value="${sessionScope.user.firstName}"/> <c:out value="${sessionScope.user.lastName}"/></a>
-                        <a class="user-profile-rating" href="#">Rating: <c:out value="${sessionScope.user.rating}"/></a>
+                        <a class="user-profile-name" href="#">${sessionScope.user.firstName} ${sessionScope.user.lastName}/></a>
+                        <a class="user-profile-rating" href="#"><%=upreaderResources.getString("upreader.rating")%>  <c:out value="${sessionScope.user.rating}"/></a>
 
-                        <a class="user-profile-profile" href="#">Profile: 60%</a>
+                        <a class="user-profile-profile" href="#"><%=upreaderResources.getString("upreader.profile")%>  60%</a>
 
                         <div class="user-profile-profile-bar">
                             ------------

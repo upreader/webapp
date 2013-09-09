@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StocksDAO {
-    Logger log = Logger.getLogger(ProjectDAO.class);
+    Logger log = Logger.getLogger(StocksDAO.class);
     private EntityManager em;
     private UpreaderApplication application;
 

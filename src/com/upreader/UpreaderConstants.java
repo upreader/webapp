@@ -98,8 +98,8 @@ public class UpreaderConstants {
     /**
      * Keys for objects stored in HTTP session
      */
-	public static final String SESSION_USER = "user";
-	public static final String SESSION_NEWPROJECT = "_newproject_";
+    public static final String SESSION_USER = "user";
+    public static final String SESSION_NEWPROJECT = "_newproject_";
     public static final String SESSION_NEWPROJECT_WIZ = "wizardData";  //DTO used on addProjectWizard Steps
     public static final String SESSION_MONITOR_BOARD_DATA = "mbData";
 
@@ -112,6 +112,12 @@ public class UpreaderConstants {
      public static String COVER = "4";
      public static String PROOF_DOCUMENT = "5";
      public static String SERIAL_STORY = "6";
+
+    /**
+     * Notification Groups keys
+     */
+     public static String PROJECT_NOTIFICATIONS  = "1";
+     public static String PLATFORM_NOTIFICATIONS = "2";
 
     /**
      * Options used during project creation
@@ -209,6 +215,8 @@ public class UpreaderConstants {
         constants.put("PROOF_DOCUMENT", PROOF_DOCUMENT);
         constants.put("SERIAL_STORY", SERIAL_STORY);
         constants.put("RULES", UPREADER_HOUSE_RULES);
+        constants.put("PROJECT_NOTIFICATIONS", PROJECT_NOTIFICATIONS);
+        constants.put("PLATFORM_NOTIFICATIONS", PLATFORM_NOTIFICATIONS);
         return constants;
     }
 }

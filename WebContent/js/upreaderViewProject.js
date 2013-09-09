@@ -5,6 +5,10 @@
 
 //Initialize the angular application for the Upreader Projects page.
 var upreaderViewPrjAppModule = angular.module('upreaderViewPrjApp', ['ui.bootstrap', 'ngynSelectKey']);
+//Initialize the common features
+upreaderViewPrjAppModule.run( function($rootScope){
+    $rootScope.viewProjectCommons = viewProjectCommons.init();
+});
 
 upreaderViewPrjAppModule.filter('isEmpty', function() {
     return function(input) {
@@ -39,7 +43,7 @@ upreaderViewPrjAppModule.controller('viewProjectController', ['$scope','$rootSco
     $scope.init = function(){
         $incrementProjectNoViewsPostData = $.param({do: 'incrementNoViews', projectId: $("#PROJECT_ID").val() });
         upreaderViewPrjAppModule.doPostAsForm( $http,
-            '/upreader/i/s/p',
+            $rootScope.viewProjectCommons.controllerUrl,
             $incrementProjectNoViewsPostData, 5,
             function(data) {
                 //handle response if necessary
@@ -52,3 +56,20 @@ upreaderViewPrjAppModule.controller('viewProjectController', ['$scope','$rootSco
 
     $scope.init();
 }]);
+
+var viewProjectCommons = {
+    'config' : {
+        //default configuration
+        'controllerUrl': '/upreader/i/s/p'
+    },
+    'init' : function(config) {
+        if (config && typeof(config) == 'object') {
+            $.extend(viewProjectCommons.config, config);
+        }
+
+        viewProjectCommons.controllerUrl = viewProjectCommons.config.controllerUrl;
+        viewProjectCommons.initialized = true;
+
+        return this;
+    }
+};

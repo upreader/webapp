@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BooksDAO {
-    Logger log = Logger.getLogger(ProjectDAO.class);
+    Logger log = Logger.getLogger(BooksDAO.class);
     private EntityManager em;
     private UpreaderApplication application;
 

@@ -255,6 +255,11 @@ public class AddProjectWizardHelper extends BasicController{
         this.wizardData = defaults;
         context().session().putObject(UpreaderConstants.SESSION_NEWPROJECT_WIZ, this.wizardData);
     }
+
+    public boolean loadProjectsTableJson(){
+        return handler().json( handler().context().projectDAO().findAllProjectsInRange(Integer.valueOf(context().query().get("startPos")).intValue(),
+                                                                                       Integer.valueOf(context().query().get("endPos")).intValue()) );
+    }
     /*
      * Basic getters and setters
      */

@@ -84,6 +84,11 @@ public class UpreaderHandler extends BasicPathHandler {
 		return projectController().doCmd();
 	}
 
+    @PathSegment("s/w")
+    public boolean workspaceService() {
+        return workspaceController().doCmd();
+    }
+
     @PathSegment("s/m")
     public boolean monitoringBoardService() {
         return monitoringBoardController().data();

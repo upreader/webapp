@@ -31,6 +31,10 @@
     <resin:Allow url-pattern="/p/addproject">
         <resin:IfUserInRole role="*"/>
     </resin:Allow>
+    <!-- workspace page only for authenticated users -->
+    <resin:Allow url-pattern="/p/workspace">
+        <resin:IfUserInRole role="*"/>
+    </resin:Allow>
 
     <!-- /admin is only allowed for admin role -->
     <resin:Allow url-pattern="/p/admin/*">

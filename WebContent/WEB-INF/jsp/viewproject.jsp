@@ -43,8 +43,8 @@
             <div class="user-profile-details-wrapper">
                 <div class="user-profile-details">
                     <a class="user-profile-name" href="#">${projectData.project.author.firstName} ${projectData.project.author.lastName}</a>
-                    <a class="user-profile-rating" href="#">Rating: ${projectData.project.author.rating}</a>
-                    <a class="user-profile-profile" href="#">Profile: 60%</a>
+                    <a class="user-profile-rating" href="#"><%=upreaderResources.getString("upreader.rating")%>  ${projectData.project.author.rating}</a>
+                    <a class="user-profile-profile" href="#"><%=upreaderResources.getString("upreader.profile")%>  60%</a>
 
                     <div class="user-profile-profile-bar">
                         ------------

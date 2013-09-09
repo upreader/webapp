@@ -9,6 +9,7 @@ import com.upreader.controller.ProjectDAO;
 import com.upreader.model.BookTransaction;
 import com.upreader.model.Project;
 import com.upreader.model.ProjectMembership;
+import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 
@@ -28,9 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewProjectBean {
-    private DataSource dataSource;
-
-
+    Logger log = Logger.getLogger(ViewProjectBean.class);
     private ServletRequest request;
     private Project project;
     private ArrayList<String> errors;
@@ -43,7 +42,6 @@ public class ViewProjectBean {
      * Getters and Setters
      */
     public void setRequest(ServletRequest request) {
-        System.out.println("Setting Request");
         String projectId = request.getParameter("projectId");
         Integer projectIdValue;
 
@@ -56,7 +54,7 @@ public class ViewProjectBean {
                 Context context = (Context) request.getServletContext().getAttribute("context");
                 this.project = context.projectDAO().get(projectIdValue);
             }catch(Exception e){
-                e.printStackTrace();
+                log.error(e);
                 errors.add(e.getMessage() + " " + e.getCause());
             }
         }
