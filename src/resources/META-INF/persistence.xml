@@ -13,7 +13,7 @@
         <class>com.upreader.model.ProjectMembership</class>
         <class>com.upreader.model.ProjectPromoPack</class>
         <class>com.upreader.model.ProjectSubscription</class>
-        <class>com.upreader.model.PromoItem</class>
+        <class>com.upreader.model.ProjectPost</class>
         <class>com.upreader.model.PromoPack</class>
         <class>com.upreader.model.ProofOfSales</class>
         <class>com.upreader.model.StoryChapter</class>

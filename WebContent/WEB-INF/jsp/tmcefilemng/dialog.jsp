@@ -4,6 +4,7 @@
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page import="com.upreader.UpreaderApplication" %>
 <%@ page import="com.upreader.UpreaderConstants" %>
+<%@ page import="com.upreader.model.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
@@ -23,7 +24,10 @@
      */
     String _cur_dir = "";
     if(_type.equals("1")){
+
+        User loggedUser = (User) session.getAttribute(UpreaderConstants.SESSION_USER);
         _cur_dir += upreaderConst.IMAGES_PATH_INSIDE_UPREADER_BUCHET;
+        _cur_dir +=  loggedUser.getEmail() + "/";
     }
 %>
 
@@ -232,11 +236,11 @@
                                 <div class="img-precontainer">
                                     <div class="img-container">
                                         <span></span>
-                                        <img alt="image" class="original" ng-src={{currentFile.link}} />
+                                        <img alt="image" class="original" width="64" height="64" ng-src={{currentFile.link}} />
                                     </div>
                                 </div>
                                 <div class="img-container-mini original-thumb">
-                                    <img alt="image" ng-src={{currentFile.link}}>
+                                    <img alt="image" width="41" height="64" ng-src={{currentFile.link}}>
                                 </div>
                             </a>
                             <div class="box">

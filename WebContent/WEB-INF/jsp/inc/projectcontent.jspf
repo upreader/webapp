@@ -1,3 +1,4 @@
+<%@ page import="com.upreader.UpreaderConstants" %>
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" isELIgnored="false"%>
 <article id="story">
     <div class="story-header-wrapper">
@@ -9,6 +10,9 @@
                 <div class="story-synopsis">
                     <p style="font-weight: bold">
                         ${projectData.project.title}
+                    </p>
+                    <p>
+                        ${projectData.project.synopsis}
                     </p>
                 </div>
                 <div class="story-buy-ebook story-buy-box">
@@ -81,10 +85,19 @@
     </div>
     <div class="story-read-wrapper">
         <div class="story-read-button">
-            <button class="btn btn-primary button-white" value="read the pilot" ng-click="isReadPilot = !isReadPilot">Read The Pilot</button>
-        </div>
-        <div class="story-promo-item-wrapper"  collapse="isReadPilot">
-            <p>${projectData.project.synopsis}</p>
+            <button ng-click="downloadStory()"
+                    class="button-white">
+                <span>
+                    <c:choose>
+                        <c:when test="${projectData.project.type.equals(upreaderConstants.values['STORY'])}">
+                            <%=upreaderResources.getString("addProjectWizard.readStoryButtonText")%>
+                        </c:when>
+                        <c:when test="${projectData.project.type.equals(upreaderConstants.values['SERIAL_STORY'])}">
+                            <%=upreaderResources.getString("addProjectWizard.readSerialStoryButtonText")%>
+                        </c:when>
+                    </c:choose>
+                </span>
+            </button>
         </div>
     </div>
 

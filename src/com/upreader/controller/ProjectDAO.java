@@ -24,6 +24,12 @@ public class ProjectDAO {
         this.em = em;
     }
 
+    public void update(Project project) {
+        em.getTransaction().begin();
+        em.persist(project);
+        em.getTransaction().commit();
+    }
+
     public void insert(Project project) {
         em.getTransaction().begin();
         em.persist(project);

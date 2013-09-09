@@ -30,6 +30,7 @@
 <jsp:include page="inc/header.jspf"/>
 
 <div class="page page-view-project" ng-controller="viewProjectController">
+<input type="hidden" id="PROJECT_ID" value="${projectData.project.id}" />
 <div class="page-header-wrapper">
     <div class="page-header">
         <div class="user-profile">
@@ -42,8 +43,8 @@
             <div class="user-profile-details-wrapper">
                 <div class="user-profile-details">
                     <a class="user-profile-name" href="#">${projectData.project.author.firstName} ${projectData.project.author.lastName}</a>
-                    <a class="user-profile-rating" href="#">Rating: 1</a>
-                    <a class="user-profile-profile" href="#">Profile: 60%</a>
+                    <a class="user-profile-rating" href="#"><%=upreaderResources.getString("upreader.rating")%>  ${projectData.project.author.rating}</a>
+                    <a class="user-profile-profile" href="#"><%=upreaderResources.getString("upreader.profile")%>  60%</a>
 
                     <div class="user-profile-profile-bar">
                         ------------
@@ -66,7 +67,7 @@
         <ul>
             <li>
                 <div class="sidebar-timeleft">
-                    <h1>8/${projectData.project.deadline} days left</h1>
+                    <h1>${projectData.usedDaysFromDeadlineDays}/${projectData.initialDeadlineDays} days left</h1>
                 </div>
             </li>
             <li>
@@ -82,7 +83,7 @@
                     <div class="image-text-box-text">
                         <h1>Royalty Stock:</h1>
 
-                        <h1>5789$</h1>
+                        <h1>${projectData.project.IRS}<%=upreaderResources.getString("addProjectWizard.currencySign")%></h1>
                     </div>
                 </div>
             </li>
@@ -94,7 +95,7 @@
                     <div class="image-text-box-text">
                         <h1>shares total:</h1>
 
-                        <h1>5789</h1>
+                        <h1>${projectData.project.totalShares}</h1>
                     </div>
                 </div>
             </li>
@@ -104,7 +105,7 @@
                         <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-sharevalue.jpg">
                     </div>
                     <div class="image-text-box-text">
-                        <h1>share value: 1$</h1>
+                        <h1>share value: ${projectData.project.shareValue}<%=upreaderResources.getString("addProjectWizard.currencySign")%></h1>
                     </div>
                 </div>
             </li>
@@ -114,7 +115,7 @@
                         <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-upreader.jpg">
                     </div>
                     <div class="image-text-box-text">
-                        <h1>956 Upreaders</h1>
+                        <h1>${projectData.interestedUsersCount} Upreaders</h1>
                     </div>
                 </div>
             </li>
@@ -132,9 +133,9 @@
             </div>
         </div>
         <div class="sidebar-contract">
-            <p>Years given to platform: 5</p>
+            <p>Years given to platform: ${projectData.project.sellingRights}</p>
 
-            <p>Royalties given to platform: 5</p>
+            <p>Royalties given to platform: ${projectData.project.percentToPlatform}</p>
         </div>
     </div>
     <div class="sidebar-publishers">
@@ -143,18 +144,16 @@
         </div>
         <div>
             <div class="sidebar-publishers-box">
-                <div>
-                    <span>Barnes & Noble - 2 days ago</span>
-                    <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-publishereye.jpg">
-                </div>
-                <div>
-                    <span>Pengiun - 4 days ago</span>
-                    <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-publishereye.jpg">
-                </div>
+                <c:forEach items="${projectData.project.interestedPublishers}" var="publisher" varStatus="index">
+                    <div>
+                        <span>${publisher.publisher.firstName} ${publisher.publisher.lastName} </span>
+                        <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-publishereye.jpg">
+                    </div>
+                </c:forEach>
             </div>
         </div>
     </div>
-    <div class="sidebar-promopacks">
+    <div class="sidebar-promopacks  hidden">
         <h2>PROMO-PACKS</h2>
         <ul>
             <li>
@@ -206,13 +205,13 @@
     <div class="sidebar-user-status">
         <h1>Your status:</h1>
 
-        <p>Shares owned: 6</p>
+        <p>Shares owned: ${projectData.boughtShares}</p>
 
         <p>Dividend value: 0$</p>
 
-        <p>Promo-pack donation: 0$</p>
+        <p class="hidden">Promo-pack donation: 0$</p>
 
-        <p>Received promo materials: 5</p>
+        <p class="hidden">Received promo materials: 5</p>
     </div>
     <div class="sidebar-dividend-stats">
         <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-dividentstats.jpg">
@@ -222,7 +221,7 @@
             <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-opened.jpg">
         </div>
         <div class="image-text-box-text">
-            <h1>Opened 4321 times</h1>
+            <h1>Opened ${projectData.project.noViews} times</h1>
         </div>
     </div>
     <div class="sidebar-irs-stats">
@@ -233,7 +232,7 @@
             <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-soldbooks.jpg">
         </div>
         <div class="image-text-box-text">
-            <h1>sold books 554</h1>
+            <h1>sold books ${projectData.boughtBooks}</h1>
         </div>
     </div>
 </div>

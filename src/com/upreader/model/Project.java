@@ -2,7 +2,6 @@ package com.upreader.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import sun.management.GcInfoCompositeData;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -129,6 +128,18 @@ public class Project implements Serializable {
      */
     @Column(name = "book_price")
     private Float bookPrice;
+
+    /**
+     * Stock transactions for this project
+     */
+    @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY)
+    protected List<StockTransaction> stockTransactions;
+
+    /**
+     * Book transactions for this project
+     */
+    @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY)
+    protected List<BookTransaction> bookTransactions;
 
     /**
      * Percent royalties to platform
@@ -269,7 +280,7 @@ public class Project implements Serializable {
      * project advertisements that are shown similar to blog posts on the project page
      */
     @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    protected List<PromoItem> promoItems;
+    protected List<ProjectPost> projectPosts;
 
 
     /**
@@ -296,6 +307,12 @@ public class Project implements Serializable {
      */
     @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<ProjectMembership> shareholders;
+
+    /**
+     * publishers that are interested in this project
+     */
+    @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    protected List<ProjectPublisher> interestedPublishers;
 
     /**
      * serial story subscribers
@@ -406,6 +423,22 @@ public class Project implements Serializable {
         this.bookPrice = bookPrice;
     }
 
+    public List<StockTransaction> getStockTransactions() {
+        return stockTransactions;
+    }
+
+    public void setStockTransactions(List<StockTransaction> stockTransactions) {
+        this.stockTransactions = stockTransactions;
+    }
+
+    public List<BookTransaction> getBookTransactions() {
+        return bookTransactions;
+    }
+
+    public void setBookTransactions(List<BookTransaction> bookTransactions) {
+        this.bookTransactions = bookTransactions;
+    }
+
     public Integer getIRS() {
         return IRS;
     }
@@ -478,12 +511,12 @@ public class Project implements Serializable {
         this.serialStoryUpdateDelay = serialStoryUpdateFreq;
     }
 
-    public List<PromoItem> getPromoItems() {
-        return promoItems;
+    public List<ProjectPost> getProjectPosts() {
+        return projectPosts;
     }
 
-    public void setPromoItems(List<PromoItem> promoItems) {
-        this.promoItems = promoItems;
+    public void setProjectPosts(List<ProjectPost> projectPosts) {
+        this.projectPosts = projectPosts;
     }
 
     public String getContract() {
@@ -556,6 +589,14 @@ public class Project implements Serializable {
 
     public void setInterestedUsers(List<PinnedProject> interestedUsers) {
         this.interestedUsers = interestedUsers;
+    }
+
+    public List<ProjectPublisher> getInterestedPublishers() {
+        return interestedPublishers;
+    }
+
+    public void setInterestedPublishers(List<ProjectPublisher> interestedPublishers) {
+        this.interestedPublishers = interestedPublishers;
     }
 
     public List<StoryChapter> getSerialStoryChapters() {

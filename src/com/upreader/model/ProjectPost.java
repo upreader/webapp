@@ -16,13 +16,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * Promotional articles added to a project.
+ * Posts added to a project.
  * They will appear on the UI like blog entries.
  */
 @Entity
-@Table(name = "promoitems")
+@Table(name = "projectposts")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
-public class PromoItem implements Serializable {
+public class ProjectPost implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Integer id;
@@ -46,7 +46,7 @@ public class PromoItem implements Serializable {
 	@JoinColumn(name = "projectid", nullable = false, updatable = false)
 	private Project project;
 
-	public PromoItem() {
+	public ProjectPost() {
 	}
 
 	public Integer getId() {

@@ -7,8 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.upreader.controller.LoginController;
-import com.upreader.controller.MonitoringBoardController;
+import com.upreader.controller.*;
 import org.apache.log4j.Logger;
 
 import com.upreader.UpreaderApplication;
@@ -21,8 +20,6 @@ import com.upreader.context.Messages;
 import com.upreader.context.Query;
 import com.upreader.context.SessionNamedValues;
 import com.upreader.context.TemplateContext;
-import com.upreader.controller.ProjectController;
-import com.upreader.controller.UserController;
 import com.upreader.helper.JsonWriter;
 import com.upreader.helper.ReflectionHelper;
 import com.upreader.helper.StringHelper;
@@ -198,6 +195,10 @@ public abstract class BasicPathHandler implements Configurable {
         return this.references.get().projectController;
     }
 
+    public WorkspaceController workspaceController() {
+        return this.references.get().workspaceController;
+    }
+
     public MonitoringBoardController monitoringBoardController() {
         return this.references.get().monitoringBoardController;
     }
@@ -338,6 +339,7 @@ public abstract class BasicPathHandler implements Configurable {
 		public final PathSegments segments;
         public final UserController userController;
         public final ProjectController projectController;
+        public final WorkspaceController workspaceController;
         public final LoginController loginController;
         public final MonitoringBoardController monitoringBoardController;
 
@@ -347,6 +349,7 @@ public abstract class BasicPathHandler implements Configurable {
 			this.segments = segments;
             this.userController = new UserController(handler, context);
             this.projectController = new ProjectController(handler, context);
+            this.workspaceController = new WorkspaceController(handler, context);
             this.loginController = new LoginController(handler, context);
             this.monitoringBoardController = new MonitoringBoardController(handler, context);
 		}

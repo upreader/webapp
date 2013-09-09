@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import com.upreader.controller.*;
 import org.apache.log4j.Logger;
 
 import com.caucho.security.SecurityContext;
@@ -21,8 +22,6 @@ import com.upreader.Infrastructure;
 import com.upreader.UpreaderApplication;
 import com.upreader.UpreaderRequest;
 import com.upreader.UpreaderSession;
-import com.upreader.controller.ProjectDAO;
-import com.upreader.controller.UserDAO;
 import com.upreader.dispatcher.Dispatcher;
 import com.upreader.security.TokenProvider;
 
@@ -54,6 +53,9 @@ public class Context {
 	private UpreaderSession session;
 	private UserDAO userDAO;
 	private ProjectDAO projectDAO;
+    private BooksDAO booksDAO;
+    private StocksDAO stocksDAO;
+    private NotificationsDAO notificationsDAO;
 	
 	private long requestNumber = 0L;
 	
@@ -83,6 +85,9 @@ public class Context {
 		this.entityManager = this.entityManagerFactory.createEntityManager();
 		this.userDAO = new UserDAO(application, this.entityManager);
 		this.projectDAO = new ProjectDAO(application, this.entityManager);
+        this.booksDAO = new BooksDAO(application, this.entityManager);
+        this.stocksDAO = new StocksDAO(application, this.entityManager);
+        this.notificationsDAO = new NotificationsDAO(application, this.entityManager);
 	}
 
 	public static void complete() {
@@ -211,8 +216,20 @@ public class Context {
 	public ProjectDAO projectDAO() {
 		return projectDAO;
 	}
-	
-	public long getStartTime() {
+
+    public BooksDAO booksDAO() {
+        return booksDAO;
+    }
+
+    public StocksDAO stocksDAO() {
+        return stocksDAO;
+    }
+
+    public NotificationsDAO notificationsDAO() {
+        return notificationsDAO;
+    }
+
+    public long getStartTime() {
 		return this.processingStart;
 	}
 

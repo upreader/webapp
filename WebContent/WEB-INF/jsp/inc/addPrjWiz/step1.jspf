@@ -1,5 +1,5 @@
 <%--suppress ALL --%>
-<jsp:include page="inc/addPrjWiz/header.jspf"/>
+<%@ include file="header.jspf"%>
 
 <div class="page-addproject-wizard-step1-content">
 

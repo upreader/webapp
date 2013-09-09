@@ -10,9 +10,26 @@
                 </div>
                 <div class="user-profile-details-wrapper">
                     <div class="user-profile-details">
-                        <a class="user-profile-name" href="#"><c:out value="${pageContext.request.remoteUser}"/></a>
-                        <a class="user-profile-rating" href="#">Rating: 1</a>
-                        <a class="user-profile-profile" href="#">Profile: 60%</a>
+                        <input type="hidden" id="USER_RATING" value=" <c:out value="${sessionScope.user.rating}"/>"  />
+                        <input type="hidden" id="SALE_ESTIMATE_PER_YEAR" value="<c:out value="${upreaderConst.values['RULES'].get(sessionScope.user.ratingAsString).get('SALE_ESTIMATE_PER_YEAR')}"/>"  />
+                        <input type="hidden" id="MIN_BOOK_PRICE" value="<c:out value="${upreaderConst.values['RULES'].get(sessionScope.user.ratingAsString).get('MIN_BOOK_PRICE')}"/>"  />
+                        <input type="hidden" id="MAX_BOOK_PRICE" value="<c:out value="${upreaderConst.values['RULES'].get(sessionScope.user.ratingAsString).get('MAX_BOOK_PRICE')}"/>"  />
+                        <input type="hidden" id="MIN_YEARS_SELLING_RIGHTS_TO_PLATFORM" value="<c:out value="${upreaderConst.values['RULES'].get(sessionScope.user.ratingAsString).get('MIN_YEARS_SELLING_RIGHTS_TO_PLATFORM')}"/>"  />
+                        <input type="hidden" id="MIN_PERCENT_ROYALTIES_TO_PLATFORM" value="<c:out value="${upreaderConst.values['RULES'].get(sessionScope.user.ratingAsString).get('MIN_PERCENT_ROYALTIES_TO_PLATFORM')}"/>"  />
+                        <input type="hidden" id="MIN_SHARES" value="<c:out value="${upreaderConst.values['RULES'].get(sessionScope.user.ratingAsString).get('MIN_SHARES')}"/>"  />
+                        <input type="hidden" id="MAX_SHARES" value="<c:out value="${upreaderConst.values['RULES'].get(sessionScope.user.ratingAsString).get('MAX_SHARES')}"/>"  />
+                        <input type="hidden" id="SHARE_PRICE" value="<c:out value="${upreaderConst.values['RULES'].get(sessionScope.user.ratingAsString).get('SHARE_PRICE')}"/>"  />
+                        <input type="hidden" id="PUBLIC_IMAGE" value="<c:out value="${upreaderConst.values['PUBLIC_IMAGE']}"/>"  />
+                        <input type="hidden" id="STORY" value="<c:out value="${upreaderConst.values['STORY']}"/>"  />
+                        <input type="hidden" id="STORY_SAMPLE" value="<c:out value="${upreaderConst.values['STORY_SAMPLE']}"/>"  />
+                        <input type="hidden" id="COVER" value="<c:out value="${upreaderConst.values['COVER']}"/>"  />
+                        <input type="hidden" id="PROOF_DOCUMENT" value="<c:out value="${upreaderConst.values['PROOF_DOCUMENT']}"/>"  />
+                        <input type="hidden" id="SERIAL_STORY" value="<c:out value="${upreaderConst.values['SERIAL_STORY']}"/>"  />
+
+                        <a class="user-profile-name" href="#">${sessionScope.user.firstName} ${sessionScope.user.lastName}/></a>
+                        <a class="user-profile-rating" href="#"><%=upreaderResources.getString("upreader.rating")%>  <c:out value="${sessionScope.user.rating}"/></a>
+
+                        <a class="user-profile-profile" href="#"><%=upreaderResources.getString("upreader.profile")%>  60%</a>
 
                         <div class="user-profile-profile-bar">
                             ------------

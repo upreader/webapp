@@ -27,8 +27,7 @@ public class ProjectController extends BasicController {
 		String cmd = context().query().get("do");
 		switch (cmd) {
         case "listPrjs":
-            return handler().json(loadProjectsTableJson(Integer.valueOf(context().query().get("startPos")).intValue(),
-                                                        Integer.valueOf(context().query().get("endPos")).intValue() ));
+            return addProjectHelper.loadProjectsTableJson();
         case "addingProject":
             return addProjectHelper.getWizardDataJson();
         case "addingProjectUploadFile":
@@ -37,6 +36,8 @@ public class ProjectController extends BasicController {
             return addProjectHelper.getPostProjectResult();
         case "viewProject":
             return addProjectHelper.getPostProjectResult();
+        case "incrementNoViews":
+            return addProjectHelper.incrementProjectNoViews();
 		default:
 			return handler().homepage();
 		}
@@ -144,7 +145,7 @@ public class ProjectController extends BasicController {
 //		return true;
 //	}
 
-    public List<Project> loadProjectsTableJson(int startPos, int endPos){
-        return handler().context().projectDAO().findAllProjectsInRange(startPos, endPos);
-    }
+//    public List<Project> loadProjectsTableJson(int startPos, int endPos){
+//        return handler().context().projectDAO().findAllProjectsInRange(startPos, endPos);
+//    }
 }

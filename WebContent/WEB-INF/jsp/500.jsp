@@ -19,15 +19,15 @@
 <div style="height:500px; margin:0 auto; text-align:center; background: none repeat scroll 0 0 #FFFFFF;">
 <h1 style="padding-top:200px">Oops, we encountered an error</h1>
 
-<c:choose>
-	<c:when test="${upreader.exception}">
-		<p>Upreader application error message: <span style="color:red">${upreader.description}</span></p>
-	</c:when>
-	<c:when test="${javax.servlet.error.status_code > 0}">
-		<p>Server error message: <span style="color:red">${javax.servlet.error.message}</span></p>
-		
-	</c:when>
-</c:choose>
+<%--<c:choose>--%>
+	<%--<c:when test="${upreader.exception}">--%>
+		<%--<p>Upreader application error message: <span style="color:red">${upreader.description}</span></p>--%>
+	<%--</c:when>--%>
+	<%--<c:when test="${javax.servlet.error.status_code > 0}">--%>
+		<%--<p>Server error message: <span style="color:red">${javax.servlet.error.message}</span></p>--%>
+		<%----%>
+	<%--</c:when>--%>
+<%--</c:choose>--%>
 
 <p>Click to go to Upreader <a href="<c:url value='/p/home'/>">Home</a></p>
 </div>

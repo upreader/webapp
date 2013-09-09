@@ -1,4 +1,4 @@
-<jsp:include page="inc/addPrjWiz/header.jspf"/>
+<%@ include file="header.jspf"%>
 
 <div class="page-addproject-wizard-step3-content">
 
@@ -16,7 +16,9 @@
             <div class="addproject-wizard-story-term-content">
                 <p><%=upreaderResources.getString("addProjectWizard.sellingRightToPlatformDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" ng-model="wizardData.step3_yearsOfSellingRightsToPlatform" class="addproject-wizard-small-input-number" id="selling-rights-to-platform"/>
+                    <input type="number" ng-model="wizardData.step3_yearsOfSellingRightsToPlatform"
+                           class="addproject-wizard-small-input-number" id="selling-rights-to-platform"
+                           min="{{minYearsSellingRightsToPlatform}}" />
                     <label for="selling-rights-to-platform" ><%=upreaderResources.getString("addProjectWizard.years")%></label>
                 </div>
             </div>
@@ -30,7 +32,9 @@
             <div class="addproject-wizard-story-term-content">
                 <p><%=upreaderResources.getString("addProjectWizard.sellEstimatePerYearDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" ng-model="wizardData.step3_sellEstimateUnitsPerYear" class="addproject-wizard-small-input-number" id="sale-estimate-per-year"/>
+                    <input type="number" ng-model="wizardData.step3_sellEstimateUnitsPerYear"
+                           class="addproject-wizard-small-input-number" id="sale-estimate-per-year"
+                           min="{{saleEstimatePerYear}}"  />
                     <label for="sale-estimate-per-year" ><%=upreaderResources.getString("addProjectWizard.unitsPerYear")%></label>
                 </div>
                 <div class="addproject-wizard-story-term-upload-wrapper">
@@ -121,7 +125,9 @@
             <div class="addproject-wizard-story-term-content">
                 <p><%=upreaderResources.getString("addProjectWizard.ebookPriceDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" ng-model="wizardData.step3_ebookPrice" class="addproject-wizard-small-input-number" id="ebook-price" ng-required="true"/>
+                    <input type="number" ng-model="wizardData.step3_ebookPrice"
+                           class="addproject-wizard-small-input-number" id="ebook-price" ng-required="true"
+                           min="{{minBookPrice}}" max="{{maxBookPrice}}"/>
                     <label for="ebook-price" ><%=upreaderResources.getString("addProjectWizard.currencySign")%></label>
                 </div>
             </div>
@@ -135,7 +141,9 @@
             <div class="addproject-wizard-story-term-content">
                 <p><%=upreaderResources.getString("addProjectWizard.percentRoyaltiesToPlatformDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" ng-model="wizardData.step3_percentRoyaltiesToPlatform" class="addproject-wizard-small-input-number" id="percent-royalties-to-platform" ng-required="true"/>
+                    <input type="number" ng-model="wizardData.step3_percentRoyaltiesToPlatform"
+                           class="addproject-wizard-small-input-number" id="percent-royalties-to-platform" ng-required="true"
+                           min="{{minPercentRoyaltiesToPlatform}}" max="100" />
                     <label for="percent-royalties-to-platform" ><%=upreaderResources.getString("addProjectWizard.percentSign")%></label>
                 </div>
             </div>
@@ -151,19 +159,21 @@
                 <div class="story-term-sales-projections">
                     <div class="story-term-sales-projections-column  quarter-size-column  text-align-center">
                         <%=upreaderResources.getString("addProjectWizard.totalSalesProjectionsTitle")%> <br/>
-                        12 000$
+                        {{(wizardData.step3_ebookPrice * wizardData.step3_sellEstimateUnitsPerYear * wizardData.step3_yearsOfSellingRightsToPlatform) | number:2}}<%=upreaderResources.getString("addProjectWizard.currencySign")%>
                     </div>
                     <div class="story-term-sales-projections-column  quarter-size-column  text-align-center">
                         <%=upreaderResources.getString("addProjectWizard.initialRoyaltyStockValue")%><br/>
-                        6000$
+                        {{((wizardData.step3_ebookPrice * wizardData.step3_sellEstimateUnitsPerYear * wizardData.step3_yearsOfSellingRightsToPlatform * wizardData.step3_percentRoyaltiesToPlatform)/100) | number:2}}
+                        <%=upreaderResources.getString("addProjectWizard.currencySign")%>
                     </div>
                     <div class="story-term-sales-projections-column  quarter-size-column  text-align-center">
                         <%=upreaderResources.getString("addProjectWizard.Deadline")%><br/>
-                        30 days
+                        {{ ((wizardData.step3_ebookPrice * wizardData.step3_sellEstimateUnitsPerYear * wizardData.step3_yearsOfSellingRightsToPlatform * wizardData.step3_percentRoyaltiesToPlatform)/100) | deadlineValue }}
+                        <%=upreaderResources.getString("addProjectWizard.days")%>
                     </div>
                     <div class="story-term-sales-projections-column  quarter-size-column  text-align-center">
                         <%=upreaderResources.getString("addProjectWizard.PlatformFee")%><br/>
-                        5%
+                        5%<%=upreaderResources.getString("addProjectWizard.currencySign")%>
                     </div>
                 </div>
                 <div class="text-align-center">
@@ -180,9 +190,12 @@
             <div class="addproject-wizard-story-term-content">
                 <p><%=upreaderResources.getString("addProjectWizard.numberOfSharesDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" ng-model="wizardData.step3_numberOfSharesValue" class="addproject-wizard-small-input-number" id="number-of-shares-to-sell" ng-required="true"/>
-                    <label for="number-of-shares-to-sell" ><%=upreaderResources.getString("addProjectWizard.outOf")%></label>
-                    <input type="number" ng-model="wizardData.step3_totalNumberOfShares" class="addproject-wizard-small-input-number" id="total-number-of-shares" ng-required="true"/>
+                    <input type="number" ng-model="wizardData.step3_numberOfSharesValue"
+                           class="addproject-wizard-small-input-number" id="number-of-shares-to-sell" ng-required="true"
+                           min="{{minShares}}" max="{{maxShares}}"/>
+                    <label for="number-of-shares-to-sell" ><%=upreaderResources.getString("addProjectWizard.outOf")%>  {{ ( ((wizardData.step3_ebookPrice * wizardData.step3_sellEstimateUnitsPerYear * wizardData.step3_yearsOfSellingRightsToPlatform * wizardData.step3_percentRoyaltiesToPlatform)/100) / wizardData.step3_shareValue) |number:0}}</label>
+                    <input type="number" ng-model="wizardData.step3_totalNumberOfShares"
+                           class="addproject-wizard-small-input-number hidden" id="total-number-of-shares" ng-required="true"/>
                     <label for="total-number-of-shares"></label>
                 </div>
             </div>
@@ -197,8 +210,10 @@
             <div class="addproject-wizard-story-term-content">
                 <p><%=upreaderResources.getString("addProjectWizard.shareValueDesc")%></p>
                 <div class="text-align-center">
-                    <input type="number" max="{{wizardData.step3_maxShareValue}}" ng-model="wizardData.step3_shareValue" class="addproject-wizard-small-input-number" id="share-value" ng-required="true"/>
-                    <label for="share-value" ><%=upreaderResources.getString("addProjectWizard.shareValueTitle")%> {{wizardData.step3_maxShareValue}}<%=upreaderResources.getString("addProjectWizard.currencySign")%> <%=upreaderResources.getString("addProjectWizard.max")%></label>
+                    <input type="number" ng-model="wizardData.step3_shareValue"
+                           class="addproject-wizard-small-input-number" id="share-value" ng-required="true"
+                           min="1" max="{{maxSharePrice}}" />
+                    <label for="share-value" ><%=upreaderResources.getString("addProjectWizard.shareValueTitle")%> {{maxSharePrice}}<%=upreaderResources.getString("addProjectWizard.currencySign")%> <%=upreaderResources.getString("addProjectWizard.max")%></label>
                 </div>
             </div>
             <div class="addproject-wizard-story-term-end">

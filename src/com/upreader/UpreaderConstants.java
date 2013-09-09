@@ -1,5 +1,7 @@
 package com.upreader;
 
+import com.google.common.collect.ImmutableMap;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +18,72 @@ public class UpreaderConstants {
     public static final String PERSISTANCEUNIT_JNDI = "java:comp/env/persistence";
     public static final String LOGIN_COOKIE_NAME = "upreaderAuthId";
 
+    /**
+     * Upreader House Rules
+     */
+    public static final ImmutableMap<String, ImmutableMap<String, String>> UPREADER_HOUSE_RULES =
+            ImmutableMap.<String, ImmutableMap<String, String>>builder()
+                .put("1", ImmutableMap.<String, String>builder()
+                                .put("SALE_ESTIMATE_PER_YEAR","500")
+                                .put("MIN_BOOK_PRICE","1.99")
+                                .put("MAX_BOOK_PRICE","3.99")
+                                .put("MIN_YEARS_SELLING_RIGHTS_TO_PLATFORM","6") //min years given to platform
+                                .put("MIN_PERCENT_ROYALTIES_TO_PLATFORM","50")
+                                .put("MIN_SHARES","1")
+                                .put("MAX_SHARES","25")
+                                .put("SHARE_PRICE","1")
+                                .build())
+                .put("2", ImmutableMap.<String, String>builder()
+                                .put("SALE_ESTIMATE_PER_YEAR","2000")
+                                .put("MIN_BOOK_PRICE","1.99")
+                                .put("MAX_BOOK_PRICE","5.99")
+                                .put("MIN_YEARS_SELLING_RIGHTS_TO_PLATFORM","5") //min years given to platform
+                                .put("MIN_PERCENT_ROYALTIES_TO_PLATFORM","40")
+                                .put("MIN_SHARES","2")
+                                .put("MAX_SHARES","30")
+                                .put("SHARE_PRICE","2")
+                                .build())
+                .put("3", ImmutableMap.<String, String>builder()
+                                .put("SALE_ESTIMATE_PER_YEAR","5000")
+                                .put("MIN_BOOK_PRICE","1.99")
+                                .put("MAX_BOOK_PRICE","6.99")
+                                .put("MIN_YEARS_SELLING_RIGHTS_TO_PLATFORM","4") //min years given to platform
+                                .put("MIN_PERCENT_ROYALTIES_TO_PLATFORM","35")
+                                .put("MIN_SHARES","3")
+                                .put("MAX_SHARES","40")
+                                .put("SHARE_PRICE","3")
+                                .build())
+                .put("4", ImmutableMap.<String, String>builder()
+                                .put("SALE_ESTIMATE_PER_YEAR","10000")
+                                .put("MIN_BOOK_PRICE","1.99")
+                                .put("MAX_BOOK_PRICE","7.99")
+                                .put("MIN_YEARS_SELLING_RIGHTS_TO_PLATFORM","3") //min years given to platform
+                                .put("MIN_PERCENT_ROYALTIES_TO_PLATFORM","30")
+                                .put("MIN_SHARES","4")
+                                .put("MAX_SHARES","50")
+                                .put("SHARE_PRICE","4")
+                                .build())
+                .put("5", ImmutableMap.<String, String>builder()
+                                .put("SALE_ESTIMATE_PER_YEAR","20000")
+                                .put("MIN_BOOK_PRICE","1.99")
+                                .put("MAX_BOOK_PRICE","8.99")
+                                .put("MIN_YEARS_SELLING_RIGHTS_TO_PLATFORM","2") //min years given to platform
+                                .put("MIN_PERCENT_ROYALTIES_TO_PLATFORM","25")
+                                .put("MIN_SHARES","5")
+                                .put("MAX_SHARES","60")
+                                .put("SHARE_PRICE","5")
+                                .build())
+                .put("6", ImmutableMap.<String, String>builder()
+                                .put("SALE_ESTIMATE_PER_YEAR","40000")
+                                .put("MIN_BOOK_PRICE","1.99")
+                                .put("MAX_BOOK_PRICE","9.99")
+                                .put("MIN_YEARS_SELLING_RIGHTS_TO_PLATFORM","1") //min years given to platform
+                                .put("MIN_PERCENT_ROYALTIES_TO_PLATFORM","10")
+                                .put("MIN_SHARES","6")
+                                .put("MAX_SHARES","70")
+                                .put("SHARE_PRICE","6")
+                                .build())
+                .build();
 
     /**
      * User roles
@@ -30,8 +98,8 @@ public class UpreaderConstants {
     /**
      * Keys for objects stored in HTTP session
      */
-	public static final String SESSION_USER = "user";
-	public static final String SESSION_NEWPROJECT = "_newproject_";
+    public static final String SESSION_USER = "user";
+    public static final String SESSION_NEWPROJECT = "_newproject_";
     public static final String SESSION_NEWPROJECT_WIZ = "wizardData";  //DTO used on addProjectWizard Steps
     public static final String SESSION_MONITOR_BOARD_DATA = "mbData";
 
@@ -44,6 +112,12 @@ public class UpreaderConstants {
      public static String COVER = "4";
      public static String PROOF_DOCUMENT = "5";
      public static String SERIAL_STORY = "6";
+
+    /**
+     * Notification Groups keys
+     */
+     public static String PROJECT_NOTIFICATIONS  = "1";
+     public static String PLATFORM_NOTIFICATIONS = "2";
 
     /**
      * Options used during project creation
@@ -140,6 +214,9 @@ public class UpreaderConstants {
         constants.put("COVER", COVER);
         constants.put("PROOF_DOCUMENT", PROOF_DOCUMENT);
         constants.put("SERIAL_STORY", SERIAL_STORY);
+        constants.put("RULES", UPREADER_HOUSE_RULES);
+        constants.put("PROJECT_NOTIFICATIONS", PROJECT_NOTIFICATIONS);
+        constants.put("PLATFORM_NOTIFICATIONS", PLATFORM_NOTIFICATIONS);
         return constants;
     }
 }
