@@ -6,6 +6,7 @@ import javax.persistence.TypedQuery;
 
 import com.upreader.UpreaderApplication;
 import com.upreader.dto.MonitorBoardDTO;
+import com.upreader.helper.NumberHelper;
 import com.upreader.model.Project;
 import org.apache.log4j.Logger;
 import org.joda.time.DateMidnight;
@@ -113,9 +114,9 @@ public class ProjectDAO {
         dto.setId(project.getId());
 
         dto.setTitle(project.getTitle());
-        dto.setBookPrice(project.getBookPrice());
+        dto.setBookPrice(NumberHelper.safeNumber(project.getBookPrice(), 0f));
         dto.setUpreaders(project.getShareholders() == null ? 0 : project.getShareholders().size());
-        dto.setShareValue(project.getShareValue());
+        dto.setShareValue(NumberHelper.safeNumber(project.getShareValue(),0f));
         dto.setIrsProgress(project.getSharesToSale() / project.getTotalShares() * 100);
 
         if(project.getDeadline() != null) {
@@ -134,11 +135,11 @@ public class ProjectDAO {
             dto.setDaysToDeadline(-1);
         }
 
-        dto.setNoViews(project.getNoViews());
-        dto.setBooksSold(project.getBooksSold());
-        dto.setSharesToSale(project.getSharesToSale());
+        dto.setNoViews(NumberHelper.safeNumber(project.getNoViews(), 0));
+        dto.setBooksSold(NumberHelper.safeNumber(project.getBooksSold(), 0));
+        dto.setSharesToSale(NumberHelper.safeNumber(project.getSharesToSale(),0));
         dto.setSubscribers(project.getSubscribers() == null ? 0 : project.getSubscribers().size());
-        dto.setSerialStorySubscriptionPrice(project.getSerialStorySubscriptionPrice());
+        dto.setSerialStorySubscriptionPrice(NumberHelper.safeNumber(project.getSerialStorySubscriptionPrice(), 0f));
         dto.setDerivatives(project.getDerivatives());
 
         dto.setIncome(-1); // this needs to be calculated
