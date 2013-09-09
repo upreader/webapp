@@ -21,6 +21,7 @@ public class BooksDAO {
 
     public void update(BookTransaction transaction) {
         em.getTransaction().begin();
+        transaction = em.merge(transaction);
         em.persist(transaction);
         em.getTransaction().commit();
     }

@@ -74,11 +74,11 @@
         </div>
     </div>
     <div class="page-content">
-        <hr/>
+        <h1><%=upreaderResources.getString("workspace.inboxTitle")%></h1>
 
         <div class="inbox-wrapper">
             <accordion close-others="notificationsOpenOneAtATime" ng-repeat="(idx, notificationGroup) in userNotifications">
-                <accordion-group heading="{{notificationGroup.group}}" >
+                <accordion-group heading="{{notificationGroup.group}}" is-open="true">
                     <table class="inbox-table">
                         <thead>
                         <tr>
@@ -149,7 +149,50 @@
 
         <div class="financial-wrapper">
             <div class="financial-title">
-                <h1>Financial situation</h1>
+                <h1><%=upreaderResources.getString("workspace.financialSituationTitle")%></h1>
+                <tabset>
+                    <tab heading="<%=upreaderResources.getString("workspace.income")%>">
+                        <div class="income-radios">
+                            <div class="income-radio">
+                                <%=upreaderResources.getString("workspace.dividents")%>  <input class="" type="radio" name="income" value="<%=upreaderResources.getString("workspace.dividents")%>">
+                            </div>
+                            <div class="income-radio">
+                                <%=upreaderResources.getString("workspace.IRS")%>  <input class="" type="radio" name="income" value="<%=upreaderResources.getString("workspace.IRS")%>">
+                            </div>
+                            <div class="income-radio">
+                                <%=upreaderResources.getString("workspace.stockSell")%>  <input class="" type="radio" name="income" value="<%=upreaderResources.getString("workspace.stockSell")%>">
+                            </div>
+                        </div>
+                        <div class="financial-data">
+                            <div class="financial-graph  one-third-width">
+                                 Pie chart image
+                            </div>
+                            <div class="financial-table">
+                                <table class="dataTable">
+                                    <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Shares Owned</th>
+                                        <th>Books Sold</th>
+                                        <th>Income from dividents $</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="incomeProject in incomeFinancialData">
+                                            <td ng-bind="incomeProject.title"></td>
+                                            <td ng-bind="incomeProject.title"></td>
+                                            <td ng-bind="incomeProject.title"></td>
+                                            <td ng-bind="incomeProject.title"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="<%=upreaderResources.getString("workspace.expenses")%>">
+
+                    </tab>
+                </tabset>
             </div>
         </div>
 

@@ -19,23 +19,24 @@ public class StocksDAO {
         this.em = em;
     }
 
-    public void update(StockTransaction action) {
+    public void update(StockTransaction transaction) {
         em.getTransaction().begin();
-        em.persist(action);
+        transaction = em.merge(transaction);
+        em.persist(transaction);
         em.getTransaction().commit();
     }
 
-    public void insert(StockTransaction action) {
+    public void insert(StockTransaction transaction) {
         em.getTransaction().begin();
-        em.persist(action);
+        em.persist(transaction);
         em.getTransaction().commit();
     }
 
     public void delete(int id) {
         em.getTransaction().begin();
-        StockTransaction action = em.find(StockTransaction.class, id);
-        if(action != null)
-            em.remove(action);
+        StockTransaction transaction = em.find(StockTransaction.class, id);
+        if(transaction != null)
+            em.remove(transaction);
         em.getTransaction().commit();
     }
 

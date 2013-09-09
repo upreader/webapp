@@ -49,6 +49,15 @@ upreaderWorkspaceAppModule.controller('upreaderWorkspaceController', ['$scope','
             function(data) {
                 $scope.userNotifications = data;
             });
+
+        $financialIncomePostData = $.param({do: 'getUserIncome', userId: $("#USER_ID").val() });
+        upreaderWorkspaceAppModule.doPostAsForm( $http,
+            $rootScope.workspaceCommons.controllerUrl,
+            $financialIncomePostData, 5,
+            function(data) {
+                $scope.incomeFinancialData = data;
+                console.log($scope.incomeFinancialData);
+            });
     };
 
     $scope.init();

@@ -7,6 +7,10 @@
     min-height: 600px;
 }
 
+.one-third-width{
+    width: 30%;
+}
+
 /** START top section where use profile info is displayed **/
 .page-header {
     margin: 0 auto;
@@ -105,6 +109,27 @@
 /** START Financial area **/
 .financial-wrapper {
 
+}
+
+.income-radios{
+    display: inline-block;
+}
+
+.income-radio{
+    display: inline-block;
+}
+
+.financial-data{
+    display: block;
+}
+
+.financial-graph{
+    display: inline-block;
+}
+
+.financial-table{
+    display: inline-block;
+    float: right;
 }
 /** END Financial area **/
 

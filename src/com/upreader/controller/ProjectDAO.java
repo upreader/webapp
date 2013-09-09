@@ -25,6 +25,7 @@ public class ProjectDAO {
 
     public void update(Project project) {
         em.getTransaction().begin();
+        project = em.merge(project);
         em.persist(project);
         em.getTransaction().commit();
     }
@@ -59,26 +60,51 @@ public class ProjectDAO {
         return (Project) query.getResultList().get(0);
     }
 
+    public List<Project> findAllProjectsWithIncomeForUser(Integer userId) {
+        List<Project> result = new ArrayList<>();
+
+        // owned projects
+        Query query = em.createQuery("select p from Project p where p.author.id = :userId", Project.class);
+        query.setParameter("userId", userId);
+        result.addAll(query.getResultList());
+
+        // projects in which user is shareholder
+        query = em.createQuery("select p from Project p join p.shareholders s where s.user.id = :userId", Project.class);
+        query.setParameter("userId", userId);
+        result.addAll(query.getResultList());
+
+        return result;
+    }
+
     public List<Project> findAllProjectsForUser(Integer userId) {
         List<Project> result = new ArrayList<>();
 
         // owned projects
-        Query query = em.createQuery("select p from Project p where p.author.id = "+userId, Project.class);
+        Query query = em.createQuery("select p from Project p where p.author.id = :userId", Project.class);
+        query.setParameter("userId", userId);
         result.addAll(query.getResultList());
 
         // projects in which user is shareholder
-        query = em.createQuery("select p from Project p join p.shareholders s where s.user.id = "+userId, Project.class);
+        query = em.createQuery("select p from Project p join p.shareholders s where s.user.id = :userId", Project.class);
+        query.setParameter("userId", userId);
         result.addAll(query.getResultList());
 
         // projects to which user subscribed
-        query = em.createQuery("select p from Project p join p.subscribers s where s.user.id = "+userId, Project.class);
+        query = em.createQuery("select p from Project p join p.subscribers s where s.user.id = :userId", Project.class);
+        query.setParameter("userId", userId);
         result.addAll(query.getResultList());
 
         // pinned projects
-        query = em.createQuery("select p from Project p join p.interestedUsers s where s.user.id = "+userId, Project.class);
+        query = em.createQuery("select p from Project p join p.interestedUsers s where s.user.id = :userId", Project.class);
+        query.setParameter("userId", userId);
         result.addAll(query.getResultList());
 
         return result;
+    }
+
+    public List<Project> getProjectsIncomeForUser(Integer userId){
+          List<Project> incomeProjects = findAllProjectsWithIncomeForUser(userId);
+          return incomeProjects;
     }
 
     public MonitorBoardDTO toMonitorBoardDTO(Project project) {
