@@ -1,5 +1,7 @@
 package com.upreader.controller;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.upreader.UpreaderApplication;
 import com.upreader.model.BookTransaction;
 import com.upreader.model.Notification;
@@ -59,16 +61,16 @@ public class NotificationsDAO {
     public ArrayList<Map> getNotificationsReceivedByUser(Integer receiverId) {
 
         ArrayList<Map> groupedNotifications = new ArrayList();
-
-
-
         List<String> groups = getNotificationGroupsForUser(receiverId);
 
         for(String group : groups){
-            HashMap item = new HashMap();
-            List<Notification> groupNotifications = getNotificationsReceivedByUserAndGroup(receiverId, group);
+
+
+            HashMap<String, Object> item = new HashMap();
+            List<Notification> gNotif= getNotificationsReceivedByUserAndGroup(receiverId, group);
+
             item.put("group", group);
-            item.put("notifications", groupNotifications);
+            item.put("notifications", gNotif);
 
             groupedNotifications.add(item);
 

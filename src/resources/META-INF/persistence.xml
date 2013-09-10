@@ -8,6 +8,8 @@
 		<non-jta-data-source>java:comp/env/jdbc/mysql</non-jta-data-source>
 
         <!-- Keep these in alphabetical order -->
+        <class>com.upreader.model.BookTransaction</class>
+        <class>com.upreader.model.Notification</class>
         <class>com.upreader.model.PinnedProject</class>
         <class>com.upreader.model.Project</class>
         <class>com.upreader.model.ProjectMembership</class>
@@ -15,20 +17,17 @@
         <class>com.upreader.model.ProjectPublisher</class>
         <class>com.upreader.model.ProjectSubscription</class>
         <class>com.upreader.model.ProjectPost</class>
-        <class>com.upreader.model.PromoPack</class>
         <class>com.upreader.model.ProofOfSales</class>
+        <class>com.upreader.model.PromoPack</class>
+        <class>com.upreader.model.StockTransaction</class>
         <class>com.upreader.model.StoryChapter</class>
         <class>com.upreader.model.User</class>
         <class>com.upreader.model.UserLogin</class>
-        <class>com.upreader.model.UserMessage</class>
-        <class>com.upreader.model.Notification</class>
-        <class>com.upreader.model.BookTransaction</class>
-        <class>com.upreader.model.StockTransaction</class>
 
 		<properties>
 			<!-- DDL operations, DROP | CREATE (*) | UPDATE | VERIFY | NONE -->
 			<property name="org.batoo.jpa.ddl" value="UPDATE" />
-			<property name="org.batoo.jpa.sql_logging" value="STDOUT" />
+			<!--<property name="org.batoo.jpa.sql_logging" value="STDOUT" />-->
 		</properties>
 	</persistence-unit>
 

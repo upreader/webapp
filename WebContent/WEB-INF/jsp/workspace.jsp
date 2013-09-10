@@ -1,7 +1,8 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" isELIgnored="false" %>
 <jsp:useBean id="upreader" class="com.upreader.UpreaderApplication" scope="session"/>
-<jsp:useBean id="upreaderConstants" class="com.upreader.UpreaderConstants" scope="session" />
-<jsp:useBean id="workspaceData" type="com.upreader.beans.WorkspaceBean" class="com.upreader.beans.WorkspaceBean" scope="page">
+<jsp:useBean id="upreaderConstants" class="com.upreader.UpreaderConstants" scope="session"/>
+<jsp:useBean id="workspaceData" type="com.upreader.beans.WorkspaceBean" class="com.upreader.beans.WorkspaceBean"
+             scope="page">
 </jsp:useBean>
 <%@ page import="java.util.ResourceBundle" %>
 <%
@@ -12,7 +13,8 @@
 <!DOCTYPE html>
 <html lang="en" id="ng-app" ng-app="upreaderWorkspaceApp">
 <head>
-    <title><%=upreaderResources.getString("workspace.title")%></title>
+    <title><%=upreaderResources.getString("workspace.title")%>
+    </title>
     <c:choose>
         <c:when test="${empty sessionScope.user}">
             <c:redirect url="login"/>
@@ -24,7 +26,8 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css" media="screen"/>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/angularmodules/ngyn-select-key.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/js/angularmodules/ngyn-select-key.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-bootstrap-tpls-0.5.0.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/upreaderWorkspace.js"></script>
 
@@ -34,15 +37,17 @@
     <script src="${pageContext.request.contextPath}/js/dataTables.scroller.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/mboard.js"></script>
 
-    <link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery.dataTables.css" media="screen"/>
-    <link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dataTables.scroller.css" media="screen"/>
+    <link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery.dataTables.css"
+          media="screen"/>
+    <link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dataTables.scroller.css"
+          media="screen"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mboard.css" media="screen"/>
     <!-- Monitor Board -->
 </head>
 <body>
 <jsp:include page="inc/header.jspf"/>
 
-<div class="page page-workspace" id="page-workspace"  ng-controller="upreaderWorkspaceController">
+<div class="page page-workspace" id="page-workspace" ng-controller="upreaderWorkspaceController">
     <div class="page-header-wrapper">
         <div class="page-header">
             <div class="user-profile">
@@ -54,11 +59,15 @@
                 </div>
                 <div class="user-profile-details-wrapper">
                     <div class="user-profile-details">
-                        <a class="user-profile-name" href="#">${sessionScope.user.firstName} ${sessionScope.user.lastName}</a>
-                        <a class="user-profile-rating" href="#"><%=upreaderResources.getString("upreader.rating")%> ${sessionScope.user.rating}</a>
-                        <a class="user-profile-profile" href="#"><%=upreaderResources.getString("upreader.profile")%> 60%</a>
+                        <a class="user-profile-name"
+                           href="#">${sessionScope.user.firstName} ${sessionScope.user.lastName}</a>
+                        <a class="user-profile-rating"
+                           href="#"><%=upreaderResources.getString("upreader.rating")%> ${sessionScope.user.rating}</a>
+                        <a class="user-profile-profile" href="#"><%=upreaderResources.getString("upreader.profile")%>
+                            60%</a>
 
-                        <input type="hidden" id="USER_ID" value="${sessionScope.user.id}" />
+                        <input type="hidden" id="USER_ID" value="${sessionScope.user.id}"/>
+
                         <div class="user-profile-profile-bar">
                             ------------
                         </div>
@@ -74,33 +83,45 @@
         </div>
     </div>
     <div class="page-content">
-        <h1><%=upreaderResources.getString("workspace.inboxTitle")%></h1>
+        <h1><%=upreaderResources.getString("workspace.inboxTitle")%>
+        </h1>
 
         <div class="inbox-wrapper">
-            <accordion close-others="notificationsOpenOneAtATime" ng-repeat="(idx, notificationGroup) in userNotifications">
-                <accordion-group heading="{{notificationGroup.group}}" is-open="true">
-                    <table class="inbox-table">
-                        <thead>
-                        <tr>
-                            <th width="80%">SUBJECT</th>
-                            <th>Date</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="notification in notificationGroup.notifications">
-                                <td>
-                                    <accordion>
-                                        <accordion-group heading="{{notification.subject}}">
-                                            {{notification.message}}
-                                        </accordion-group>
-                                    </accordion>
-                                </td>
-                                <td colspan="2">{{notification.date | date:<%=upreaderResources.getString("projectsTable.dateFormat")%>}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </accordion-group>
-            </accordion>
+            <table class="inbox-table">
+                <thead>
+                <tr>
+                    <th width="80%">SUBJECT</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td colspan="3">
+                        <accordion close-others="notificationsOpenOneAtATime"
+                                   ng-repeat="(idx, notificationGroup) in userNotifications">
+                            <accordion-group heading="{{notificationGroup.group}}">
+                                <table width="100%">
+                                    <tbody>
+                                    <tr ng-repeat="notification in notificationGroup.notifications">
+                                        <td width="81%">
+                                            <accordion>
+                                                <accordion-group heading="{{notification.subject}}">
+                                                    {{notification.message}}
+                                                </accordion-group>
+                                            </accordion>
+                                        </td>
+                                        <td>{{notification.date |
+                                            date:<%=upreaderResources.getString("projectsTable.dateFormat")%>}}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </accordion-group>
+                        </accordion>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
 
         <hr/>
@@ -140,8 +161,11 @@
             </div>
             <!-- Monitor Board -->
             <div class="pin-projects">
-                <div class="pin-projects-text">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                <div class="pin-projects-button"><input id="pin-button" type="button" class="button-gray" value="Pin more projects"/></div>
+                <div class="pin-projects-text">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua.
+                </div>
+                <div class="pin-projects-button"><input id="pin-button" type="button" class="button-gray"
+                                                        value="Pin more projects"/></div>
             </div>
         </div>
 
@@ -149,23 +173,30 @@
 
         <div class="financial-wrapper">
             <div class="financial-title">
-                <h1><%=upreaderResources.getString("workspace.financialSituationTitle")%></h1>
+                <h1><%=upreaderResources.getString("workspace.financialSituationTitle")%>
+                </h1>
                 <tabset>
                     <tab heading="<%=upreaderResources.getString("workspace.income")%>">
                         <div class="income-radios">
                             <div class="income-radio">
-                                <%=upreaderResources.getString("workspace.dividents")%>  <input class="" type="radio" name="income" value="<%=upreaderResources.getString("workspace.dividents")%>">
+                                <%=upreaderResources.getString("workspace.dividents")%> <input class="" type="radio"
+                                                                                               name="income"
+                                                                                               value="<%=upreaderResources.getString("workspace.dividents")%>">
                             </div>
                             <div class="income-radio">
-                                <%=upreaderResources.getString("workspace.IRS")%>  <input class="" type="radio" name="income" value="<%=upreaderResources.getString("workspace.IRS")%>">
+                                <%=upreaderResources.getString("workspace.IRS")%> <input class="" type="radio"
+                                                                                         name="income"
+                                                                                         value="<%=upreaderResources.getString("workspace.IRS")%>">
                             </div>
                             <div class="income-radio">
-                                <%=upreaderResources.getString("workspace.stockSell")%>  <input class="" type="radio" name="income" value="<%=upreaderResources.getString("workspace.stockSell")%>">
+                                <%=upreaderResources.getString("workspace.stockSell")%> <input class="" type="radio"
+                                                                                               name="income"
+                                                                                               value="<%=upreaderResources.getString("workspace.stockSell")%>">
                             </div>
                         </div>
                         <div class="financial-data">
                             <div class="financial-graph  one-third-width">
-                                 Pie chart image
+                                Pie chart image
                             </div>
                             <div class="financial-table">
                                 <table class="dataTable">
@@ -178,12 +209,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="incomeProject in incomeFinancialData">
-                                            <td ng-bind="incomeProject.title"></td>
-                                            <td ng-bind="incomeProject.title"></td>
-                                            <td ng-bind="incomeProject.title"></td>
-                                            <td ng-bind="incomeProject.title"></td>
-                                        </tr>
+                                    <tr ng-repeat="incomeProject in incomeFinancialData">
+                                        <td ng-bind="incomeProject.title"></td>
+                                        <td ng-bind="incomeProject.title"></td>
+                                        <td ng-bind="incomeProject.title"></td>
+                                        <td ng-bind="incomeProject.title"></td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

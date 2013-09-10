@@ -4,8 +4,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.collect.Maps;
 import com.upreader.UpreaderApplication;
 import com.upreader.dto.MonitorBoardDTO;
+import com.upreader.helper.JsonWriter;
 import com.upreader.helper.NumberHelper;
 import com.upreader.model.Project;
 import org.apache.log4j.Logger;

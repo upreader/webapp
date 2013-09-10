@@ -193,8 +193,8 @@ public class User implements Serializable {
     /**
      * notifications received
      */
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
-    private List<UserMessage> messages;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "receiver")
+    private List<Notification> notifications;
 
     public User() {
     }
@@ -293,12 +293,12 @@ public class User implements Serializable {
                 UpreaderConstants.ROLE_ADMIN);
     }
 
-    public List<UserMessage> getMessages() {
-        return messages;
+    public List<Notification> getNotifications() {
+        return notifications;
     }
 
-    public void setMessages(List<UserMessage> messages) {
-        this.messages = messages;
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
     }
 
     public List<PinnedProject> getPinnedProjects() {

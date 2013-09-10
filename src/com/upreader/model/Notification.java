@@ -1,13 +1,13 @@
 package com.upreader.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "notifications")
+@JsonAutoDetect
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Notification {
     @Id
@@ -41,6 +41,7 @@ public class Notification {
     /**
      * Sender
      */
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sender", nullable = false, updatable = false)
     private User sender;
@@ -48,6 +49,7 @@ public class Notification {
     /**
      * Receiver
      */
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "receiver", nullable = false, updatable = false)
     private User receiver;
@@ -55,6 +57,7 @@ public class Notification {
     /**
      * Project Id if applicable
      */
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project", updatable = false)
     private Project project;
