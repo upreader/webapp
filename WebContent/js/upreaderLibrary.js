@@ -64,7 +64,7 @@ upreaderLibraryAppModule.controller('upreaderLibraryController', ['$scope','$roo
          $scope.filters={};
          $scope.subGenreFilter={};
          for(var idx=0; idx < $scope.genres.length; idx++){
-             $scope.projectsByGenre[$scope.genres[idx]] = angular.fromJson($("#projects-for-genre-"+$scope.genres[idx]).val());
+             $scope.filteredProjectsByGenre[$scope.genres[idx]] = $scope.projectsByGenre[$scope.genres[idx]] = angular.fromJson($("#projects-for-genre-"+$scope.genres[idx]).val());
 
              $scope.currentPageByGenre[$scope.genres[idx]]= 1;
              $scope.pagesByGenre[$scope.genres[idx]]=$scope.projectsByGenre[$scope.genres[idx]].length;

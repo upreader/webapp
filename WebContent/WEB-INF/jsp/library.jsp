@@ -194,7 +194,7 @@
 
             <div class="genre-content">
                 <input type="hidden" id="projects-for-genre-${genre.key}" value='${libraryData.projectsData(genre.value)}'/>
-                    <div class="project-card" ng-repeat='project in (filteredProjectsByGenre[${genre.key}] = ( projectsByGenre[${genre.key}] | filter:subGenreFilter[${genre.key}] | filter:filterProjects | limitTo: ( currentPageByGenre[${genre.key}]  * itemsOnPage ) | limitTo: (-1*itemsOnPage) ))' >
+                    <div class="project-card" ng-repeat='project in (filteredProjectsByGenre[${genre.key}] = ( projectsByGenre[${genre.key}] | filter:subGenreFilter[${genre.key}] | filter:filterProjects ) ) | limitTo: ( currentPageByGenre[${genre.key}]  * itemsOnPage ) | limitTo: (-1*itemsOnPage) ' >
                     <div class="project-card-contents">
                         <div class="project-card-title">{{project.projectTitle}}</div>
                         <div class="project-card-cover">
@@ -227,7 +227,7 @@
                 <span class="genre-pagination">
                     <span class="genre-browse-more  inline-block"><%=upreaderResources.getString("upreader.browseMore")%> ${libraryData.getLocalizedGenreResource(genre.key)}</span>
                     <span class="inline-block">
-                        <pagination total-items="pagesByGenre[${genre.key}]"
+                        <pagination total-items="filteredProjectsByGenre[${genre.key}].length"
                                     page="currentPageByGenre[${genre.key}]"
                                     max-size="5"
                                     items-per-page="itemsOnPage"
