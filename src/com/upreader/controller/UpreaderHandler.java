@@ -94,6 +94,10 @@ public class UpreaderHandler extends BasicPathHandler {
         return monitoringBoardController().data();
     }
 
+    @PathSegment("s/l")
+    public boolean libraryService() {
+        return libraryController().doCmd();
+    }
 
 	// TEST FEATURES ONLY BELOW HERE//
     @PathSegment("s/tp")

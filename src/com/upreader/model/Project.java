@@ -1,6 +1,8 @@
 package com.upreader.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.io.Serializable;
@@ -120,6 +122,7 @@ public class Project implements Serializable {
      * Holds the documents uploaded by the author during project creation (step 3)
      * proving the number of claimed book sales per year
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<ProofOfSales> proofsOfSales;
 
@@ -132,12 +135,14 @@ public class Project implements Serializable {
     /**
      * Stock transactions for this project
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY)
     protected List<StockTransaction> stockTransactions;
 
     /**
      * Book transactions for this project
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY)
     protected List<BookTransaction> bookTransactions;
 
@@ -247,6 +252,7 @@ public class Project implements Serializable {
     /**
      * Users that pinned this project to their workspace
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<ProjectPromoPack> promoPacks;
 
@@ -279,6 +285,7 @@ public class Project implements Serializable {
     /**
      * project advertisements that are shown similar to blog posts on the project page
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<ProjectPost> projectPosts;
 
@@ -298,6 +305,7 @@ public class Project implements Serializable {
     /**
      * project author. This is mandatory and cannot be updated
      */
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY )
     @JoinColumn(name = "author_id", nullable = true, updatable = false)
     private User author;
@@ -305,30 +313,35 @@ public class Project implements Serializable {
     /**
      * users that own shares in this project
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<ProjectMembership> shareholders;
 
     /**
      * publishers that are interested in this project
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<ProjectPublisher> interestedPublishers;
 
     /**
      * serial story subscribers
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<ProjectSubscription> subscribers;
 
     /**
      * Users that pinned this project to their workspace
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<PinnedProject> interestedUsers;
 
     /**
      * Users that pinned this project to their workspace
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<StoryChapter> serialStoryChapters;
 

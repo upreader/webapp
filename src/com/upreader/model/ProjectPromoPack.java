@@ -1,5 +1,7 @@
 package com.upreader.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -18,6 +20,7 @@ public class ProjectPromoPack implements Serializable {
     /**
      * Selected PromoPack
      */
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pack_id", nullable = false, updatable = false)
     private PromoPack promoPack;
@@ -25,6 +28,7 @@ public class ProjectPromoPack implements Serializable {
     /**
      * Project to which this promo pack belongs
      */
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id", nullable = false, updatable = false)
     private Project project;

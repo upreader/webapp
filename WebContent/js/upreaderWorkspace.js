@@ -3,7 +3,7 @@
  *
  */
 
-//Initialize the angular application for the Upreader Projects page.
+//Initialize the angular application for the Upreader Workspace page.
 var upreaderWorkspaceAppModule = angular.module('upreaderWorkspaceApp', ['ui.bootstrap', 'ngynSelectKey']);
 //Initialize the common features
 upreaderWorkspaceAppModule.run( function($rootScope){

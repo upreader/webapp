@@ -1,6 +1,8 @@
 package com.upreader.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -35,13 +37,14 @@ public class StockTransaction {
     /**
      * Stock associated project
      */
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id", nullable = false, updatable = false)
     private Project project;
-
     /**
      * Seller
      */
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seller", nullable = false, updatable = false)
     private User seller;
@@ -49,6 +52,7 @@ public class StockTransaction {
     /**
      * Buyer
      */
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "buyer", nullable = false, updatable = false)
     private User buyer;

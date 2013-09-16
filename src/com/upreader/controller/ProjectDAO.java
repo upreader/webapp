@@ -7,11 +7,13 @@ import javax.persistence.TypedQuery;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Maps;
 import com.upreader.UpreaderApplication;
+import com.upreader.UpreaderConstants;
 import com.upreader.dto.MonitorBoardDTO;
 import com.upreader.helper.JsonWriter;
 import com.upreader.helper.NumberHelper;
 import com.upreader.model.Project;
 import org.apache.log4j.Logger;
+import org.bouncycastle.util.Strings;
 import org.joda.time.DateMidnight;
 import org.joda.time.Days;
 
@@ -50,6 +52,70 @@ public class ProjectDAO {
 
     public Project get(int id) {
         return em.find(Project.class, id);
+    }
+
+    public Integer countActiveProjects() {
+        Query query = em.createQuery("select p from Project p", Project.class);
+        return query.getResultList().size();
+    }
+
+    public Map<String, List> projectsByGenre() {
+        Query query = em.createQuery("select distinct(p.genre) from Project p order by p.genre", String.class);
+        List<String> genres = (List<String>)query.getResultList();
+
+        Map<String, List> resultMap = new HashMap<String, List>();
+        for(String g : genres){
+            Query pQuery = em.createQuery("select p from Project p where p.genre = :genre", Project.class);
+            pQuery.setParameter("genre", g);
+
+            List pQueryResult = pQuery.getResultList();
+            if(pQueryResult!=null && pQueryResult.size() > 0 )
+                resultMap.put(g, pQueryResult);
+        }
+
+        return resultMap;
+    }
+
+    public List<String> projectsCategories(){
+        Query query = em.createQuery("select distinct(p.category) from Project p order by p.category", String.class);
+        return query.getResultList();
+    }
+
+    public List<String> projectsGenres(){
+        Query query = em.createQuery("select distinct(p.genre) from Project p order by p.genre", String.class);
+        return query.getResultList();
+    }
+
+    public List<String> projectsTags(){
+        Query query = em.createQuery("select p.tags from Project p order by p.tags", String.class);
+        List<String> queryResult = query.getResultList();
+        List<String> result = new ArrayList<String>();
+        for(String _tags : queryResult){
+            if(_tags!=null && !_tags.isEmpty()){
+                String[] tags = Strings.split(_tags, ';');
+                result.addAll(Arrays.asList(tags));
+            }
+        }
+        return result;
+    }
+
+    public Map<Integer, String> projectsAuthors(){
+        Query query = em.createQuery("select distinct(p.author.email), p.author.firstName, p.author.lastName, p.author.id from Project p", String.class);
+        List<Object[]> resultList = query.getResultList();
+        Map<Integer, String> resultMap = new HashMap(resultList.size());
+        for (Object[] result : resultList){
+              resultMap.put((Integer)result[3], (String)result[1] + " " + (String)result[2]);
+        }
+        return resultMap;
+    }
+
+    public Map<String, Long> projectsCountByCategory() {
+        Query query = em.createQuery("select p.category, count(p) from Project p group by p.category");
+        List<Object[]> resultList = query.getResultList();
+        Map<String, Long> resultMap = new HashMap<String, Long>(resultList.size());
+        for (Object[] result : resultList)
+            resultMap.put((String)result[0], (Long)result[1]);
+        return resultMap;
     }
 
     public List<Project> findAllProjectsInRange(int startPosition, int endPosition){

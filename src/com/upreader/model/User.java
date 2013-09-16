@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.upreader.UpreaderConstants;
 import com.upreader.helper.StringHelper;
@@ -163,36 +164,42 @@ public class User implements Serializable {
      * if user is delete, project is allowed to stay as orphan for historical
      *  reasons
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "author", orphanRemoval = false, fetch = FetchType.LAZY)
     protected List<Project> ownedProjects;
 
     /**
      * projects the user is a shareholder in
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<ProjectMembership> memberProjects;
 
     /**
      * serial stories the user subscribed to
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<ProjectSubscription> subscribedProjects;
 
     /**
      * serial stories the user subscribed to
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<PinnedProject> pinnedProjects;
 
     /**
      * login activity
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<UserLogin> logins;
 
     /**
      * notifications received
      */
+    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "receiver")
     private List<Notification> notifications;
 

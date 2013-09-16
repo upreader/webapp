@@ -1,9 +1,9 @@
 package com.upreader;
 
 import com.google.common.collect.ImmutableMap;
+import com.upreader.dto.SelectItem;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Constants used throughout the platform
@@ -19,7 +19,7 @@ public class UpreaderConstants {
     public static final String LOGIN_COOKIE_NAME = "upreaderAuthId";
 
     /**
-     * Upreader House Rules
+     * Upreader House Rules By Rating
      */
     public static final ImmutableMap<String, ImmutableMap<String, String>> UPREADER_HOUSE_RULES =
             ImmutableMap.<String, ImmutableMap<String, String>>builder()
@@ -112,6 +112,79 @@ public class UpreaderConstants {
      public static String COVER = "4";
      public static String PROOF_DOCUMENT = "5";
      public static String SERIAL_STORY = "6";
+
+    /**
+     * Project categories
+     */
+     public static String CATEGORY_NOVEL="1";
+     public static String CATEGORY_FICTION="2";
+     public static String CATEGORY_POETRY="3";
+     public static String CATEGORY_CHILDREN_BOOKS="4";
+     public static String CATEGORY_SELFHELP="5";
+     public static String CATEGORY_BESTSELLER="6";
+
+    /**
+     * Project Genres
+     */
+    public static String GENRE_DRAMA="1";
+        public static String SUBGENRE_DRAMA_COMINGOFAGE="1.1";
+        public static String SUBGENRE_DRAMA_CHILDHOOD="1.2";
+        public static String SUBGENRE_DRAMA_URBAN="1.3";
+        public static String SUBGENRE_DRAMA_HISTORICAL="1.4";
+    public static String GENRE_COMEDY="2";
+        public static String SUBGENRE_COMEDY_SATIRE="2.1";
+        public static String SUBGENRE_COMEDY_PARODY="2.2";
+        public static String SUBGENRE_COMEDY_DARK="2.3";
+        public static String SUBGENRE_COMEDY_ROMANTIC="2.4";
+    public static String GENRE_ROMANCE="3";
+    public static String GENRE_FAMILYSAGA="4";
+    public static String GENRE_POLITICAL="5";
+        public static String SUBGENRE_POLITICAL_CONSPIRACY="5.1";
+        public static String SUBGENRE_POLITICAL_ANARCHIST="5.2";
+        public static String SUBGENRE_POLITICAL_UTOPIA="5.3";
+        public static String SUBGENRE_POLITICAL_DYSTOPIA="5.4";
+    public static String GENRE_HISTORICAL="6";
+    public static String GENRE_WAR="7";
+    public static String GENRE_SPIRITUAL="8";
+    public static String GENRE_ETHNIC_IMIGRANT="9";
+    public static String GENRE_CHILDRENBOOK="10";
+    public static String GENRE_PARANORMAL="11";
+    public static String GENRE_ABSURD="12";
+    public static String GENRE_SURREALISM="13";
+    public static String GENRE_HORROR="14";
+    public static String GENRE_THRILLER="15";
+        public static String SUBGENRE_THRILLER_CRIME="15.1";
+        public static String SUBGENRE_THRILLER_ACTION="15.2";
+        public static String SUBGENRE_THRILLER_MYSTERY="15.3";
+        public static String SUBGENRE_THRILLER_PSYCHOLOGICAL="15.4";
+    public static String GENRE_ADVENTURE="16";
+    public static String GENRE_SF="17";
+        public static String SUBGENRE_SF_UTOPIA="17.1";
+        public static String SUBGENRE_SF_DYSTOPIA="17.2";
+        public static String SUBGENRE_SF_CYBERPUNK="17.3";
+        public static String SUBGENRE_SF_STEAMPUNK="17.4";
+        public static String SUBGENRE_SF_APOCALYPTIC="17.5";
+        public static String SUBGENRE_SF_POSTAPOCALYPTIC="17.6";
+        public static String SUBGENRE_SF_ANTHROPOLOGICAL="17.7";
+        public static String SUBGENRE_SF_COMICAL="17.8";
+    public static String GENRE_FANTASY="18";
+        public static String SUBGENRE_FANTASY_DARK="18.1";
+        public static String SUBGENRE_FANTASY_HISTORICAL="18.2";
+        public static String SUBGENRE_FANTASY_MODERN="18.3";
+        public static String SUBGENRE_FANTASY_SUPERHEROES="18.4";
+        public static String SUBGENRE_FANTASY_VAMPIRES="18.4";
+        public static String SUBGENRE_FANTASY_ZOMBIES="18.5";
+        public static String SUBGENRE_FANTASY_MAGIC="18.6";
+    public static String GENRE_EROTICA="19";
+        public static String SUBGENRE_EROTICA_BDSM="19.1";
+    public static String GENRE_LGBT="20";
+    public static String GENRE_AVANTGARDE="21";
+        public static String SUBGENRE_AVANTGARDE_EXPERIMENTAL="21.1";
+    public static String GENRE_OTHER="22";
+        public static String SUBGENRE_OTHER_BIZARRO="22.1";
+        public static String SUBGENRE_OTHER_WEIRDO="22.2";
+        public static String SUBGENRE_OTHER_ECLECTIC="22.3";
+        public static String SUBGENRE_OTHER_PSYCHEDELIC="22.4";
 
     /**
      * Notification Groups keys
@@ -214,10 +287,205 @@ public class UpreaderConstants {
         constants.put("COVER", COVER);
         constants.put("PROOF_DOCUMENT", PROOF_DOCUMENT);
         constants.put("SERIAL_STORY", SERIAL_STORY);
+        constants.put("CATEGORY_NOVEL",CATEGORY_NOVEL);
+        constants.put("CATEGORY_FICTION",CATEGORY_FICTION);
+        constants.put("CATEGORY_POETRY",CATEGORY_POETRY);
+        constants.put("CATEGORY_CHILDREN_BOOKS",CATEGORY_CHILDREN_BOOKS);
+        constants.put("CATEGORY_SELFHELP",CATEGORY_SELFHELP);
+        constants.put("CATEGORY_BESTSELLER",CATEGORY_BESTSELLER);
         constants.put("RULES", UPREADER_HOUSE_RULES);
         constants.put("PROJECT_NOTIFICATIONS", PROJECT_NOTIFICATIONS);
         constants.put("PLATFORM_NOTIFICATIONS", PLATFORM_NOTIFICATIONS);
+        constants.put("GENRE_DRAMA", GENRE_DRAMA);
+        constants.put("GENRE_FAMILYSAGA", GENRE_FAMILYSAGA);
+        constants.put("GENRE_COMEDY", GENRE_COMEDY);
+        constants.put("GENRE_ROMANCE", GENRE_ROMANCE);
+        constants.put("GENRE_POLITICAL",GENRE_POLITICAL);
+        constants.put("GENRE_HISTORICAL",GENRE_HISTORICAL);
+        constants.put("GENRE_WAR",GENRE_WAR);
+        constants.put("GENRE_SPIRITUAL",GENRE_SPIRITUAL);
+        constants.put("GENRE_ETHNIC_IMIGRANT",GENRE_ETHNIC_IMIGRANT);
+        constants.put("GENRE_CHILDRENBOOK",GENRE_CHILDRENBOOK);
+        constants.put("GENRE_PARANORMAL",GENRE_PARANORMAL);
+        constants.put("GENRE_ABSURD",GENRE_ABSURD);
+        constants.put("GENRE_SURREALISM",GENRE_SURREALISM);
+        constants.put("GENRE_HORROR",GENRE_HORROR);
+        constants.put("GENRE_THRILLER",GENRE_THRILLER);
+        constants.put("GENRE_ADVENTURE",GENRE_ADVENTURE);
+        constants.put("GENRE_SF",GENRE_SF);
+        constants.put("GENRE_FANTASY",GENRE_FANTASY);
+        constants.put("GENRE_EROTICA", GENRE_EROTICA);
+        constants.put("GENRE_LGBT", GENRE_LGBT);
+        constants.put("GENRE_AVANTGARDE",GENRE_AVANTGARDE);
+        constants.put("GENRE_OTHER",GENRE_OTHER);
         return constants;
     }
+
+    /*
+     * Helper methods to be used with the constants.
+     */
+
+    public static String getLocalizedCategoryResource(String category, Locale locale){
+        ResourceBundle upreaderResources = UpreaderApplication.getInstance().getLocaleManager().getResources("com.upreader.i18n.UpreaderResources", locale);
+        if(category.equals(UpreaderConstants.CATEGORY_NOVEL))
+            return upreaderResources.getString("upreader.nomenclature.category.novel");
+        if(category.equals(UpreaderConstants.CATEGORY_FICTION))
+            return upreaderResources.getString("upreader.nomenclature.category.fiction");
+        if(category.equals(UpreaderConstants.CATEGORY_POETRY))
+            return upreaderResources.getString("upreader.nomenclature.category.poetry");
+        if(category.equals(UpreaderConstants.CATEGORY_CHILDREN_BOOKS))
+            return upreaderResources.getString("upreader.nomenclature.category.childrenBooks");
+        if(category.equals(UpreaderConstants.CATEGORY_SELFHELP))
+            return upreaderResources.getString("upreader.nomenclature.category.selfhelp");
+        if(category.equals(UpreaderConstants.CATEGORY_BESTSELLER))
+            return upreaderResources.getString("upreader.nomenclature.category.bestseller");
+        return "";
+    }
+
+    public static String getLocalizedGenreResource(String genre, Locale locale){
+        ResourceBundle upreaderResources = UpreaderApplication.getInstance().getLocaleManager().getResources("com.upreader.i18n.UpreaderResources", locale);
+        if(genre.equals(UpreaderConstants.GENRE_DRAMA))
+            return upreaderResources.getString("upreader.nomenclature.genre.drama");
+        if(genre.equals(UpreaderConstants.GENRE_FAMILYSAGA))
+            return upreaderResources.getString("upreader.nomenclature.genre.familySaga");
+        if(genre.equals(UpreaderConstants.GENRE_COMEDY))
+            return upreaderResources.getString("upreader.nomenclature.genre.comedy");
+        if(genre.equals(UpreaderConstants.GENRE_ROMANCE))
+            return upreaderResources.getString("upreader.nomenclature.genre.romance");
+        if(genre.equals(UpreaderConstants.GENRE_POLITICAL))
+            return upreaderResources.getString("upreader.nomenclature.genre.political");
+        if(genre.equals(UpreaderConstants.GENRE_HISTORICAL))
+            return upreaderResources.getString("upreader.nomenclature.genre.historical");
+        if(genre.equals(UpreaderConstants.GENRE_WAR))
+            return upreaderResources.getString("upreader.nomenclature.genre.war");
+        if(genre.equals(UpreaderConstants.GENRE_SPIRITUAL))
+            return upreaderResources.getString("upreader.nomenclature.genre.spiritual");
+        if(genre.equals(UpreaderConstants.GENRE_ETHNIC_IMIGRANT))
+            return upreaderResources.getString("upreader.nomenclature.genre.ethnicImigrant");
+        if(genre.equals(UpreaderConstants.GENRE_CHILDRENBOOK))
+            return upreaderResources.getString("upreader.nomenclature.genre.childrenBooks");
+        if(genre.equals(UpreaderConstants.GENRE_PARANORMAL))
+            return upreaderResources.getString("upreader.nomenclature.genre.paranormal");
+        if(genre.equals(UpreaderConstants.GENRE_ABSURD))
+            return upreaderResources.getString("upreader.nomenclature.genre.absurd");
+        if(genre.equals(UpreaderConstants.GENRE_SURREALISM))
+            return upreaderResources.getString("upreader.nomenclature.genre.surrealism");
+        if(genre.equals(UpreaderConstants.GENRE_HORROR))
+            return upreaderResources.getString("upreader.nomenclature.genre.horror");
+        if(genre.equals(UpreaderConstants.GENRE_THRILLER))
+            return upreaderResources.getString("upreader.nomenclature.genre.thriller");
+        if(genre.equals(UpreaderConstants.GENRE_ADVENTURE))
+            return upreaderResources.getString("upreader.nomenclature.genre.adventure");
+        if(genre.equals(UpreaderConstants.GENRE_SF))
+            return upreaderResources.getString("upreader.nomenclature.genre.sf");
+        if(genre.equals(UpreaderConstants.GENRE_FANTASY))
+            return upreaderResources.getString("upreader.nomenclature.genre.fantasy");
+        if(genre.equals(UpreaderConstants.GENRE_EROTICA))
+            return upreaderResources.getString("upreader.nomenclature.genre.erotica");
+        if(genre.equals(UpreaderConstants.GENRE_LGBT))
+            return upreaderResources.getString("upreader.nomenclature.genre.lgbt");
+        if(genre.equals(UpreaderConstants.GENRE_AVANTGARDE))
+            return upreaderResources.getString("upreader.nomenclature.genre.avantgarde");
+        if(genre.equals(UpreaderConstants.GENRE_OTHER))
+            return upreaderResources.getString("upreader.nomenclature.genre.other");
+        return "";
+    }
+
+    public static List<SelectItem> getLocalizedSubGenresResource(String genre, Locale locale){
+        ResourceBundle upreaderResources = UpreaderApplication.getInstance().getLocaleManager().getResources("com.upreader.i18n.UpreaderResources", locale);
+        ArrayList<SelectItem> result = new ArrayList<SelectItem>();
+        if(genre.equals(UpreaderConstants.GENRE_DRAMA)){
+            result.add(new SelectItem(SUBGENRE_DRAMA_COMINGOFAGE, upreaderResources.getString("upreader.nomenclature.subgenre.drama.comingofage") ));
+            result.add(new SelectItem(SUBGENRE_DRAMA_CHILDHOOD, upreaderResources.getString("upreader.nomenclature.subgenre.drama.childhood") ));
+            result.add(new SelectItem(SUBGENRE_DRAMA_URBAN, upreaderResources.getString("upreader.nomenclature.subgenre.drama.urban") ));
+            result.add(new SelectItem(SUBGENRE_DRAMA_HISTORICAL, upreaderResources.getString("upreader.nomenclature.subgenre.drama.historical") ));
+            return result;
+        }
+        if(genre.equals(UpreaderConstants.GENRE_FAMILYSAGA))
+            return result;
+        if(genre.equals(UpreaderConstants.GENRE_COMEDY)){
+            result.add(new SelectItem(SUBGENRE_COMEDY_SATIRE, upreaderResources.getString("upreader.nomenclature.subgenre.comedy.satire") ));
+            result.add(new SelectItem(SUBGENRE_COMEDY_PARODY, upreaderResources.getString("upreader.nomenclature.subgenre.comedy.parody") ));
+            result.add(new SelectItem(SUBGENRE_COMEDY_DARK, upreaderResources.getString("upreader.nomenclature.subgenre.comedy.dark") ));
+            result.add(new SelectItem(SUBGENRE_COMEDY_ROMANTIC, upreaderResources.getString("upreader.nomenclature.subgenre.comedy.romantic") ));
+            return result;
+        }
+        if(genre.equals(UpreaderConstants.GENRE_ROMANCE))
+            return result;
+        if(genre.equals(UpreaderConstants.GENRE_POLITICAL)){
+            result.add(new SelectItem(SUBGENRE_POLITICAL_CONSPIRACY, upreaderResources.getString("upreader.nomenclature.subgenre.political.conspiracy") ));
+            result.add(new SelectItem(SUBGENRE_POLITICAL_ANARCHIST, upreaderResources.getString("upreader.nomenclature.subgenre.political.anarchist") ));
+            result.add(new SelectItem(SUBGENRE_POLITICAL_UTOPIA, upreaderResources.getString("upreader.nomenclature.subgenre.political.utopia") ));
+            result.add(new SelectItem(SUBGENRE_POLITICAL_DYSTOPIA, upreaderResources.getString("upreader.nomenclature.subgenre.political.dystopia") ));
+            return result;
+        }
+        if(genre.equals(UpreaderConstants.GENRE_HISTORICAL))
+            return result;
+        if(genre.equals(UpreaderConstants.GENRE_WAR))
+            return result;
+        if(genre.equals(UpreaderConstants.GENRE_SPIRITUAL))
+            return result;
+        if(genre.equals(UpreaderConstants.GENRE_ETHNIC_IMIGRANT))
+            return result;
+        if(genre.equals(UpreaderConstants.GENRE_CHILDRENBOOK))
+            return result;
+        if(genre.equals(UpreaderConstants.GENRE_PARANORMAL))
+            return result;
+        if(genre.equals(UpreaderConstants.GENRE_ABSURD))
+            return result;
+        if(genre.equals(UpreaderConstants.GENRE_SURREALISM))
+            return result;
+        if(genre.equals(UpreaderConstants.GENRE_HORROR))
+            return result;
+        if(genre.equals(UpreaderConstants.GENRE_THRILLER)){
+            result.add(new SelectItem(SUBGENRE_THRILLER_CRIME, upreaderResources.getString("upreader.nomenclature.subgenre.thriller.crime") ));
+            result.add(new SelectItem(SUBGENRE_THRILLER_ACTION, upreaderResources.getString("upreader.nomenclature.subgenre.thriller.action") ));
+            result.add(new SelectItem(SUBGENRE_THRILLER_MYSTERY, upreaderResources.getString("upreader.nomenclature.subgenre.thriller.mystery") ));
+            result.add(new SelectItem(SUBGENRE_THRILLER_PSYCHOLOGICAL, upreaderResources.getString("upreader.nomenclature.subgenre.thriller.psychological") ));
+            return result;
+        }
+        if(genre.equals(UpreaderConstants.GENRE_ADVENTURE))
+            return result;
+        if(genre.equals(UpreaderConstants.GENRE_SF)){
+            result.add(new SelectItem(SUBGENRE_SF_UTOPIA, upreaderResources.getString("upreader.nomenclature.subgenre.sf.utopia") ));
+            result.add(new SelectItem(SUBGENRE_SF_DYSTOPIA, upreaderResources.getString("upreader.nomenclature.subgenre.sf.dystopia") ));
+            result.add(new SelectItem(SUBGENRE_SF_CYBERPUNK, upreaderResources.getString("upreader.nomenclature.subgenre.sf.cyberpunk") ));
+            result.add(new SelectItem(SUBGENRE_SF_STEAMPUNK, upreaderResources.getString("upreader.nomenclature.subgenre.sf.steampunk") ));
+            result.add(new SelectItem(SUBGENRE_SF_APOCALYPTIC, upreaderResources.getString("upreader.nomenclature.subgenre.sf.apocalyptic") ));
+            result.add(new SelectItem(SUBGENRE_SF_POSTAPOCALYPTIC, upreaderResources.getString("upreader.nomenclature.subgenre.sf.postapocalyptic") ));
+            result.add(new SelectItem(SUBGENRE_SF_ANTHROPOLOGICAL, upreaderResources.getString("upreader.nomenclature.subgenre.sf.anthropological") ));
+            result.add(new SelectItem(SUBGENRE_SF_COMICAL, upreaderResources.getString("upreader.nomenclature.subgenre.sf.comical") ));
+            return result;
+        }
+        if(genre.equals(UpreaderConstants.GENRE_FANTASY)){
+            result.add(new SelectItem(SUBGENRE_FANTASY_DARK, upreaderResources.getString("upreader.nomenclature.subgenre.fantasy.dark") ));
+            result.add(new SelectItem(SUBGENRE_FANTASY_HISTORICAL, upreaderResources.getString("upreader.nomenclature.subgenre.fantasy.historical") ));
+            result.add(new SelectItem(SUBGENRE_FANTASY_MODERN, upreaderResources.getString("upreader.nomenclature.subgenre.fantasy.modern") ));
+            result.add(new SelectItem(SUBGENRE_FANTASY_SUPERHEROES, upreaderResources.getString("upreader.nomenclature.subgenre.fantasy.superheroes") ));
+            result.add(new SelectItem(SUBGENRE_FANTASY_VAMPIRES, upreaderResources.getString("upreader.nomenclature.subgenre.fantasy.vampires") ));
+            result.add(new SelectItem(SUBGENRE_FANTASY_ZOMBIES, upreaderResources.getString("upreader.nomenclature.subgenre.fantasy.zombies") ));
+            result.add(new SelectItem(SUBGENRE_FANTASY_MAGIC, upreaderResources.getString("upreader.nomenclature.subgenre.fantasy.magic") ));
+            return result;
+        }
+        if(genre.equals(UpreaderConstants.GENRE_EROTICA)){
+            result.add(new SelectItem(SUBGENRE_EROTICA_BDSM, upreaderResources.getString("upreader.nomenclature.subgenre.erotica.bdsm") ));
+            return result;
+        }
+        if(genre.equals(UpreaderConstants.GENRE_LGBT))
+            return result;
+        if(genre.equals(UpreaderConstants.GENRE_AVANTGARDE)){
+            result.add(new SelectItem(SUBGENRE_AVANTGARDE_EXPERIMENTAL, upreaderResources.getString("upreader.nomenclature.subgenre.avantgarde.experimental") ));
+            return result;
+        }
+        if(genre.equals(UpreaderConstants.GENRE_OTHER)){
+            result.add(new SelectItem(SUBGENRE_OTHER_BIZARRO, upreaderResources.getString("upreader.nomenclature.subgenre.other.bizarro") ));
+            result.add(new SelectItem(SUBGENRE_OTHER_WEIRDO, upreaderResources.getString("upreader.nomenclature.subgenre.other.weirdo") ));
+            result.add(new SelectItem(SUBGENRE_OTHER_ECLECTIC, upreaderResources.getString("upreader.nomenclature.subgenre.other.eclectic") ));
+            result.add(new SelectItem(SUBGENRE_OTHER_PSYCHEDELIC, upreaderResources.getString("upreader.nomenclature.subgenre.other.psychedelic") ));
+            return result;
+        }
+        return result;
+    }
+
 }
 

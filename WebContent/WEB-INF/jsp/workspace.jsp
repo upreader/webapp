@@ -1,8 +1,8 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" isELIgnored="false" %>
 <jsp:useBean id="upreader" class="com.upreader.UpreaderApplication" scope="session"/>
 <jsp:useBean id="upreaderConstants" class="com.upreader.UpreaderConstants" scope="session"/>
-<jsp:useBean id="workspaceData" type="com.upreader.beans.WorkspaceBean" class="com.upreader.beans.WorkspaceBean"
-             scope="page">
+<jsp:useBean id="workspaceData" type="com.upreader.beans.WorkspaceBean" class="com.upreader.beans.WorkspaceBean" scope="page">
+    <jsp:setProperty name="workspaceData" property="request" value="${pageContext.request}" />
 </jsp:useBean>
 <%@ page import="java.util.ResourceBundle" %>
 <%
@@ -10,8 +10,8 @@
     ResourceBundle upreaderResources = upreader.getLocaleManager().getResources("com.upreader.i18n.UpreaderResources", request.getLocale());
 %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="en" id="ng-app" ng-app="upreaderWorkspaceApp">
+
+<html lang="en" id="ng-app" ng-app="upreaderLibraryApp">
 <head>
     <title><%=upreaderResources.getString("workspace.title")%>
     </title>
@@ -26,8 +26,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css" media="screen"/>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    <script type="text/javascript"
-            src="${pageContext.request.contextPath}/js/angularmodules/ngyn-select-key.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/angularmodules/ngyn-select-key.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-bootstrap-tpls-0.5.0.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/upreaderWorkspace.js"></script>
 
@@ -211,9 +210,9 @@
                                     <tbody>
                                     <tr ng-repeat="incomeProject in incomeFinancialData">
                                         <td ng-bind="incomeProject.title"></td>
-                                        <td ng-bind="incomeProject.title"></td>
-                                        <td ng-bind="incomeProject.title"></td>
-                                        <td ng-bind="incomeProject.title"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                     </tbody>
                                 </table>

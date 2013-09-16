@@ -1,5 +1,7 @@
 package com.upreader.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Blob;
@@ -15,6 +17,7 @@ public class ProofOfSales implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id", nullable = false, updatable = false)
     private Project project;

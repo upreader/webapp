@@ -41,7 +41,7 @@ public class Notification {
     /**
      * Sender
      */
-    @JsonIgnore
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sender", nullable = false, updatable = false)
     private User sender;
@@ -49,7 +49,7 @@ public class Notification {
     /**
      * Receiver
      */
-    @JsonIgnore
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "receiver", nullable = false, updatable = false)
     private User receiver;
@@ -57,7 +57,7 @@ public class Notification {
     /**
      * Project Id if applicable
      */
-    @JsonIgnore
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project", updatable = false)
     private Project project;

@@ -1,5 +1,7 @@
 package com.upreader.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -25,6 +27,7 @@ public class PromoPack implements Serializable {
     /**
      * Projects that selected this PromoPack
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "promoPack", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<ProjectPromoPack> projects;
 

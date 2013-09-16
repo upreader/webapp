@@ -200,7 +200,12 @@ public class AddProjectWizardDTO {
         //Category LOV
         story_Category_LOV = new ArrayList<SelectItem>();
         story_Category_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelCategory")));
-        story_Category_LOV.add( new SelectItem(UpreaderConstants.SERIAL_STORY, upreaderResources.getString("addProjectWizard.categoryOption")) );
+        story_Category_LOV.add( new SelectItem(UpreaderConstants.CATEGORY_NOVEL, upreaderResources.getString("upreader.nomenclature.category.novel")) );
+        story_Category_LOV.add( new SelectItem(UpreaderConstants.CATEGORY_FICTION, upreaderResources.getString("upreader.nomenclature.category.fiction")) );
+        story_Category_LOV.add( new SelectItem(UpreaderConstants.CATEGORY_POETRY, upreaderResources.getString("upreader.nomenclature.category.poetry")) );
+        story_Category_LOV.add( new SelectItem(UpreaderConstants.CATEGORY_CHILDREN_BOOKS, upreaderResources.getString("upreader.nomenclature.category.childrenBooks")) );
+        story_Category_LOV.add( new SelectItem(UpreaderConstants.CATEGORY_SELFHELP, upreaderResources.getString("upreader.nomenclature.category.selfhelp")) );
+        story_Category_LOV.add( new SelectItem(UpreaderConstants.CATEGORY_BESTSELLER, upreaderResources.getString("upreader.nomenclature.category.bestseller")) );
     }
 
     public Integer getCurrentStep() {

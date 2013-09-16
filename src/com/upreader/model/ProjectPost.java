@@ -1,5 +1,6 @@
 package com.upreader.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -42,6 +43,7 @@ public class ProjectPost implements Serializable {
     /**
      * Owner project
      */
+    @JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "projectid", nullable = false, updatable = false)
 	private Project project;

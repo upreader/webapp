@@ -1,6 +1,8 @@
 package com.upreader.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -21,15 +23,17 @@ public class ProjectPublisher {
     /**
      * publisher. This is mandatory
      */
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY )
-    @JoinColumn(name = "publisher_id", nullable = true, updatable = false)
+    @JoinColumn(name = "publisher_id", nullable = false, updatable = false)
     private User publisher;
 
     /**
      * project.
      */
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY )
-    @JoinColumn(name = "project_id", nullable = true, updatable = false)
+    @JoinColumn(name = "project_id", nullable = false, updatable = false)
     private Project project;
 
     public Integer getId() {

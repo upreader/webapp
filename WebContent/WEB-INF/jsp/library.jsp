@@ -1,25 +1,41 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" isELIgnored="false" %>
+<jsp:useBean id="upreader" class="com.upreader.UpreaderApplication" scope="session"/>
+<jsp:useBean id="upreaderConstants" class="com.upreader.UpreaderConstants" scope="session"/>
+<jsp:useBean id="libraryData" type="com.upreader.beans.LibraryBean" class="com.upreader.beans.LibraryBean" scope="page">
+    <jsp:setProperty name="libraryData" property="request" value="${pageContext.request}" />
+</jsp:useBean>
+<%@ page import="java.util.ResourceBundle" %>
+<%@ page import="com.upreader.UpreaderConstants" %>
+<%
+    //Retreive the resourceBundle for the current language according to the user's locale.
+    ResourceBundle upreaderResources = upreader.getLocaleManager().getResources("com.upreader.i18n.UpreaderResources", request.getLocale());
+%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" id="ng-app" ng-app="upreaderLibraryApp">
 <head>
-    <title>Upreader - Library</title>
+    <title><%=upreaderResources.getString("library.title")%></title>
     <jsp:include page="inc/head.jspf"/>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/library.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/projectcard.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css" media="screen"/>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/angularmodules/ngyn-select-key.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-bootstrap-tpls-0.5.0.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/upreaderLibrary.js"></script>
 </head>
 <body>
 
 <jsp:include page="inc/header.jspf"/>
 
-<div class="page page-library">
+<div class="page page-library" id="page-library" ng-controller="upreaderLibraryController">
 <div class="page-header-wrapper">
     <div class="page-header clearfix">
         <div class="page-title">
-            <h1>Library</h1>
-
-            <p>Inspired browsing!</p>
+            <h1><%=upreaderResources.getString("library.title")%></h1>
+            <input type="button" class="button-white" ng-click="showFilters()" value="Pin to control panel"/>
+            <p><%=upreaderResources.getString("library.moto")%></p>
         </div>
         <div class="page-title-desc">
             lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididune.
@@ -30,19 +46,17 @@
         <table class="page-stats-table">
             <tr>
                 <th>Projects</th>
-                <th>Novel</th>
-                <th>Novella</th>
-                <th>Short Story</th>
-                <th>Graphic</th>
-                <th>Poetry</th>
+                <c:forEach var="category" items="${libraryData.projectCountByCategory}">
+                    <th>
+                        ${libraryData.getLocalizedCategoryResource(category.key)}
+                    </th>
+                </c:forEach>
             </tr>
             <tr>
-                <td>5487</td>
-                <td>562</td>
-                <td>562</td>
-                <td>50254</td>
-                <td>4056</td>
-                <td>70468</td>
+                <td>${libraryData.noOfActiveProject}</td>
+                <c:forEach var="category" items="${libraryData.projectCountByCategory}">
+                    <th>${category.value}</th>
+                </c:forEach>
             </tr>
         </table>
     </div>
@@ -88,128 +102,58 @@
         <div class="sidebar-filters">
             <ul class="filter-categories">
                 <li>
-                    <div class="filter-category-title">categories</div>
+                    <div class="filter-category-title"><%=upreaderResources.getString("upreader.filters.categories")%></div>
                     <ul class="filter-category-contents">
-                        <li>
-                            <span>fiction</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>nonfiction</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>children's books</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>poetry</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>self-help</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
+                        <c:forEach var="category" varStatus="idx" items="${libraryData.localizedCategories}">
+                            <li>
+                                <span>${category.value}</span>
+                                <input ng-model="filters['category'][${idx.index}]" type="checkbox" name="categoryFilter" ng-true-value="${category.key}" ng-false-value="" class="form-checkbox"/>
+                            </li>
+                        </c:forEach>
                     </ul>
                 </li>
                 <li>
-                    <div class="filter-category-title">genres</div>
+                    <div class="filter-category-title"><%=upreaderResources.getString("upreader.filters.genres")%></div>
                     <ul class="filter-category-contents">
-                        <li>
-                            <span>fiction</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>nonfiction</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>children's books</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>poetry</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>self-help</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
+                        <c:forEach var="genre" varStatus="idx" items="${libraryData.localizedGenres}">
+                            <li>
+                                <span>${genre.value}</span>
+                                <input ng-model="filters['genre'][${idx.index}]" type="checkbox" name="genreFilter" ng-true-value="${genre.key}" ng-false-value="" class="form-checkbox"/>
+                            </li>
+                        </c:forEach>
                     </ul>
                 </li>
                 <li>
-                    <div class="filter-category-title">sub-genres</div>
+                    <div class="filter-category-title"><%=upreaderResources.getString("upreader.filters.subgenres")%></div>
                     <ul class="filter-category-contents">
-                        <li>
-                            <span>fiction</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>nonfiction</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>children's books</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>poetry</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>self-help</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
+                        <c:forEach var="subgenre" varStatus="idx" items="${libraryData.localizedSubGenres}">
+                            <li>
+                                <span>${subgenre.value}</span>
+                                <input ng-model="filters['subgenre'][${idx.index}]" type="checkbox" name="subgenreFilter"  ng-true-value="${subgenre.key}" ng-false-value="" class="form-checkbox"/>
+                            </li>
+                        </c:forEach>
                     </ul>
                 </li>
                 <li>
-                    <div class="filter-category-title">author</div>
+                    <div class="filter-category-title"><%=upreaderResources.getString("upreader.filters.authors")%></div>
                     <ul class="filter-category-contents">
-                        <li>
-                            <span>fiction</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>nonfiction</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>children's books</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>poetry</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>self-help</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
+                        <c:forEach var="author" varStatus="idx" items="${libraryData.authors}">
+                            <li>
+                                <span>${author.value}</span>
+                                <input ng-model="filters['author'][${idx.index}]" type="checkbox" name="authorFilter" ng-true-value="${author.key}" ng-false-value="" class="form-checkbox"/>
+                            </li>
+                        </c:forEach>
                     </ul>
                 </li>
                 <li>
-                    <div class="filter-category-title">popular tags</div>
+                    <div class="filter-category-title"><%=upreaderResources.getString("upreader.filters.tags")%></div>
                     <ul class="filter-category-contents">
-                        <li>
-                            <span>fiction</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>nonfiction</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>children's books</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>poetry</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
-                        <li>
-                            <span>self-help</span>
-                            <input type="checkbox" class="form-checkbox"/>
-                        </li>
+                        <c:forEach var="tag" varStatus="idx" items="${libraryData.tags}">
+                            <li>
+                                <span>${tag}</span>
+                                <input ng-model="filters['tag'][${idx.index}]" type="checkbox" name="tagsFilter" ng-true-value="${tag}" ng-false-value="" class="form-checkbox"/>
+                            </li>
+                        </c:forEach>
                     </ul>
                 </li>
             </ul>
@@ -218,336 +162,76 @@
 </div>
 <div class="library-main">
     <!-- this repeats for every genre -->
-    <div class="genre">
-        <div class="genre-header">
-            <ul>
-                <li class="genre-title">Drama</li>
-                <li class="genre-subgenres">
-                    <select class="form-input form-select">
-                        <option>subgenres...</option>
-                        <option>subgenre1</option>
-                        <option>subgenre2</option>
-                    </select>
-                </li>
-            </ul>
-        </div>
-        <div class="genre-content">
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
+    <input type="hidden" id="genres-data" value='${libraryData.genresData(libraryData.projectsByGenre.keySet())}' />
+    <c:forEach var="genre" items="${libraryData.projectsByGenre}">
+        <%--<div class="genre" ng-show="filteredProjectsByGenre[${genre.key}].length > 0">--%>
+        <div class="genre">
+            <div class="genre-header">
+                <ul>
+                    <li class="genre-title">
+                        ${libraryData.getLocalizedGenreResource(genre.key)}
+                    </li>
+                    <li class="genre-subgenres">
+                        <select ng-model="subGenreFilter[${genre.key}]" class="form-input form-select">
+                            <option selected="true" value=""><%=upreaderResources.getString("upreader.all")%></option>
+                            <c:forEach var="subgenre" items="${libraryData.retreiveSubGenres(genre.key)}">
+                                <option value="${subgenre.value}">${subgenre.label}</option>
+                            </c:forEach>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="genre-content">
+                <input type="hidden" id="projects-for-genre-${genre.key}" value='${libraryData.projectsData(genre.value)}'/>
+                    <div class="project-card" ng-repeat='project in (filteredProjectsByGenre[${genre.key}] = ( projectsByGenre[${genre.key}] | filter:subGenreFilter[${genre.key}] | filter:filterProjects ))' >
+                    <div class="project-card-contents">
+                        <div class="project-card-title">{{project.projectTitle}}</div>
+                        <div class="project-card-cover">
+                            <img class="user-profile-photo-img"
+                                 src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
+                        </div>
+                        <div class="project-card-author">{{project.authorName}}</div>
+                        <div class="project-card-author-rating"><%=upreaderResources.getString("upreader.rating")%> {{project.authorRating}}</div>
+                        <div class="project-card-status">
+                            <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
+                        </div>
+                        <div class="project-card-details">
+                            <div><%=upreaderResources.getString("upreader.project.IRS")%> {{project.irs}}</div>
+                            <div><%=upreaderResources.getString("upreader.project.daysToDeadline")%>  {{project.daysToDeadline}}</div>
+                            <div><%=upreaderResources.getString("upreader.project.shareprice")%> {{project.shareValue}}<%=upreaderResources.getString("upreader.currencySign")%></div>
+                            <div><%=upreaderResources.getString("upreader.project.upreaders")%> {{project.interestedUsers}}</div>
+                            <div><%=upreaderResources.getString("upreader.project.sharestotal")%> {{project.totalShares}}</div>
+                            <div><%=upreaderResources.getString("upreader.project.sharesRemaining")%> {{project.remainingShares}}</div>
+                            <div><%=upreaderResources.getString("upreader.project.opened")%> {{project.noViews}} <%=upreaderResources.getString("upreader.times")%></div>
+                            <div><%=upreaderResources.getString("upreader.project.interestedPublishers")%> {{project.interestedPublishers}}</div>
+                        </div>
                     </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
+                    <div class="project-card-pin-button">
+                        <input type="button" class="button-white" ng-click="showFilters()" value="Pin to control panel"/>
                     </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-                <div class="project-card-pin-button">
-                    <input type="button" class="button-white" value="Pin to control panel"/>
                 </div>
             </div>
 
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                    </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                    </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-                <div class="project-card-pin-button">
-                    <input type="button" class="button-white" value="Pin to control panel"/>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                    </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                    </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-                <div class="project-card-pin-button">
-                    <input type="button" class="button-white" value="Pin to control panel"/>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                    </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                    </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-                <div class="project-card-pin-button">
-                    <input type="button" class="button-white" value="Pin to control panel"/>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                    </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                    </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-                <div class="project-card-pin-button">
-                    <input type="button" class="button-white" value="Pin to control panel"/>
-                </div>
+            <div class="genre-footer clearfix">
+                <span class="genre-pagination">
+                    <span class="genre-browse-more  inline-block"><%=upreaderResources.getString("upreader.browseMore")%> ${libraryData.getLocalizedGenreResource(genre.key)}</span>
+                    <span class="inline-block">
+                        <pagination total-items="bigTotalItems"
+                                    page="bigCurrentPage"
+                                    max-size="maxSize"
+                                    class="pagination-small"
+                                    boundary-links="true"
+                                    rotate="false"
+                                    num-pages="numPages">
+                        </pagination>
+                    </span>
+                    <span class="genre-see-all  inline-block"><%=upreaderResources.getString("upreader.seeAll")%> ${libraryData.getLocalizedGenreResource(genre.key)}</span>
+                </span>
             </div>
         </div>
-        <div class="genre-footer clearfix">
-            <span class="genre-browse-more">browse more Drama</span>
-                        <span class="genre-pagination">
-                            <img src="${pageContext.request.contextPath}/images/library-prev.jpg">
-                            <span>1 2 3 4 5 ...</span>
-                            <img src="${pageContext.request.contextPath}/images/library-next.jpg">
-                        </span>
-            <span class="genre-see-all">see all Drama</span>
-        </div>
-    </div>
 
-    <!-- this repeats for every genre -->
-    <div class="genre">
-        <div class="genre-header">
-            <ul>
-                <li class="genre-title">Horror</li>
-                <li class="genre-subgenres">
-                    <select class="form-input form-select">
-                        <option>subgenres...</option>
-                        <option>subgenre1</option>
-                        <option>subgenre2</option>
-                    </select>
-                </li>
-            </ul>
-        </div>
-        <div class="genre-content">
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                    </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                    </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-                <div class="project-card-pin-button">
-                    <input type="button" class="button-white" value="Pin to control panel"/>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                    </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                    </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-                <div class="project-card-pin-button">
-                    <input type="button" class="button-white" value="Pin to control panel"/>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                    </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                    </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-                <div class="project-card-pin-button">
-                    <input type="button" class="button-white" value="Pin to control panel"/>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                    </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                    </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-                <div class="project-card-pin-button">
-                    <input type="button" class="button-white" value="Pin to control panel"/>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                    </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                    </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-                <div class="project-card-pin-button">
-                    <input type="button" class="button-white" value="Pin to control panel"/>
-                </div>
-            </div>
-        </div>
-        <div class="genre-footer clearfix">
-            <span class="genre-browse-more">browse more Horror</span>
-                        <span class="genre-pagination">
-                            <img src="${pageContext.request.contextPath}/images/library-prev.jpg">
-                            <span>1 2 3 4 5 ...</span>
-                            <img src="${pageContext.request.contextPath}/images/library-next.jpg">
-                        </span>
-            <span class="genre-see-all">see all Horror</span>
-        </div>
-    </div>
+    </c:forEach>
 </div>
 </div>
 </div>
