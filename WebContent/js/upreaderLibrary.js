@@ -56,6 +56,7 @@ upreaderLibraryAppModule.controller('upreaderLibraryController', ['$scope','$roo
          $scope.localizedAuthors    = angular.fromJson($("#localized-authors-data").val());
 
          $scope.genres = angular.fromJson($("#genres-data").val());
+         $scope.itemsOnPage = 2;
          $scope.currentPageByGenre={};
          $scope.pagesByGenre={};
          $scope.projectsByGenre = {};
@@ -79,7 +80,6 @@ upreaderLibraryAppModule.controller('upreaderLibraryController', ['$scope','$roo
     $scope.removeFilter = function(idx, filter){
         $scope.filters[filter].splice(idx,1);
     }
-
 
 
     $scope.filterProjects = function(item){

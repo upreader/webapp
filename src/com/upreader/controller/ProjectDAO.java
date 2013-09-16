@@ -89,14 +89,15 @@ public class ProjectDAO {
     public List<String> projectsTags(){
         Query query = em.createQuery("select p.tags from Project p order by p.tags", String.class);
         List<String> queryResult = query.getResultList();
-        List<String> result = new ArrayList<String>();
+        Set<String> result = new TreeSet<String>();
         for(String _tags : queryResult){
             if(_tags!=null && !_tags.isEmpty()){
                 String[] tags = Strings.split(_tags, ';');
                 result.addAll(Arrays.asList(tags));
             }
         }
-        return result;
+        String[] tmp = new String[result.size()];
+        return Arrays.asList(result.toArray(tmp));
     }
 
     public Map<Integer, String> projectsAuthors(){

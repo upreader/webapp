@@ -20,9 +20,9 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/projectcard.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css" media="screen"/>
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/angularmodules/ngyn-select-key.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui-bootstrap-tpls-0.5.0.min.js"></script>
+    <script type="text/javascript" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/upreaderLibrary.js"></script>
 </head>
 <body>
@@ -194,7 +194,7 @@
 
             <div class="genre-content">
                 <input type="hidden" id="projects-for-genre-${genre.key}" value='${libraryData.projectsData(genre.value)}'/>
-                    <div class="project-card" ng-repeat='project in (filteredProjectsByGenre[${genre.key}] = ( projectsByGenre[${genre.key}] | filter:subGenreFilter[${genre.key}] | filter:filterProjects ))' >
+                    <div class="project-card" ng-repeat='project in (filteredProjectsByGenre[${genre.key}] = ( projectsByGenre[${genre.key}] | filter:subGenreFilter[${genre.key}] | filter:filterProjects | limitTo: ( currentPageByGenre[${genre.key}]  * itemsOnPage ) | limitTo: (-1*itemsOnPage) ))' >
                     <div class="project-card-contents">
                         <div class="project-card-title">{{project.projectTitle}}</div>
                         <div class="project-card-cover">
@@ -230,7 +230,7 @@
                         <pagination total-items="pagesByGenre[${genre.key}]"
                                     page="currentPageByGenre[${genre.key}]"
                                     max-size="5"
-                                    items-per-page="2"
+                                    items-per-page="itemsOnPage"
                                     class="pagination-small"
                                     boundary-links="true"
                                     rotate="false">
