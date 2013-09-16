@@ -106,4 +106,8 @@ public class LibraryBean {
     public String genresData(Set genresSet){
         return UpreaderApplication.getInstance().getJavaScriptWriter().write(genresSet);
     }
+
+    public String toJson(Object o){
+        return UpreaderApplication.getInstance().getJavaScriptWriter().write(o);
+    }
 }

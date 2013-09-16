@@ -34,7 +34,6 @@
     <div class="page-header clearfix">
         <div class="page-title">
             <h1><%=upreaderResources.getString("library.title")%></h1>
-            <input type="button" class="button-white" ng-click="showFilters()" value="Pin to control panel"/>
             <p><%=upreaderResources.getString("library.moto")%></p>
         </div>
         <div class="page-title-desc">
@@ -90,14 +89,25 @@
 <div class="library-sidebar">
     <div class="sidebar-box">
         <div class="sidebar-title">
-            <h1>Filters</h1>
+            <h1><%=upreaderResources.getString("upreader.filters")%></h1>
         </div>
+        <input type="hidden" id="localized-categories-data" value='${libraryData.toJson(libraryData.localizedCategories)}' />
+        <input type="hidden" id="localized-genres-data" value='${libraryData.toJson(libraryData.localizedGenres)}' />
+        <input type="hidden" id="localized-subgenres-data" value='${libraryData.toJson(libraryData.localizedSubGenres)}' />
+        <input type="hidden" id="localized-authors-data" value='${libraryData.toJson(libraryData.authors)}' />
         <div class="sidebar-selected">
-            <span class="selected-filter">fiction<span class="delete-filter">x</span></span>
-            <span class="selected-filter">poetry<span class="delete-filter">x</span></span>
-            <span class="selected-filter">serial stories<span class="delete-filter">x</span></span>
-            <span class="selected-filter">self-help<span class="delete-filter">x</span></span>
-            <span class="selected-filter">children's books<span class="delete-filter">x</span></span>
+            <span ng-repeat="(idx, filter) in filters['category']" ng-show="!(localizedCategories[filter]|isEmpty)" class="selected-filter">
+                <a ng-show="!(localizedCategories[filter]|isEmpty)" ng-click="removeFilter(idx, 'category')" ng-href="#"><span ng-bind="localizedCategories[filter]"></span><span class="delete-filter">x</span></a>
+            </span>
+            <span ng-repeat="(idx, filter) in filters['genre']" ng-show="!(localizedGenres[filter]|isEmpty)" class="selected-filter">
+                <a ng-show="!(localizedGenres[filter]|isEmpty)" ng-click="removeFilter(idx, 'genre')" ng-href="#"><span ng-bind="localizedGenres[filter]"></span><span class="delete-filter">x</span></a>
+            </span>
+            <span ng-repeat="(idx, filter) in filters['subgenre']" ng-show="!(localizedSubgenres[filter]|isEmpty)" class="selected-filter">
+                <a ng-show="!(localizedSubgenres[filter]|isEmpty)" ng-click="removeFilter(idx, 'subgenre')" ng-href="#"><span ng-bind="localizedSubgenres[filter]"></span><span class="delete-filter">x</span></a>
+            </span>
+            <span ng-repeat="(idx, filter) in filters['author']" ng-show="!(localizedAuthors[filter]|isEmpty)" class="selected-filter">
+                <a ng-show="!(localizedAuthors[filter]|isEmpty)" ng-click="removeFilter(idx, 'author')" ng-href="#"><span ng-bind="localizedAuthors[filter]"></span><span class="delete-filter">x</span></a>
+            </span>
         </div>
         <div class="sidebar-filters">
             <ul class="filter-categories">
@@ -217,13 +227,13 @@
                 <span class="genre-pagination">
                     <span class="genre-browse-more  inline-block"><%=upreaderResources.getString("upreader.browseMore")%> ${libraryData.getLocalizedGenreResource(genre.key)}</span>
                     <span class="inline-block">
-                        <pagination total-items="bigTotalItems"
-                                    page="bigCurrentPage"
-                                    max-size="maxSize"
+                        <pagination total-items="pagesByGenre[${genre.key}]"
+                                    page="currentPageByGenre[${genre.key}]"
+                                    max-size="5"
+                                    items-per-page="2"
                                     class="pagination-small"
                                     boundary-links="true"
-                                    rotate="false"
-                                    num-pages="numPages">
+                                    rotate="false">
                         </pagination>
                     </span>
                     <span class="genre-see-all  inline-block"><%=upreaderResources.getString("upreader.seeAll")%> ${libraryData.getLocalizedGenreResource(genre.key)}</span>

@@ -50,14 +50,24 @@ upreaderLibraryAppModule.checkArrayForEmpty = function (my_arr){
 //Initialize a controller for the view project page
 upreaderLibraryAppModule.controller('upreaderLibraryController', ['$scope','$rootScope', '$http', '$location', function($scope,$rootScope, $http, $location){
     $scope.init = function(){
+         $scope.localizedCategories = angular.fromJson($("#localized-categories-data").val());
+         $scope.localizedGenres     = angular.fromJson($("#localized-genres-data").val());
+         $scope.localizedSubgenres  = angular.fromJson($("#localized-subgenres-data").val());
+         $scope.localizedAuthors    = angular.fromJson($("#localized-authors-data").val());
+
          $scope.genres = angular.fromJson($("#genres-data").val());
+         $scope.currentPageByGenre={};
+         $scope.pagesByGenre={};
          $scope.projectsByGenre = {};
          $scope.filteredProjectsByGenre = {};
          $scope.filters={};
          $scope.subGenreFilter={};
          for(var idx=0; idx < $scope.genres.length; idx++){
-             $scope.subGenreFilter[$scope.genres[idx]] = "";
              $scope.projectsByGenre[$scope.genres[idx]] = angular.fromJson($("#projects-for-genre-"+$scope.genres[idx]).val());
+
+             $scope.currentPageByGenre[$scope.genres[idx]]= 1;
+             $scope.pagesByGenre[$scope.genres[idx]]=$scope.projectsByGenre[$scope.genres[idx]].length;
+             $scope.subGenreFilter[$scope.genres[idx]] = "";
          }
          $scope.filters['category']=[];
          $scope.filters['genre']=[];
@@ -66,11 +76,13 @@ upreaderLibraryAppModule.controller('upreaderLibraryController', ['$scope','$roo
          $scope.filters['tag']=[];
     };
 
-    $scope.showFilters = function(){
-        console.log($scope.filters);
+    $scope.removeFilter = function(idx, filter){
+        $scope.filters[filter].splice(idx,1);
     }
 
-    $scope.filterProjects = function(item) {
+
+
+    $scope.filterProjects = function(item){
         var authorFilterCheck = false;
         var categoryFilterCheck = false;
         var genreFilterCheck = false;
