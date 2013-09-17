@@ -11,7 +11,7 @@
 %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html lang="en" id="ng-app" ng-app="upreaderLibraryApp">
+<html lang="en" id="ng-app" ng-app="upreaderWorkspaceApp">
 <head>
     <title><%=upreaderResources.getString("workspace.title")%>
     </title>
