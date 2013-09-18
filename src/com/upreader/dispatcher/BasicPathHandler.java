@@ -199,6 +199,10 @@ public abstract class BasicPathHandler implements Configurable {
         return this.references.get().workspaceController;
     }
 
+    public UserProfileController userProfileController() {
+        return this.references.get().userProfileController;
+    }
+
     public MonitoringBoardController monitoringBoardController() {
         return this.references.get().monitoringBoardController;
     }
@@ -344,6 +348,7 @@ public abstract class BasicPathHandler implements Configurable {
         public final UserController userController;
         public final ProjectController projectController;
         public final WorkspaceController workspaceController;
+        public final UserProfileController userProfileController;
         public final LibraryController libraryController;
         public final LoginController loginController;
         public final MonitoringBoardController monitoringBoardController;
@@ -355,6 +360,7 @@ public abstract class BasicPathHandler implements Configurable {
             this.userController = new UserController(handler, context);
             this.projectController = new ProjectController(handler, context);
             this.workspaceController = new WorkspaceController(handler, context);
+            this.userProfileController = new UserProfileController(handler, context);
             this.libraryController   = new LibraryController(handler,context);
             this.loginController = new LoginController(handler, context);
             this.monitoringBoardController = new MonitoringBoardController(handler, context);

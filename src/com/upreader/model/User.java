@@ -135,6 +135,12 @@ public class User implements Serializable {
     private Boolean updateMe;
 
     /**
+     * User's birthday
+     */
+    @Column(name = "birthday")
+    private Date birthday;
+
+    /**
      * User confirmed his email address or not
      */
     @Column(name = "email_confirmed")
@@ -298,6 +304,14 @@ public class User implements Serializable {
     public boolean isAdmin() {
         return StringHelper.containsNullSafe(this.roles,
                 UpreaderConstants.ROLE_ADMIN);
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public List<Notification> getNotifications() {
