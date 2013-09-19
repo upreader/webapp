@@ -67,7 +67,7 @@
         <ul>
             <li>
                 <div class="sidebar-timeleft">
-                    <h1>${projectData.usedDaysFromDeadlineDays}/${projectData.initialDeadlineDays} days left</h1>
+                    <h1>${projectData.usedDaysFromDeadlineDays}/${projectData.initialDeadlineDays} <%=upreaderResources.getString("upreader.daysLeft")%></h1>
                 </div>
             </li>
             <li>
@@ -81,7 +81,7 @@
                         <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-royaltystock.jpg">
                     </div>
                     <div class="image-text-box-text">
-                        <h1>Royalty Stock:</h1>
+                        <h1><%=upreaderResources.getString("upreader.royaltyStock")%></h1>
 
                         <h1>${projectData.project.IRS}<%=upreaderResources.getString("addProjectWizard.currencySign")%></h1>
                     </div>
@@ -93,7 +93,7 @@
                         <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-sharestotal.jpg">
                     </div>
                     <div class="image-text-box-text">
-                        <h1>shares total:</h1>
+                        <h1><%=upreaderResources.getString("upreader.project.sharestotal")%></h1>
 
                         <h1>${projectData.project.totalShares}</h1>
                     </div>
@@ -105,7 +105,7 @@
                         <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-sharevalue.jpg">
                     </div>
                     <div class="image-text-box-text">
-                        <h1>share value: ${projectData.project.shareValue}<%=upreaderResources.getString("addProjectWizard.currencySign")%></h1>
+                        <h1><%=upreaderResources.getString("upreader.project.shareValue")%>  ${projectData.project.shareValue}<%=upreaderResources.getString("addProjectWizard.currencySign")%></h1>
                     </div>
                 </div>
             </li>
@@ -115,7 +115,7 @@
                         <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-upreader.jpg">
                     </div>
                     <div class="image-text-box-text">
-                        <h1>${projectData.interestedUsersCount} Upreaders</h1>
+                        <h1>${projectData.interestedUsersCount} <%=upreaderResources.getString("upreader.project.upreaders")%></h1>
                     </div>
                 </div>
             </li>

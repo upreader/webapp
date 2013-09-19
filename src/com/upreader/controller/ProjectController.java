@@ -38,6 +38,9 @@ public class ProjectController extends BasicController {
             return addProjectHelper.getPostProjectResult();
         case "incrementNoViews":
             return addProjectHelper.incrementProjectNoViews();
+        case "readPreview":
+            String key = context().query().get("previewKey");
+            return addProjectHelper.getProjectPreviewUrl(key);
 		default:
 			return handler().homepage();
 		}

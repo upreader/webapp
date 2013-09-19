@@ -39,7 +39,7 @@
                     </select>
                     <select type="combobox"
                             ng-model="wizardData.step2_storySubGenre"
-                            ng-options="subgenre as subgenre.label for subgenre in wizardData.story_SubGenre_LOV"
+                            ng-options="subgenre as subgenre.label for subgenre in wizardData.step2_storyGenre.cascadingSelects"
                             key="value"
                             ng-required="true">
                     </select>
@@ -77,7 +77,7 @@
         <h2 class="title-level2"><%=upreaderResources.getString("addProjectWizard.serialStorySetupTitle")%></h2>
         <p><%=upreaderResources.getString("addProjectWizard.serialStorySetupDesc")%></p>
 
-        <div ng-show="wizardData.step2_storyType.value == <%=UpreaderConstants.SERIAL_STORY%>" class="story-serial-count-values-wrapper" ng-form='storySetupForm'>
+        <div ng-show="wizardData.step2_storyFormat.value == <%=UpreaderConstants.SERIAL_STORY%>" class="story-serial-count-values-wrapper" ng-form='storySetupForm'>
             <div class="story-serial-chapters-count-wrapper  text-align-center">
                 <p><%=upreaderResources.getString("addProjectWizard.serialStoryChaptersTitle")%></p>
                 <input type="number" ng-model="wizardData.step2_storyChapters" class="addproject-wizard-small-input-number" ng-required="true"/>
@@ -97,15 +97,15 @@
         <div class="story-upload-wrapper">
             <div class="story-upload">
                 <div class="story-upload-sample-wrapper  text-align-center">
-                    <button ng-disabled="((wizardData.step2_storyType.value | isEmpty) || (wizardData.step2_storyType.value == <%=UpreaderConstants.SERIAL_STORY%>))" ng-click="uploadStorySample()" class="story-upload-button"><%=upreaderResources.getString("addProjectWizard.uploadSampleButtonText")%></button>
+                    <button ng-disabled="((wizardData.step2_storyFormat.value | isEmpty) || (wizardData.step2_storyFormat.value == <%=UpreaderConstants.SERIAL_STORY%>))" ng-click="uploadStorySample()" class="story-upload-button"><%=upreaderResources.getString("addProjectWizard.uploadSampleButtonText")%></button>
                 </div>
                 <div class="story-upload-story-wrapper  text-align-center">
                     <button ng-click="uploadStory()"
-                            ng-disabled="(wizardData.step2_storyType.value  | isEmpty)"
+                            ng-disabled="(wizardData.step2_storyFormat.value  | isEmpty)"
                             class="story-upload-button">
-                       <span ng-show="wizardData.step2_storyType.value  == <%=UpreaderConstants.STORY%>"><%=upreaderResources.getString("addProjectWizard.uploadStoryButtonText")%></span>
-                       <span ng-show="wizardData.step2_storyType.value  == <%=UpreaderConstants.SERIAL_STORY%>"><%=upreaderResources.getString("addProjectWizard.uploadSerialStoryButtonText")%></span>
-                       <span ng-show="(wizardData.step2_storyType.value | isEmpty)"><%=upreaderResources.getString("addProjectWizard.selectStory")%></span>
+                       <span ng-show="wizardData.step2_storyFormat.value  == <%=UpreaderConstants.STORY%>"><%=upreaderResources.getString("addProjectWizard.uploadStoryButtonText")%></span>
+                       <span ng-show="wizardData.step2_storyFormat.value  == <%=UpreaderConstants.SERIAL_STORY%>"><%=upreaderResources.getString("addProjectWizard.uploadSerialStoryButtonText")%></span>
+                       <span ng-show="(wizardData.step2_storyFormat.value | isEmpty)"><%=upreaderResources.getString("addProjectWizard.selectStory")%></span>
                     </button>
                 </div>
             </div>
@@ -215,7 +215,7 @@
 
         <button ng-show="(!(wizardData.step2_uploadedStory.fileName | isEmpty)) &&
                          (   (!(wizardData.step2_uploadedSampleStory.fileName | isEmpty)) ||
-                             (  (wizardData.step2_uploadedSampleStory.fileName | isEmpty) &&  (wizardData.step2_storyType.value == <%=UpreaderConstants.SERIAL_STORY%>)  )
+                             (  (wizardData.step2_uploadedSampleStory.fileName | isEmpty) &&  (wizardData.step2_storyFormat.value == <%=UpreaderConstants.SERIAL_STORY%>)  )
                          )  &&
                          (storyForm.$valid) &&
                          (storySetupForm.$valid)
@@ -224,7 +224,7 @@
                 class="addproject-wizard-next-step-button">
         </button>
         <img ng-show="(wizardData.step2_uploadedStory.fileName | isEmpty) ||
-                      (  (wizardData.step2_uploadedSampleStory.fileName | isEmpty) &&  (wizardData.step2_storyType.value == <%=UpreaderConstants.STORY%>)  ) ||
+                      (  (wizardData.step2_uploadedSampleStory.fileName | isEmpty) &&  (wizardData.step2_storyFormat.value == <%=UpreaderConstants.STORY%>)  ) ||
                       (!storyForm.$valid) ||
                       (!storySetupForm.$valid)
                        "

@@ -17,27 +17,25 @@
                 </div>
                 <div class="story-buy-ebook story-buy-box">
                     <div class="story-buy-box-type">
-                        <p>buy</p>
-
-                        <p>e-book</p>
+                        <p><%=upreaderResources.getString("upreader.buy")%></p>
                     </div>
                     <div class="story-buy-box-price">
                         ${projectData.project.bookPrice}
                     </div>
                     <div class="story-buy-box-future">
-                        future-price
+                        <%=upreaderResources.getString("upreader.futurePrice")%>
                     </div>
                 </div>
                 <div class="story-buy-shares story-buy-box">
                     <div class="story-buy-box-type">
-                        <p>buy</p>
-                        <p>shares</p>
+                        <p><%=upreaderResources.getString("upreader.buy")%></p>
+                        <p><%=upreaderResources.getString("upreader.shares")%></p>
                     </div>
                     <div class="story-buy-box-price">
                         ${projectData.project.sharesToSale}
                     </div>
                     <div class="story-buy-box-future">
-                        shares available
+                        <%=upreaderResources.getString("upreader.project.sharesAvailable")%>
                         ${projectData.project.totalShares}
                     </div>
                 </div>
@@ -47,35 +45,28 @@
     <div class="story-types-wrapper">
         <table class="story-types-table">
             <tr>
-                <th>type</th>
-                <th>format</th>
-                <th>category</th>
-                <th>genre</th>
-                <th>subgenre</th>
-                <th>tags</th>
+                <th><%=upreaderResources.getString("addProjectWizard.labelType")%></th>
+                <th><%=upreaderResources.getString("addProjectWizard.labelFormat")%></th>
+                <th><%=upreaderResources.getString("addProjectWizard.labelCategory")%></th>
+                <th><%=upreaderResources.getString("addProjectWizard.labelGenre")%></th>
+                <th><%=upreaderResources.getString("addProjectWizard.labelSubgenre")%></th>
+                <th><%=upreaderResources.getString("addProjectWizard.labelTags")%></th>
             </tr>
             <tr>
                 <td>
-                    <c:choose>
-                        <c:when test="${projectData.project.type.equals(upreaderConstants.values['STORY'])}">
-                            <%=upreaderResources.getString("addProjectWizard.typeStoryOption")%>
-                        </c:when>
-                        <c:when test="${projectData.project.type.equals(upreaderConstants.values['SERIAL_STORY'])}">
-                            <%=upreaderResources.getString("addProjectWizard.typeSerialStoryOption")%>
-                        </c:when>
-                    </c:choose>
+                    ${projectData.getLocalizedTypeResource(projectData.project.type)}
                 </td>
                 <td>
-                     TDB
+                    ${projectData.getLocalizedFormatResource(projectData.project.format)}
                 </td>
                 <td>
-                    TDB
+                    ${projectData.getLocalizedCategoryResource(projectData.project.category)}
                 </td>
                 <td>
-                    TDB
+                    ${projectData.getLocalizedGenreResource(projectData.project.genre)}
                 </td>
                 <td>
-                    TDB
+                    ${projectData.getLocalizedSubGenresResource(projectData.project.subgenre)}
                 </td>
                 <td>
                     ${projectData.project.tags}
@@ -85,19 +76,10 @@
     </div>
     <div class="story-read-wrapper">
         <div class="story-read-button">
-            <button ng-click="downloadStory()"
-                    class="button-white">
-                <span>
-                    <c:choose>
-                        <c:when test="${projectData.project.type.equals(upreaderConstants.values['STORY'])}">
-                            <%=upreaderResources.getString("addProjectWizard.readStoryButtonText")%>
-                        </c:when>
-                        <c:when test="${projectData.project.type.equals(upreaderConstants.values['SERIAL_STORY'])}">
-                            <%=upreaderResources.getString("addProjectWizard.readSerialStoryButtonText")%>
-                        </c:when>
-                    </c:choose>
-                </span>
-            </button>
+            <a class="btn btn-primary button-white"  ng-href="${projectData.getProjectPreviewUrl()}">
+                <span ng-show="${projectData.project.format.equals(upreaderConstants.values['SERIAL_STORY'])}"><%=upreaderResources.getString("addProjectWizard.readSerialStoryButtonText")%></span>
+                <span ng-show="${projectData.project.format.equals(upreaderConstants.values['STORY'])}"><%=upreaderResources.getString("addProjectWizard.readStorySampleButtonText")%></span>
+            </a>
         </div>
     </div>
 

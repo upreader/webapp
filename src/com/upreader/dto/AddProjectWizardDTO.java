@@ -19,7 +19,18 @@ public class AddProjectWizardDTO {
     private ArrayList<SelectItem> story_Format_LOV;
     private ArrayList<SelectItem> story_Type_LOV;
     private ArrayList<SelectItem> story_Genre_LOV;
-    private ArrayList<SelectItem> story_SubGenre_LOV;
+    private ArrayList<SelectItem> story_Drama_SubGenre_LOV;
+    private ArrayList<SelectItem> story_Comedy_SubGenre_LOV;
+    private ArrayList<SelectItem> story_Political_SubGenre_LOV;
+    private ArrayList<SelectItem> story_Thriller_SubGenre_LOV;
+    private ArrayList<SelectItem> story_SF_SubGenre_LOV;
+    private ArrayList<SelectItem> story_Fantasy_SubGenre_LOV;
+    private ArrayList<SelectItem> story_Erotica_SubGenre_LOV;
+    private ArrayList<SelectItem> story_AvantGarde_SubGenre_LOV;
+    private ArrayList<SelectItem> story_Other_SubGenre_LOV;
+    private ArrayList<SelectItem> story_No_SubGenre_LOV;
+    private ArrayList<SelectItem> story_SelectSubgenre_LOV;
+
     private ArrayList<SelectItem> story_Category_LOV;
 
     /*
@@ -141,7 +152,7 @@ public class AddProjectWizardDTO {
 
         step2_storyFormat                = new SelectItem("", upreaderResources.getString("addProjectWizard.labelFormat"));
         step2_storyType                  = new SelectItem("", upreaderResources.getString("addProjectWizard.labelType"));
-        step2_storyGenre                 = new SelectItem("", upreaderResources.getString("addProjectWizard.labelGenre"));
+        step2_storyGenre                 = new SelectItem(story_SelectSubgenre_LOV, "", upreaderResources.getString("addProjectWizard.labelGenre"));
         step2_storySubGenre              = new SelectItem("", upreaderResources.getString("addProjectWizard.labelSubgenre"));
         step2_storyCategory              = new SelectItem("", upreaderResources.getString("addProjectWizard.labelCategory"));
         step2_storyTitle                 = upreaderResources.getString("addProjectWizard.storyTitle");
@@ -179,23 +190,101 @@ public class AddProjectWizardDTO {
         //Format LOV
         story_Format_LOV = new ArrayList<SelectItem>();
         story_Format_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelFormat")));
-        story_Format_LOV.add( new SelectItem(UpreaderConstants.SERIAL_STORY, upreaderResources.getString("addProjectWizard.formatOption")) );
+        story_Format_LOV.add( new SelectItem(UpreaderConstants.SERIAL_STORY, upreaderResources.getString("upreader.nomenclature.format.serialStory")) );
+        story_Format_LOV.add( new SelectItem(UpreaderConstants.STORY, upreaderResources.getString("upreader.nomenclature.format.story")) );
 
        //Type LOV
         story_Type_LOV = new ArrayList<SelectItem>();
         story_Type_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelType")) );
-        story_Type_LOV.add( new SelectItem(UpreaderConstants.SERIAL_STORY, upreaderResources.getString("addProjectWizard.typeSerialStoryOption")) );
-        story_Type_LOV.add( new SelectItem(UpreaderConstants.STORY, upreaderResources.getString("addProjectWizard.typeStoryOption")) );
+        story_Type_LOV.add( new SelectItem(UpreaderConstants.TYPE_FICTION, upreaderResources.getString("upreader.nomenclature.type.fiction")) );
+        story_Type_LOV.add( new SelectItem(UpreaderConstants.TYPE_NONFICTION, upreaderResources.getString("upreader.nomenclature.type.nonfiction")) );
+
+        //Sub Genre LOV
+        story_No_SubGenre_LOV = new ArrayList<SelectItem>();
+        story_SelectSubgenre_LOV =  new ArrayList<SelectItem>();
+        story_SelectSubgenre_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelSubgenre")));
+
+        story_Drama_SubGenre_LOV = new ArrayList<SelectItem>();
+        story_Drama_SubGenre_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelSubgenre")));
+        story_Drama_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_DRAMA_COMINGOFAGE, upreaderResources.getString("upreader.nomenclature.subgenre.drama.comingofage")) );
+        story_Drama_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_DRAMA_CHILDHOOD, upreaderResources.getString("upreader.nomenclature.subgenre.drama.childhood")) );
+        story_Drama_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_DRAMA_URBAN, upreaderResources.getString("upreader.nomenclature.subgenre.drama.urban")) );
+        story_Drama_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_DRAMA_HISTORICAL, upreaderResources.getString("upreader.nomenclature.subgenre.drama.historical")) );
+        story_Comedy_SubGenre_LOV = new ArrayList<SelectItem>();
+        story_Comedy_SubGenre_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelSubgenre")));
+        story_Comedy_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_COMEDY_SATIRE, upreaderResources.getString("upreader.nomenclature.subgenre.comedy.satire")) );
+        story_Comedy_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_COMEDY_PARODY, upreaderResources.getString("upreader.nomenclature.subgenre.comedy.parody")) );
+        story_Comedy_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_COMEDY_DARK, upreaderResources.getString("upreader.nomenclature.subgenre.comedy.dark")) );
+        story_Comedy_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_COMEDY_ROMANTIC, upreaderResources.getString("upreader.nomenclature.subgenre.comedy.romantic")) );
+        story_Political_SubGenre_LOV = new ArrayList<SelectItem>();
+        story_Political_SubGenre_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelSubgenre")));
+        story_Political_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_POLITICAL_CONSPIRACY, upreaderResources.getString("upreader.nomenclature.subgenre.political.conspiracy")) );
+        story_Political_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_POLITICAL_ANARCHIST, upreaderResources.getString("upreader.nomenclature.subgenre.political.anarchist")) );
+        story_Political_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_POLITICAL_UTOPIA, upreaderResources.getString("upreader.nomenclature.subgenre.political.utopia")) );
+        story_Political_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_POLITICAL_DYSTOPIA, upreaderResources.getString("upreader.nomenclature.subgenre.political.dystopia")) );
+        story_Thriller_SubGenre_LOV = new ArrayList<SelectItem>();
+        story_Thriller_SubGenre_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelSubgenre")));
+        story_Thriller_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_THRILLER_CRIME, upreaderResources.getString("upreader.nomenclature.subgenre.thriller.crime")) );
+        story_Thriller_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_THRILLER_ACTION, upreaderResources.getString("upreader.nomenclature.subgenre.thriller.action")) );
+        story_Thriller_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_THRILLER_MYSTERY, upreaderResources.getString("upreader.nomenclature.subgenre.thriller.mystery")) );
+        story_Thriller_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_THRILLER_PSYCHOLOGICAL, upreaderResources.getString("upreader.nomenclature.subgenre.thriller.psychological")) );
+        story_SF_SubGenre_LOV = new ArrayList<SelectItem>();
+        story_SF_SubGenre_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelSubgenre")));
+        story_SF_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_SF_UTOPIA, upreaderResources.getString("upreader.nomenclature.subgenre.sf.utopia")) );
+        story_SF_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_SF_DYSTOPIA, upreaderResources.getString("upreader.nomenclature.subgenre.sf.dystopia")) );
+        story_SF_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_SF_CYBERPUNK, upreaderResources.getString("upreader.nomenclature.subgenre.sf.cyberpunk")) );
+        story_SF_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_SF_STEAMPUNK, upreaderResources.getString("upreader.nomenclature.subgenre.sf.steampunk")) );
+        story_SF_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_SF_APOCALYPTIC, upreaderResources.getString("upreader.nomenclature.subgenre.sf.apocalyptic")) );
+        story_SF_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_SF_POSTAPOCALYPTIC, upreaderResources.getString("upreader.nomenclature.subgenre.sf.postapocalyptic")) );
+        story_SF_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_SF_ANTHROPOLOGICAL, upreaderResources.getString("upreader.nomenclature.subgenre.sf.anthropological")) );
+        story_SF_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_SF_COMICAL, upreaderResources.getString("upreader.nomenclature.subgenre.sf.comical")) );
+        story_Fantasy_SubGenre_LOV = new ArrayList<SelectItem>();
+        story_Fantasy_SubGenre_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelSubgenre")));
+        story_Fantasy_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_FANTASY_DARK, upreaderResources.getString("upreader.nomenclature.subgenre.fantasy.dark")) );
+        story_Fantasy_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_FANTASY_HISTORICAL, upreaderResources.getString("upreader.nomenclature.subgenre.fantasy.historical")) );
+        story_Fantasy_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_FANTASY_MODERN, upreaderResources.getString("upreader.nomenclature.subgenre.fantasy.modern")) );
+        story_Fantasy_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_FANTASY_SUPERHEROES, upreaderResources.getString("upreader.nomenclature.subgenre.fantasy.superheroes")) );
+        story_Fantasy_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_FANTASY_VAMPIRES, upreaderResources.getString("upreader.nomenclature.subgenre.fantasy.vampires")) );
+        story_Fantasy_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_FANTASY_ZOMBIES, upreaderResources.getString("upreader.nomenclature.subgenre.fantasy.zombies")) );
+        story_Fantasy_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_FANTASY_MAGIC, upreaderResources.getString("upreader.nomenclature.subgenre.fantasy.magic")) );
+        story_Erotica_SubGenre_LOV = new ArrayList<SelectItem>();
+        story_Erotica_SubGenre_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelSubgenre")));
+        story_Erotica_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_EROTICA_BDSM, upreaderResources.getString("upreader.nomenclature.subgenre.erotica.bdsm")) );
+        story_AvantGarde_SubGenre_LOV = new ArrayList<SelectItem>();
+        story_AvantGarde_SubGenre_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelSubgenre")));
+        story_AvantGarde_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_AVANTGARDE_EXPERIMENTAL, upreaderResources.getString("upreader.nomenclature.subgenre.avantgarde.experimental")) );
+        story_Other_SubGenre_LOV = new ArrayList<SelectItem>();
+        story_Other_SubGenre_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelSubgenre")));
+        story_Other_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_OTHER_BIZARRO, upreaderResources.getString("upreader.nomenclature.subgenre.other.bizarro")) );
+        story_Other_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_OTHER_WEIRDO, upreaderResources.getString("upreader.nomenclature.subgenre.other.weirdo")) );
+        story_Other_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_OTHER_ECLECTIC, upreaderResources.getString("upreader.nomenclature.subgenre.other.eclectic")) );
+        story_Other_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SUBGENRE_OTHER_PSYCHEDELIC, upreaderResources.getString("upreader.nomenclature.subgenre.other.psychedelic")) );
 
         //Genre LOV
         story_Genre_LOV = new ArrayList<SelectItem>();
-        story_Genre_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelGenre")));
-        story_Genre_LOV.add( new SelectItem(UpreaderConstants.SERIAL_STORY, upreaderResources.getString("addProjectWizard.genreOption")) );
-
-        //Sub Genre LOV
-        story_SubGenre_LOV = new ArrayList<SelectItem>();
-        story_SubGenre_LOV.add( new SelectItem("", upreaderResources.getString("addProjectWizard.labelSubgenre")));
-        story_SubGenre_LOV.add( new SelectItem(UpreaderConstants.SERIAL_STORY, upreaderResources.getString("addProjectWizard.subGenreOption")) );
+        story_Genre_LOV.add( new SelectItem(story_SelectSubgenre_LOV, "", upreaderResources.getString("addProjectWizard.labelGenre")));
+        story_Genre_LOV.add( new SelectItem(story_Drama_SubGenre_LOV, UpreaderConstants.GENRE_DRAMA, upreaderResources.getString("upreader.nomenclature.genre.drama")) );
+        story_Genre_LOV.add( new SelectItem(story_Comedy_SubGenre_LOV, UpreaderConstants.GENRE_DRAMA, upreaderResources.getString("upreader.nomenclature.genre.comedy")) );
+        story_Genre_LOV.add( new SelectItem(story_No_SubGenre_LOV, UpreaderConstants.GENRE_DRAMA, upreaderResources.getString("upreader.nomenclature.genre.romance")) );
+        story_Genre_LOV.add( new SelectItem(story_No_SubGenre_LOV, UpreaderConstants.GENRE_DRAMA, upreaderResources.getString("upreader.nomenclature.genre.familySaga")) );
+        story_Genre_LOV.add( new SelectItem(story_Political_SubGenre_LOV, UpreaderConstants.GENRE_DRAMA, upreaderResources.getString("upreader.nomenclature.genre.political")) );
+        story_Genre_LOV.add( new SelectItem(story_No_SubGenre_LOV, UpreaderConstants.GENRE_HISTORICAL, upreaderResources.getString("upreader.nomenclature.genre.historical")) );
+        story_Genre_LOV.add( new SelectItem(story_No_SubGenre_LOV, UpreaderConstants.GENRE_WAR, upreaderResources.getString("upreader.nomenclature.genre.war")) );
+        story_Genre_LOV.add( new SelectItem(story_No_SubGenre_LOV, UpreaderConstants.GENRE_SPIRITUAL, upreaderResources.getString("upreader.nomenclature.genre.spiritual")) );
+        story_Genre_LOV.add( new SelectItem(story_No_SubGenre_LOV, UpreaderConstants.GENRE_ETHNIC_IMIGRANT, upreaderResources.getString("upreader.nomenclature.genre.ethnicImigrant")) );
+        story_Genre_LOV.add( new SelectItem(story_No_SubGenre_LOV, UpreaderConstants.GENRE_CHILDRENBOOK, upreaderResources.getString("upreader.nomenclature.genre.childrenBooks")) );
+        story_Genre_LOV.add( new SelectItem(story_No_SubGenre_LOV, UpreaderConstants.GENRE_PARANORMAL, upreaderResources.getString("upreader.nomenclature.genre.paranormal")) );
+        story_Genre_LOV.add( new SelectItem(story_No_SubGenre_LOV, UpreaderConstants.GENRE_ABSURD, upreaderResources.getString("upreader.nomenclature.genre.absurd")) );
+        story_Genre_LOV.add( new SelectItem(story_No_SubGenre_LOV, UpreaderConstants.GENRE_SURREALISM, upreaderResources.getString("upreader.nomenclature.genre.surrealism")) );
+        story_Genre_LOV.add( new SelectItem(story_No_SubGenre_LOV, UpreaderConstants.GENRE_HORROR, upreaderResources.getString("upreader.nomenclature.genre.horror")) );
+        story_Genre_LOV.add( new SelectItem(story_Thriller_SubGenre_LOV, UpreaderConstants.GENRE_THRILLER, upreaderResources.getString("upreader.nomenclature.genre.thriller")) );
+        story_Genre_LOV.add( new SelectItem(story_No_SubGenre_LOV, UpreaderConstants.GENRE_ADVENTURE, upreaderResources.getString("upreader.nomenclature.genre.adventure")) );
+        story_Genre_LOV.add( new SelectItem(story_SF_SubGenre_LOV, UpreaderConstants.GENRE_SF, upreaderResources.getString("upreader.nomenclature.genre.sf")) );
+        story_Genre_LOV.add( new SelectItem(story_Fantasy_SubGenre_LOV, UpreaderConstants.GENRE_FANTASY, upreaderResources.getString("upreader.nomenclature.genre.fantasy")) );
+        story_Genre_LOV.add( new SelectItem(story_Erotica_SubGenre_LOV, UpreaderConstants.GENRE_EROTICA, upreaderResources.getString("upreader.nomenclature.genre.erotica")) );
+        story_Genre_LOV.add( new SelectItem(story_No_SubGenre_LOV, UpreaderConstants.GENRE_LGBT, upreaderResources.getString("upreader.nomenclature.genre.lgbt")) );
+        story_Genre_LOV.add( new SelectItem(story_AvantGarde_SubGenre_LOV, UpreaderConstants.GENRE_AVANTGARDE, upreaderResources.getString("upreader.nomenclature.genre.avantgarde")) );
+        story_Genre_LOV.add( new SelectItem(story_Other_SubGenre_LOV, UpreaderConstants.GENRE_OTHER, upreaderResources.getString("upreader.nomenclature.genre.other")) );
 
         //Category LOV
         story_Category_LOV = new ArrayList<SelectItem>();
@@ -238,14 +327,6 @@ public class AddProjectWizardDTO {
 
     public void setStory_Category_LOV(ArrayList<SelectItem> story_Category_LOV) {
         this.story_Category_LOV = story_Category_LOV;
-    }
-
-    public ArrayList<SelectItem> getStory_SubGenre_LOV() {
-        return story_SubGenre_LOV;
-    }
-
-    public void setStory_SubGenre_LOV(ArrayList<SelectItem> story_SubGenre_LOV) {
-        this.story_SubGenre_LOV = story_SubGenre_LOV;
     }
 
     public ArrayList<SelectItem> getStory_Genre_LOV() {

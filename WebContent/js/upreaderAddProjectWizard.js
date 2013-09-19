@@ -137,6 +137,28 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
         $('.uploader').hide(500);
 
     };
+
+    /**
+     * Step 6
+     */
+     $scope.readPreview = function(){
+         var previewKey;
+         if($scope.wizardData.step2_storyFormat === $("#STORY").val() ){
+             previewKey = $scope.wizardData.step2_uploadedSampleStory.key;
+         }
+         if($scope.wizardData.step2_storyFormat === $("#STORY_SAMPLE").val() ){
+             previewKey = $scope.wizardData.step2_uploadedStory.key;
+         }
+
+         $readPreviewPostData = $.param({do: 'readPreview', previewKey: previewKey });
+         upreaderAddPrjAppModule.doPostAsForm( $http,
+             $rootScope.addProjectWizardCommons.projectsUrl,
+             $readPreviewPostData, 5,
+             function(data) {
+                window.open(angular.fromJson(data));
+             });
+     };
+
     /*
      * Generic
      */

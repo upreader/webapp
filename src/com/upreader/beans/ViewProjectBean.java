@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ViewProjectBean {
     Logger log = Logger.getLogger(ViewProjectBean.class);
@@ -71,6 +72,16 @@ public class ViewProjectBean {
         return Days.daysBetween(contractDate, deadlineEnd).getDays();
     }
 
+    public String getProjectPreviewUrl(){
+        if(project.getFormat().equals(UpreaderConstants.SERIAL_STORY)){
+            return UpreaderApplication.getInstance().getAmazonService().getSignedURL(project.getBook());
+        }
+        if(project.getFormat().equals(UpreaderConstants.STORY)){
+            return UpreaderApplication.getInstance().getAmazonService().getSignedURL(project.getSample());
+        }
+        return "";
+    }
+
     public Integer getBoughtShares(){
         Integer result = 0;
         List<ProjectMembership> shareHolders = project.getShareholders();
@@ -103,6 +114,26 @@ public class ViewProjectBean {
 
     public Integer getInterestedUsersCount(){
         return project.getInterestedUsers() == null ? 0 : project.getInterestedUsers().size();
+    }
+
+    public String getLocalizedTypeResource(String type){
+        return UpreaderConstants.getLocalizedTypeResource(type, request.getLocale());
+    }
+
+    public String getLocalizedFormatResource(String format){
+        return UpreaderConstants.getLocalizedFormatResource(format, request.getLocale());
+    }
+
+    public String getLocalizedCategoryResource(String category){
+        return UpreaderConstants.getLocalizedCategoryResource(category, request.getLocale());
+    }
+
+    public String getLocalizedGenreResource(String genre){
+        return UpreaderConstants.getLocalizedCategoryResource(genre, request.getLocale());
+    }
+
+    public String getLocalizedSubGenreResource(String subgenre){
+        return UpreaderConstants.getLocalizedCategoryResource(subgenre, request.getLocale());
     }
 
     public ArrayList<String> getErrors() {

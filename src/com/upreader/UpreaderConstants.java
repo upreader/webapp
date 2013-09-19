@@ -104,7 +104,20 @@ public class UpreaderConstants {
     public static final String SESSION_MONITOR_BOARD_DATA = "mbData";
 
     /**
-     * File types for upload
+     * Project Types
+     */
+    public static String TYPE_FICTION = "1";
+    public static String TYPE_NONFICTION = "2";
+
+    /**
+     * Status
+     */
+    public static String STATUS_FREE="1";
+    public static String STATUS_WAITING="2";
+    public static String STATUS_SHELVED="3";
+
+    /**
+     * Formats for upload
      */
      public static String PUBLIC_IMAGE = "1";
      public static String STORY = "2";
@@ -282,6 +295,11 @@ public class UpreaderConstants {
 
     public Map getValues(){
         constants.put("PUBLIC_IMAGE", PUBLIC_IMAGE);
+        constants.put("TYPE_FICTION",TYPE_FICTION);
+        constants.put("TYPE_NONFICTION",TYPE_NONFICTION);
+        constants.put("STATUS_FREE",STATUS_FREE);
+        constants.put("STATUS_WAITING",STATUS_WAITING);
+        constants.put("STATUS_SHELVED",STATUS_SHELVED);
         constants.put("STORY", STORY);
         constants.put("STORY_SAMPLE", STORY_SAMPLE);
         constants.put("COVER", COVER);
@@ -324,6 +342,27 @@ public class UpreaderConstants {
     /*
      * Helper methods to be used with the constants.
      */
+    public static String getLocalizedTypeResource(String type, Locale locale){
+       ResourceBundle upreaderResources = UpreaderApplication.getInstance().getLocaleManager().getResources("com.upreader.i18n.UpreaderResources", locale);
+       if(type.equals(UpreaderConstants.TYPE_FICTION)){
+           return upreaderResources.getString("upreader.nomenclature.type.fiction");
+       }
+       if(type.equals(UpreaderConstants.TYPE_NONFICTION)){
+           return upreaderResources.getString("upreader.nomenclature.type.nonfiction");
+       }
+       return "";
+    }
+
+    public static String getLocalizedFormatResource(String format, Locale locale){
+        ResourceBundle upreaderResources = UpreaderApplication.getInstance().getLocaleManager().getResources("com.upreader.i18n.UpreaderResources", locale);
+        if(format.equals(UpreaderConstants.STORY)){
+            return upreaderResources.getString("upreader.nomenclature.format.story");
+        }
+        if(format.equals(UpreaderConstants.SERIAL_STORY)){
+            return upreaderResources.getString("upreader.nomenclature.format.serialStory");
+        }
+        return "";
+    }
 
     public static String getLocalizedCategoryResource(String category, Locale locale){
         ResourceBundle upreaderResources = UpreaderApplication.getInstance().getLocaleManager().getResources("com.upreader.i18n.UpreaderResources", locale);

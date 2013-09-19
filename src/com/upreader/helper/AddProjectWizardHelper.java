@@ -6,6 +6,7 @@ import com.amazonaws.services.s3.transfer.Upload;
 import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
 import com.upreader.BusinessException;
+import com.upreader.UpreaderApplication;
 import com.upreader.UpreaderConstants;
 import com.upreader.aws.AmazonService;
 import com.upreader.context.Context;
@@ -16,6 +17,7 @@ import com.upreader.dto.AddProjectWizardDTO;
 import com.upreader.dto.AmazonS3FileDetails;
 import com.upreader.dto.AmazonS3FileDetailsBuilder;
 import com.upreader.model.Project;
+import com.upreader.model.ProjectPost;
 import com.upreader.model.ProofOfSales;
 import com.upreader.model.User;
 import org.apache.commons.fileupload.FileItem;
@@ -25,6 +27,7 @@ import org.joda.time.DateTime;
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -186,6 +189,14 @@ public class AddProjectWizardHelper extends BasicController{
                 project.setBook(theWizardData.getStep2_uploadedStory().getKey());
             }
 
+            List<ProjectPost> projectPosts = new ArrayList<ProjectPost>();
+            for(String projectPost : theWizardData.getStep2_backstories()){
+                ProjectPost newPojectPost = new ProjectPost();
+                newPojectPost.setContent(projectPost);
+                newPojectPost.setProject(project);
+                projectPosts.add(newPojectPost);
+            }
+
             //Step3 Data
             project.setSellingRights(theWizardData.getStep3_yearsOfSellingRightsToPlatform());
             project.setEstimatedUnitSales(theWizardData.getStep3_sellEstimateUnitsPerYear());
@@ -237,7 +248,7 @@ public class AddProjectWizardHelper extends BasicController{
             project.setAuthor(loggedUser);
             project.setProofsOfSales(proofOfSales);
             project.setApproved(false);
-
+            project.setProjectPosts(projectPosts);
             context().projectDAO().insert(project);
 
             //Reinitialize session wizard data
@@ -257,9 +268,14 @@ public class AddProjectWizardHelper extends BasicController{
     }
 
     public boolean loadProjectsTableJson(){
-        return handler().json( handler().context().projectDAO().findAllProjectsInRange(Integer.valueOf(context().query().get("startPos")).intValue(),
-                                                                                       Integer.valueOf(context().query().get("endPos")).intValue()) );
+        return handler().json(handler().context().projectDAO().findAllProjectsInRange(Integer.valueOf(context().query().get("startPos")).intValue(),
+                Integer.valueOf(context().query().get("endPos")).intValue()));
     }
+
+    public boolean getProjectPreviewUrl(String previewKey){
+         return handler().json(UpreaderApplication.getInstance().getAmazonService().getSignedURL(previewKey));
+    }
+
     /*
      * Basic getters and setters
      */

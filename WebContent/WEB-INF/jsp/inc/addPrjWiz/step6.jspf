@@ -30,27 +30,24 @@
                     </div>
                     <div class="story-buy-ebook story-buy-box">
                         <div class="story-buy-box-type">
-                            <p>buy</p>
-
-                            <p>e-book</p>
+                            <p><%=upreaderResources.getString("upreader.buy")%></p>
                         </div>
                         <div class="story-buy-box-price">
                             {{wizardData.step3_ebookPrice}}
                         </div>
                         <div class="story-buy-box-future">
-                            future-price
+                            <%=upreaderResources.getString("upreader.futurePrice")%>
                         </div>
                     </div>
                     <div class="story-buy-shares story-buy-box">
                         <div class="story-buy-box-type">
-                            <p>buy</p>
-                            <p>shares</p>
+                            <p><%=upreaderResources.getString("upreader.buy")%></p>
                         </div>
                         <div class="story-buy-box-price">
                             {{wizardData.step3_numberOfSharesValue}}
                         </div>
                         <div class="story-buy-box-future">
-                            shares available     {{wizardData.step3_totalNumberOfShares}}
+                            <%=upreaderResources.getString("upreader.project.sharesAvailable")%>     {{wizardData.step3_totalNumberOfShares}}
                         </div>
                     </div>
                 </div>
@@ -59,12 +56,12 @@
         <div class="story-types-wrapper">
             <table class="story-types-table">
                 <tr>
-                    <th>type</th>
-                    <th>format</th>
-                    <th>category</th>
-                    <th>genre</th>
-                    <th>subgenre</th>
-                    <th>tags</th>
+                    <th><%=upreaderResources.getString("addProjectWizard.labelType")%></th>
+                    <th><%=upreaderResources.getString("addProjectWizard.labelFormat")%></th>
+                    <th><%=upreaderResources.getString("addProjectWizard.labelCategory")%></th>
+                    <th><%=upreaderResources.getString("addProjectWizard.labelGenre")%></th>
+                    <th><%=upreaderResources.getString("addProjectWizard.labelSubgenre")%></th>
+                    <th><%=upreaderResources.getString("addProjectWizard.labelTags")%></th>
                 </tr>
                 <tr>
                     <td ng-bind="wizardData.step2_storyType.label"></td>
@@ -82,10 +79,10 @@
         </div>
         <div class="story-read-wrapper">
             <div class="story-read-button">
-                <button class="btn btn-primary button-white" value="read the pilot" ng-click="isReadPilot = !isReadPilot">Read The Pilot</button>
-            </div>
-            <div class="story-promo-item-wrapper"  collapse="isReadPilot">
-                <p ng-bind="wizardData.step2_storySynopsis"></p>
+                <button class="btn btn-primary button-white"  ng-click="readPreview()">
+                    <span ng-show="wizardData.step2_storyFormat.value == <%=UpreaderConstants.SERIAL_STORY%>"><%=upreaderResources.getString("addProjectWizard.readSerialStoryButtonText")%></span>
+                    <span ng-show="wizardData.step2_storyFormat.value == <%=UpreaderConstants.STORY%>"><%=upreaderResources.getString("addProjectWizard.readStorySampleButtonText")%></span>
+                </button>
             </div>
         </div>
 
