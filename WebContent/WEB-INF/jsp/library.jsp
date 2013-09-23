@@ -196,11 +196,14 @@
                 <input type="hidden" id="projects-for-genre-${genre.key}" value='${libraryData.projectsData(genre.value)}'/>
                     <div class="project-card" ng-repeat='project in (filteredProjectsByGenre[${genre.key}] = ( projectsByGenre[${genre.key}] | filter:subGenreFilter[${genre.key}] | filter:filterProjects ) ) | limitTo: ( currentPageByGenre[${genre.key}]  * itemsOnPage ) | limitTo: (-1*itemsOnPage) ' >
                     <div class="project-card-contents">
-                        <div class="project-card-title">{{project.projectTitle}}</div>
-                        <div class="project-card-cover">
-                            <img class="user-profile-photo-img"
-                                 src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                        </div>
+                        <form action="/upreader/p/viewproject" method="post">
+                            <input type="hidden" name="projectId" value={{project.projectId}} />
+                            <div class="project-card-title">{{project.projectTitle}}</div>
+                            <div class="project-card-cover">
+                                <input type="image" class="user-profile-photo-img"
+                                       src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
+                            </div>
+                        </form>
                         <div class="project-card-author">{{project.authorName}}</div>
                         <div class="project-card-author-rating"><%=upreaderResources.getString("upreader.rating")%> {{project.authorRating}}</div>
                         <div class="project-card-status">

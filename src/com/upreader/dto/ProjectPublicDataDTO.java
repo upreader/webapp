@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 
 public class ProjectPublicDataDTO {
 
-
+    private Integer projectId;
     private String projectTitle;
     private String authorName;
     private Integer authorRating;
@@ -30,6 +30,7 @@ public class ProjectPublicDataDTO {
     private Integer interestedPublishers;
 
     public ProjectPublicDataDTO(Project p, Locale locale){
+        this.projectId = p.getId();
         this.projectTitle = p.getTitle();
         this.authorName = p.getAuthor().getFirstName() + " " + p.getAuthor().getLastName();
         this.authorRating = p.getAuthor().getRating();
@@ -51,6 +52,10 @@ public class ProjectPublicDataDTO {
         this.noViews = p.getNoViews() == null ? 0 : p.getNoViews();
         this.interestedPublishers = p.getInterestedPublishers() == null ? 0 : p.getInterestedPublishers().size();
 
+    }
+
+    public Integer getProjectId() {
+        return projectId;
     }
 
     public String getProjectTitle() {

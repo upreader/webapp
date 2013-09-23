@@ -14,6 +14,7 @@
                     <c:choose>
                         <c:when test="${not empty sessionScope.user}">
                             <li><a href="<c:url value="/p/workspace"/>"><c:out value="${pageContext.request.remoteUser}"/></a></li>
+                            <li><a href="<c:url value='/p/profile'/>">P</a></li>
                             <c:if test="${fn:containsIgnoreCase(sessionScope.user.roles, 'admin')}">
                                 <li><a href="<c:url value='/p/admin/status'/>">A</a></li>
                             </c:if>
