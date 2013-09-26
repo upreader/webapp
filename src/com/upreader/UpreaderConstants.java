@@ -12,7 +12,7 @@ public class UpreaderConstants {
     public Map constants=new HashMap();
 
     public static final String UPREADER_HOST = "http://www.upreader.com";
-    public static final String UPREADER_SECURE_HOST = "https://www.upreader.com";
+    public static final String UPREADER_SECURE_HOST = "http://www.upreader.com";
     public static final String UPREADER_CONTEXT = "/upreader";
     public static final String DATASOURCE_JNDI = "java:comp/env/jdbc/mysql";
     public static final String PERSISTANCEUNIT_JNDI = "java:comp/env/persistence";
