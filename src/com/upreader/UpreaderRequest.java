@@ -234,18 +234,18 @@ public class UpreaderRequest {
 		return this.request.getMethod();
 	}
 
-	public boolean redirect(String redirectDestinationUrl) {
+	public boolean redirect(String url) {
 		try {
-			this.response.sendRedirect(redirectDestinationUrl);
+			this.response.sendRedirect(url);
 			return true;
 		} catch (IOException ioexc) {
 		}
 		return false;
 	}
 
-	public boolean redirectPermanent(String redirectDestinationUrl) {
+	public boolean redirectPermanent(String url) {
 		try {
-			setResponseHeader("Location", redirectDestinationUrl);
+			setResponseHeader("Location", url);
 			this.response.sendError(301);
 			return true;
 		} catch (Exception exc) {
@@ -253,25 +253,21 @@ public class UpreaderRequest {
 		return false;
 	}
 
-	public boolean render(String pageName, boolean fullyQualified) throws Exception {
-		return forwardToJsp(pageName, fullyQualified);
-	}
+	public boolean forwardToJsp(String pageName, boolean fullyQualified) throws Exception {
+        String path = "";
 
-	protected boolean forwardToJsp(String pageName, boolean fullyQualified) throws ServletException, IOException {
-		String path = "";
+        if (fullyQualified) {
+            path = pageName;
+        } else {
+            path = this.infrastructure.getJspDirectory() + pageName;
+        }
 
-		if (fullyQualified) {
-			path = pageName;
-		} else {
-			path = this.infrastructure.getJspDirectory() + pageName;
-		}
+        RequestDispatcher requestDispatcher = this.servletContext.getRequestDispatcher(path);
+        requestDispatcher.include(this.request, this.response);
 
-		RequestDispatcher requestDispatcher = this.servletContext.getRequestDispatcher(path);
-		requestDispatcher.include(this.request, this.response);
+        this.jspHasBeenIncluded = true;
 
-		this.jspHasBeenIncluded = true;
-
-		return true;
+        return true;
 	}
 
 	public void setResponseHeader(String headerName, String value) {

@@ -113,7 +113,7 @@ public class LoginController extends BasicController {
             return handler().userController().registerProspector(firstName, lastName, email, password, countryCity, updateMe);
         }
         else {
-            return context().render(handler().userController().getRegisterUserFailedURL("One of the fields is empty"));
+            return context().forward(handler().userController().getRegisterUserFailedURL("One of the fields is empty"));
         }
     }
 
@@ -134,12 +134,12 @@ public class LoginController extends BasicController {
                     // user is good to be confirmed
                     user.setEmailConfirmed(true);
                     context().userDAO().update(user);
-                    return context().render("confirmSuccess.jsp");
+                    return context().forward("confirmSuccess.jsp");
                 } else {
-                    return context().render("confirmError.jsp?uuid=1");
+                    return context().forward("confirmError.jsp?uuid=1");
                 }
             } else {
-                return context().render("confirmError.jsp?expired=1");
+                return context().forward("confirmError.jsp?expired=1");
             }
         }
 

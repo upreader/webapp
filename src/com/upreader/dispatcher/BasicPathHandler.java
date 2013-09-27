@@ -127,9 +127,26 @@ public abstract class BasicPathHandler implements Configurable {
         return errorMessage;
     }
 
-	public boolean redirect(String url) {
+    /**
+     * Redirects to the URL provided without doing anything
+     *
+     * @param url
+     * @return
+     */
+	public boolean redirectAbsolute(String url) {
 		return context().redirect(url);
 	}
+
+    /**
+     * Appends the context path before the url, making it an
+     * "internal" upreader redirect
+     *
+     * @param url
+     * @return
+     */
+    public boolean redirectInternal(String url) {
+        return context().redirect(context().getContextPath()+url);
+    }
 
 	public boolean redirectRelative(String uri) {
 		return context().redirect(segments().getUriBelowOffset() + uri);

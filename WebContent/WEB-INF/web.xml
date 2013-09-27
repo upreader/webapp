@@ -2,6 +2,11 @@
 <web-app version="3.0" xmlns:resin="urn:java:com.caucho.resin" xmlns:upreader="urn:java:com.upreader.security">
     <display-name>upreader</display-name>
 
+    <!--
+      -
+      -   GENERAL SETTINGS SECTION
+      -
+      -->
     <!-- These lines will force assets to be served be resin -->
     <servlet-mapping url-pattern="/css/*" servlet-name="resin-file"/>
     <servlet-mapping url-pattern="/js/*" servlet-name="resin-file"/>
@@ -21,38 +26,20 @@
     <!-- Use UTF-8 for everything. -->
     <character-encoding>UTF-8</character-encoding>
 
-    <upreader:UpreaderFormLogin form-login-page="/p/login" form-error-page="/p/login?failed=1" form-uri-priority="true"/>
-
-    <!-- new project page only for authenticated users -->
-    <resin:Allow url-pattern="/p/newproject1">
-        <resin:IfUserInRole role="*"/>
-    </resin:Allow>
-    <!-- add project page only for authenticated users -->
-    <resin:Allow url-pattern="/p/addproject">
-        <resin:IfUserInRole role="*"/>
-    </resin:Allow>
-    <!-- workspace page only for authenticated users -->
-    <resin:Allow url-pattern="/p/workspace">
-        <resin:IfUserInRole role="*"/>
-    </resin:Allow>
-
-    <!-- /admin is only allowed for admin role -->
-    <resin:Allow url-pattern="/p/admin/*">
-        <resin:IfUserInRole role="admin"/>
-    </resin:Allow>
-
-    <upreader:UpreaderAuthenticator>
-        <resin:password-digest>MD5-plain</resin:password-digest>
-        <resin:data-source>jdbc/mysql</resin:data-source>
-    </upreader:UpreaderAuthenticator>
-
+    <!-- custom error pages -->
     <error-page error-code="404" location="/p/404"/>
     <error-page error-code="500" location="/p/500"/>
 
+    <!-- default pageto show when users access www.upreader.com -->
     <welcome-file-list>
-        <welcome-file>p/home</welcome-file>
+        <welcome-file>p/login</welcome-file>
     </welcome-file-list>
 
+    <!--
+      -
+      -   SERVLETS SECTION
+      -
+      -->
     <!-- Dandelion-Datatables servlet definition -->
     <servlet>
         <servlet-name>datatablesController</servlet-name>
@@ -65,12 +52,33 @@
         <url-pattern>/datatablesController/*</url-pattern>
     </servlet-mapping>
 
+    <!--
+      -
+      -   LISTENERS SECTION
+      -
+      -->
     <listener>
         <listener-class>
             org.apache.commons.fileupload.servlet.FileCleanerCleanup
         </listener-class>
     </listener>
 
+
+    <!--
+     -
+     -   SECURITY SECTION
+     -
+     -->
+    <!-- custom Form Login implemented in com.upreader.security.UpreaderFormLogin -->
+    <upreader:UpreaderFormLogin form-login-page="/p/login" form-error-page="/p/login?failed=1" form-uri-priority="true"/>
+
+    <!-- use custom Upreader database authenticator implemented in  com.upreader.security.UpreaderAuthenticator -->
+    <upreader:UpreaderAuthenticator>
+        <resin:password-digest>MD5-plain</resin:password-digest>
+        <resin:data-source>jdbc/mysql</resin:data-source>
+    </upreader:UpreaderAuthenticator>
+
+    <!-- enable for HTTPS login access -->
     <!--security-constraint>
         <web-resource-collection>
             <url-pattern>/p/login</url-pattern>
@@ -79,4 +87,47 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint-->
+
+    <security-role>
+        <role-name>prospector</role-name>
+    </security-role>
+    <security-role>
+        <role-name>upreader</role-name>
+    </security-role>
+    <security-role>
+        <role-name>author</role-name>
+    </security-role>
+    <security-role>
+        <role-name>publisher</role-name>
+    </security-role>
+    <security-role>
+        <role-name>editor</role-name>
+    </security-role>
+    <security-role>
+        <role-name>admin</role-name>
+    </security-role>
+
+
+    <!-- add project page only for authenticated users -->
+    <resin:Allow url-pattern="/p/addproject">
+        <resin:Or>
+            <resin:IfUserInRole role="author"/>
+            <resin:IfUserInRole role="admin"/>
+        </resin:Or>
+    </resin:Allow>
+
+    <!-- add project page only for authenticated users -->
+    <resin:Allow url-pattern="/p/home">
+        <resin:IfUserInRole role="admin"/>
+    </resin:Allow>
+
+    <!-- workspace page only for authenticated users -->
+    <resin:Allow url-pattern="/p/workspace">
+        <resin:IfUserInRole role="*"/>
+    </resin:Allow>
+
+    <!-- /admin is only allowed for admin role -->
+    <resin:Allow url-pattern="/p/admin/*">
+        <resin:IfUserInRole role="admin"/>
+    </resin:Allow>
 </web-app>

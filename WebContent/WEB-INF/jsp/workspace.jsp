@@ -10,7 +10,7 @@
     ResourceBundle upreaderResources = upreader.getLocaleManager().getResources("com.upreader.i18n.UpreaderResources", request.getLocale());
 %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<!DOCTYPE html>
 <html lang="en" id="ng-app" ng-app="upreaderWorkspaceApp">
 <head>
     <title><%=upreaderResources.getString("workspace.title")%>
@@ -20,7 +20,9 @@
             <c:redirect url="login"/>
         </c:when>
     </c:choose>
+
     <jsp:include page="inc/head.jspf"/>
+
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/workspace.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css" media="screen"/>
@@ -44,6 +46,7 @@
     <!-- Monitor Board -->
 </head>
 <body>
+
 <jsp:include page="inc/header.jspf"/>
 
 <div class="page page-workspace" id="page-workspace" ng-controller="upreaderWorkspaceController">

@@ -3,8 +3,8 @@
                  format="[${thread}] ${log.level} ${log.name}(${log.sourceMethodName}) - ${log.message}"/>
 
 	<logger name="com.caucho" level="info" />
-	<logger name="com.caucho.java" level="config" />
-	<logger name="com.caucho.loader" level="config" />
+	<logger name="com.caucho.java" level="info" />
+	<logger name="com.caucho.loader" level="info" />
 	<logger name="com.caucho.server.cache" level="info" />
 	<logger name="com.caucho.security" level="info" />
 	<logger name="com.caucho.server.security" level="info" />
@@ -39,6 +39,30 @@
 	<cluster id="app">
 		<resin:import path="classpath:META-INF/caucho/app-default.xml" />
 
+		<server-default>
+			<jvm-arg>-Xmx256m</jvm-arg>
+			<jvm-arg>-XX:MaxPermSize=128m</jvm-arg>
+			<jvm-arg>-Xdebug</jvm-arg>
+			<jvm-arg>-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8787</jvm-arg>
+			<jvm-arg>-agentlib:resin</jvm-arg>
+
+			<jvm-mode>-server</jvm-mode>
+			<http address="*" port="80" />
+			<!--http address="*" port="443">
+				<jsse-ssl self-signed-certificate-name="www.upreader.com" />
+			</http-->
+			<!--user-name>upreader</user-name>
+			<group-name>upreader</group-name-->
+			<port-default>
+				<port-thread-max>256</port-thread-max>
+				<accept-thread-min>4</accept-thread-min>
+				<accept-thread-max>32</accept-thread-max>
+				<tcp-cork>true</tcp-cork>
+			</port-default>
+			<sendfile-enable>true</sendfile-enable>
+			<keepalive-select-enable>true</keepalive-select-enable>
+		</server-default>
+
 		<server id="app-0" address="localhost" port="6800" allow-non-reserved-ip="true" />
 		<!--server id="app-2" address="resin2.upreader.local" port="6800" allow-non-reserved-ip="true" / -->
 
@@ -52,25 +76,6 @@
 		<resin:AdminServices />
 		<resin:ElasticCloudService />
 
-		<server-default>
-			<jvm-arg-line>-Xmx256m -XX:MaxPermSize=128m</jvm-arg-line>
-			<jvm-mode>-server</jvm-mode>
-			<http address="*" port="80" />
-			<http address="*" port="443">
-				<jsse-ssl self-signed-certificate-name="www.upreader.com" />
-			</http>
-			<user-name>upreader</user-name>
-			<group-name>upreader</group-name>
-			<port-default>
-				<port-thread-max>256</port-thread-max>
-				<accept-thread-min>4</accept-thread-min>
-				<accept-thread-max>32</accept-thread-max>
-				<tcp-cork>true</tcp-cork>
-			</port-default>
-			<sendfile-enable>true</sendfile-enable>
-			<keepalive-select-enable>true</keepalive-select-enable>
-		</server-default>
-
 		<web-app-default>
 			<class-loader>
 				<library-loader path="${resin.root}/webapp-jars" />
@@ -78,6 +83,7 @@
 		</web-app-default>
 
 		<host id="" root-directory=".">
+
             <secure-host-name>www.upreader.com:443</secure-host-name>
 
 			<access-log path="log/access.log"

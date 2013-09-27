@@ -28,7 +28,7 @@ public class UserController extends BasicController {
     public boolean registerProspector(String firstName, String lastName, String email, String password, String countryCity, String updateMe) {
         User existingUser = context().userDAO().findbyEmail(email);
         if(existingUser != null)
-            return context().render(getRegisterUserFailedURL("This email is already registered with us"));
+            return context().forward(getRegisterUserFailedURL("This email is already registered with us"));
 
         User newUser = new User();
         newUser.setRoles(UpreaderConstants.ROLE_PROSPECTOR);
@@ -63,7 +63,7 @@ public class UserController extends BasicController {
         System.out.println(emailBody);
         handler().getApplication().getAmazonService().sendEmail("confirm.account@upreader.com", email, emailSubject, emailBody);
 
-        return context().render("registerSuccess.jsp");
+        return context().forward("registerSuccess.jsp");
     }
 
     public String getRegisterUserFailedURL(String reason) {
@@ -95,7 +95,7 @@ public class UserController extends BasicController {
 			user.setRoles(StringHelper.join(",", roles));
 			
 			context().userDAO().insert(user);
-			return context().render("admin/users.jsp");
+			return context().forward("admin/users.jsp");
 		case "upd":
 			id = context().query().getInt("objid");
 			password = context().query().get("password");
@@ -111,7 +111,7 @@ public class UserController extends BasicController {
 					user.setPassword(PasswordUtil.encryptPassword(email, password));
 				
 				context().userDAO().update(user);
-				return context().render("admin/users.jsp");
+				return context().forward("admin/users.jsp");
 			}
 			else 
 				return handler().message("NOK");

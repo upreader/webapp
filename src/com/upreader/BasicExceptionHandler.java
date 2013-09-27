@@ -79,7 +79,7 @@ public class BasicExceptionHandler implements ExceptionHandler, Configurable {
 			context.request().setAttribute("upreader.reveal", Boolean.valueOf(this.revealStackTrace));
 			
 			try {
-				context.render(errorPage);
+				context.forward(errorPage);
 			} catch (Exception exc) {
 				outputDefaultErrorPage(context, exception);
 			}

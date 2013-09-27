@@ -69,7 +69,7 @@ public class User implements Serializable {
      * rating can be from 1 to 6
      */
     @Column(name = "rating")
-    private Integer rating;
+    private Integer rating = 1;
 
     @Column(name = "first_name")
     private String firstName;

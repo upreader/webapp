@@ -92,8 +92,10 @@ public class Context {
 
 	public static void complete() {
 		Context current = CONTEXTS_BY_THREAD.get();
-		current.entityManager.close();
-		CONTEXTS_BY_THREAD.set(null);
+        if(current != null) {
+		    current.entityManager.close();
+		    CONTEXTS_BY_THREAD.set(null);
+        }
 	}
 
 	public static Context get() {
@@ -294,12 +296,24 @@ public class Context {
 		}
 	}
 
-	public boolean redirect(String redirectDestinationUrl) {
-		return this.request.redirect(redirectDestinationUrl);
+    /**
+     * Send a normal redirect using the HttpServletResponse
+     *
+     * @param url url to redirect to
+     * @return
+     */
+	public boolean redirect(String url) {
+		return this.request.redirect(url);
 	}
 
-	public boolean redirectPermanent(String redirectDestinationUrl) {
-		return this.request.redirectPermanent(redirectDestinationUrl);
+    /**
+     * Redirect using a 301 Moved Permanently status
+     *
+     * @param url the absolute URL to redirect to
+     * @return
+     */
+	public boolean redirectPermanent(String url) {
+		return this.request.redirectPermanent(url);
 	}
 
 	public void sendError(int error) {
@@ -384,15 +398,35 @@ public class Context {
 		return request().includeFile(file, fileName, asAttachment, contentType);
 	}
 
-	public boolean render(String pageName) {
-		return render(pageName, false);
+    /**
+     * Forwards to the specified page name inside WEB-INF/jsp
+     *
+     * @param pageName jsp page name, including extension
+     * @return
+     */
+	public boolean forward(String pageName) {
+		return forward(pageName, false);
 	}
 
-	public boolean render(String pageName, boolean fullyQualified) {
-		return render(pageName, fullyQualified, null);
+    /**
+     * Forwards to the specified jsp page
+     *
+     * @param pageName jsp page name, including extension
+     * @param fullyQualified true if the page name contains the path to WEB-INF/jsp or not
+     * @return
+     */
+	public boolean forward(String pageName, boolean fullyQualified) {
+		return forward(pageName, fullyQualified, null);
 	}
 
-	public boolean render(String pageName, boolean fullyQualified, String contentType) {
+    /**
+     * Forwards to the specified jsp jage
+     * @param pageName  jsp page name, including extension
+     * @param fullyQualified true if the page name contains the path to WEB-INF/jsp or not
+     * @param contentType the content type to set on the response or null
+     * @return
+     */
+	public boolean forward(String pageName, boolean fullyQualified, String contentType) {
 		getDispatcher().renderStarting(this, pageName);
 
 		try {
@@ -400,7 +434,7 @@ public class Context {
 				setContentType(contentType);
 			}
 
-			request().render(pageName, fullyQualified);
+			request().forwardToJsp(pageName, fullyQualified);
 		} catch (Exception exc) {
 			processRenderException(exc, pageName);
 		} finally {
@@ -409,12 +443,23 @@ public class Context {
 
 		return true;
 	}
-	
+
+    /**
+     * Returns the currently logged-in user name
+     *
+     * @return user name
+     * @throws SecurityContextException
+     */
 	public String username() throws SecurityContextException {
 		Principal principal = SecurityContext.getUserPrincipal();
 		return principal == null ? null : principal.getName();
 	}
-	
+
+    /**
+     * Checks if the current user is in the specified role
+     * @param roleName role to check
+     * @return
+     */
 	public boolean isUserInRole(String roleName) {
 		return SecurityContext.isUserInRole(roleName);
 	}

@@ -27,7 +27,7 @@
 		<properties>
 			<!-- DDL operations, DROP | CREATE (*) | UPDATE | VERIFY | NONE -->
 			<property name="org.batoo.jpa.ddl" value="UPDATE" />
-			<!--<property name="org.batoo.jpa.sql_logging" value="STDOUT" />-->
+			<property name="org.batoo.jpa.sql_logging" value="NONE" />
 		</properties>
 	</persistence-unit>
 

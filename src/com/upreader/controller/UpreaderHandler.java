@@ -34,12 +34,12 @@ public class UpreaderHandler extends BasicPathHandler {
 	
 	@PathDefault
 	public boolean homepage() {
-		return context().render("home.jsp");
+        return redirectInternal("/p/home");
 	}
 
     @PathSegment("workspace")
     public boolean workspace() {
-        return context().render("workspace.jsp");
+        return redirectInternal("/p/workspace");
     }
 
     @PathSegment("loginWithFacebook")
