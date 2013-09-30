@@ -24,7 +24,6 @@
      */
     String _cur_dir = "";
     if(_type.equals("1")){
-
         User loggedUser = (User) session.getAttribute(UpreaderConstants.SESSION_USER);
         _cur_dir += upreaderConst.IMAGES_PATH_INSIDE_UPREADER_BUCHET;
         _cur_dir +=  loggedUser.getEmail() + "/";

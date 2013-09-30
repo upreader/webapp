@@ -90,6 +90,9 @@ public class AmazonService implements Configurable {
                                                         key,
                                                         is,
                                                         meta).withProgressListener(listener);
+        if(isPublic){
+            request.setCannedAcl(CannedAccessControlList.PublicRead);
+        }
 
         return tx.upload(request);
     }
