@@ -17,6 +17,7 @@ public class AmazonS3FileDetailsBuilder{
     protected boolean itIsImage;
     protected boolean itIsPublic;
     protected Date lastModified;
+    protected String crocoUUID;
 
     public AmazonS3FileDetailsBuilder withKey(String key){
         this.key = key;
@@ -60,6 +61,11 @@ public class AmazonS3FileDetailsBuilder{
 
     public AmazonS3FileDetailsBuilder withIsPublicFlag(boolean itIsPublic){
         this.itIsPublic = itIsPublic;
+        return this;
+    }
+
+    public AmazonS3FileDetailsBuilder withCrocoUUID(String crocoUUID){
+        this.crocoUUID = crocoUUID;
         return this;
     }
 

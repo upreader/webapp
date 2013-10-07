@@ -3,6 +3,10 @@ package com.upreader.helper;
 import com.amazonaws.services.s3.model.ProgressEvent;
 import com.amazonaws.services.s3.model.ProgressListener;
 import com.amazonaws.services.s3.transfer.Upload;
+import com.crocodoc.UprCrocodocSession;
+import com.crocodoc.CrocodocDocument;
+import com.crocodoc.CrocodocException;
+
 import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
 import com.upreader.BusinessException;
@@ -11,25 +15,23 @@ import com.upreader.UpreaderConstants;
 import com.upreader.aws.AmazonService;
 import com.upreader.context.Context;
 import com.upreader.controller.BasicController;
-import com.upreader.controller.UserController;
 import com.upreader.dispatcher.BasicPathHandler;
 import com.upreader.dto.AddProjectWizardDTO;
 import com.upreader.dto.AmazonS3FileDetails;
 import com.upreader.dto.AmazonS3FileDetailsBuilder;
+import com.upreader.dto.CrocodocResultDTO;
 import com.upreader.model.Project;
 import com.upreader.model.ProjectPost;
 import com.upreader.model.ProofOfSales;
 import com.upreader.model.User;
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 
 import java.io.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import static com.google.common.base.Strings.emptyToNull;
 
@@ -64,6 +66,7 @@ public class AddProjectWizardHelper extends BasicController{
     public boolean uploadProjectFile(){
       boolean isPublic = false;
       String  prefix   = "";
+      String crocoUUID = "";
 
       String fType       = context().request().getParameter("fileType");
       User loggedUser = (User) context().session().getObject(UpreaderConstants.SESSION_USER);
@@ -71,11 +74,10 @@ public class AddProjectWizardHelper extends BasicController{
           return !handler().serverError("Inconsistent File Type details.").isEmpty();
       }
 
+      //Read the file from request.
+      final FileItem uploadedFile = context().request().getPart("file");
       //uploading file
       try{
-        //Read the file from request.
-        final FileItem uploadedFile = context().request().getPart("file");
-
         if(fType.equals(UpreaderConstants.PUBLIC_IMAGE)){
             isPublic = true;
             prefix = "images/";
@@ -85,8 +87,17 @@ public class AddProjectWizardHelper extends BasicController{
             prefix = "stories/";
         }
         if(fType.equals(UpreaderConstants.STORY_SAMPLE)){
-            isPublic = false;
+            isPublic = true;
             prefix = "samples/";
+
+            //upload to crocodoc
+            File tmpDir = new File(handler().uploadFolder() + "/"); tmpDir.mkdirs();
+            File tmpFile = new File(tmpDir, uploadedFile.getName());
+            OutputStream outputStream = new FileOutputStream(tmpFile);
+            IOUtils.copy(uploadedFile.getInputStream(), outputStream);
+            outputStream.close();
+            crocoUUID = CrocodocDocument.upload(tmpFile);
+            System.out.println("Croco UUIIDDD" + crocoUUID);
         }
         if(fType.equals(UpreaderConstants.PROOF_DOCUMENT)){
             isPublic = false;
@@ -94,6 +105,7 @@ public class AddProjectWizardHelper extends BasicController{
         }
         prefix += loggedUser.getEmail() + "/";
 
+        //upload to amazon
     	AmazonService aws = handler().getApplication().getAmazonService();
         final Upload upload = aws.uploadFile(isPublic, prefix + uploadedFile.getName(), uploadedFile.getInputStream(), new ProgressListener() {
 					@Override
@@ -105,10 +117,15 @@ public class AddProjectWizardHelper extends BasicController{
                 return handler().json(new AmazonS3FileDetailsBuilder().withFileName(uploadedFile.getName())
                                                                       .withKey(uploadedKey)
                                                                       .withIsPublicFlag(isPublic)
+                                                                      .withCrocoUUID(crocoUUID)
                                                                       .build());
       }catch(Exception e){
           log.error(e);
           return !handler().serverError(e.getMessage()).isEmpty();
+      }finally {
+          //clean the file
+          File tmpFile = new File(handler().uploadFolder() + "/" + uploadedFile.getName());
+          //if(tmpFile != null && tmpFile.exists()){tmpFile.delete();};
       }
     }
 
@@ -140,6 +157,9 @@ public class AddProjectWizardHelper extends BasicController{
                 AddProjectWizardDTO receivedWizardDTO = (AddProjectWizardDTO)WebHelper.fromJson(AddProjectWizardDTO.class, context().query().get("jsonWizData"));
                 wizardData.sync(receivedWizardDTO);
 
+                if(wizardData.getCurrentStep().equals(6)){
+                    addSessionKeyToWizardData();
+                }
                 //Sync session data
                 context().session().putObject(UpreaderConstants.SESSION_NEWPROJECT_WIZ, wizardData);
             } catch (IOException e) {
@@ -147,6 +167,13 @@ public class AddProjectWizardHelper extends BasicController{
             }
         }
         return true;
+    }
+
+    private void addSessionKeyToWizardData(){
+        if(wizardData.getStep2_storyFormat().getValue().equals(UpreaderConstants.STORY)){
+             System.out.println("Get croco Preview URL " +  wizardData.getStep2_uploadedSampleStory().getCrocoUUID());
+             wizardData.setStep6_crocoSessionKeyForSampleOrPilot(getProjectPreviewUrl(wizardData.getStep2_uploadedSampleStory().getCrocoUUID()));
+        }
     }
 
     private AddProjectWizardDTO  getSessionWizardData(){
@@ -184,6 +211,7 @@ public class AddProjectWizardHelper extends BasicController{
             //if story and not serial story
             if(theWizardData.getStep2_uploadedSampleStory() != null){
                 project.setSample(theWizardData.getStep2_uploadedSampleStory().getKey());
+                project.setSampleViewUUID(theWizardData.getStep2_uploadedSampleStory().getCrocoUUID());
             }
             if(theWizardData.getStep2_uploadedStory() != null){
                 project.setBook(theWizardData.getStep2_uploadedStory().getKey());
@@ -272,8 +300,19 @@ public class AddProjectWizardHelper extends BasicController{
                 Integer.valueOf(context().query().get("endPos")).intValue()));
     }
 
-    public boolean getProjectPreviewUrl(String previewKey){
-         return handler().json(UpreaderApplication.getInstance().getAmazonService().getSignedURL(previewKey));
+    public String getProjectPreviewUrl(String previewUUID){
+        CrocodocResultDTO result = new CrocodocResultDTO();
+        try{
+            Map<String, Object> status = CrocodocDocument.status(previewUUID);
+            String sessionKey = UprCrocodocSession.create(previewUUID);
+            result.setSessionKey(sessionKey);
+            result.setDocStatus(status.get("status").toString());
+            result.setResult(true);
+            return sessionKey;
+        }catch (CrocodocException ce){
+            result.setResult(false);
+            return "";
+        }
     }
 
     /*

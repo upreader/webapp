@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import com.crocodoc.Crocodoc;
 import org.apache.log4j.Logger;
 
 import com.upreader.aws.AmazonService;
@@ -79,7 +80,8 @@ public class UpreaderApplication {
 	 *            - loaded configuration properties
 	 */
 	public void configure(ConfigurationProperties configurationProperties) {
-
+        //Initialize Crocodoc
+        Crocodoc.setApiToken(configurationProperties.getProperty("CROCODOCAccessKey"));
 	}
 
 	protected void initialize(ServletInitConfig config) {

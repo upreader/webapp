@@ -1,5 +1,6 @@
 <%@ include file="header.jspf"%>
-
+<div ng-bind-html-unsafe="crocoScript">
+</div>
 <div class="page-addproject-wizard-step6-content">
 
     <nav class="addproject-wizard-breadcrumbs-wrapper ten-pixel-padding-bottom">
@@ -83,6 +84,11 @@
                     <span ng-show="wizardData.step2_storyFormat.value == <%=UpreaderConstants.SERIAL_STORY%>"><%=upreaderResources.getString("addProjectWizard.readSerialStoryButtonText")%></span>
                     <span ng-show="wizardData.step2_storyFormat.value == <%=UpreaderConstants.STORY%>"><%=upreaderResources.getString("addProjectWizard.readStorySampleButtonText")%></span>
                 </button>
+            </div>
+            <div collapse="readPilotFlag">
+                <div class="docviewer-wrapper">
+                    <div id="DocViewer"></div>
+                </div>
             </div>
         </div>
 

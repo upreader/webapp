@@ -1,11 +1,16 @@
 package com.upreader.beans;
 
 
+import com.crocodoc.CrocodocDocument;
+import com.crocodoc.CrocodocException;
+import com.crocodoc.UprCrocodocSession;
 import com.upreader.UpreaderApplication;
 import com.upreader.UpreaderConstants;
 import com.upreader.UpreaderRequest;
 import com.upreader.context.Context;
 import com.upreader.controller.ProjectDAO;
+import com.upreader.dto.CrocodocResultDTO;
+import com.upreader.helper.AddProjectWizardHelper;
 import com.upreader.model.BookTransaction;
 import com.upreader.model.Project;
 import com.upreader.model.ProjectMembership;
@@ -25,9 +30,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class ViewProjectBean {
     Logger log = Logger.getLogger(ViewProjectBean.class);
@@ -73,13 +76,18 @@ public class ViewProjectBean {
     }
 
     public String getProjectPreviewUrl(){
-        if(project.getFormat().equals(UpreaderConstants.SERIAL_STORY)){
-            return UpreaderApplication.getInstance().getAmazonService().getSignedURL(project.getBook());
+        CrocodocResultDTO result = new CrocodocResultDTO();
+        try{
+            Map<String, Object> status = CrocodocDocument.status(project.getSampleViewUUID());
+            String sessionKey = UprCrocodocSession.create(project.getSampleViewUUID());
+            result.setSessionKey(sessionKey);
+            result.setDocStatus(status.get("status").toString());
+            result.setResult(true);
+            return sessionKey;
+        }catch (CrocodocException ce){
+            result.setResult(false);
+            return "";
         }
-        if(project.getFormat().equals(UpreaderConstants.STORY)){
-            return UpreaderApplication.getInstance().getAmazonService().getSignedURL(project.getSample());
-        }
-        return "";
     }
 
     public Integer getBoughtShares(){

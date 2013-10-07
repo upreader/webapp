@@ -87,6 +87,13 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
                 if($scope.wizardData.step3_numberOfSharesValue === 0){
                     $scope.wizardData.step3_numberOfSharesValue = $scope.minShares;
                 }
+
+                //Init croco preview on step 6
+                if($scope.wizardData.currentStep === 6){
+                    $scope.readPilotFlag=true;
+                    $scope.crocoScript = "<script type='text/javascript' src='//crocodoc.com/webservice/document.js?session="+$scope.wizardData.step6_crocoSessionKeyForSampleOrPilot+"'></script>";
+                }
+
                 if(success !== null && success !== undefined){success(data)};
         });
     };
@@ -142,21 +149,10 @@ upreaderAddPrjAppModule.controller('addProjectWizardController', ['$scope','$roo
      * Step 6
      */
      $scope.readPreview = function(){
-         var previewKey;
-         if($scope.wizardData.step2_storyFormat === $("#STORY").val() ){
-             previewKey = $scope.wizardData.step2_uploadedSampleStory.key;
+         $scope.readPilotFlag = !$scope.readPilotFlag;
+         if($scope.docViewer === null || $scope.docViewer === undefined ){
+             $scope.docViewer = new DocViewer({ id: "DocViewer", zoom: "auto", page: 1 });
          }
-         if($scope.wizardData.step2_storyFormat === $("#STORY_SAMPLE").val() ){
-             previewKey = $scope.wizardData.step2_uploadedStory.key;
-         }
-
-         $readPreviewPostData = $.param({do: 'readPreview', previewKey: previewKey });
-         upreaderAddPrjAppModule.doPostAsForm( $http,
-             $rootScope.addProjectWizardCommons.projectsUrl,
-             $readPreviewPostData, 5,
-             function(data) {
-                window.open(angular.fromJson(data));
-             });
      };
 
     /*

@@ -17,6 +17,7 @@ public class AmazonS3FileDetails {
     private boolean itIsImage;
     private boolean itIsPublic;
     private Date lastModified;
+    protected String crocoUUID;
 
     public AmazonS3FileDetails(){}
 
@@ -30,6 +31,7 @@ public class AmazonS3FileDetails {
         this.itIsImage    = builder.itIsImage;
         this.itIsPublic   = builder.itIsPublic;
         this.lastModified = builder.lastModified;
+        this.crocoUUID = builder.crocoUUID;
     }
 
     public String getKey() {
@@ -66,5 +68,9 @@ public class AmazonS3FileDetails {
 
     public Date getLastModified(){
         return lastModified;
+    }
+
+    public String getCrocoUUID() {
+        return crocoUUID;
     }
 }

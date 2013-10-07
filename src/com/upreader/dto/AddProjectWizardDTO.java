@@ -89,6 +89,7 @@ public class AddProjectWizardDTO {
      * Variables used in step 6
      */
     private String step6_errorMessage;
+    private String step6_crocoSessionKeyForSampleOrPilot;
 
     public AddProjectWizardDTO(){
     }
@@ -136,7 +137,8 @@ public class AddProjectWizardDTO {
         step3_agreeCannotReturn              = source.isStep3_agreeCannotReturn();
 
         //do not want to push the same error message around
-        step6_errorMessage                   = "";
+        step6_errorMessage                    = "";
+        step6_crocoSessionKeyForSampleOrPilot = source.getStep6_crocoSessionKeyForSampleOrPilot();
     }
 
     /*
@@ -181,6 +183,7 @@ public class AddProjectWizardDTO {
         step3_agreeCannotReturn   = false;
 
         step6_errorMessage        = "";
+        step6_crocoSessionKeyForSampleOrPilot = "";
     }
 
     public void populateLOVs(ResourceBundle upreaderResources){
@@ -599,5 +602,13 @@ public class AddProjectWizardDTO {
 
     public void setStep6_errorMessage(String step6_errorMessage) {
         this.step6_errorMessage = step6_errorMessage;
+    }
+
+    public String getStep6_crocoSessionKeyForSampleOrPilot() {
+        return step6_crocoSessionKeyForSampleOrPilot;
+    }
+
+    public void setStep6_crocoSessionKeyForSampleOrPilot(String step6_crocoSessionKeyForSampleOrPilot) {
+        this.step6_crocoSessionKeyForSampleOrPilot = step6_crocoSessionKeyForSampleOrPilot;
     }
 }

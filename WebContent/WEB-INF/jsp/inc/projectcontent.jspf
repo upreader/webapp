@@ -1,5 +1,7 @@
 <%@ page import="com.upreader.UpreaderConstants" %>
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" isELIgnored="false"%>
+<script src="//crocodoc.com/webservice/document.js?session=${projectData.projectPreviewUrl}"></script>
+
 <article id="story">
     <div class="story-header-wrapper">
         <div class="story-header image-text-box clearfix">
@@ -76,10 +78,15 @@
     </div>
     <div class="story-read-wrapper">
         <div class="story-read-button">
-            <a class="btn btn-primary button-white"  ng-href="${projectData.getProjectPreviewUrl()}">
+            <button class="btn btn-primary button-white" ng-click="readPreview()">
                 <span ng-show="${projectData.project.format.equals(upreaderConstants.values['SERIAL_STORY'])}"><%=upreaderResources.getString("addProjectWizard.readSerialStoryButtonText")%></span>
                 <span ng-show="${projectData.project.format.equals(upreaderConstants.values['STORY'])}"><%=upreaderResources.getString("addProjectWizard.readStorySampleButtonText")%></span>
-            </a>
+            </button>
+        </div>
+        <div collapse="readPilotFlag">
+            <div class="inline-block">
+                <div id="DocViewer"></div>
+            </div>
         </div>
     </div>
 

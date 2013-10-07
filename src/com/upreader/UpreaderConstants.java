@@ -14,8 +14,6 @@ public class UpreaderConstants {
     public static final String UPREADER_HOST = "http://www.upreader.com";
     public static final String UPREADER_SECURE_HOST = "http://www.upreader.com";
     public static final String UPREADER_CONTEXT = "/upreader";
-    public static final String DATASOURCE_JNDI = "java:comp/env/jdbc/mysql";
-    public static final String PERSISTANCEUNIT_JNDI = "java:comp/env/persistence";
     public static final String LOGIN_COOKIE_NAME = "upreaderAuthId";
 
     /**

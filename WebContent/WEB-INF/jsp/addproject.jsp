@@ -31,6 +31,8 @@
     <!--Scripts-->
     <!-- JQuery -->
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+    <script type="text/javascript" src="//static-v2.crocodoc.com/core/docviewer.js"></script>
 
     <!-- Angular JS MVC -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
