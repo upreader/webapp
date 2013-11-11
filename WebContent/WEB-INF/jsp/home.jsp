@@ -5,8 +5,7 @@
 <head>
     <title>Upreader</title>
     <jsp:include page="inc/head.jspf"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css" media="screen"/>
+
 
     <!-- Monitor Board -->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -19,385 +18,308 @@
           media="screen"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mboard.css" media="screen"/>
     <!-- Monitor Board -->
-
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/projectcard.css" media="screen"/>
-
     <script src="${pageContext.request.contextPath}/js/jquery.jcarousel.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jcarousel-skin.css" media="screen"/>
 
 </head>
-<body>
+<body class="container">
 
 <jsp:include page="inc/header.jspf"/>
 
-<div class="page page-home">
-    <div class="home-container">
-        <div class="top-banner">
-            <img src="http://lorempixum.com/q/1024/300/people/game%20of%20chairs">
+<div class="row homepage-banner">
+    <div class="col-xs-12">
+        <p class="banner-upper-text">Amanda Whatsmyname, “There and back again”</p>
+        <div class="banner-middle-text">
+            <p>Some stories make it big.</p>
+            <p>Get a monthly paycheck if they do.</p>
         </div>
 
-        <div class="mboard-wrapper">
-            <!-- Monitor Board -->
-            <div class="mboard">
-                <table class="mboard-table" id="item_table" cellspacing="0">
-                    <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Project</th>
-                        <th>Author</th>
-                        <th>Book Price #</th>
-                        <th>Upreaders #</th>
-                        <th>Share Value $</th>
-                        <th>IRS Progress</th>
-                        <th>Days to DL</th>
-                        <th>Opened #</th>
-                        <th>Sold Books #</th>
-                        <th>Shares for sale #</th>
-                        <th>Subscribers #</th>
-                        <th>Subscr. Price $</th>
-                        <th>Income $</th>
-                        <th>Derivatives</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="odd">
-                        <td colspan="9" class="dataTables_empty">Loading...</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- Monitor Board -->
+        <div class="banner-lower-text">
+            <p>Go Beyond reading</p>
         </div>
 
-        <hr/>
+        <a href="#" class="green-button-link">Start a project</a>
+    </div>
+</div>
+<div class="row homepage-main-content">
+</div>
+<div class="row homepage-project-cards">
+<h1>Loren Ipsum</h1>
 
-        <div class="projects-wrapper">
-            <ul id="projects-carousel" class="jcarousel-skin-tango">
-                <li>
-                    <div class="project-card">
-                        <div class="project-card-contents">
-                            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                            <div class="project-card-cover">
-                                <img class="user-profile-photo-img"
-                                     src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                            </div>
-                            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                            <div class="project-card-author-rating">rating 1</div>
-                            <div class="project-card-status">
-                                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                            </div>
-                            <div class="project-card-details">
-                                <div>IRS: 7009$</div>
-                                <div>Days to deaddivne: 13</div>
-                                <div>Share price: 1$</div>
-                                <div>Upreders: 433</div>
-                                <div>Shares total: 7009</div>
-                                <div>Shares remaining: 6000</div>
-                                <div>Opened 12445 times</div>
-                                <div>Publishers interested: 3</div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="project-card">
-                        <div class="project-card-contents">
-                            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                            <div class="project-card-cover">
-                                <img class="user-profile-photo-img"
-                                     src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                            </div>
-                            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                            <div class="project-card-author-rating">rating 1</div>
-                            <div class="project-card-status">
-                                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                            </div>
-                            <div class="project-card-details">
-                                <div>IRS: 7009$</div>
-                                <div>Days to deaddivne: 13</div>
-                                <div>Share price: 1$</div>
-                                <div>Upreders: 433</div>
-                                <div>Shares total: 7009</div>
-                                <div>Shares remaining: 6000</div>
-                                <div>Opened 12445 times</div>
-                                <div>Publishers interested: 3</div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="project-card">
-                        <div class="project-card-contents">
-                            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                            <div class="project-card-cover">
-                                <img class="user-profile-photo-img"
-                                     src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                            </div>
-                            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                            <div class="project-card-author-rating">rating 1</div>
-                            <div class="project-card-status">
-                                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                            </div>
-                            <div class="project-card-details">
-                                <div>IRS: 7009$</div>
-                                <div>Days to deaddivne: 13</div>
-                                <div>Share price: 1$</div>
-                                <div>Upreders: 433</div>
-                                <div>Shares total: 7009</div>
-                                <div>Shares remaining: 6000</div>
-                                <div>Opened 12445 times</div>
-                                <div>Publishers interested: 3</div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="project-card">
-                        <div class="project-card-contents">
-                            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                            <div class="project-card-cover">
-                                <img class="user-profile-photo-img"
-                                     src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                            </div>
-                            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                            <div class="project-card-author-rating">rating 1</div>
-                            <div class="project-card-status">
-                                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                            </div>
-                            <div class="project-card-details">
-                                <div>IRS: 7009$</div>
-                                <div>Days to deaddivne: 13</div>
-                                <div>Share price: 1$</div>
-                                <div>Upreders: 433</div>
-                                <div>Shares total: 7009</div>
-                                <div>Shares remaining: 6000</div>
-                                <div>Opened 12445 times</div>
-                                <div>Publishers interested: 3</div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="project-card">
-                        <div class="project-card-contents">
-                            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                            <div class="project-card-cover">
-                                <img class="user-profile-photo-img"
-                                     src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                            </div>
-                            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                            <div class="project-card-author-rating">rating 1</div>
-                            <div class="project-card-status">
-                                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                            </div>
-                            <div class="project-card-details">
-                                <div>IRS: 7009$</div>
-                                <div>Days to deaddivne: 13</div>
-                                <div>Share price: 1$</div>
-                                <div>Upreders: 433</div>
-                                <div>Shares total: 7009</div>
-                                <div>Shares remaining: 6000</div>
-                                <div>Opened 12445 times</div>
-                                <div>Publishers interested: 3</div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="project-card">
-                        <div class="project-card-contents">
-                            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                            <div class="project-card-cover">
-                                <img class="user-profile-photo-img"
-                                     src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                            </div>
-                            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                            <div class="project-card-author-rating">rating 1</div>
-                            <div class="project-card-status">
-                                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                            </div>
-                            <div class="project-card-details">
-                                <div>IRS: 7009$</div>
-                                <div>Days to deaddivne: 13</div>
-                                <div>Share price: 1$</div>
-                                <div>Upreders: 433</div>
-                                <div>Shares total: 7009</div>
-                                <div>Shares remaining: 6000</div>
-                                <div>Opened 12445 times</div>
-                                <div>Publishers interested: 3</div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="project-card">
-                        <div class="project-card-contents">
-                            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                            <div class="project-card-cover">
-                                <img class="user-profile-photo-img"
-                                     src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                            </div>
-                            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                            <div class="project-card-author-rating">rating 1</div>
-                            <div class="project-card-status">
-                                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                            </div>
-                            <div class="project-card-details">
-                                <div>IRS: 7009$</div>
-                                <div>Days to deaddivne: 13</div>
-                                <div>Share price: 1$</div>
-                                <div>Upreders: 433</div>
-                                <div>Shares total: 7009</div>
-                                <div>Shares remaining: 6000</div>
-                                <div>Opened 12445 times</div>
-                                <div>Publishers interested: 3</div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+<div class="col-xs-12">
+<div class="project-card">
+    <img class="project-card-book-logo" src="${pageContext.request.contextPath}/img/cards/project1Logo.png"/>
+
+    <div class="project-card-book-data">
+        <p class="project-card-book-title">
+            Book title here and maybe on the second row too
+        </p>
+        <a href="#" class="project-card-book-type-logo">
+            <img src="${pageContext.request.contextPath}/img/icons/story.png"/>
+        </a>
+    </div>
+    <div class="project-card-book-author">
+        Alexandru Octavian David Brokeback
+    </div>
+    <div class="project-card-author-data">
+        <div class="project-card-author-data-left">Author rating <img src="${pageContext.request.contextPath}/img/icons/ratings/1.png"/></div>
+        <div class="project-card-author-data-right"><span class="black-text">$</span>5.5</div>
+    </div>
+    <div class="project-card-financial-data">
+        <div class="project-card-financial-data-left">
         </div>
-
-        <hr/>
-
-        <div class="global-stats">
-            <table class="global-stats-table">
-                <tr>
-                    <th>Projects</th>
-                    <th>Successful</th>
-                    <th>Upreaders</th>
-                    <th>Authors</th>
-                    <th>Sold e-Books</th>
-                </tr>
-                <tr>
-                    <td>5487</td>
-                    <td>562</td>
-                    <td>562</td>
-                    <td>50254</td>
-                    <td>4056</td>
-                </tr>
-            </table>
+        <div class="project-card-financial-data-right">
+            <div class="project-card-financial-data-right-value">+60</div>
+            <div class="project-card-financial-data-right-label">books sold</div>
         </div>
+    </div>
+    <div class="project-card-detail-row-with-label">
+       <span class="project-card-green-text">
+           1,2$
+        </span>
+        <span class="project-card-small-text">
+            share value
+        </span>
+        <span class="project-card-small-text">with</span>
+        <span class="project-card-green-text">
+            890
+        </span>
+        <span class="project-card-small-text">upreaders</span>
+    </div>
+    <div class="project-card-small-text project-card-line-text-separator">
+        <span>with</span>
+    </div>
+    <div class="project-card-detail-row-with-label">
+        <span class="project-card-green-text">
+            4$
+        </span>
+        <span class="project-card-small-text">
+            /month salary
+        </span>
 
-        <hr/>
+        <span class="project-card-green-text right">
+            30<span class="project-card-small-text right">shares for sale</span>
+        </span>
 
-        <div class="fb-projects-wrapper">
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                    </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                    </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                    </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                    </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                    </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                    </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-card-contents">
-                    <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-                    <div class="project-card-cover">
-                        <img class="user-profile-photo-img"
-                             src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
-                    </div>
-                    <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-                    <div class="project-card-author-rating">rating 1</div>
-                    <div class="project-card-status">
-                        <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-                    </div>
-                    <div class="project-card-details">
-                        <div>IRS: 7009$</div>
-                        <div>Days to deaddivne: 13</div>
-                        <div>Share price: 1$</div>
-                        <div>Upreders: 433</div>
-                        <div>Shares total: 7009</div>
-                        <div>Shares remaining: 6000</div>
-                        <div>Opened 12445 times</div>
-                        <div>Publishers interested: 3</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="fb-overlay">
-                <div class="fb-overlay-img">
-                    <img src="${pageContext.request.contextPath}/images/home-fb-connect-1.jpg"/>
-                </div>
-                <div class="fb-overlay-img">
-                    <img src="${pageContext.request.contextPath}/images/home-fb-connect-2.jpg"/>
-                </div>
-            </div>
-        </div>
+    </div>
+    <div class="project-card-detail-row-with-label">
+        <span class="project-card-green-text">
+            9000 views
+        </span>
+        <span class="project-card-small-text">
+        </span>
+        <span class="project-card-small-text"></span>
+            <span class="project-card-green-text">
+            </span>
+        <span class="project-card-small-text"></span>
     </div>
 </div>
 
-<script type="text/javascript">
+<div class="project-card">
+    <img class="project-card-book-logo" src="${pageContext.request.contextPath}/img/cards/project1Logo.png"/>
 
-    $(function(){
-        $('#projects-carousel').jcarousel();
-    });
+    <div class="project-card-book-data">
+        <p class="project-card-book-title">
+            Book title here and maybe on the second row too
+        </p>
+        <a href="#" class="project-card-book-type-logo">
+            <img src="${pageContext.request.contextPath}/img/icons/story.png"/>
+        </a>
+    </div>
+    <div class="project-card-book-author">
+        Alexandru Octavian David Brokeback
+    </div>
+    <div class="project-card-author-data">
+        <div class="project-card-author-data-left">Author rating <img src="${pageContext.request.contextPath}/img/icons/ratings/1.png"/></div>
+        <div class="project-card-author-data-right"><span class="black-text">$</span>5.5</div>
+    </div>
+    <div class="project-card-financial-data">
+        <div class="project-card-financial-data-left">
+        </div>
+        <div class="project-card-financial-data-right">
+            <div class="project-card-financial-data-right-value">+60</div>
+            <div class="project-card-financial-data-right-label">books sold</div>
+        </div>
+    </div>
+    <div class="project-card-detail-row-with-label">
+        <span class="project-card-green-text">
+            1,2$
+        </span>
+        <span class="project-card-small-text">
+            share value
+        </span>
+        <span class="project-card-small-text">with</span>
+        <span class="project-card-green-text">
+            890
+        </span>
+        <span class="project-card-small-text">upreaders</span>
+    </div>
+    <div class="project-card-small-text project-card-line-text-separator">
+        <span>with</span>
+    </div>
+    <div class="project-card-detail-row-with-label">
+    <span class="project-card-green-text">
+        4$
+    </span>
+    <span class="project-card-small-text">
+        /month salary
+    </span>
 
-</script>
+    <span class="project-card-green-text right">
+        30<span class="project-card-small-text right">shares for sale</span>
+    </span>
+
+    </div>
+    <div class="project-card-detail-row-with-label">
+    <span class="project-card-green-text">
+        9000 views
+    </span>
+    <span class="project-card-small-text">
+    </span>
+        <span class="project-card-small-text"></span>
+        <span class="project-card-green-text">
+        </span>
+        <span class="project-card-small-text"></span>
+    </div>
+</div>
+
+<div class="project-card">
+    <img class="project-card-book-logo" src="${pageContext.request.contextPath}/img/cards/project1Logo.png"/>
+
+    <div class="project-card-book-data">
+        <p class="project-card-book-title">
+            Book title here and maybe on the second row too
+        </p>
+        <a href="#" class="project-card-book-type-logo">
+            <img src="${pageContext.request.contextPath}/img/icons/story.png"/>
+        </a>
+    </div>
+    <div class="project-card-book-author">
+        Alexandru Octavian David Brokeback
+    </div>
+    <div class="project-card-author-data">
+        <div class="project-card-author-data-left">Author rating <img src="${pageContext.request.contextPath}/img/icons/ratings/1.png"/></div>
+        <div class="project-card-author-data-right"><span class="black-text">$</span>5.5</div>
+    </div>
+    <div class="project-card-financial-data">
+        <div class="project-card-financial-data-left">
+        </div>
+        <div class="project-card-financial-data-right">
+            <div class="project-card-financial-data-right-value">+60</div>
+            <div class="project-card-financial-data-right-label">books sold</div>
+        </div>
+    </div>
+    <div class="project-card-detail-row-with-label">
+        <span class="project-card-green-text">
+            1,2$
+        </span>
+        <span class="project-card-small-text">
+            share value
+        </span>
+        <span class="project-card-small-text">with</span>
+        <span class="project-card-green-text">
+            890
+        </span>
+        <span class="project-card-small-text">upreaders</span>
+    </div>
+    <div class="project-card-small-text project-card-line-text-separator">
+        <span>with</span>
+    </div>
+    <div class="project-card-detail-row-with-label">
+    <span class="project-card-green-text">
+        4$
+    </span>
+    <span class="project-card-small-text">
+        /month salary
+    </span>
+
+    <span class="project-card-green-text right">
+        30<span class="project-card-small-text right">shares for sale</span>
+    </span>
+
+    </div>
+    <div class="project-card-detail-row-with-label">
+        <span class="project-card-green-text">
+            9000 views
+        </span>
+        <span class="project-card-small-text">
+        </span>
+        <span class="project-card-small-text"></span>
+        <span class="project-card-green-text">
+        </span>
+        <span class="project-card-small-text"></span>
+    </div>
+</div>
+
+<div class="project-card">
+    <img class="project-card-book-logo" src="${pageContext.request.contextPath}/img/cards/project1Logo.png"/>
+
+    <div class="project-card-book-data">
+        <p class="project-card-book-title">
+            Book title here and maybe on the second row too
+        </p>
+        <a href="#" class="project-card-book-type-logo">
+            <img src="${pageContext.request.contextPath}/img/icons/story.png"/>
+        </a>
+    </div>
+    <div class="project-card-book-author">
+        Alexandru Octavian David Brokeback
+    </div>
+    <div class="project-card-author-data">
+        <div class="project-card-author-data-left">Author rating <img src="${pageContext.request.contextPath}/img/icons/ratings/1.png"/></div>
+        <div class="project-card-author-data-right"><span class="black-text">$</span>5.5</div>
+    </div>
+    <div class="project-card-financial-data">
+        <div class="project-card-financial-data-left">
+        </div>
+        <div class="project-card-financial-data-right">
+            <div class="project-card-financial-data-right-value">+60</div>
+            <div class="project-card-financial-data-right-label">books sold</div>
+        </div>
+    </div>
+    <div class="project-card-detail-row-with-label">
+        <span class="project-card-green-text">
+            1,2$
+        </span>
+        <span class="project-card-small-text">
+            share value
+        </span>
+        <span class="project-card-small-text">with</span>
+        <span class="project-card-green-text">
+            890
+        </span>
+        <span class="project-card-small-text">upreaders</span>
+    </div>
+    <div class="project-card-small-text project-card-line-text-separator">
+        <span>with</span>
+    </div>
+    <div class="project-card-detail-row-with-label">
+    <span class="project-card-green-text">
+        4$
+    </span>
+    <span class="project-card-small-text">
+        /month salary
+    </span>
+
+    <span class="project-card-green-text right">
+        30<span class="project-card-small-text right">shares for sale</span>
+    </span>
+
+    </div>
+    <div class="project-card-detail-row-with-label">
+        <span class="project-card-green-text">
+            9000 views
+        </span>
+        <span class="project-card-small-text">
+        </span>
+        <span class="project-card-small-text"></span>
+        <span class="project-card-green-text">
+        </span>
+        <span class="project-card-small-text"></span>
+    </div>
+</div>
+</div>
+</div>
 
 <jsp:include page="inc/footer.jspf"/>
 

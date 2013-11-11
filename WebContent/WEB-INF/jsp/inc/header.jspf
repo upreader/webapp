@@ -2,46 +2,72 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<header class="topbar-header">
-    <div class="topbar-content">
-        <div class="topbar-logo">
-            <span class="topbar-logo-text"><a href="<c:url value="/p/home"/>">Upreader</a></span>
-        </div>
-
-        <div class="topbar-info">
-            <nav class="topbar-nav">
-                <ul>
-                    <c:choose>
-                        <c:when test="${not empty sessionScope.user}">
-                            <li><a href="<c:url value="/p/workspace"/>"><c:out value="${pageContext.request.remoteUser}"/></a></li>
-                            <li><a href="<c:url value='/p/profile'/>">P</a></li>
-                            <c:if test="${fn:containsIgnoreCase(sessionScope.user.roles, 'admin')}">
-                                <li><a href="<c:url value='/p/admin/status'/>">A</a></li>
-                            </c:if>
-                            <li><a href="<c:url value='/i/logout'/>">Logout</a></li>
-                            <li><a href="#">Help</a></li
-                        </c:when>
-                        <c:otherwise>
-                            <li><a href="<c:url value='/p/login'/>">register / login</a></li>
-                            <li><a href="#">Help</a></li>
-                        </c:otherwise>
-                    </c:choose>
-                </ul>
-            </nav>
-            <form action="#" method="post">
-                <input type="text" id="search-bar" class="search-bar" name="search" placeholder="search..." autocomplete="off"/>
-            </form>
-        </div>
-
-        <div class="topbar-links">
-            <nav class="topbar-nav">
-                <ul>
-                    <li><a href="#">How it works</a></li>
-                    <li><a href="<c:url value='/p/addproject'/>">Start a project</a></li>
-                    <li><a href="#">Buy in a project</a></li>
-                    <li><a href="<c:url value='/p/library'/>">Library</a></li>
-                </ul>
-            </nav>
-        </div>
+<header class="row">
+    <div id="logo" class="col-xs-2">
+                <span id="header-upreader">
+                    <a href="#"><img src="${pageContext.request.contextPath}/img/icons/upreaderLogo.png"/></a>
+                </span>
+                <span id="header-home-link">
+                    <a href="#"><img src="${pageContext.request.contextPath}/img/icons/home.png"/></a>
+                </span>
     </div>
+
+    <nav class="col-xs-7 main-navigation">
+        <ul class="horizontal-list white-text">
+            <li class="col-xs-3 nopadding">
+
+                <a class="button-link" href="#">
+                    <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
+                    <p class="header-text-large">How&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <p class="header-text-small">it works</p>
+                </a>
+            </li>
+            <li class="col-xs-3 nopadding">
+                <a class="button-link" href="<c:url value='/p/addproject'/>">
+                    <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
+                    <p class="header-text-large">Start&nbsp;&nbsp;&nbsp;</p>
+                    <p class="header-text-small">a project</p>
+                </a>
+            </li>
+            <li class="col-xs-3 nopadding">
+                <a class="button-link" href="#">
+                    <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
+                    <p class="header-text-large">Buy&nbsp;&nbsp;</p>
+                    <p class="header-text-small">in a project</p>
+                </a>
+            </li>
+
+            <li class="col-xs-3 nopadding">
+                <a class="button-link" href="<c:url value='/p/library'/>">
+                    <img  class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
+                    <p class="header-text-large">Browse</p>
+                    <p class="header-text-small">the library</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <nav class="col-xs-3 login-search-menu">
+        <ul class="horizontal-list white-text">
+            <li class="col-xs-4 nopadding">
+                <a class="button-link" href="<c:url value='/p/login'/>">
+                    <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
+                    <p class="header-text-large">Sign&nbsp;</p>
+                    <p class="header-text-small">up</p>
+                </a>
+            </li>
+            <li class="col-xs-4 nopadding">
+                <a class="button-link" href="<c:url value='/p/login'/>">
+                    <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
+                    <p class="header-text-large">Log&nbsp;&nbsp;</p>
+                    <p class="header-text-small">in</p>
+                </a>
+            </li>
+            <li class="col-xs-4 nopadding">
+                <a class="button-link " href="#">
+                    <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
+                    <img class="header-search" src="${pageContext.request.contextPath}/img/icons/search.png">
+                </a>
+            </li>
+        </ul>
+    </nav>
 </header>

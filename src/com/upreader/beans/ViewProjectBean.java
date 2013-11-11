@@ -14,6 +14,7 @@ import com.upreader.helper.AddProjectWizardHelper;
 import com.upreader.model.BookTransaction;
 import com.upreader.model.Project;
 import com.upreader.model.ProjectMembership;
+import com.upreader.model.StockTransaction;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
@@ -90,6 +91,11 @@ public class ViewProjectBean {
         }
     }
 
+    /**
+     * Method returing the current number of shares bought
+     * by the shareHolders
+     * @return number of bought shares
+     */
     public Integer getBoughtShares(){
         Integer result = 0;
         List<ProjectMembership> shareHolders = project.getShareholders();
@@ -100,6 +106,16 @@ public class ViewProjectBean {
             }
         }
         return result;
+    }
+
+    /**
+     * From the total number of shares
+     * currently on the market.
+     * @return number of available shares
+     */
+    public Integer getAvailableShares(){
+        Context context = (Context) request.getServletContext().getAttribute("context");
+        return context.projectDAO().getAvailableSharesForProject(this.project.getId());
     }
 
     public Integer getBoughtBooks(){

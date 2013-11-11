@@ -136,14 +136,14 @@ public class Project implements Serializable {
      * Stock transactions for this project
      */
     @JsonManagedReference
-    @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<StockTransaction> stockTransactions;
 
     /**
      * Book transactions for this project
      */
     @JsonManagedReference
-    @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "project", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<BookTransaction> bookTransactions;
 
     /**

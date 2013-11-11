@@ -20,10 +20,7 @@ import com.upreader.dto.AddProjectWizardDTO;
 import com.upreader.dto.AmazonS3FileDetails;
 import com.upreader.dto.AmazonS3FileDetailsBuilder;
 import com.upreader.dto.CrocodocResultDTO;
-import com.upreader.model.Project;
-import com.upreader.model.ProjectPost;
-import com.upreader.model.ProofOfSales;
-import com.upreader.model.User;
+import com.upreader.model.*;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -272,11 +269,25 @@ public class AddProjectWizardHelper extends BasicController{
 
             float totalSharesExactValue = project.getIRS().floatValue() / project.getShareValue();
             project.setTotalShares(BigDecimal.valueOf(totalSharesExactValue).intValue());
+
+            /**
+             * Set initial stock transaction - make all the shares to be sold available in the marketplace
+             */
+            List<StockTransaction> initialTransactions = new ArrayList<StockTransaction>();
+            StockTransaction sellShares = new StockTransaction();
+            sellShares.setProject(project);
+            sellShares.setSharesNo(theWizardData.getStep3_numberOfSharesValue());
+            sellShares.setAmount(project.getShareValue() * theWizardData.getStep3_numberOfSharesValue());
+            sellShares.setSeller(loggedUser);
+            initialTransactions.add(sellShares);
+
             //FKs
             project.setAuthor(loggedUser);
             project.setProofsOfSales(proofOfSales);
             project.setApproved(false);
             project.setProjectPosts(projectPosts);
+
+            project.setStockTransactions(initialTransactions);
             context().projectDAO().insert(project);
 
             //Reinitialize session wizard data

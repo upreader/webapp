@@ -12,11 +12,13 @@ import com.upreader.dto.MonitorBoardDTO;
 import com.upreader.helper.JsonWriter;
 import com.upreader.helper.NumberHelper;
 import com.upreader.model.Project;
+import com.upreader.model.StockTransaction;
 import org.apache.log4j.Logger;
 import org.bouncycastle.util.Strings;
 import org.joda.time.DateMidnight;
 import org.joda.time.Days;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class ProjectDAO {
@@ -222,5 +224,15 @@ public class ProjectDAO {
     public List<Project> findWithQuery(String query) {
         TypedQuery<Project> tquery = em.createQuery(query, Project.class);
         return tquery.getResultList();
+    }
+
+    /**
+     * Financial Transactions Queries
+     */
+    public Integer getAvailableSharesForProject(Integer projectId){
+        Query query = em.createQuery("select sum(s.sharesNo) from StockTransaction s where s.project.id = :projectId and s.buyer IS NULL", Project.class);
+        query.setParameter("projectId", projectId);
+        BigDecimal result = (BigDecimal)query.getSingleResult();
+        return result == null ? 0 : result.intValue();
     }
 }

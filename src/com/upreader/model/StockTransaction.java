@@ -2,7 +2,6 @@ package com.upreader.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -46,7 +45,7 @@ public class StockTransaction {
      */
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seller", nullable = false, updatable = false)
+    @JoinColumn(name = "seller", nullable = true, updatable = false)
     private User seller;
 
     /**
@@ -54,8 +53,11 @@ public class StockTransaction {
      */
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "buyer", nullable = false, updatable = false)
+    @JoinColumn(name = "buyer", nullable = true, updatable = false)
     private User buyer;
+
+    public StockTransaction() {
+    }
 
     public Integer getId() {
         return id;

@@ -1,6 +1,8 @@
 package com.upreader.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +14,7 @@ import java.sql.Blob;
  */
 @Entity
 @Table(name = "proofs_of_sales")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class ProofOfSales implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)

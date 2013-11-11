@@ -58,6 +58,9 @@ public class BookTransaction {
     @JoinColumn(name = "buyer", nullable = false, updatable = false)
     private User buyer;
 
+    public BookTransaction() {
+    }
+
     public Integer getId() {
         return id;
     }

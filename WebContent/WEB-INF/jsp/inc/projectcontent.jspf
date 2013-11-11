@@ -19,7 +19,9 @@
                 </div>
                 <div class="story-buy-ebook story-buy-box">
                     <div class="story-buy-box-type">
-                        <p><%=upreaderResources.getString("upreader.buy")%></p>
+                        <button class="btn btn-primary button-white" ng-click="buyEBook()">
+                            <span><%=upreaderResources.getString("upreader.buy")%></span>
+                        </button>
                     </div>
                     <div class="story-buy-box-price">
                         ${projectData.project.bookPrice}
@@ -30,15 +32,16 @@
                 </div>
                 <div class="story-buy-shares story-buy-box">
                     <div class="story-buy-box-type">
-                        <p><%=upreaderResources.getString("upreader.buy")%></p>
-                        <p><%=upreaderResources.getString("upreader.shares")%></p>
+                        <button class="btn btn-primary button-white" ng-click="buyShares()">
+                            <span><%=upreaderResources.getString("upreader.buyshares")%></span>
+                        </button>
                     </div>
                     <div class="story-buy-box-price">
                         ${projectData.project.sharesToSale}
                     </div>
                     <div class="story-buy-box-future">
                         <%=upreaderResources.getString("upreader.project.sharesAvailable")%>
-                        ${projectData.project.totalShares}
+                        ${projectData.availableShares}
                     </div>
                 </div>
             </div>
@@ -93,12 +96,15 @@
     <hr>
 
     <div class="story-backstories-items-wrapper">
-         <div class="story-backstory-item-wrapper" ng-repeat="backstory in wizardData.step2_backstories">
-            <div class="story-backstory-item-content" ng-bind-html-unsafe="backstory">
+        <c:forEach var="projectPost" items="${projectData.project.projectPosts}">
+            <div class="story-backstory-item-wrapper">
+                <div class="story-backstory-item-content">
+                    ${projectPost.content}
+                </div>
+                <div class="story-promo-item-end">
+                    <img src="${pageContext.request.contextPath}/images/viewproject-dotted-line.jpg"/>
+                </div>
             </div>
-            <div class="story-promo-item-end">
-                <img src="${pageContext.request.contextPath}/images/viewproject-dotted-line.jpg"/>
-            </div>
-        </div>
+        </c:forEach>
     </div>
 </article>

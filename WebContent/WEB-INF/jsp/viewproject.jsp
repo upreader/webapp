@@ -129,23 +129,22 @@
     <div class="sidebar-terms">
         <div class="sidebar-derivatives">
             <div>
-                <span>Available derivatives</span>
-                                        <span><img
-                                                src="${pageContext.request.contextPath}/images/viewproject-sidebar-question.jpg"></span>
+                <span><%=upreaderResources.getString("upreader.project.availableDerivatives")%></span>
+                <span><img src="${pageContext.request.contextPath}/images/viewproject-sidebar-question.jpg"></span>
             </div>
             <div>
                 <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-derivatives.jpg">
             </div>
         </div>
         <div class="sidebar-contract">
-            <p>Years given to platform: ${projectData.project.sellingRights}</p>
+            <p><%=upreaderResources.getString("upreader.project.yearsGivenToPlatform")%>: ${projectData.project.sellingRights}</p>
 
-            <p>Royalties given to platform: ${projectData.project.percentToPlatform}</p>
+            <p><%=upreaderResources.getString("upreader.project.royaltiesGivenToPlatform")%>: ${projectData.project.percentToPlatform}</p>
         </div>
     </div>
     <div class="sidebar-publishers">
         <div>
-            <h2>Interested Publishers</h2>
+            <h2><%=upreaderResources.getString("upreader.project.interestedPublishers")%></h2>
         </div>
         <div>
             <div class="sidebar-publishers-box">
@@ -208,15 +207,11 @@
         </ul>
     </div>
     <div class="sidebar-user-status">
-        <h1>Your status:</h1>
+        <h1><%=upreaderResources.getString("upreader.project.yourStatus")%>:</h1>
 
-        <p>Shares owned: ${projectData.boughtShares}</p>
+        <p><%=upreaderResources.getString("upreader.project.sharesOwned")%>: ${projectData.boughtShares}</p>
 
-        <p>Dividend value: 0$</p>
-
-        <p class="hidden">Promo-pack donation: 0$</p>
-
-        <p class="hidden">Received promo materials: 5</p>
+        <p><%=upreaderResources.getString("upreader.project.dividentValue")%>: 0$</p>
     </div>
     <div class="sidebar-dividend-stats">
         <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-dividentstats.jpg">
@@ -226,7 +221,7 @@
             <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-opened.jpg">
         </div>
         <div class="image-text-box-text">
-            <h1>Opened ${projectData.project.noViews} times</h1>
+            <h1><%=upreaderResources.getString("upreader.opened")%> ${projectData.project.noViews} <%=upreaderResources.getString("upreader.times")%></h1>
         </div>
     </div>
     <div class="sidebar-irs-stats">
@@ -237,7 +232,7 @@
             <img src="${pageContext.request.contextPath}/images/viewproject-sidebar-soldbooks.jpg">
         </div>
         <div class="image-text-box-text">
-            <h1>sold books ${projectData.boughtBooks}</h1>
+            <h1><%=upreaderResources.getString("upreader.project.soldBooks")%> ${projectData.boughtBooks}</h1>
         </div>
     </div>
 </div>
