@@ -4,68 +4,64 @@
 
 <header class="row">
     <div id="logo" class="col-xs-2">
-                <span id="header-upreader">
-                    <a href="#"><img src="${pageContext.request.contextPath}/img/icons/upreaderLogo.png"/></a>
-                </span>
-                <span id="header-home-link">
-                    <a href="#"><img src="${pageContext.request.contextPath}/img/icons/home.png"/></a>
-                </span>
+        <a id="header-upreader" href="#"><img src="${pageContext.request.contextPath}/img/icons/upreaderLogo.png"/></a>
+        <a id="header-home-link" href="#"><img src="${pageContext.request.contextPath}/img/icons/home.png"/></a>
     </div>
 
-    <nav class="col-xs-7 main-navigation">
+    <nav class="col-xs-5 main-navigation nopadding">
         <ul class="horizontal-list white-text">
             <li class="col-xs-3 nopadding">
+                <a class="header-button-link" href="#">
+                    <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
+                    <p class="header-text-large  roboto-black-text">How&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <p class="header-text-small  roboto-regular-text">it works</p>
+                </a>
+            </li>
+            <li class="col-xs-3 nopadding">
+                <a class="header-button-link" href="<c:url value='/p/addproject'/>">
+                    <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
+                    <p class="header-text-large  roboto-black-text">Start&nbsp;&nbsp;&nbsp;</p>
+                    <p class="header-text-small  roboto-regular-text">a project</p>
+                </a>
+            </li>
+            <li class="col-xs-3 nopadding">
+                <a class="header-button-link" href="#">
+                    <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
+                    <p class="header-text-large  roboto-black-text">Buy&nbsp;&nbsp;</p>
+                    <p class="header-text-small  roboto-regular-text">in a project</p>
+                </a>
+            </li>
 
-                <a class="button-link" href="#">
-                    <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
-                    <p class="header-text-large">How&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                    <p class="header-text-small">it works</p>
-                </a>
-            </li>
             <li class="col-xs-3 nopadding">
-                <a class="button-link" href="<c:url value='/p/addproject'/>">
-                    <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
-                    <p class="header-text-large">Start&nbsp;&nbsp;&nbsp;</p>
-                    <p class="header-text-small">a project</p>
-                </a>
-            </li>
-            <li class="col-xs-3 nopadding">
-                <a class="button-link" href="#">
-                    <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
-                    <p class="header-text-large">Buy&nbsp;&nbsp;</p>
-                    <p class="header-text-small">in a project</p>
-                </a>
-            </li>
-
-            <li class="col-xs-3 nopadding">
-                <a class="button-link" href="<c:url value='/p/library'/>">
+                <a class="header-button-link" href="<c:url value='/p/library'/>">
                     <img  class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
-                    <p class="header-text-large">Browse</p>
-                    <p class="header-text-small">the library</p>
+                    <p class="header-text-large  roboto-black-text">Browse</p>
+                    <p class="header-text-small  roboto-regular-text">the library</p>
                 </a>
             </li>
         </ul>
     </nav>
+    <div class="col-xs-2"></div>
     <nav class="col-xs-3 login-search-menu">
         <ul class="horizontal-list white-text">
             <li class="col-xs-4 nopadding">
-                <a class="button-link" href="<c:url value='/p/login'/>">
+                <a class="header-button-link" href="<c:url value='/p/login'/>">
                     <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
-                    <p class="header-text-large">Sign&nbsp;</p>
-                    <p class="header-text-small">up</p>
+                    <p class="header-text-large  roboto-black-text">Sign&nbsp;&nbsp;&nbsp;</p>
+                    <p class="header-text-small  roboto-regular-text">up</p>
                 </a>
             </li>
             <li class="col-xs-4 nopadding">
-                <a class="button-link" href="<c:url value='/p/login'/>">
+                <a class="header-button-link" href="<c:url value='/p/login'/>">
                     <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
-                    <p class="header-text-large">Log&nbsp;&nbsp;</p>
-                    <p class="header-text-small">in</p>
+                    <p class="header-text-large  roboto-black-text">Log&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <p class="header-text-small  roboto-regular-text">in</p>
                 </a>
             </li>
             <li class="col-xs-4 nopadding">
-                <a class="button-link " href="#">
+                <a class="header-button-link" href="#">
                     <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
-                    <img class="header-search" src="${pageContext.request.contextPath}/img/icons/search.png">
+                    <div class="header-search"></div>
                 </a>
             </li>
         </ul>

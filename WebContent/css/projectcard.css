@@ -1,74 +1,206 @@
 /**
 * Sample Usage:
-*
 *    <div class="project-card">
-*        <div class="project-card-contents">
-*            <div class="project-card-title">O carte cu un titlu prea lung pentru un singur rand</div>
-*            <div class="project-card-cover">
-*                <img class="user-profile-photo-img" src="http://lorempixum.com/q/170/190/people/game%20of%20chairs"/>
+*        <img class="project-card-book-logo" src="${pageContext.request.contextPath}/img/cards/project1Logo.png"/>
+*        <div class="project-card-book-data">
+*            <p class="project-card-book-title">
+*                Book title here and maybe on the second row too
+*            </p>
+*            <a href="#" class="project-card-book-type-logo">
+*            <img src="${pageContext.request.contextPath}/img/icons/story.png"/>
+*            </a>
+*        </div>
+*        <div class="project-card-book-author">
+*            Alexandru Octavian David Brokeback
+*        </div>
+*        <div class="project-card-author-data">
+*            <div class="project-card-author-data-left">Author rating <img src="${pageContext.request.contextPath}/img/icons/ratings/1.png"/></div>
+*            <div class="project-card-author-data-right"><span class="black-text">$</span>5.5</div>
+*        </div>
+*        <div class="project-card-financial-data">
+*            <div class="project-card-financial-data-left">
 *            </div>
-*            <div class="project-card-author">Alexandru Octavian David Protopopitoricescovici</div>
-*            <div class="project-card-author-rating">rating 1</div>
-*            <div class="project-card-status">
-*                <img src="${pageContext.request.contextPath}/images/project-card-status.jpg">
-*            </div>
-*            <div class="project-card-details">
-*                <div>IRS: 7009$</div>
-*                <div>Days to deaddivne: 13</div>
-*                <div>Share price: 1$</div>
-*                <div>Upreders: 433</div>
-*                <div>Shares total: 7009</div>
-*                <div>Shares remaining: 6000</div>
-*                <div>Opened 12445 times</div>
-*                <div>Publishers interested: 3</div>
+*            <div class="project-card-financial-data-right">
+*                <div class="project-card-financial-data-right-value">+60</div>
+*                <div class="project-card-financial-data-right-label">books sold</div>
 *            </div>
 *        </div>
-*        <div class="project-card-pin-button">
-*            <input type="button" class="button-white" value="Pin to control panel"/>
+*        <div class="project-card-detail-row-with-label">
+*            <span class="project-card-green-text">
+*            1,2$
+*            </span>
+*            <span class="project-card-small-text">
+*            share value
+*            </span>
+*            <span class="project-card-small-text">with</span>
+*            <span class="project-card-green-text">
+*            890
+*            </span>
+*            <span class="project-card-small-text">upreaders</span>
+*        </div>
+*        <div class="project-card-small-text project-card-line-text-separator">
+*            <span>with</span>
+*        </div>
+*        <div class="project-card-detail-row-with-label">
+*            <span class="project-card-green-text">
+*            4$
+*            </span>
+*            <span class="project-card-small-text">
+*            /month salary
+*            </span>
+*            <span class="project-card-green-text right">
+*            30<span class="project-card-small-text right">shares for sale</span>
+*            </span>
+*        </div>
+*        <div class="project-card-detail-row-with-label">
+*            <span class="project-card-green-text">
+*            9000 views
+*            </span>
+*            <span class="project-card-small-text">
+*            </span>
+*            <span class="project-card-small-text"></span>
+*            <span class="project-card-green-text">
+*            </span>
+*            <span class="project-card-small-text"></span>
 *        </div>
 *    </div>
-*
 **/
 
-/** START Project Card **/
+/******************************************************/
+/*******************PROJECT CARD STYLES****************/
+/******************************************************/
+
 .project-card {
-    display: inline-block;
-    width: 220px;
-    margin-top: 10px;
-    margin-left: 5px;
-    margin-right: 5px;
-    text-align: center;
-    font-size: 14px;
+    width: 230px;
+    float: left;
+    padding-right: 5px;
 }
 
-.project-card-contents {
-    border: 2px solid #333;
+.project-card-book-logo {
+    width: 230px;
 }
 
-.project-card-title {
-    padding: 5px;
+.project-card-green-text {
+    font-family: Roboto;
+    color: #92b067;
+    font-weight: bold;
+    font-size: 14pt;
+    line-height: 1.2;
 }
 
-.project-card-author-rating {
-    margin-right: 30px;
-    text-align: right;
+.project-card-small-text {
+    padding-top: 3px;
+    font-family: Roboto;
+    color: #7a7c7e;
+    font-weight: bold;
+    font-size: 9pt;
 }
 
-.project-card-details {
-    padding-right: 15px;
+.project-card-book-data {
+    overflow: hidden;
+    background: #ffffff;
+    padding-left: 5px;
     padding-top: 10px;
+}
+
+.project-card-book-title {
+    float: left;
+    width: 180px;
+    font-family: Roboto;
+    font-weight: bold;
+    color: #7a7c7e;
+    font-size: 10pt;
+}
+
+.project-card-book-type-logo {
+    float: right;
+}
+
+.project-card-book-author {
+    overflow: hidden;
+    padding-left: 5px;
+    background: #f2f2f2;
+    height: 30px;
+    font-family: Roboto;
+    color: #646467;
+    font-size: 10pt;
+}
+
+.project-card-author-data {
+    background: #ffffff;
+    padding-left: 5px;
+    height: 50px;
+}
+
+.project-card-author-data-left {
+    float: left;
+    padding-top: 12px;
+    font-family: Roboto;
+    color: #949496;
+    font-weight: bold;
+    font-size: 13pt;
+}
+
+.project-card-author-data-right {
+    float: right;
+    font-family: Roboto;
+    color: #92b067;
+    font-weight: bold;
+    font-size: 25pt;
     text-align: right;
-    margin-bottom: 15px;
 }
 
-.project-card-pin-button {
-    margin-top: 5px;
-    width: 220px;
-    margin-bottom: 15px;
+.project-card-financial-data {
+    overflow: hidden;
+    padding-left: 5px;
+    background: #f2f2f2;
 }
 
-.project-card-pin-button input {
+.project-card-financial-data-left {
+    background: #f2f2f2;
+    float: left;
+}
+
+.project-card-financial-data-right {
+    background: #f2f2f2;
+    float: right;
+}
+
+.project-card-financial-data-right-value {
+    font-family: Roboto;
+    color: #1192a3;
+    font-weight: bold;
+    font-size: 25pt;
+    line-height: 1.3;
+}
+
+.project-card-financial-data-right-label {
+    font-family: 'Roboto Black', 'Roboto';
+    color: #1192a3;
+    font-size: 10pt;
+}
+
+.project-card-detail-row-with-label {
+    background: #ffffff;
+    float: left;
+    overflow: hidden;
     width: 100%;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.project-card-line-text-separator {
+    background: #ffffff;
+    border-bottom: 3px solid #eaeaea;
+    line-height: 0.2em;
+    padding-left: 15px;
+    margin-top: 10px;
+}
+
+.project-card-line-text-separator span {
+    background: #fff;
+    padding: 0 5px;
 }
 
 /** END Project Card **/
