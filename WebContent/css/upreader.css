@@ -18,6 +18,11 @@ body{
     font-weight:700;
 }
 
+.roboto-bold-text{
+    font-family:'Roboto', Roboto;
+    font-weight:700;
+}
+
 .roboto-regular-text{
     font-family:'Roboto', Roboto;
     font-weight:400;
@@ -39,6 +44,10 @@ body{
 
 .left{
     float:left;
+}
+
+.text-align-right{
+    text-align: right;
 }
 
 .horizontal-list{
@@ -121,7 +130,6 @@ header{
 }
 
 .last-header-divider{
-    float: left;
     padding-left: 5px;
 }
 
@@ -160,19 +168,19 @@ header{
 .banner-upper-text{
     color: #ffffff;
     padding-top:30px;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .banner-middle-text{
     color: #ffffff;
     padding-top:170px;
-    font-size: 30px;
+    font-size: 35px;
     line-height:0.9;
 }
 
 .banner-lower-text{
     color: #ffffff;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 
@@ -193,3 +201,8 @@ header{
     .homepage-project-cards h1{
         padding-left: 15px;
     }
+
+.homepage-cfacebook-content{
+    background: url('../img/homepage/connFacebook.png');
+    height: 400px;
+}

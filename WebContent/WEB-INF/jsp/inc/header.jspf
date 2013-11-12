@@ -48,14 +48,14 @@
             <li class="col-xs-4 nopadding">
                 <a class="header-button-link" href="<c:url value='/p/login'/>">
                     <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
-                    <p class="header-text-large  roboto-black-text">Sign&nbsp;&nbsp;&nbsp;</p>
+                    <p class="header-text-large  roboto-black-text">Sign &nbsp;&nbsp;&nbsp;</p>
                     <p class="header-text-small  roboto-regular-text">up</p>
                 </a>
             </li>
             <li class="col-xs-4 nopadding">
                 <a class="header-button-link" href="<c:url value='/p/login'/>">
                     <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
-                    <p class="header-text-large  roboto-black-text">Log&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <p class="header-text-large  roboto-black-text">Log &nbsp;&nbsp;&nbsp;&nbsp;</p>
                     <p class="header-text-small  roboto-regular-text">in</p>
                 </a>
             </li>
