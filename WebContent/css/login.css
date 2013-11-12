@@ -1,84 +1,54 @@
-.page-login {
-    min-height: 600px;
+/******************************************************/
+/*******************LOGIN STYLES***********************/
+/******************************************************/
+
+.login-sections{
+
 }
 
-.status-header {
-    padding-top: 20px;
-    margin-bottom: 20px;
+.login-section{
+    background: #f9f9f9;
+    height: 600px;
+    padding-top: 40px;
 }
+    .login-form-header-title{
+        font-size: 16px;
+        color: #212121;
+    }
+    .login-form-header{
+        font-size: 13px;
+        color: #707070;
+    }
+    .login-forgot-password{
+        font-size: 13px;
+        color: #26ade4;
+    }
+    #login-button{
+        width: 100%;
+    }
 
-.status-outer {
+.signup-section{
+    background: #eaeaea;
+    height: 600px;
+    padding-top: 40px;
 }
+    .sign-up-form-items .form-vertical-item{
+        margin-left: 60px;
+    }
+    .signup-updates-section{
+        padding-top: 5px;
+        font-size: 13px;
+    }
+    .signup-updates-section label{
+        width: 90%;
+        padding-bottom: 5px;
+    }
+    .register-button{
+        width: 100%;
+    }
 
-.status-text {
-    font-size: 1.5em;
-}
-
-.login-register-section {
-    margin: 0 auto;
-    width: 980px;
-}
-
-.login-register-frame {
-    border: 1px solid #BBBBBB;
-    min-height: 450px;
-    padding-left: 50px;
-    padding-top: 20px;
-}
-
-.login-section {
-    width: 300px;
-    float: left;
-}
-
-.login-form-header, .login-form-title {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.register-help-section {
-    margin-left: 420px;
-    width: 190px;
-}
-
-.register-help-header {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.register-help-body {
-    font-size: 15px;
-}
-
-.register-section {
-    width: 300px;
-    float: right;
-}
-
-.register-social-text {
-    margin-right: 20px;
-    position: relative;
-    top: 5px;
-}
-
-.register-social-fb {
-    margin-right: 10px;
-}
-
-#register-errors {
-    color: red;
-    font-size: 14px;
-    margin-top: 30px;
-    display: none;
-}
-
-#register-errors ul {
-    list-style-type: square;
-}
-
-#reg-error-list > li {
-    font-size: 12px;
-    margin-left: 25px;
-    margin-top: 5px;
+.fbook-section{
+    background: #f9f9f9;
+    height: 600px;
+    padding-top: 40px;
 }

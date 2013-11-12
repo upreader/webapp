@@ -1,7 +1,7 @@
 /******************************************************/
 /*****************GENERAL STYLES***********************/
 /******************************************************/
-@import url(http://fonts.googleapis.com/css?family=Raleway:300,800);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,900,300);
 
 .container{
     width: 960px !important;
@@ -9,27 +9,32 @@
 
 body{
     background:#282828;
-    font-family:'Roboto', Roboto;
+    font-family:'Roboto Regular', Roboto;
+    font-style: normal;
     font-weight:400;
 }
 
 .roboto-black-text{
     font-family:'Roboto Black', Roboto;
-    font-weight:700;
+    font-style: normal;
+    font-weight:900;
 }
 
 .roboto-bold-text{
-    font-family:'Roboto', Roboto;
+    font-family:'Roboto Bold', Roboto;
+    font-style: normal;
     font-weight:700;
 }
 
 .roboto-regular-text{
-    font-family:'Roboto', Roboto;
+    font-family:'Roboto Regular', Roboto;
+    font-style: normal;
     font-weight:400;
 }
 
 .roboto-light-text{
     font-family:'Roboto Light', Roboto;
+    font-style: normal;
     font-weight:300;
 }
 
@@ -56,6 +61,7 @@ body{
     overflow:hidden;
     list-style: none;
 }
+
 .horizontal-list li{
     float:left;
 }
@@ -66,6 +72,10 @@ body{
 
 .black-text{
     color: #000000;
+}
+
+.upreader-blue-text{
+    color: #26ade4;
 }
 
 .green-button-link{
@@ -107,7 +117,7 @@ header{
         text-decoration: none;
     }
     .header-button-link:hover{
-        color: #00a9d3;
+        color: #85ab00;
     }
 
 #logo{

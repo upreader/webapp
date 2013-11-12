@@ -10,133 +10,111 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css" media="screen"/>
 </head>
-<body>
+<body class="container">
 
 <jsp:include page="inc/header.jspf"/>
 
 <%
     String serverPath = UpreaderConstants.UPREADER_SECURE_HOST + UpreaderConstants.UPREADER_CONTEXT;
 %>
-<div class="page page-login">
-    <section class="login-register-section">
-        <header class="status-header">
-            <div class="status-outer">
-                <h1 class="status-text">Your current status is OBSERVER</h1>
-            </div>
-         </header>
-        <div class="login-register-frame">
-            <section class="login-section">
-                <div class="login-form">
-                    <FORM id="login-form" action="<%= serverPath %>/j_security_check" method="post" autocomplete="on">
-                        <div class="login-form-header">Already a member ?</div>
-                        <div class="login-form-title">Login</div>
-
-                        <div class="form-vertical-item">
-                            <input type="text" id="login-email" class="form-input" name="j_username" placeholder="@"/>
-                            <div class="form-input-hint">
-                                <span>email</span>
-                            </div>
-                        </div>
-
-                        <div class="form-vertical-item">
-                            <input type="password" id="login-password" class="form-input" name="j_password"/>
-                            <div class="form-input-hint">
-                                <div>password</div>
-                                <div><a href="#">forgot what it was ?</a></div>
-                            </div>
-                        </div>
-
-                        <div class="form-vertical-item">
-                            <input type="checkbox" class="form-checkbox" name="remember">remember me
-                        </div>
-
-                        <div class="form-vertical-item">
-                            <input id="login-button" type="button" class="button-gray" value="Login"/>
-                        </div>
-
-                        <input type="submit" value="Login" style="visibility: hidden"/>
-                        <input type="hidden" name="j_uri" value="i/loginSuccessful"/>
-                    </FORM>
+<div class="row login-sections">
+    <section class="col-xs-3 login-section">
+        <div class="login-form">
+            <form id="login-form" action="<%= serverPath %>/j_security_check" method="post" autocomplete="on">
+                <div class="login-form-header-title  roboto-bold-text">Log in</div>
+                <div class="login-form-header">If you already have an <span class="upreader-blue-text roboto-black-text">UPREADER</span> account, please log in here.</div>
+                <div class="form-vertical-item">
+                    <label class="roboto-regular-text">Email</label>
+                    <input type="text" id="login-email" class="form-input" name="j_username" placeholder="@"/>
                 </div>
-            </section>
-
-            <section class="register-section">
-                <div class="register-div">
-                    <div class="register-social">
-                        <span class="register-social-content">
-                            <span class="register-social-text">sign in using:</span>
-                            <span class="register-social-fb">
-                                <a class="button blue flat" href="<c:url value='/i/loginWithFacebook'/>"><img src="${pageContext.request.contextPath}/images/facebook.jpg"/></a>
-                            </span>
-                            <span class="register-social-tw">
-                                <a class="button blue flat" href="<c:url value='/i/loginWithTwitter'/>"><img src="${pageContext.request.contextPath}/images/twitter.jpg"/></a>
-                            </span>
-                        </span>
-                    </div>
-                    <div class="register-form">
-                        <FORM id="register-form" action="<%= serverPath %>/i/register" method="post" autocomplete="off">
-                            <div class="form-vertical-item">
-                                <input type="text" class="form-input" id="firstName" name="firstName" autocomplete="off"/>
-                                <div class="form-input-hint">
-                                    <span>first name</span>
-                                </div>
-                            </div>
-
-                            <div class="form-vertical-item">
-                                <input type="text" class="form-input" id="lastName" name="lastName" autocomplete="off"/>
-                                <div class="form-input-hint">
-                                    <span>last name</span>
-                                </div>
-                            </div>
-
-                            <div class="form-vertical-item">
-                                <input type="text" class="form-input" id="email" name="email" placeholder="@" autocomplete="off"/>
-                                <div class="form-input-hint">
-                                    <span>email</span>
-                                </div>
-                            </div>
-
-                            <div class="form-vertical-item">
-                                <input type="password" class="form-input" id="password" name="password" autocomplete="off"/>
-                                <div class="form-input-hint">
-                                    <div>password</div>
-                                </div>
-                            </div>
-
-                            <div class="form-vertical-item">
-                                <input type="text" class="form-input" id="countryCity" name="countryCity" autocomplete="off"/>
-                                <div class="form-input-hint">
-                                    <span>country, city</span>
-                                </div>
-                            </div>
-
-                            <div class="form-vertical-item">
-                                <input type="checkbox" class="form-checkbox" id="updateMe" name="updateMe" checked="checked">keep me updated
-                            </div>
-
-                            <div class="form-vertical-item">
-                                <input id="register-button" type="button" class="button-gray" value="Register"/>
-                            </div>
-                        </FORM>
-                    </div>
+                <div class="form-vertical-item">
+                    <label class="roboto-regular-text">Password</label>
+                    <input type="password" id="login-password" class="form-input" name="j_password"/>
                 </div>
-            </section>
-
-            <section class="register-help-section">
-                <div class="register-help-div">
-                    <div class="register-help-header">Register for a Prospector account</div>
-                    <div class="register-help-body">Get full access to all information, subscribe to free
-                        serial-stories, check and compare stats on you Control Board
-                    </div>
-                    <div id="register-errors">
-                        Errors found:
-
-                        <ul id="reg-error-list"></ul>
-                    </div>
+                <div class="form-vertical-item">
+                    <a class="login-forgot-password" href="">I forgot my password</a>
                 </div>
-            </section>
+                <div class="form-vertical-item">
+                    <input type="checkbox" class="form-checkbox" name="remember"> <label class="roboto-regular-text">Remember me next time.</label>
+                </div>
+                <div class="form-vertical-item">
+                    <input id="login-button" type="button" class="green-button-link" value="Log me in"/>
+                </div>
+
+                <input type="submit" value="Login" style="visibility: hidden"/>
+                <input type="hidden" name="j_uri" value="i/loginSuccessful"/>
+            </form>
         </div>
     </section>
+    <section class="col-xs-5 signup-section">
+        <div class="register-div">
+            <div class="register-form">
+                <form id="register-form" action="<%= serverPath %>/i/register" method="post" autocomplete="off">
+                    <div class="login-form-header-title  roboto-bold-text">New around here?</div>
+                    <div class="login-form-header">This is where you create your <span class="upreader-blue-text roboto-black-text">UPREADER</span> account. Should be very easy for you.</div>
+                    <div class="sign-up-form-items">
+                        <div class="form-vertical-item">
+                            <label class="roboto-regular-text">First Name</label>
+                            <input type="text" class="form-input" id="firstName" name="firstName" autocomplete="off"/>
+                        </div>
+                        <div class="form-vertical-item">
+                            <label class="roboto-regular-text">Last Name</label>
+                            <input type="text" class="form-input" id="lastName" name="lastName" autocomplete="off"/>
+                        </div>
+                        <div class="form-vertical-item">
+                            <label class="roboto-regular-text">Email</label>
+                            <input type="text" class="form-input" id="email" name="email" placeholder="@"
+                                   autocomplete="off"/>
+                            <div class="form-input-hint">
+                                <span>We'll keep this safe, don't worry.</span>
+                            </div>
+                        </div>
+                        <div class="form-vertical-item">
+                            <label class="roboto-regular-text">Re-type your Email</label>
+                            <input type="text" class="form-input" id="retype-email" name="retype-email" placeholder="@"
+                                   autocomplete="off"/>
+                        </div>
+                        <div class="form-vertical-item">
+                            <label class="roboto-regular-text">Password</label>
+                            <input type="password" class="form-input" id="password" name="password" autocomplete="off"/>
+                            <div class="form-input-hint">
+                                <span>Make sure it's something hard to guess.</span>
+                            </div>
+                        </div>
+                        <div class="form-vertical-item">
+                            <label class="roboto-regular-text">Re-type Password</label>
+                            <input type="password" class="form-input" id="retype-password" name="retype-password" autocomplete="off"/>
+                        </div>
+                        <div class="signup-updates-section">
+                            <input type="checkbox" class="form-checkbox" id="updateMe" name="updateMe" checked="checked">
+                            <label class="roboto-regular-text">Do you want us to keep you posted with any news from UPREADER?</label>
+                            <p class="roboto-regular-text">By clicking on the button below and signing up, you agree
+                                to our <a href="" class="upreader-blue-text">terms of use</a> and <a href="" class="upreader-blue-text">the privacy policy</a>.</p>
+                        </div>
+                        <div class="form-vertical-item">
+                            <input id="register-button" type="button" class="green-button-link" value="I'm done, sign me up!"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="col-xs-4 fbook-section">
+        <div class="register-social">
+            <span class="register-social-content">
+                <span class="register-social-text">sign in using:</span>
+                <span class="register-social-fb">
+                    <a class="button blue flat" href="<c:url value='/i/loginWithFacebook'/>"><img
+                            src="${pageContext.request.contextPath}/images/facebook.jpg"/></a>
+                </span>
+                <span class="register-social-tw">
+                    <a class="button blue flat" href="<c:url value='/i/loginWithTwitter'/>"><img
+                            src="${pageContext.request.contextPath}/images/twitter.jpg"/></a>
+                </span>
+            </span>
+        </div>
+    </section>
+
 </div>
 
 <jsp:include page="inc/footer.jspf"/>
