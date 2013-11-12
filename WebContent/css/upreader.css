@@ -112,12 +112,17 @@ header{
 
 #header-home-link{
     float:right;
-    padding-right: 2px;
+    padding-right: 5px;
 }
 
 .header-divider{
     float: left;
     padding-right:10px;
+}
+
+.last-header-divider{
+    float: left;
+    padding-left: 5px;
 }
 
 .header-text-large{

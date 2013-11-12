@@ -37,6 +37,7 @@
                     <img  class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
                     <p class="header-text-large  roboto-black-text">Browse</p>
                     <p class="header-text-small  roboto-regular-text">the library</p>
+                    <img  class="last-header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
                 </a>
             </li>
         </ul>
