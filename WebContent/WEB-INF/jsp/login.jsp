@@ -77,7 +77,7 @@
                         <div class="form-vertical-item">
                             <label class="roboto-regular-text">Password</label>
                             <input type="password" class="form-input" id="password" name="password" autocomplete="off"/>
-                            <div class="form-input-hint">
+                            <div class="form-input-hint roboto-regular-text">
                                 <span>Make sure it's something hard to guess.</span>
                             </div>
                         </div>
@@ -101,22 +101,47 @@
     </section>
     <section class="col-xs-4 fbook-section">
         <div class="register-social">
-            <span class="register-social-content">
-                <span class="register-social-text">sign in using:</span>
-                <span class="register-social-fb">
-                    <a class="button blue flat" href="<c:url value='/i/loginWithFacebook'/>"><img
-                            src="${pageContext.request.contextPath}/images/facebook.jpg"/></a>
-                </span>
-                <span class="register-social-tw">
-                    <a class="button blue flat" href="<c:url value='/i/loginWithTwitter'/>"><img
-                            src="${pageContext.request.contextPath}/images/twitter.jpg"/></a>
-                </span>
-            </span>
+            <div class="login-form-header-title  roboto-bold-text">Connect with facebook</div>
+            <div class="login-form-header">This is the fast and easy way. If you have a Facebook account then you’re just a few clicks
+                away from your very own <span class="upreader-blue-text roboto-black-text">UPREADER</span> account.</div>
+            <div class="register-social-fb">
+                <a href="<c:url value='/i/loginWithFacebook'/>"><img
+                          src="${pageContext.request.contextPath}/img/icons/social/facebook.png"/></a>
+            </div>
+            <div class="login-form-header">...oh yes, we’ll play nice and won’t harass any of your friends or post anything without your permission.</div>
         </div>
     </section>
 
 </div>
 
+<div class="row upreader-status-data">
+    <div class="col-xs-12">
+        <div class="col-xs-3  nopadding">
+            <div class="upreader-status-data-title  roboto-light-text">Successful</div>
+            <div class="upreader-status-data-value  roboto-bold-text">5234</div>
+        </div>
+        <div class="col-xs-2  nopadding">
+            <div class="upreader-status-data-title  roboto-light-text">Upreaders</div>
+            <div class="upreader-status-data-value  roboto-bold-text">335123</div>
+        </div>
+        <div class="col-xs-2  nopadding">
+            <div class="upreader-status-data-title  roboto-light-text">Authors</div>
+            <div class="upreader-status-data-value  roboto-bold-text">424</div>
+        </div>
+        <div class="col-xs-2  nopadding">
+            <div class="upreader-status-data-title  roboto-light-text">E&minus;books&nbsp;sold</div>
+            <div class="upreader-status-data-value  roboto-bold-text">424</div>
+        </div>
+        <div class="col-xs-3  nopadding">
+            <div class="upreader-status-data-title  roboto-light-text">Total Projects</div>
+            <div class="upreader-status-data-value  roboto-bold-text">145523</div>
+        </div>
+    </div>
+</div>
+
+<div class="row before-footer-section">
+
+</div>
 <jsp:include page="inc/footer.jspf"/>
 
 <script type="text/javascript">

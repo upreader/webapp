@@ -7,7 +7,8 @@ form label{
 }
 
 .form-vertical-item{
-    width: 210px;
+    margin-top: 8px;
+    width: 90%;
     font-size: 13px;
 }
 
@@ -46,4 +47,9 @@ form label{
 
 .form-select {
     padding: 2px 6px;
+}
+
+.form-input-hint{
+    font-size: 13px;
+    color: #b1b1b1;
 }
