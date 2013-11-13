@@ -128,6 +128,9 @@ public class User implements Serializable {
     @Column(name = "bio")
     private String bio;
 
+    @Column(name = "profilepic")
+    private String profilepic;
+
     /**
      * Whether to receive emails from Upreader
      */
@@ -496,5 +499,13 @@ public class User implements Serializable {
 
     public void setLoginCookie(String loginCookie) {
         this.loginCookie = loginCookie;
+    }
+
+    public String getProfilepic() {
+        return profilepic;
+    }
+
+    public void setProfilepic(String profilepic) {
+        this.profilepic = profilepic;
     }
 }

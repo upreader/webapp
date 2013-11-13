@@ -45,20 +45,34 @@
     <div class="col-xs-2"></div>
     <nav class="col-xs-3 login-search-menu">
         <ul class="horizontal-list white-text">
-            <li class="col-xs-4 nopadding">
-                <a class="header-button-link" href="<c:url value='/p/login'/>">
-                    <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
-                    <p class="header-text-large  roboto-black-text">Sign &nbsp;&nbsp;&nbsp;</p>
-                    <p class="header-text-small  roboto-regular-text">up</p>
-                </a>
-            </li>
-            <li class="col-xs-4 nopadding">
-                <a class="header-button-link" href="<c:url value='/p/login'/>">
-                    <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
-                    <p class="header-text-large  roboto-black-text">Log &nbsp;&nbsp;&nbsp;&nbsp;</p>
-                    <p class="header-text-small  roboto-regular-text">in</p>
-                </a>
-            </li>
+            <c:choose>
+                <c:when test="${not empty sessionScope.user}">
+                    <li class="col-xs-4 nopadding">
+                        <a href="<c:url value='/p/profile'/>"><img class="circular-45  right" src="${sessionScope.user.profilepic}" /></a>
+                    </li>
+                    <li class="col-xs-4 nopadding">
+                            <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
+                            <p class="header-profile-text-hello  roboto-regular-text">Hello,&nbsp;&nbsp;</p>
+                            <p class="header-profile-text-user  roboto-black-text"><c:out value="${pageContext.request.remoteUser}"/></p>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <li class="col-xs-4 nopadding">
+                        <a class="header-button-link" href="<c:url value='/p/login'/>">
+                            <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
+                            <p class="header-text-large  roboto-black-text">Sign &nbsp;&nbsp;&nbsp;</p>
+                            <p class="header-text-small  roboto-regular-text">up</p>
+                        </a>
+                    </li>
+                    <li class="col-xs-4 nopadding">
+                        <a class="header-button-link" href="<c:url value='/p/login'/>">
+                            <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
+                            <p class="header-text-large  roboto-black-text">Log &nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="header-text-small  roboto-regular-text">in</p>
+                        </a>
+                    </li>
+                </c:otherwise>
+            </c:choose>
             <li class="col-xs-4 nopadding">
                 <a class="header-button-link" href="#">
                     <img class="header-divider" src="${pageContext.request.contextPath}/img/icons/header_separator.png" />
